@@ -1,2 +1,6 @@
 # APCS_Final_Project
-MMORPG!
+An MMORPG!
+
+##Collaborators
+Shaumik Ashraf
+James Cao
