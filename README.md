@@ -6,15 +6,15 @@ An MMORPG! A Legendairy Story.
 - James Cao
 
 ##Notes
-- Submitted google form!
 - *_Original is a dir of work done individually prior to the official assignment of the project
+- I did alot of work on the google docs! - SA
 
 ##TODO
 - Make proper todo list
 - Make description
 
 ##Description
-We want to create a turn based RPG. At the very least, the game will be able to do this:
-the user creates a character with a special class (via java sub-classes) and elements (via interfaces). The character will start in a common hub, where the user can go down a path of fields (featuring monsters) or towns (featuring healing). 
+We want to create a turn based RPG. At the very least, the game will be able to do this: the user creates a character with a special class and element. The character will start in a common hub, where the user can go down a path of fields (featuring monsters, who have their own elements) or towns (featuring healing). We want to implement features such as elemental weaknesses and exp into our battle system as well as strongest/weakest stat for better player cutomization. 
 
-The game itself will contain a hub in which the player can either enter a dungeon, where they fight a series of monsters, or a town, where players can purchase equipment and modify their character's stats. We want to implement features such as elemental weaknesses and exp into our battle system. When a player levels up, they will receive skill points which they can allocate to various skills. We also want to add a bit more excitement to our dungeons by allowing the players to choose which way to go if a "fork" appears.  In terms of player customization, characters will be able to choose an element to focus on as well as choose their strongest and weakest stats.  The town will allow the player to purchase items as well as reset their skill points.
+Our project will solidify and showcase the usage of Java class hierarchy and interfaces. We will be using abstract classes and interfaces. We will also use some Java 7 API classes such as Scanner and ArrayList. We may stretch out to Java file I/O (with util.Writer and util.Scanner) and enumerations. 
+
