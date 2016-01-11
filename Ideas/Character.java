@@ -13,6 +13,7 @@ public abstract class Character{
     public int luck; //Affects critical hit ratio and total damage taken (min/max damage)
     public int speed; //Determines turn order and battle and affects evasion rate
     public boolean crit; //if true, the attack will be a critical hit and do more damage
+    public int EXP;
     //public boolean healing; //if true, the player will skip their attack and heal
     
     //used for normalize
@@ -64,7 +65,7 @@ public abstract class Character{
             luck *= 1.5;
         }
         
-        else if (stat.equals ("Speed")){
+        else if (stat.equals ("Agility")){
             speed *= 1.5;
         }
         else{
@@ -95,13 +96,17 @@ public abstract class Character{
             luck *= .5;
         }
         
-        else if (stat.equals ("Speed")){
+        else if (stat.equals ("Agility")){
             speed *= .5;
         }
         else{
             System.out.println ("Something went wrong...");
         }
         
+    }
+    
+     public boolean isAlive(){
+        return (HP > 0);
     }
     
     public void statSheet(){
@@ -116,7 +121,18 @@ public abstract class Character{
         System.out.println (stats);
     }
     
-    public abstract void normalize();
+    
+    
+    public void normalize(){
+        //healing = false;
+        str = strInitial;
+        magic = magicInitial;
+        def = defInitial;
+        res = resInitial;
+        luck = luckInitial;
+        speed = speedInitial;
+        crit = false;
+    }
     
     
     

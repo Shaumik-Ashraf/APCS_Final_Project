@@ -172,6 +172,8 @@ import java.util.*;
 	            //catch ( IOException e ) { }
             }
             
+            response = false;
+            
             //Description will be customized to fit what the player inputed previously
             System.out.print("\033[H\033[2J");
 			System.out.flush();
@@ -180,8 +182,83 @@ import java.util.*;
             message += "?\n";
             System.out.println (message);
             cloud = new WarriorF(player);
-       		System.out.println (player);
-            
+       		//System.out.println (player);
+       		
+       		message = "So... why don't we start the battle simulator?\n";
+       		message += "1. Sure!\n";
+       		message += "2. No way!\n";
+       		
+       		while (!response){
+       			System.out.println (message);
+            	String choice =in.nextLine();
+	            System.out.print("\033[H\033[2J");
+				System.out.flush();
+				if ( choice.equals ("1" )) {
+	                    response = true;
+	                }
+       		}
+       		
+       		enemy = new Monster();
+       		while( cloud.isAlive() && enemy.isAlive() ) {
+       				System.out.println ("An enemy draws near! \n\n");
+       				try{
+       					Thread.sleep(1000);
+       				}catch (Exception e){}
+       				System.out.print("\033[H\033[2J");
+					System.out.flush();
+       			
+		    		System.out.println( "What will you do?" );
+		    		System.out.println( "Attack\nNothing\n" );
+		    		String choice =in.nextLine();
+		    		
+		    		cloud.normalize();
+		    		if (choice.equals ("Attack")){
+		    			int d1 = cloud.regAtk( enemy );
+		    			if (d1 <= 0){
+							d1 = 0;
+						}
+		
+					
+		    			System.out.println ("\n"+ player.get(0) + " smacks the enemy with a stick!" +"\nThe enemy took " + d1 + "!\n\n");
+		    			if (cloud.crit){
+							System.out.println("It's a critical hit!\n\n");
+						}
+						
+		    			try{
+       						Thread.sleep(200);
+       					}catch (Exception e){}
+        				
+        				//System.out.print("\033[H\033[2J");
+						//System.out.flush();
+		    		}
+		    		
+		    		if (enemy.isAlive()) {
+						int d2 = enemy.regAtk( cloud );
+							if (d2 <= 0){
+								d2 = 0;
+						}
+						System.out.println ("The enemy slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + d2 + "!\n\n");
+						if (enemy.crit){
+							System.out.println("It's a critical hit!\n\n");
+						}
+						
+						try{
+       						Thread.sleep(1500);
+       					}catch (Exception e){}
+        				System.out.print("\033[H\033[2J");
+						System.out.flush();
+		    		}
+		    		
+		    		else{
+		    			System.out.println ("You win!");
+		    			break;
+		    		}
+				
+			}
+			
+			if (!cloud.isAlive()){
+				System.out.println ("You lose.");
+			}
             
             
         
