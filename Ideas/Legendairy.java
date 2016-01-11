@@ -59,7 +59,7 @@ import java.util.*;
 	        //}
 	        //catch ( IOException e ) {}
 	        System.out.print("\033[H\033[2J");
-			System.out.flush();
+		System.out.flush();
 	        
 	        message = "Choose your vocation.\n";
 	        message += "Warrior\n";
@@ -199,8 +199,8 @@ import java.util.*;
        		}
        		
        		enemy = new Monster();
+		System.out.println ("An enemy draws near! \n\n");
        		while( cloud.isAlive() && enemy.isAlive() ) {
-       				System.out.println ("An enemy draws near! \n\n");
        				try{
        					Thread.sleep(1000);
        				}catch (Exception e){}
