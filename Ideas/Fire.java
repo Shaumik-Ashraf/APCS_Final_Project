@@ -5,7 +5,7 @@ public class Fire extends Character{
     
     public Fire (ArrayList<String> player){
         name = player.get(0);
-        element = player.get(3);
+        element = player.get(4);
         
         HP = 100;
         str = 10;

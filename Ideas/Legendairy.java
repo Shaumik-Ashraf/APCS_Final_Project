@@ -7,6 +7,7 @@ import java.util.*;
         
         private static final ArrayList<String> stats = new ArrayList();
         private static final ArrayList<String> traits = new ArrayList();
+        private static final ArrayList<String> jobs = new ArrayList();
         
         private static ArrayList<String> player = new ArrayList();
 
@@ -31,28 +32,24 @@ import java.util.*;
 	        stats.add ("Defense");
 	        stats.add ("Resistance");
 	        stats.add ("Luck");
-	        stats.add ("Agilty");
+	        stats.add ("Agility");
 	        
 	        traits.add ("Outgoing");
 	        traits.add ("Optimistic");
 	        traits.add ("Calm");
-	        /*
-	        //A bit silly, but if the user happens to type it into lower case, the program will accept the input and uppercase it later on.
-	        stats.add ("health");
-	        stats.add ("strength");
-	        stats.add ("magic");
-	        stats.add ("defense");
-	        stats.add ("resistance");
-	        stats.add ("luck");
-	        stats.add ("speed");
 	        
-	        traits.add ("outgoing");
-	        traits.add ("optimistic");
-	        traits.add ("calm");*/
+	        jobs.add ("Warrior");
+	        jobs.add ("Mage");
+	        jobs.add ("Archer");
+	        
+	        //A bit silly, but if the user happens to type it into lower case, the program will accept the input and uppercase it later on.
+
 	        newGame();
         }
         
         public void newGame(){
+        	System.out.print("\033[H\033[2J");
+			System.out.flush();
             String message = "";
             message = "Welcome to Project Legendairy. \nWe appreciate you volunteering to help out. \nWould you mind telling me your name?";
             System.out.println (message);
@@ -61,9 +58,36 @@ import java.util.*;
 	            player.add (in.nextLine());
 	        //}
 	        //catch ( IOException e ) {}
+	        System.out.print("\033[H\033[2J");
+			System.out.flush();
 	        
+	        message = "Choose your vocation.\n";
+	        message += "Warrior\n";
+	        message += "Mage\n";
+        	message += "Archer\n";
+        	
+        	
+        	while (!response){
+                
+                //try {
+                	System.out.println (message);
+                    System.out.println("Please enter an appropriate response.\n");
+	                String choice =in.nextLine();
+	               	System.out.print("\033[H\033[2J");
+					System.out.flush();
+	                if ( jobs.contains (choice) ) {
+	                    player.add (choice);
+	                    response = true;
+	                }
+	            //}
+	            //catch ( IOException e ) { }
+            }
+            
+            response = false;
+	        System.out.print("\033[H\033[2J");
+			System.out.flush();
 	        message = "What do you think is your strongest asset?\n";
-	        message += "Health\n";
+	        message += "\nHealth\n";
 	        message += "Strength\n";
         	message += "Magic\n";
         	message += "Defense\n";
@@ -71,13 +95,16 @@ import java.util.*;
 	        message += "Luck\n";
         	message += "Agility\n";
        
-            System.out.println (message);
+            
             
             while (!response){
                 
                 //try {
-                    System.out.println("Please enter an appropriate response.");
+                	System.out.println (message);
+                    System.out.println("Please enter an appropriate response.\n");
 	                String choice =in.nextLine();;
+	                System.out.print("\033[H\033[2J");
+					System.out.flush();
 	                if ( stats.contains (choice) ) {
 	                    player.add (choice);
 	                    response = true;
@@ -88,22 +115,27 @@ import java.util.*;
             
             response = false;
             
+            System.out.print("\033[H\033[2J");
+			System.out.flush();
             message = "What do you think is your weakest asset?\n";
-	        message += "Health\n";
+	        message += "\nHealth\n";
 	        message += "Strength\n";
         	message += "Magic\n";
         	message += "Defense\n";
         	message += "Resistance\n";
 	        message += "Luck\n";
-        	message += "Agilty\n";
+        	message += "Agility\n";
        
-            System.out.println (message);
+            
             
             while (!response){
                 
                 //try {
-                    System.out.println("Please enter an appropriate response.");
+                	System.out.println (message);
+                    System.out.println("Please enter an appropriate response.\n");
 	                String choice =in.nextLine();
+	                System.out.print("\033[H\033[2J");
+					System.out.flush();
 	                if ( stats.contains (choice) ) {
 	                    player.add(choice);
 	                    response = true;
@@ -115,21 +147,23 @@ import java.util.*;
         
         
          response = false;
-            
+            System.out.print("\033[H\033[2J");
+			System.out.flush();
             message = "Which of the following best describes your character?\n";
-        	message += "Outgoing\n";
+        	message += "\nOutgoing\n";
 	        message += "Optimistic\n";
 	        message += "Calm\n";
         
 
-       
-            System.out.println (message);
             
             while (!response){
                 
                // try {
-                    System.out.println("Please enter an appropriate response.");
+               		System.out.println (message);
+                    System.out.println("Please enter an appropriate response.\n");
 	                String choice =in.nextLine();
+	                System.out.print("\033[H\033[2J");
+					System.out.flush();
 	                if ( traits.contains (choice) ) {
 	                    player.add(choice);
 	                    response = true;
@@ -139,14 +173,16 @@ import java.util.*;
             }
             
             //Description will be customized to fit what the player inputed previously
+            System.out.print("\033[H\033[2J");
+			System.out.flush();
             message = "Hm, so you're " ;
             message += player.get(0);
             message += "?\n";
             System.out.println (message);
+            cloud = new WarriorF(player);
+       		System.out.println (player);
             
-            if (player.get(3).equals ("Outgoing")){
-                Fire hero = new Fire (player);
-            }
+            
             
         
         }
