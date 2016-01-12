@@ -1,8 +1,9 @@
 public class Monster extends Character{
         public Monster(){
+            name = "Jellyfish";
             element = "Wood";
             HP = 30;
-            str = 10;
+            str = 12;
             magic = 0;
             def = 3;
             res = 3;

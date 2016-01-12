@@ -61,6 +61,11 @@ public class WarriorF extends Warrior implements Fire {
             damage *= 2;
         }
         
+        if ( enemy.element.equals ("Aqua") ){
+            this.typeDis = true;
+            damage /= 2;
+        }
+        
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     
@@ -82,6 +87,11 @@ public class WarriorF extends Warrior implements Fire {
         if ( enemy.element.equals ("Wood") ){
             this.typeAdv = true;
             damage *= 2;
+        }
+        
+        if ( enemy.element.equals ("Aqua") ){
+            this.typeDis = true;
+            damage /= 2;
         }
         
         enemy.HP -= damage; //Final damage that your enemy will take
