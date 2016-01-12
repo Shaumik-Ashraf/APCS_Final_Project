@@ -10,12 +10,12 @@ package gamechars;
 import java.io.*;
 import java.util.*;
 
-public interface Water{
+public interface Aqua {
 	
-	public final String attribute = "Water";  //This should be done here
+	//public final String attribute = "Water";  //This should be done here
 	
-	protected String elemAtk1Name = "AquaCuttingBlade";
-	protected String elemAtk2Name = "TorrentRush";
+	protected String elemAtk1Name = "AquaLance";
+	protected String elemAtk2Name = "Tsunami";
 	
 	
 	public void addSkills() {
