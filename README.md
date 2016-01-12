@@ -4,14 +4,19 @@ An MMORPG! A Legendairy Story.
 ##Collaborators
 - Shaumik Ashraf
 - James Cao
+- Max A
 
 ##Notes
 - *_Original is a dir of work done individually prior to the official assignment of the project
-- I did alot of work on the google docs! - SA
+- Ideas contains ideas
+- FINAL contains final codes
+- USE PACKAGING!!! (put java files of a certain aspect into dirs, with the line "package <package_name>" as the first line of code)
 
 ##TODO
-- Make proper todo list
-- Make description
+- Complete abstract super class Area and subclasses Field and Town
+- Complete interfaces (water, earth, wind)
+- Complete other classes (Mage, Archer)
+- Add Max as collaborator 
 
 ##Description
 We want to create a turn based RPG. At the very least, the game will be able to do this: the user creates a character with a special class and element. The character will start in a common hub, where the user can go down a path of fields (featuring monsters, who have their own elements) or towns (featuring healing). We want to implement features such as elemental weaknesses and exp into our battle system as well as strongest/weakest stat for better player cutomization. 
