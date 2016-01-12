@@ -1,7 +1,17 @@
+/* abstract Warrior class - contains and defines specific warrior methods
+ * 
+ * Notes:
+ *	
+ *
+ */
+
+package gamechars;
+ 
 import java.io.*;
 import java.util.*;
 
 public abstract class Warrior extends Character{
+
     public int strongSwing(Character enemy){
         this.crit = false; //Crit activation is set to false
         int damage = this.str + 10 - enemy.def; //Work in progress. This is the damage that your character will do
@@ -14,4 +24,5 @@ public abstract class Warrior extends Character{
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     }
+
 }

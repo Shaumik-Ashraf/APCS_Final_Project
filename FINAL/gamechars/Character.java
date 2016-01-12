@@ -1,7 +1,18 @@
+/* abstract Character class - contains everything required for battling, and all methods for any character
+ * 
+ * Notes:
+ *	maybe add a public void battle(Character x) method? remove some of the "weight" from Legendairy
+ *	packaging everything
+ *
+ */
+
+package gamechars;
+ 
 import java.io.*;
 import java.util.*;
 
 public abstract class Character{
+
     public String name;
     public String element;
     

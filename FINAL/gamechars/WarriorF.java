@@ -1,7 +1,16 @@
+/* WarriorF class - extend warrior and implement Fire
+ * 
+ * Notes:
+ *	packaging everything
+ *
+ */
+
+package gamechars;
+ 
 import java.io.*;
 import java.util.*;
 
-public class WarriorF extends Warrior implements Fire{
+public class WarriorF extends Warrior implements Fire {
     
     public WarriorF (ArrayList<String> player){
         name = player.get(0);

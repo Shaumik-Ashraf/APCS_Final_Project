@@ -1,3 +1,15 @@
+/* Legendairy - does the heavy lifting of legends
+ * 
+ * Notes:
+ * This should still work
+ * 
+ *
+ */
+
+//custom api
+import gamechars.*;
+ 
+//java 7 api 
 import java.io.*;
 import java.util.*;
 

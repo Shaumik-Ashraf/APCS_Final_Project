@@ -1,3 +1,12 @@
+/* interface Fire - defines element base atks (methods) 
+ * 
+ * Notes:
+ *	
+ *
+ */
+
+package gamechars;
+ 
 import java.io.*;
 import java.util.*;
 
