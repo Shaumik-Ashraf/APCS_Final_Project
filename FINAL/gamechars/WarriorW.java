@@ -1,3 +1,6 @@
+
+package gamechars;
+
 import java.io.*;
 import java.util.*;
 
