@@ -1,11 +1,10 @@
 import java.io.*;
 import java.util.*;
 
-public class WarriorF extends Character{
+public class WarriorF extends Character implements Fire{
     
     public WarriorF (ArrayList<String> player){
         name = player.get(0);
-        element = "Fire";
         
         //literally the stats for My Unit in Fire Emblem. ;)
         HP = 19;
