@@ -45,7 +45,7 @@ public class WarriorF extends Warrior implements Fire {
        // System.out.println ("\n");
     }
     
-    public int heatWave(Character enemy){
+    public int heatWave(gChar enemy){
         System.out.println (name + " cast Heat Wave!");
         this.crit = false; //Crit activation is set to false
         int damage = this.magic - enemy.res; //Work in progress. This is the damage that your character will do
@@ -73,7 +73,7 @@ public class WarriorF extends Warrior implements Fire {
         
         
     //does damage on res based on str stat    
-    public int flameCrash(Character enemy){
+    public int flameCrash(gChar enemy){
         System.out.println (name + " used Flame Crash!");
         this.crit = false; //Crit activation is set to false
         int damage = this.str - enemy.res; //Work in progress. This is the damage that your character will do

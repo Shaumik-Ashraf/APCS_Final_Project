@@ -1,4 +1,7 @@
-public class Monster extends Character{
+
+package gamechars;
+
+public class Monster extends gChar{
         public Monster(){
             name = "Jellyfish";
             element = "Wood";

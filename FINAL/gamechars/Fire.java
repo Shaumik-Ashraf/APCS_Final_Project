@@ -12,9 +12,9 @@ import java.util.*;
 
 public interface Fire{
         
-        public int heatWave(Character enemy);
+        public int heatWave(gChar enemy);
         public void reKindle ();
-        public int flameCrash (Character enemy);
+        public int flameCrash (gChar enemy);
             
     
         

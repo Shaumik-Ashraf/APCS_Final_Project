@@ -39,7 +39,7 @@ public class WarriorW extends Warrior implements Wood{
        // System.out.println ("\n");
     }
     
-    public int woodSpike(Character enemy){
+    public int woodSpike(gChar enemy){
         System.out.println (name + " cast Wood Spike!");
         this.crit = false; //Crit activation is set to false
         int damage = this.magic - enemy.def; //Work in progress. This is the damage that your character will do

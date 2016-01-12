@@ -24,8 +24,8 @@ import java.util.*;
         
         private static ArrayList<String> player = new ArrayList();
 
-        private Character cloud;
-        private Character enemy;
+        private gChar cloud;
+        private gChar enemy;
         
         private boolean response;
         

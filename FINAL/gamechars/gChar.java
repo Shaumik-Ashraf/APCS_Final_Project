@@ -11,7 +11,7 @@ package gamechars;
 import java.io.*;
 import java.util.*;
 
-public abstract class Character{
+public abstract class gChar{
 
     public String name;
     public String element;
@@ -41,7 +41,7 @@ public abstract class Character{
     
     
     //Basic attack that every character can perform
-    public int regAtk( Character enemy){
+    public int regAtk( gChar enemy){
         this.crit = false; //Crit activation is set to false
         int damage = this.str - enemy.def; //Work in progress. This is the damage that your character will do
         
@@ -168,10 +168,10 @@ public abstract class Character{
 	}
 	*/
 	
-	public abstract int classAtk1();
+/*	public abstract int classAtk1();
 	
 	public abstract int elemAtk1();
 	
-	public abstract int elemAtk2();
+	public abstract int elemAtk2();*/ 
 	
 }

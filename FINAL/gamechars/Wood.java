@@ -8,7 +8,7 @@ public interface Wood{
         
         public void pepperSong();
         public int flowerDance ();
-        public int woodSpike (Character enemy);
+        public int woodSpike (gChar enemy);
             
     
         
