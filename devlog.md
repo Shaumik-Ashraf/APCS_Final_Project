@@ -9,7 +9,7 @@
 | SA          |  N\A     |  added ideas                   |
 | JC          |  N\A     |  added ideas                   |
 | SA          | 1/11/16  |  created devlog, updated readme|
-| JC          | 1/11/16  |  created FINAL                 |
+| JC          | 1/11/16  |  created FINAL, added Fire and Wood classes, updated main function.                  |
 |             |          |                                |
 |             |          |                                |
 |             |          |                                |
