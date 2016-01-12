@@ -153,7 +153,25 @@ public abstract class Character{
     }
     
     
+    /*======================================================================================
+	========================================================================================
+	========================================================================================*/
     
-    
-    
+    //stats stay the same
+	//regAtk, bestStat, and worstStat stay the same
+	
+	protected ArrayList<String> skillList = new ArrayList();
+	
+	/* shouldn't ther be one?
+	public Character() {  //overload constructor
+		
+	}
+	*/
+	
+	public abstract int classAtk1();
+	
+	public abstract int elemAtk1();
+	
+	public abstract int elemAtk2();
+	
 }
