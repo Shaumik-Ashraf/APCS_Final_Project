@@ -15,6 +15,7 @@ public abstract class Character{
     public boolean crit; //if true, the attack will be a critical hit and do more damage
     //public boolean healing; // if true, the player skips a turn to heal.
     public boolean typeAdv; // if the player does a move that has a type advantage, deal double damage.
+    public boolean typeDis; // if the player does a move that has a type disadvantage, deal half damage.
     public int EXP;
    
     
@@ -120,7 +121,9 @@ public abstract class Character{
         stats.add("Res:" + res);
         stats.add("Luck:" + luck);
         stats.add("Speed:" + speed);
+        System.out.println (name);
         System.out.println (stats);
+        System.out.println ("Element: "+ element);
     }
     
     
@@ -135,6 +138,7 @@ public abstract class Character{
         speed = speedInitial;
         crit = false;
         typeAdv = false;
+        typeDis = false;
     }
     
     

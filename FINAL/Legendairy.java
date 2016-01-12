@@ -184,12 +184,22 @@ import java.util.*;
             System.out.println (message);
             
             
+            if (player.get(4).equals ("Outgoing") ){
+            	cloud = new WarriorF(player);
+            	skills.add ("Strong Swing");
+            	skills.add ("Heat Wave");
+            	skills.add ("Flame Crash");
+            	skills.add ("Rekindle");
+            }
             
-            cloud = new WarriorF(player);
-            skills.add ("Strong Swing");
-            skills.add ("Heat Wave");
-            skills.add ("Flame Crash");
-            skills.add ("Rekindle");
+            if (player.get(4).equals ("Optimistic") ){
+            	cloud = new WarriorW(player);
+            	skills.add ("Strong Swing");
+            	skills.add ("Flower Dance");
+            	skills.add ("Wood Spike");
+            	skills.add ("Pepper Song");
+            }
+            
        		//System.out.println (player);
        		
        		message = "So... why don't we start the battle simulator?\n";
@@ -233,48 +243,99 @@ import java.util.*;
 		    		}
 		    		
 		    		if (choice.equals ("Skills") ){
-		    			while (!response){
+		    			if (cloud instanceof WarriorF){
+		    				while (!response){
 		    				
-		    			System.out.print("\033[H\033[2J");
-						System.out.flush();
-		    			System.out.println( "What will you do?" );
-		    			System.out.println( "Strong Swing\nHeat Wave\nFlame Crash\nRekindle\n" );
-		    			choice =in.nextLine();
-		    			if ( skills.contains (choice) ) {
-	                    	response = true;
+		    				System.out.print("\033[H\033[2J");
+							System.out.flush();
+		    				System.out.println( "What will you do?" );
+		    				System.out.println( "Strong Swing\nHeat Wave\nFlame Crash\nRekindle\n" );
+		    				choice =in.nextLine();
+		    				if ( skills.contains (choice) ) {
+	                    		response = true;
+		    					}
 		    				}
-		    			}
 		    			
-		    			if (choice.equals ("Strong Swing")){
-		    				int d1 = ( (WarriorF)cloud ).strongSwing (enemy);
-		    				if (d1 <= 0){
-							d1 = 0;
-							}
-							System.out.println ("The enemy took " + d1 + "!\n\n");
-		    			}
+		    				if (choice.equals ("Strong Swing")){
+		    					int d1 = ( (WarriorF)cloud ).strongSwing (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
 		    			
-		    			if (choice.equals ("Heat Wave")){
-		    				int d1 = ( (WarriorF)cloud ).heatWave (enemy);
-		    				if (d1 <= 0){
-							d1 = 0;
-							}
-							System.out.println ("The enemy took " + d1 + "!\n\n");
-		    			}
+		    				if (choice.equals ("Heat Wave")){
+		    					int d1 = ( (WarriorF)cloud ).heatWave (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
 		    			
-		    			if (choice.equals ("Flame Crash")){
-		    				int d1 = ( (WarriorF)cloud).flameCrash (enemy);
-		    				if (d1 <= 0){
-							d1 = 0;
-							}
-							System.out.println ("The enemy took " + d1 + "!\n\n");
-		    			}
+		    				if (choice.equals ("Flame Crash")){
+		    					int d1 = ( (WarriorF)cloud).flameCrash (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
 		
 		    			
-		    			if (choice.equals ("Rekindle")){
-		    				 ( (WarriorF)cloud ).reKindle();
+		    				if (choice.equals ("Rekindle")){
+		    					 ( (WarriorF)cloud ).reKindle();
 		    				
+		    				}
+		    			
 		    			}
 		    			
+		    			if (cloud instanceof WarriorW){
+		    				while (!response){
+		    				
+		    				System.out.print("\033[H\033[2J");
+							System.out.flush();
+		    				System.out.println( "What will you do?" );
+		    				System.out.println( "Strong Swing\nFlower Dance\nWood Spike\nPepper Song\n" );
+		    				choice =in.nextLine();
+		    				if ( skills.contains (choice) ) {
+	                    		response = true;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					int d1 = ( (WarriorW)cloud ).strongSwing (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		    			
+		    				if (choice.equals ("Flower Dance")){
+		    					int hits = ( (WarriorW)cloud ).flowerDance();
+		    					while (hits != 0){
+		    						int d1 = cloud.regAtk( enemy );
+		    						if (d1 <= 0){
+										d1 = 0;
+		    						}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+								hits --;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Wood Spike")){
+		    					int d1 = ( (WarriorW)cloud).woodSpike (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		
+		    			
+		    				if (choice.equals ("Pepper Song")){
+		    					 ( (WarriorW)cloud ).pepperSong();
+		    				
+		    				}
+		    			
+		    			}
 		    		}
 		    		
 		    		
@@ -283,6 +344,10 @@ import java.util.*;
 		
 						if (cloud.typeAdv){
 		    				System.out.println("It's super effective!\n\n");
+						}
+						
+						if (cloud.typeDis){
+		    				System.out.println("It's not very effective!\n\n");
 						}
 						
 		    			if (cloud.crit){
