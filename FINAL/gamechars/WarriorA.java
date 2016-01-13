@@ -9,6 +9,8 @@ package gamechars;
  
 import java.io.*;
 import java.util.*;
+import gameutils.*;
+ 
 
 public class WarriorA extends Warrior implements Aqua {
     
@@ -35,21 +37,21 @@ public class WarriorA extends Warrior implements Aqua {
         luckInitial = luck;
         speedInitial = speed;
         
-        //System.out.println( "Previous stats\n");
+        //SO.println( "Previous stats\n");
         //statSheet();
-       // System.out.println ("\n");
+       // SO.println ("\n");
         bestStat (player.get(2));
         worstStat (player.get(3));
         
-       // System.out.println( "New stats\n");
+       // SO.println( "New stats\n");
        // statSheet();
-       // System.out.println ("\n");
+       // SO.println ("\n");
     
     }
     
     public int hailStorm (){
         
-        System.out.println (name + " began the Hail Storm!");
+        SO.println (name + " began the Hail Storm!");
         int hits = 2;
         return hits;
         
@@ -58,7 +60,7 @@ public class WarriorA extends Warrior implements Aqua {
         
     //does damage on res based on str stat    
     public int drizzle(){
-        System.out.println (name + " cast Drizzle!");
+        SO.println (name + " cast Drizzle!");
         int hits = (int)(Math.random() *5);
         return hits;
         }
@@ -66,16 +68,16 @@ public class WarriorA extends Warrior implements Aqua {
     
         
     public void aquaVeil(){
-        System.out.println (name + " cast Aqua Veil!");
+        SO.println (name + " cast Aqua Veil!");
         if (hpInitial > HP){
         HP += 8;
              if (HP > hpInitial){
                 HP = hpInitial;
-                System.out.println (name + " has full HP now.");
+                SO.println (name + " has full HP now.");
             }
         }
         else {
-            System.out.println ("It had no effect!");}
+            SO.println ("It had no effect!");}
         //healing = true;
         str = 0;
         magic = 0;
