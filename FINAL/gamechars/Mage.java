@@ -10,12 +10,12 @@ package gamechars;
 import java.io.*;
 import java.util.*;
 
-public abstract class Mage extends Character{
+public abstract class Mage extends gChar{
 
 	public int arcaniteForce(gChar enemy) {
 
 		this.crit = false;
-		int damage = this.magic - enemy.resistance + 10;
+		int damage = this.magic - enemy.res + 10;
 
 		if ( (Math.random() *100) <=luck){
 		    this.crit = true;
@@ -30,7 +30,7 @@ public abstract class Mage extends Character{
 	
 	
 
-}
+
 
 
 }

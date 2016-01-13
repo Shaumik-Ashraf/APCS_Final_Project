@@ -144,13 +144,15 @@ public abstract class gChar{
     
     public void statSheet(){
         ArrayList<String> stats = new ArrayList();
-        stats.add("HP:" + HP);
-        stats.add("Str:" + str);
-        stats.add("Magic:" +magic);
-        stats.add("Def:" + def);
-        stats.add("Res:" + res);
-        stats.add("Luck:" + luck);
-        stats.add("Speed:" + speed);
+        stats.add ("Level:" + level);
+        stats.add("HP: " + HP);
+        stats.add("Str: " + str);
+        stats.add("Magic: " +magic);
+        stats.add("Def: " + def);
+        stats.add("Res: " + res);
+        stats.add("Luck: " + luck);
+        stats.add("Speed: " + speed);
+        stats.add ("EXP: " + EXP);
         System.out.println (name);
         System.out.println (stats);
         System.out.println ("Element: "+ element);
