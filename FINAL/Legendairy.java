@@ -272,6 +272,8 @@ import java.util.*;
         }
         
         public void expGain(gChar enemy){
+        	System.out.print("\033[H\033[2J");
+			System.out.flush();
         	cloud.EXP += enemy.EXP;
         	System.out.println (cloud.name + " gained " + enemy.EXP + " exp!");
         	if (cloud.EXP >= 100){
@@ -279,7 +281,72 @@ import java.util.*;
         		cloud.level += lvls;
         		System.out.println (cloud.name + " leveled up to level " + cloud.level);
         		cloud.EXP = cloud.EXP % 100;
+        		System.out.println ("\n");
+        		skillPoints(cloud);
         	}
+        }
+        
+        public void skillPoints (gChar cloud){
+        	String message = "";
+        	System.out.println ("You gained some skill points!\n");
+        	try{
+       			Thread.sleep(1500);
+       			}catch (Exception e){}
+       		System.out.print("\033[H\033[2J");
+			System.out.flush();
+        	for (int i = 3; i >0; i--){
+        		cloud.statSheet();
+        		message = "\nPlease allocate these points to the following stats.\nYou have " + i + " point(s).\n";
+        		message += "HP\n";
+        		message += "Attack\n";
+        		message += "Magic\n";
+        		message += "Defense\n";
+        		message += "Resistance\n";
+        		message += "Luck\n";
+        		message += "Agility\n";
+        		response = false;
+        		while (!response){
+       				System.out.println (message);
+            		String choice =in.nextLine();
+            		if (stats.contains (choice)) {
+            			if (choice.equals ("HP")){
+            				cloud.HP ++;
+            				cloud.hpInitial = cloud.HP;
+            			}
+            			if (choice.equals ("Attack")){
+            				cloud.str ++;
+            				cloud.strInitial = cloud.str;
+            			}
+            			if (choice.equals ("Magic")){
+            				cloud.magic ++;
+            				cloud.magicInitial = cloud.magic;
+            			}
+            			if (choice.equals ("Defense")){
+            				cloud.def ++;
+            				cloud.defInitial = cloud.def;
+            			}
+            			if (choice.equals ("Resistance")){
+            				cloud.res ++;
+            				cloud.resInitial = cloud.res;
+            			}
+            			if (choice.equals ("Luck")){
+            				cloud.luck ++;
+            				cloud.luckInitial = cloud.luck;
+            			}
+            			if (choice.equals ("Agility")){
+            				cloud.speed ++;
+            				cloud.speedInitial = cloud.speed;
+            			}
+            			
+            			response = true;
+            			System.out.print("\033[H\033[2J");
+						System.out.flush();
+            			
+            			}
+            		}
+            	
+        	}
+        	response = false;
         }
     
        		
