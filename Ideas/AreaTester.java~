@@ -1,0 +1,22 @@
+/*
+Test Area, Field, and Town class
+
+
+*/
+
+
+public final class AreaTester {   //final modifier means class cant be extended; no subclasses
+
+
+	public static void main(String[] args) {
+		
+		
+		
+		
+	}
+	
+	
+	
+	
+
+}
