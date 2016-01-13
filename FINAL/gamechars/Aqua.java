@@ -13,8 +13,8 @@ import java.util.*;
 public interface Aqua {
 	
 	    public void aquaVeil();
-        public int hailStorm (gChar enemy);
-        public int drizzle (gChar enemy);
+        public int hailStorm ();
+        public int drizzle ();
             
 		
 		

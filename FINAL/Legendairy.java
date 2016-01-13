@@ -28,6 +28,9 @@ import java.util.*;
         private gChar enemy;
         
         private boolean response;
+        private String message;
+        private String skillList;
+        private String choice;
         
         //private InputStreamReader isr;
         //private BufferedReader in;
@@ -60,10 +63,10 @@ import java.util.*;
 	        newGame();
         }
         
-        public void newGame(){
+        public void characterCreation(){
         	System.out.print("\033[H\033[2J");
 			System.out.flush();
-            String message = "";
+            message = "";
             message = "Welcome to Project Legendairy. \nWe appreciate you volunteering to help out. \nWould you mind telling me your name?";
             System.out.println (message);
             
@@ -72,7 +75,7 @@ import java.util.*;
 	        //}
 	        //catch ( IOException e ) {}
 	        System.out.print("\033[H\033[2J");
-		System.out.flush();
+			System.out.flush();
 	        
 	        message = "Choose your vocation.\n";
 	        message += "Warrior\n";
@@ -85,7 +88,7 @@ import java.util.*;
                 //try {
                 	System.out.println (message);
                     System.out.println("Please enter an appropriate response.\n");
-	                String choice =in.nextLine();
+	                choice =in.nextLine();
 	               	System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( jobs.contains (choice) ) {
@@ -202,6 +205,7 @@ import java.util.*;
             	skills.add ("Heat Wave");
             	skills.add ("Flame Crash");
             	skills.add ("Rekindle");
+            	skillList = "Strong Swing\nHeat Wave\nFlame Crash\nRekindle\n";
             }
             
             if (player.get(4).equals ("Optimistic") ){
@@ -210,10 +214,23 @@ import java.util.*;
             	skills.add ("Flower Dance");
             	skills.add ("Wood Spike");
             	skills.add ("Pepper Song");
+            	skillList = "Strong Swing\nFlower Dance\nWood Spike\nPepper Song\n";
             }
             
-       		//System.out.println (player);
+            if (player.get(4).equals ("Calm") ){
+            	cloud = new WarriorA(player);
+            	skills.add ("Strong Swing");
+            	skills.add ("Hail Storm");
+            	skills.add ("Drizzle");
+            	skills.add ("Aqua Veil");
+            	skillList = "Strong Swing\nHail Storm\nDrizzle\nAqua Veil\n";
+            }
+            
+        }
+    
        		
+       		
+      	public void battleSim(){
        		message = "So... why don't we start the battle simulator?\n";
        		message += "1. Sure!\n";
        		message += "2. No way!\n";
@@ -229,7 +246,7 @@ import java.util.*;
        		}
        		
        		enemy = new Monster();
-		System.out.println ("An enemy draws near! \n\n");
+			System.out.println ("An enemy draws near! \n\n");
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
        				
@@ -261,7 +278,7 @@ import java.util.*;
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
 		    				System.out.println( "What will you do?" );
-		    				System.out.println( "Strong Swing\nHeat Wave\nFlame Crash\nRekindle\n" );
+		    				System.out.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -300,13 +317,16 @@ import java.util.*;
 		    			
 		    			}
 		    			
-		    			if (cloud instanceof WarriorW){
+		    			
+		    			
+		    			
+		    				if (cloud instanceof WarriorW){
 		    				while (!response){
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
 		    				System.out.println( "What will you do?" );
-		    				System.out.println( "Strong Swing\nFlower Dance\nWood Spike\nPepper Song\n" );
+		    				System.out.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -330,6 +350,7 @@ import java.util.*;
 		    						}
 								System.out.println ("The enemy took " + d1 + "!\n\n");
 								hits --;
+								cloud.str++;
 		    					}
 		    				}
 		    			
@@ -344,6 +365,60 @@ import java.util.*;
 		    			
 		    				if (choice.equals ("Pepper Song")){
 		    					 ( (WarriorW)cloud ).pepperSong();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof WarriorA){
+		    				while (!response){
+		    				
+		    				System.out.print("\033[H\033[2J");
+							System.out.flush();
+		    				System.out.println( "What will you do?" );
+		    				System.out.println( skillList );
+		    				choice =in.nextLine();
+		    				if ( skills.contains (choice) ) {
+	                    		response = true;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					int d1 = ( (WarriorA)cloud ).strongSwing (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		    			
+		    				if (choice.equals ("Hail Storm")){
+		    					int hits = ( (WarriorA)cloud ).hailStorm();
+		    					while (hits != 0){
+		    						int d1 = cloud.regAtk( enemy );
+		    						if (d1 <= 0){
+										d1 = 0;
+		    						}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+								hits --;
+							
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Drizzle")){
+		    					int hits = ( (WarriorA)cloud ).drizzle();
+		    					while (hits != 0){
+		    						int d1 = cloud.regAtk( enemy );
+		    						if (d1 <= 0){
+										d1 = 0;
+		    						}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+								hits --;
+								cloud.str--;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Aqua Veil")){
+		    					 ( (WarriorA)cloud ).aquaVeil();
 		    				
 		    				}
 		    			
@@ -401,9 +476,16 @@ import java.util.*;
 			if (!cloud.isAlive()){
 				System.out.println ("You lose.");
 			}
+			
             
             
         
+        }
+        
+           public void newGame(){
+        	
+            characterCreation();
+            battleSim();
         }
         
         public static void main (String[] args){

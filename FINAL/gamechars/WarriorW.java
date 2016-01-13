@@ -70,7 +70,7 @@ public class WarriorW extends Warrior implements Wood{
     public int flowerDance(){
         System.out.println (name + " began the Flower Dance!");
         
-        int hits = (int)(Math.random() *6);
+        int hits = (int)(Math.random() *4);
         return hits;
     
         }

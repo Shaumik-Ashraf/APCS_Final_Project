@@ -43,44 +43,22 @@ public class WarriorA extends Warrior implements Aqua {
        // System.out.println( "New stats\n");
        // statSheet();
        // System.out.println ("\n");
+    
     }
     
-    public int hailStorm (gChar enemy){
+    public int hailStorm (){
         
         System.out.println (name + " began the Hail Storm!");
-        int hits = 3;
+        int hits = 2;
         return hits;
-    
         
-       /* this.crit = false; //Crit activation is set to false
-        int damage = this.str*1.5 - enemy.res; //Work in progress. This is the damage that your character will do
-        
-        
-        if ( (Math.random() *100) <= luck){
-            this.crit = true; //Crit activation is set to true
-            damage = (int)( (this.str*1.5)- (enemy.res /1.03) ) ;//This will be the new damage your character does
-        }
-        
-        if ( enemy.element.equals ("Fire") ){
-            this.typeAdv = true;
-            damage *= 2;
-        }
-        
-        if ( enemy.element.equals ("Wood") ){
-            this.typeDis = true;
-            damage /= 2;
-        }
-        
-        enemy.HP -= damage; //Final damage that your enemy will take
-        return damage; //Returns the damage dealt to enemy*/
-    
         }
         
         
     //does damage on res based on str stat    
-    public int drizzle(gChar enemy){
+    public int drizzle(){
         System.out.println (name + " cast Drizzle!");
-        int hits = (int)(Math.random() *8);
+        int hits = (int)(Math.random() *5);
         return hits;
         }
     

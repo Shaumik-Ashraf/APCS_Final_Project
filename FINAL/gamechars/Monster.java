@@ -5,8 +5,8 @@ public class Monster extends gChar{
         public Monster(){
             name = "Jellyfish";
             element = "Wood";
-            HP = 30;
-            str = 12;
+            HP = 20;
+            str = 0;
             magic = 0;
             def = 3;
             res = 3;
