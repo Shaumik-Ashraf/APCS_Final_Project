@@ -300,7 +300,7 @@ import java.util.*;
         		cloud.statSheet();
         		message = "\nPlease allocate these points to the following stats.\nYou have " + i + " point(s).\n";
         		message += "HP\n";
-        		message += "Attack\n";
+        		message += "Strength\n";
         		message += "Magic\n";
         		message += "Defense\n";
         		message += "Resistance\n";
@@ -315,7 +315,7 @@ import java.util.*;
             				cloud.HP ++;
             				cloud.hpInitial = cloud.HP;
             			}
-            			if (choice.equals ("Attack")){
+            			if (choice.equals ("Strength")){
             				cloud.str ++;
             				cloud.strInitial = cloud.str;
             			}
@@ -805,7 +805,7 @@ import java.util.*;
 							System.out.println("It's a critical hit!\n\n");
 						}
 						
-						choice =in.nextLine();
+					//	choice =in.nextLine();
 					//	try{
        				///		Thread.sleep(1500);
        					//}catch (Exception e){}
