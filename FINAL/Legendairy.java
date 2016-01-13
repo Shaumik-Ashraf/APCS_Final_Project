@@ -370,10 +370,11 @@ import java.util.*;
        		
        		enemy = new Monster();
 			System.out.println ("An enemy draws near! \n\n");
+			choice =in.nextLine();
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
        				
-       				choice =in.nextLine();
+       				
        				//try{
        				//	Thread.sleep(1000);
        			//	}catch (Exception e){}
@@ -805,7 +806,7 @@ import java.util.*;
 							System.out.println("It's a critical hit!\n\n");
 						}
 						
-					//	choice =in.nextLine();
+						choice =in.nextLine();
 					//	try{
        				///		Thread.sleep(1500);
        					//}catch (Exception e){}
