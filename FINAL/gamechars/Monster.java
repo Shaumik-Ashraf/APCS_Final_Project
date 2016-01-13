@@ -12,7 +12,7 @@ public class Monster extends gChar{
             res = 3;
             luck = 1;
             speed = 3;
-            EXP = 5;
+            EXP = 100;
             
             hpInitial = HP;
             strInitial = str;

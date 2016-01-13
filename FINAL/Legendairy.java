@@ -20,6 +20,7 @@ import java.util.*;
         private static final ArrayList<String> stats = new ArrayList();
         private static final ArrayList<String> traits = new ArrayList();
         private static final ArrayList<String> jobs = new ArrayList();
+        private static final ArrayList<String> commands = new ArrayList();
         private static final ArrayList<String> skills = new ArrayList();
         
         private static ArrayList<String> player = new ArrayList();
@@ -58,9 +59,18 @@ import java.util.*;
 	        jobs.add ("Mage");
 	        jobs.add ("Archer");
 	        
+	        commands.add ("Attack");
+	        commands.add("Skills");
+	        
+	        
 	        //A bit silly, but if the user happens to type it into lower case, the program will accept the input and uppercase it later on.
 
 	        newGame();
+        }
+        
+        public void newGame(){
+            characterCreation();
+            battleSim();
         }
         
         public void characterCreation(){
@@ -260,6 +270,17 @@ import java.util.*;
             }
             
         }
+        
+        public void expGain(gChar enemy){
+        	cloud.EXP += enemy.EXP;
+        	System.out.println (cloud.name + " gained " + enemy.EXP + " exp!");
+        	if (cloud.EXP >= 100){
+        		int lvls = cloud.EXP / 100;
+        		cloud.level += lvls;
+        		System.out.println (cloud.name + " leveled up to level " + cloud.level);
+        		cloud.EXP = cloud.EXP % 100;
+        	}
+        }
     
        		
        		
@@ -286,13 +307,22 @@ import java.util.*;
        				try{
        					Thread.sleep(1000);
        				}catch (Exception e){}
-       				System.out.print("\033[H\033[2J");
-					System.out.flush();
+       				
+       				while (!response){
+       					System.out.print("\033[H\033[2J");
+						System.out.flush();
        			
-		    		System.out.println( "What will you do?" );
-		    		System.out.println( "Attack\nSkills\nNothing\n" );
-		    		String choice =in.nextLine();
+		    			System.out.println( "What will you do?" );
+		    			System.out.println( "Attack\nSkills\nNothing\n" );
+		    			choice =in.nextLine();
+		    			if ( commands.contains (choice) ) {
+	                    		response = true;
+		    					}
+       				}
+       				
 		    		
+		    		
+		    		response = false;
 		    		cloud.normalize();
 		    		enemy.normalize();
 		    		
@@ -667,6 +697,7 @@ import java.util.*;
 		    			
 		    			
 		    			
+		    			
 		    		}
 		    		
 		    		
@@ -711,6 +742,7 @@ import java.util.*;
 		    		}
 		    		
 		    		else{
+		    			expGain (enemy);
 		    			System.out.println ("You win!");
 		    			break;
 		    		}
@@ -726,11 +758,7 @@ import java.util.*;
         
         }
         
-           public void newGame(){
-        	
-            characterCreation();
-            battleSim();
-        }
+          
         
         public static void main (String[] args){
             Legendairy game = new Legendairy();
