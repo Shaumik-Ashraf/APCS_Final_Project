@@ -1,3 +1,7 @@
+<<<<<<< HEAD
+# YoRPG_Gats-and-Hats
+Ye Olde Role Playing Game for APCS
+=======
 # JASC - APCS_Final_Project
 An MMORPG! A Legendairy Story. 
 
@@ -24,3 +28,4 @@ We want to create a turn based RPG. At the very least, the game will be able to 
 
 Our project will solidify and showcase the usage of Java class hierarchy and interfaces. We will be using abstract classes and interfaces. We will also use some Java 7 API classes such as Scanner and ArrayList. We may stretch out to Java file I/O (with util.Writer and util.Scanner) and enumerations. 
 
+>>>>>>> b9217513556ce71b57f78d9a1db516678e3bfc1c
