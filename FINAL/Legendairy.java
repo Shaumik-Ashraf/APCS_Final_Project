@@ -44,6 +44,7 @@ import java.util.*;
 	        in = new Scanner(System.in);
 	        response = false;
 	        stats.add ("Health");
+	        stats.add ("HP");
 	        stats.add ("Strength");
 	        stats.add ("Magic");
 	        stats.add ("Defense");
@@ -128,7 +129,7 @@ import java.util.*;
                 //try {
                 	System.out.println (message);
                     System.out.println("Please enter an appropriate response.\n");
-	                String choice =in.nextLine();;
+	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( stats.contains (choice) ) {
@@ -159,7 +160,7 @@ import java.util.*;
                 //try {
                 	System.out.println (message);
                     System.out.println("Please enter an appropriate response.\n");
-	                String choice =in.nextLine();
+	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( stats.contains (choice) ) {
@@ -187,7 +188,7 @@ import java.util.*;
                // try {
                		System.out.println (message);
                     System.out.println("Please enter an appropriate response.\n");
-	                String choice =in.nextLine();
+	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( traits.contains (choice) ) {
@@ -289,9 +290,10 @@ import java.util.*;
         public void skillPoints (gChar cloud){
         	String message = "";
         	System.out.println ("You gained some skill points!\n");
-        	try{
-       			Thread.sleep(1500);
-       			}catch (Exception e){}
+        	choice =in.nextLine();
+        	//try{
+       			//Thread.sleep(1500);
+       		//	}catch (Exception e){}
        		System.out.print("\033[H\033[2J");
 			System.out.flush();
         	for (int i = 3; i >0; i--){
@@ -307,7 +309,7 @@ import java.util.*;
         		response = false;
         		while (!response){
        				System.out.println (message);
-            		String choice =in.nextLine();
+            		choice =in.nextLine();
             		if (stats.contains (choice)) {
             			if (choice.equals ("HP")){
             				cloud.HP ++;
@@ -358,7 +360,7 @@ import java.util.*;
        		
        		while (!response){
        			System.out.println (message);
-            	String choice =in.nextLine();
+            	choice =in.nextLine();
 	            System.out.print("\033[H\033[2J");
 				System.out.flush();
 				if ( choice.equals ("1" )) {
@@ -371,9 +373,10 @@ import java.util.*;
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
        				
-       				try{
-       					Thread.sleep(1000);
-       				}catch (Exception e){}
+       				choice =in.nextLine();
+       				//try{
+       				//	Thread.sleep(1000);
+       			//	}catch (Exception e){}
        				
        				while (!response){
        					System.out.print("\033[H\033[2J");
@@ -783,9 +786,10 @@ import java.util.*;
 							System.out.println("It's a critical hit!\n\n");
 						}
 						
-		    			try{
-       						Thread.sleep(200);
-       					}catch (Exception e){}
+						choice =in.nextLine();
+		    		//	try{
+       				//		Thread.sleep(200);
+       				//	}catch (Exception e){}
         				
         				//System.out.print("\033[H\033[2J");
 						//System.out.flush();
@@ -801,9 +805,10 @@ import java.util.*;
 							System.out.println("It's a critical hit!\n\n");
 						}
 						
-						try{
-       						Thread.sleep(1500);
-       					}catch (Exception e){}
+						choice =in.nextLine();
+					//	try{
+       				///		Thread.sleep(1500);
+       					//}catch (Exception e){}
         				System.out.print("\033[H\033[2J");
 						System.out.flush();
 		    		}
