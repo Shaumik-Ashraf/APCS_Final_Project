@@ -71,8 +71,15 @@ import java.util.*;
         }
         
         public void newGame(){
+        	
+            //character selections
             characterCreation();
+            
+            //for now, do battle
             battleSim();
+        
+        	
+        	
         }
         
         public void characterCreation(){
