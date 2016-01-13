@@ -4,14 +4,19 @@
  
 */
 
-import Math;
-import Thread;
+package gamearea;
+
+//import Math;
+//import Thread;
+import java.util.Scanner;
+import gameutils.*;
+import gamechars.*;
 
 public class Town extends Area {
 
 	//attributes
 	//a list of possible Town names; Disclaimer: Town names from SAO, Kid Icarus Uprising, and Super Smash Brothers, respectively
-	private final String[] TownNames = new String() {"Town of Beginnings", "Lumbridge", "That Burning Town", "Final Destination"};
+	private final String[] TownNames = new String[] {"Town of Beginnings", "Lumbridge", "That Burning Town", "Final Destination"};
 	private boolean response = false;
 	
 	//constructor
@@ -36,8 +41,10 @@ public class Town extends Area {
 	//define event and description methods
 	public void event(gChar gch) {
 		
-		private Scanner event_sc = new Scanner(System.in);
-		private String buffer; 
+		Scanner event_sc = new Scanner(System.in);
+		String buffer; 
+		
+
 		
 		SO.P("What would you like to do?\n");
 		SO.P("Rest\n");
@@ -45,7 +52,7 @@ public class Town extends Area {
 		//ADD MORE OPTIONS FOR TOWN HERE!
 		SO.P(":");
 		
-		while(!Response) {  //loop until proper response recieved
+		while(!response) {  //loop until proper response recieved
 		
 			try {
 				if( event_sc.hasNextLine() ) {
@@ -71,11 +78,11 @@ public class Town extends Area {
 				}
 				
 				SO.P("Rested!\n");
-				Response = true;
+				response = true;
 			}
-			else if( buffer.equals("continue") {
+			else if( buffer.equals("continue") ) {
 				SO.P("continuing to next area.\n");
-				Response = true;
+				response = true;
 			}
 			//ADD MORE OPTIONS HERE!
 			else {

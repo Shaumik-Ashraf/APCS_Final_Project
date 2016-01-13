@@ -4,7 +4,12 @@ Test Area, Field, and Town class
 
 */
 
-import java.util.ArrayList;
+
+import java.util.*;
+import gamechars.*;
+import gamearea.*;
+import gameutils.*;
+//import gameitems.*;
 
 public final class AreaTester {   //final modifier means class cant be extended; no subclasses
 
@@ -22,17 +27,18 @@ public final class AreaTester {   //final modifier means class cant be extended;
 		gChar sora = new WarriorW( sora_builder ); 
 
 
-		for(int i=0; i<map.size(); i++) {
+		map.add(0, new Town());
+		for(int i=1; i<map.size(); i++) {
 			if( Math.random()*100 < 67 ) {
-				map[i] = new Field(i);  //constructor will create field named field-i
+				map.add( i, new Field(i) );  //constructor will create field named field-i
 			}
 			else {
-				map[i] = new Town(i);  //likewise, town-i
+				map.add( i, new Town(i) ); //likewise, town-i
 			}
 		}
 
 		for(int i=0; i<map.size(); i++) {
-			(map[i]).event(sora);
+			map.get(i).event(sora);
 		}
 		
 		

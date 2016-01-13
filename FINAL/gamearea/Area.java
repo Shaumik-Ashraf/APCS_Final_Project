@@ -20,6 +20,10 @@ for(int i=0; i<map.size(); i++) {
 
 */
 
+package gamearea;
+
+import gamechars.*;
+
 
 public abstract class Area {
 
@@ -32,7 +36,7 @@ public abstract class Area {
 	}
 	
 	//accessors
-	public String getName(void) {
+	public String getName() {
 		return(name);
 	}
 	
