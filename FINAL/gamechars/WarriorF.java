@@ -25,6 +25,7 @@ public class WarriorF extends Warrior implements Fire {
         luck = 4;
         speed = 6;
         EXP = 0;
+        level = 1;
         
         hpInitial = HP;
         strInitial = str;

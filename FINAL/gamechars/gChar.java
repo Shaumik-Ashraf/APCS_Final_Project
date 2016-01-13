@@ -28,6 +28,7 @@ public abstract class gChar{
     public boolean typeAdv; // if the player does a move that has a type advantage, deal double damage.
     public boolean typeDis; // if the player does a move that has a type disadvantage, deal half damage.
     public int EXP;
+    public int level;
    
     
     //used for normalize
