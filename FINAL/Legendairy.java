@@ -8,6 +8,7 @@
 
 //custom api
 import gamechars.*;
+import gameutils.*;
  
 //java 7 api 
 import java.io.*;
@@ -79,7 +80,7 @@ import java.util.*;
 			System.out.flush();
             message = "";
             message = "Welcome to Project Legendairy. \nWe appreciate you volunteering to help out. \nWould you mind telling me your name?";
-            System.out.println (message);
+            SO.println (message);
             
             //try {
 	            player.add (in.nextLine());
@@ -97,8 +98,8 @@ import java.util.*;
         	while (!response){
                 
                 //try {
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
+                	SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
 	                choice =in.nextLine();
 	               	System.out.print("\033[H\033[2J");
 					System.out.flush();
@@ -127,8 +128,8 @@ import java.util.*;
             while (!response){
                 
                 //try {
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
+                	SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
 	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
@@ -158,8 +159,8 @@ import java.util.*;
             while (!response){
                 
                 //try {
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
+                	SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
 	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
@@ -186,8 +187,8 @@ import java.util.*;
             while (!response){
                 
                // try {
-               		System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
+               		SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
 	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
@@ -207,7 +208,7 @@ import java.util.*;
             message = "Hm, so you're " ;
             message += player.get(0);
             message += "?\n";
-            System.out.println (message);
+            SO.println (message);
             
             
             if (player.get(4).equals ("Outgoing") ){
@@ -276,20 +277,20 @@ import java.util.*;
         	System.out.print("\033[H\033[2J");
 			System.out.flush();
         	cloud.EXP += enemy.EXP;
-        	System.out.println (cloud.name + " gained " + enemy.EXP + " exp!");
+        	SO.println (cloud.name + " gained " + enemy.EXP + " exp!");
         	if (cloud.EXP >= 100){
         		int lvls = cloud.EXP / 100;
         		cloud.level += lvls;
-        		System.out.println (cloud.name + " leveled up to level " + cloud.level);
+        		SO.println (cloud.name + " leveled up to level " + cloud.level);
         		cloud.EXP = cloud.EXP % 100;
-        		System.out.println ("\n");
+        		SO.println ("\n");
         		skillPoints(cloud);
         	}
         }
         
         public void skillPoints (gChar cloud){
         	String message = "";
-        	System.out.println ("You gained some skill points!\n");
+        	SO.println ("You gained some skill points!\n");
         	choice =in.nextLine();
         	//try{
        			//Thread.sleep(1500);
@@ -308,7 +309,7 @@ import java.util.*;
         		message += "Agility\n";
         		response = false;
         		while (!response){
-       				System.out.println (message);
+       				SO.println (message);
             		choice =in.nextLine();
             		if (stats.contains (choice)) {
             			if (choice.equals ("HP")){
@@ -359,7 +360,7 @@ import java.util.*;
        		message += "2. No way!\n";
        		
        		while (!response){
-       			System.out.println (message);
+       			SO.println (message);
             	choice =in.nextLine();
 	            System.out.print("\033[H\033[2J");
 				System.out.flush();
@@ -369,7 +370,7 @@ import java.util.*;
        		}
        		
        		enemy = new Monster();
-			System.out.println ("An enemy draws near! \n\n");
+			SO.println ("An enemy draws near! \n\n");
 			choice =in.nextLine();
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
@@ -383,8 +384,8 @@ import java.util.*;
        					System.out.print("\033[H\033[2J");
 						System.out.flush();
        			
-		    			System.out.println( "What will you do?" );
-		    			System.out.println( "Attack\nSkills\nNothing\n" );
+		    			SO.println( "What will you do?" );
+		    			SO.println( "Attack\nSkills\nNothing\n" );
 		    			choice =in.nextLine();
 		    			if ( commands.contains (choice) ) {
 	                    		response = true;
@@ -402,7 +403,7 @@ import java.util.*;
 		    			if (d1 <= 0){
 							d1 = 0;
 						}
-						System.out.println ("\n"+ player.get(0) + " smacks the enemy with a regular attack!" +"\nThe enemy took " + d1 + "!\n\n");
+						SO.println ("\n"+ player.get(0) + " smacks the enemy with a regular attack!" +"\nThe enemy took " + d1 + "!\n\n");
 		    		}
 		    		
 		    		if (choice.equals ("Skills") ){
@@ -411,8 +412,8 @@ import java.util.*;
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
+		    				SO.println( "What will you do?" );
+		    				SO.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -424,7 +425,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
@@ -432,7 +433,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
@@ -440,7 +441,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		
 		    			
@@ -459,8 +460,8 @@ import java.util.*;
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
+		    				SO.println( "What will you do?" );
+		    				SO.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -472,7 +473,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
@@ -491,7 +492,7 @@ import java.util.*;
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 								hits --;
 								cloud.str++;
 		    					}
@@ -502,7 +503,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		
 		    			
@@ -518,8 +519,8 @@ import java.util.*;
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
+		    				SO.println( "What will you do?" );
+		    				SO.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -531,7 +532,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
@@ -550,7 +551,7 @@ import java.util.*;
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 								hits --;
 							
 		    					}
@@ -574,7 +575,7 @@ import java.util.*;
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 								hits --;
 								cloud.str--;
 		    					}
@@ -593,8 +594,8 @@ import java.util.*;
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
+		    				SO.println( "What will you do?" );
+		    				SO.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -606,7 +607,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
@@ -614,7 +615,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
@@ -622,7 +623,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		
 		    			
@@ -638,8 +639,8 @@ import java.util.*;
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
+		    				SO.println( "What will you do?" );
+		    				SO.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -651,7 +652,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
@@ -670,7 +671,7 @@ import java.util.*;
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 								hits --;
 								cloud.str++;
 		    					}
@@ -681,7 +682,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		
 		    			
@@ -697,8 +698,8 @@ import java.util.*;
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
+		    				SO.println( "What will you do?" );
+		    				SO.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
@@ -710,7 +711,7 @@ import java.util.*;
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
@@ -729,7 +730,7 @@ import java.util.*;
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 								hits --;
 							
 		    					}
@@ -753,7 +754,7 @@ import java.util.*;
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 								hits --;
 								cloud.str--;
 		    					}
@@ -776,15 +777,15 @@ import java.util.*;
 		    		
 		
 						if (cloud.typeAdv){
-		    				System.out.println("It's super effective!\n\n");
+		    				SO.println("It's super effective!\n\n");
 						}
 						
 						if (cloud.typeDis){
-		    				System.out.println("It's not very effective!\n\n");
+		    				SO.println("It's not very effective!\n\n");
 						}
 						
 		    			if (cloud.crit){
-							System.out.println("It's a critical hit!\n\n");
+							SO.println("It's a critical hit!\n\n");
 						}
 						
 						choice =in.nextLine();
@@ -801,9 +802,9 @@ import java.util.*;
 							if (d2 <= 0){
 								d2 = 0;
 						}
-						System.out.println ("The enemy slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + d2 + "!\n\n");
+						SO.println ("The enemy slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + d2 + "!\n\n");
 						if (enemy.crit){
-							System.out.println("It's a critical hit!\n\n");
+							SO.println("It's a critical hit!\n\n");
 						}
 						
 						choice =in.nextLine();
@@ -816,14 +817,14 @@ import java.util.*;
 		    		
 		    		else{
 		    			expGain (enemy);
-		    			System.out.println ("You win!");
+		    			SO.println ("You win!");
 		    			break;
 		    		}
 				
 			}
 			
 			if (!cloud.isAlive()){
-				System.out.println ("You lose.");
+				SO.println ("You lose.");
 			}
 			
             

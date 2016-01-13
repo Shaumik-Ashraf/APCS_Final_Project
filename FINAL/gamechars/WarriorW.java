@@ -3,6 +3,8 @@ package gamechars;
 
 import java.io.*;
 import java.util.*;
+import gameutils.*;
+ 
 
 public class WarriorW extends Warrior implements Wood{
     
@@ -29,19 +31,19 @@ public class WarriorW extends Warrior implements Wood{
         luckInitial = luck;
         speedInitial = speed;
         
-        //System.out.println( "Previous stats\n");
+        //SO.println( "Previous stats\n");
         //statSheet();
-       // System.out.println ("\n");
+       // SO.println ("\n");
         bestStat (player.get(2));
         worstStat (player.get(3));
         
-       // System.out.println( "New stats\n");
+       // SO.println( "New stats\n");
        // statSheet();
-       // System.out.println ("\n");
+       // SO.println ("\n");
     }
     
     public int woodSpike(gChar enemy){
-        System.out.println (name + " cast Wood Spike!");
+        SO.println (name + " cast Wood Spike!");
         this.crit = false; //Crit activation is set to false
         int damage = this.magic - enemy.def; //Work in progress. This is the damage that your character will do
         
@@ -69,7 +71,7 @@ public class WarriorW extends Warrior implements Wood{
         
     //does multiple regular attacks   
     public int flowerDance(){
-        System.out.println (name + " began the Flower Dance!");
+        SO.println (name + " began the Flower Dance!");
         
         int hits = (int)(Math.random() *4);
         return hits;
@@ -79,16 +81,16 @@ public class WarriorW extends Warrior implements Wood{
     
         
     public void pepperSong(){
-        System.out.println (name + " cast Pepper Song!");
+        SO.println (name + " cast Pepper Song!");
         if (hpInitial > HP){
         HP += 10;
              if (HP > hpInitial){
                 HP = hpInitial;
-                System.out.println (name + " has full HP now.");
+                SO.println (name + " has full HP now.");
             }
         }
         else {
-            System.out.println ("It had no effect!");}
+            SO.println ("It had no effect!");}
         //healing = true;
         str = 0;
         magic = 0;

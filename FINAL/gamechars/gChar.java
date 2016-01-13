@@ -10,6 +10,8 @@ package gamechars;
  
 import java.io.*;
 import java.util.*;
+import gameutils.*;
+ 
 
 public abstract class gChar{
 
@@ -102,7 +104,7 @@ public abstract class gChar{
             speed *= 1.5;
         }
         else{
-            System.out.println ("Something went wrong...");
+            SO.println ("Something went wrong...");
         }
     }
     public void worstStat(String stat){
@@ -133,7 +135,7 @@ public abstract class gChar{
             speed *= .5;
         }
         else{
-            System.out.println ("Something went wrong...");
+            SO.println ("Something went wrong...");
         }
         
     }
@@ -152,11 +154,11 @@ public abstract class gChar{
         stats.add("Luck: " + luck);
         stats.add("Speed: " + speed);
         
-        System.out.println (name);
-        System.out.println ("Level: " + level);
-        System.out.println ("Element :"+ element);
-        System.out.println ("EXP: " + EXP);
-        System.out.println (stats);
+        SO.println (name);
+        SO.println ("Level: " + level);
+        SO.println ("Element :"+ element);
+        SO.println ("EXP: " + EXP);
+        SO.println (stats);
     }
     
     

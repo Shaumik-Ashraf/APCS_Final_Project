@@ -9,6 +9,8 @@ package gamechars;
  
 import java.io.*;
 import java.util.*;
+import gameutils.*;
+ 
 
 public class MageW extends Mage implements Wood {
     
@@ -43,7 +45,7 @@ public class MageW extends Mage implements Wood {
     }
     
      public int woodSpike(gChar enemy){
-        System.out.println (name + " cast Wood Spike!");
+        SO.println (name + " cast Wood Spike!");
         this.crit = false; //Crit activation is set to false
         int damage = this.magic - enemy.def; //Work in progress. This is the damage that your character will do
         
@@ -71,7 +73,7 @@ public class MageW extends Mage implements Wood {
         
     //does multiple regular attacks   
     public int flowerDance(){
-        System.out.println (name + " began the Flower Dance!");
+        SO.println (name + " began the Flower Dance!");
         
         int hits = (int)(Math.random() *4);
         return hits;
@@ -81,16 +83,16 @@ public class MageW extends Mage implements Wood {
     
         
     public void pepperSong(){
-        System.out.println (name + " cast Pepper Song!");
+        SO.println (name + " cast Pepper Song!");
         if (hpInitial > HP){
         HP += 10;
              if (HP > hpInitial){
                 HP = hpInitial;
-                System.out.println (name + " has full HP now.");
+                SO.println (name + " has full HP now.");
             }
         }
         else {
-            System.out.println ("It had no effect!");}
+            SO.println ("It had no effect!");}
         //healing = true;
         str = 0;
         magic = 0;

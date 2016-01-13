@@ -23,7 +23,7 @@ package gameutils;
  *
  */
  
-class SO {
+public class SO {
 
 	//print methods
 	public static void print(Object O) {

@@ -6,6 +6,7 @@
  */
 
 package gamechars;
+import gameutils.*;
  
 import java.io.*;
 import java.util.*;
@@ -13,7 +14,7 @@ import java.util.*;
 public abstract class Mage extends gChar{
 
 	public int arcaniteForce(gChar enemy) {
-
+		SO.println (name + "case Arcanite Force!");
 		this.crit = false;
 		int damage = this.magic - enemy.res + 10;
 

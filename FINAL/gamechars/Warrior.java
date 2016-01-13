@@ -6,13 +6,15 @@
  */
 
 package gamechars;
- 
+
+import gameutils.*;
 import java.io.*;
 import java.util.*;
 
 public abstract class Warrior extends gChar{
 
     public int strongSwing(gChar enemy){
+        SO.println(name + " used Strong Swing!");
         this.crit = false; //Crit activation is set to false
         int damage = this.str + 10 - enemy.def; //Work in progress. This is the damage that your character will do
         
