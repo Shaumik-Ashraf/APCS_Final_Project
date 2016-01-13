@@ -11,7 +11,7 @@ public class Town extends Area {
 
 	//attributes
 	//a list of possible Town names; Disclaimer: Town names from SAO, Kid Icarus Uprising, and Super Smash Brothers, respectively
-	private final String[] TownNames = new String() {"Town of Beginnings", "That Burning Town", "Final Destination"};
+	private final String[] TownNames = new String() {"Town of Beginnings", "Lumbridge", "That Burning Town", "Final Destination"};
 	private boolean response = false;
 	
 	//constructor
