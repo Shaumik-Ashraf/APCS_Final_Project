@@ -4,7 +4,7 @@ package gamechars;
 public class Monster extends gChar{
         public Monster(){
             name = "Jellyfish";
-            element = "Wood";
+            element = "Aqua";
             HP = 20;
             str = 0;
             magic = 0;

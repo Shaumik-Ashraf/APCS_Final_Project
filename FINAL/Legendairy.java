@@ -395,6 +395,15 @@ import java.util.*;
 		    					int hits = ( (WarriorA)cloud ).hailStorm();
 		    					while (hits != 0){
 		    						int d1 = cloud.regAtk( enemy );
+		    						if ( enemy.element.equals ("Wood") ){
+            							cloud.typeAdv = true;
+            							d1 += cloud.regAtk( enemy );
+        							}
+        
+        							if ( enemy.element.equals ("Fire") ){
+            							cloud.typeDis = true;
+            							d1 = cloud.bestow (enemy, d1);
+    								 }
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}
@@ -408,6 +417,17 @@ import java.util.*;
 		    					int hits = ( (WarriorA)cloud ).drizzle();
 		    					while (hits != 0){
 		    						int d1 = cloud.regAtk( enemy );
+		    						if ( enemy.element.equals ("Fire") ){
+            							cloud.typeAdv = true;
+            							d1 += cloud.regAtk( enemy );
+        							}
+        
+        							if ( enemy.element.equals ("Wood") ){
+            							cloud.typeDis = true;
+            							d1 = cloud.bestow (enemy, d1);
+    								 }
+    								 
+    								 
 		    						if (d1 <= 0){
 										d1 = 0;
 		    						}

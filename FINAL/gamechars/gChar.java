@@ -67,6 +67,11 @@ public abstract class gChar{
         return damage; //Returns the damage dealt to enemy
     }
     
+    public int bestow (gChar enemy, int damage){
+        enemy.HP += damage/2;
+        return damage/2;
+    }
+    
     
     public void bestStat(String stat){
         if (stat.equals ("Health")){
