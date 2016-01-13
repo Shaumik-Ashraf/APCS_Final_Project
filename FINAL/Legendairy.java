@@ -200,30 +200,63 @@ import java.util.*;
             
             
             if (player.get(4).equals ("Outgoing") ){
-            	cloud = new WarriorF(player);
-            	skills.add ("Strong Swing");
-            	skills.add ("Heat Wave");
-            	skills.add ("Flame Crash");
-            	skills.add ("Rekindle");
-            	skillList = "Strong Swing\nHeat Wave\nFlame Crash\nRekindle\n";
+            	if (player.get(1).equals ("Warrior")){
+            		cloud = new WarriorF(player);
+            		skills.add ("Strong Swing");
+            		skills.add ("Heat Wave");
+            		skills.add ("Flame Crash");
+            		skills.add ("Rekindle");
+            		skillList = "Strong Swing\nHeat Wave\nFlame Crash\nRekindle\n";
+            	}
+            	
+            	if (player.get(1).equals ("Mage")){
+            		cloud = new MageF(player);
+            		skills.add ("Arcanite Force");
+            		skills.add ("Heat Wave");
+            		skills.add ("Flame Crash");
+            		skills.add ("Rekindle");
+            		skillList = "Arcanite Force\nHeat Wave\nFlame Crash\nRekindle\n";
+            	}
             }
             
             if (player.get(4).equals ("Optimistic") ){
-            	cloud = new WarriorW(player);
-            	skills.add ("Strong Swing");
-            	skills.add ("Flower Dance");
-            	skills.add ("Wood Spike");
-            	skills.add ("Pepper Song");
-            	skillList = "Strong Swing\nFlower Dance\nWood Spike\nPepper Song\n";
+            	if (player.get(1).equals ("Warrior")){
+            		cloud = new WarriorW(player);
+            		skills.add ("Strong Swing");
+            		skills.add ("Flower Dance");
+            		skills.add ("Wood Spike");
+            		skills.add ("Pepper Song");
+            		skillList = "Strong Swing\nFlower Dance\nWood Spike\nPepper Song\n";
+            	}
+            	
+            	if (player.get(1).equals ("Mage")){
+            		cloud = new MageW(player);
+            		skills.add ("Arcanite Force");
+            		skills.add ("Flower Dance");
+            		skills.add ("Wood Spike");
+            		skills.add ("Pepper Song");
+            		skillList = "Arcanite Force\nFlower Dance\nWood Spike\nPepper Song\n";
+            	}
             }
             
             if (player.get(4).equals ("Calm") ){
-            	cloud = new WarriorA(player);
-            	skills.add ("Strong Swing");
-            	skills.add ("Hail Storm");
-            	skills.add ("Drizzle");
-            	skills.add ("Aqua Veil");
-            	skillList = "Strong Swing\nHail Storm\nDrizzle\nAqua Veil\n";
+            	if (player.get(1).equals ("Warrior")){
+            		cloud = new WarriorA(player);
+            		skills.add ("Strong Swing");
+            		skills.add ("Hail Storm");
+            		skills.add ("Drizzle");
+            		skills.add ("Aqua Veil");
+            		skillList = "Strong Swing\nHail Storm\nDrizzle\nAqua Veil\n";
+            	}
+            	if (player.get(1).equals("Mage")){
+            		cloud = new MageA(player);
+            		skills.add ("Arcanite Force");
+            		skills.add ("Hail Storm");
+            		skills.add ("Drizzle");
+            		skills.add ("Aqua Veil");
+            		skillList = "Arcanite Force\nHail Storm\nDrizzle\nAqua Veil\n";
+            	}
+            	
             }
             
         }
@@ -452,6 +485,188 @@ import java.util.*;
 		    				}
 		    			
 		    			}
+		    			
+		    			
+		    			if (cloud instanceof MageF){
+		    				while (!response){
+		    				
+		    				System.out.print("\033[H\033[2J");
+							System.out.flush();
+		    				System.out.println( "What will you do?" );
+		    				System.out.println( skillList );
+		    				choice =in.nextLine();
+		    				if ( skills.contains (choice) ) {
+	                    		response = true;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					int d1 = ( (MageF)cloud ).arcaniteForce (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		    			
+		    				if (choice.equals ("Heat Wave")){
+		    					int d1 = ( (MageF)cloud ).heatWave (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		    			
+		    				if (choice.equals ("Flame Crash")){
+		    					int d1 = ( (MageF)cloud).flameCrash (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		
+		    			
+		    				if (choice.equals ("Rekindle")){
+		    					 ( (MageF)cloud ).reKindle();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof MageW){
+		    				while (!response){
+		    				
+		    				System.out.print("\033[H\033[2J");
+							System.out.flush();
+		    				System.out.println( "What will you do?" );
+		    				System.out.println( skillList );
+		    				choice =in.nextLine();
+		    				if ( skills.contains (choice) ) {
+	                    		response = true;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					int d1 = ( (MageW)cloud ).arcaniteForce (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		    			
+		    				if (choice.equals ("Flower Dance")){
+		    					int hits = ( (MageW)cloud ).flowerDance();
+		    					while (hits != 0){
+		    						int d1 = cloud.regAtk( enemy );
+		    						if ( enemy.element.equals ("Aqua") ){
+            							cloud.typeAdv = true;
+            							d1 += cloud.regAtk( enemy );
+        							}
+        
+        							if ( enemy.element.equals ("Fire") ){
+            							cloud.typeDis = true;
+            							d1 = cloud.bestow (enemy, d1);
+    								 }
+		    						if (d1 <= 0){
+										d1 = 0;
+		    						}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+								hits --;
+								cloud.str++;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Wood Spike")){
+		    					int d1 = ( (MageW)cloud).woodSpike (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		
+		    			
+		    				if (choice.equals ("Pepper Song")){
+		    					 ( (MageW)cloud ).pepperSong();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof MageA){
+		    				while (!response){
+		    				
+		    				System.out.print("\033[H\033[2J");
+							System.out.flush();
+		    				System.out.println( "What will you do?" );
+		    				System.out.println( skillList );
+		    				choice =in.nextLine();
+		    				if ( skills.contains (choice) ) {
+	                    		response = true;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					int d1 = ( (MageA)cloud ).arcaniteForce (enemy);
+		    					if (d1 <= 0){
+								d1 = 0;
+								}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    				}
+		    			
+		    				if (choice.equals ("Hail Storm")){
+		    					int hits = ( (MageA)cloud ).hailStorm();
+		    					while (hits != 0){
+		    						int d1 = cloud.regAtk( enemy );
+		    						if ( enemy.element.equals ("Wood") ){
+            							cloud.typeAdv = true;
+            							d1 += cloud.regAtk( enemy );
+        							}
+        
+        							if ( enemy.element.equals ("Fire") ){
+            							cloud.typeDis = true;
+            							d1 = cloud.bestow (enemy, d1);
+    								 }
+		    						if (d1 <= 0){
+										d1 = 0;
+		    						}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+								hits --;
+							
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Drizzle")){
+		    					int hits = ( (MageA)cloud ).drizzle();
+		    					while (hits != 0){
+		    						int d1 = cloud.regAtk( enemy );
+		    						if ( enemy.element.equals ("Fire") ){
+            							cloud.typeAdv = true;
+            							d1 += cloud.regAtk( enemy );
+        							}
+        
+        							if ( enemy.element.equals ("Wood") ){
+            							cloud.typeDis = true;
+            							d1 = cloud.bestow (enemy, d1);
+    								 }
+    								 
+    								 
+		    						if (d1 <= 0){
+										d1 = 0;
+		    						}
+								System.out.println ("The enemy took " + d1 + "!\n\n");
+								hits --;
+								cloud.str--;
+		    					}
+		    				}
+		    			
+		    				if (choice.equals ("Aqua Veil")){
+		    					 ( (MageA)cloud ).aquaVeil();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			
+		    			
 		    		}
 		    		
 		    		
