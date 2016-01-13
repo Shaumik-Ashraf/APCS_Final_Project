@@ -24,8 +24,7 @@ for(int i=0; i<map.size(); i++) {
 public abstract class Area {
 
 	//attributes
-	private String name;   //should we use private atttributes as proper, or just make everything public?
-	                       //my IDE can generate accessors/mutators...
+	protected String name;
 	
 	//constructors
 	public Area(String name_arg) {
@@ -45,7 +44,7 @@ public abstract class Area {
 	}
 	
 	//abstract methods
-	public abstract void event(Character ch);
+	public abstract void event(gChar gch);
 
 	public abstract void description();
 	
