@@ -411,7 +411,7 @@ import java.util.*;
 		    		}
 		    		
 		    		if (choice.equals ("Skills") ){
-		    			if (cloud instanceof WarriorF){
+		    		
 		    				while (!response){
 		    				
 		    				System.out.print("\033[H\033[2J");
@@ -423,6 +423,10 @@ import java.util.*;
 	                    		response = true;
 		    					}
 		    				}
+		    		}
+		    		
+		    				
+		    			if (cloud instanceof WarriorF){
 		    			
 		    				if (choice.equals ("Strong Swing")){
 		    					 ( (WarriorF)cloud ).strongSwing (enemy);
@@ -446,18 +450,8 @@ import java.util.*;
 		    			
 		    			
 		    			
-		    				if (cloud instanceof WarriorW){
-		    				while (!response){
+		    			if (cloud instanceof WarriorW){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
 		    					( (WarriorW)cloud ).strongSwing (enemy);
@@ -481,17 +475,7 @@ import java.util.*;
 		    			}
 		    			
 		    			if (cloud instanceof WarriorA){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
 		    					 ( (WarriorA)cloud ).strongSwing (enemy);
@@ -514,17 +498,7 @@ import java.util.*;
 		    			
 		    			
 		    			if (cloud instanceof MageF){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
 		    					( (MageF)cloud ).arcaniteForce (enemy);
@@ -547,17 +521,7 @@ import java.util.*;
 		    			}
 		    			
 		    			if (cloud instanceof MageW){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
 		    					( (MageW)cloud ).arcaniteForce (enemy);
@@ -581,17 +545,7 @@ import java.util.*;
 		    			}
 		    			
 		    			if (cloud instanceof MageA){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
 		    					int d1 = ( (MageA)cloud ).arcaniteForce (enemy);
@@ -616,15 +570,7 @@ import java.util.*;
 		    			
 		    			}
 		    			
-		    			
-		    			
-		    			
-		    		}
-		    		
-		    		
-		    		
-		    		
-		
+
 						if (cloud.typeAdv){
 		    				SO.println("It's super effective!\n\n");
 						}
@@ -668,7 +614,7 @@ import java.util.*;
 		    			break;
 		    		}
 				
-			}
+			
 			
 			if (!cloud.isAlive()){
 				SO.println ("You lose.");
@@ -678,6 +624,7 @@ import java.util.*;
             
         
         }
+      	}
         
           
         
