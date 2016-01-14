@@ -10,7 +10,7 @@
 | JC          |  N\A     |  added ideas                   |
 | SA          | 1/11/16  |  created devlog, updated readme|
 | JC          | 1/11/16  |  created FINAL, added Fire and Wood classes, updated main function.                  |
-|             |          |                                |
+| JC          | 1/12/16  |  added Aqua Class and Mage class. Added exp and level up.                                |
 |             |          |                                |
 |             |          |                                |
 |             |          |                                |

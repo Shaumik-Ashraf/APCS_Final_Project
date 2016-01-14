@@ -9,6 +9,8 @@ package gamechars;
  
 import java.io.*;
 import java.util.*;
+import gameutils.*;
+ 
 
 public class WarriorF extends Warrior implements Fire {
     
@@ -35,19 +37,19 @@ public class WarriorF extends Warrior implements Fire {
         luckInitial = luck;
         speedInitial = speed;
         
-        //System.out.println( "Previous stats\n");
+        //SO.println( "Previous stats\n");
         //statSheet();
-       // System.out.println ("\n");
+       // SO.println ("\n");
         bestStat (player.get(2));
         worstStat (player.get(3));
         
-       // System.out.println( "New stats\n");
+       // SO.println( "New stats\n");
        // statSheet();
-       // System.out.println ("\n");
+       // SO.println ("\n");
     }
     
     public int heatWave(gChar enemy){
-        System.out.println (name + " cast Heat Wave!");
+        SO.println (name + " cast Heat Wave!");
         this.crit = false; //Crit activation is set to false
         int damage = this.magic - enemy.res; //Work in progress. This is the damage that your character will do
         
@@ -67,6 +69,11 @@ public class WarriorF extends Warrior implements Fire {
             damage /= 2;
         }
         
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
+        
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     
@@ -75,7 +82,7 @@ public class WarriorF extends Warrior implements Fire {
         
     //does damage on res based on str stat    
     public int flameCrash(gChar enemy){
-        System.out.println (name + " used Flame Crash!");
+        SO.println (name + " used Flame Crash!");
         this.crit = false; //Crit activation is set to false
         int damage = this.str - enemy.res; //Work in progress. This is the damage that your character will do
         
@@ -95,6 +102,11 @@ public class WarriorF extends Warrior implements Fire {
             damage /= 2;
         }
         
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
+        
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     
@@ -103,16 +115,16 @@ public class WarriorF extends Warrior implements Fire {
     
         
     public void reKindle(){
-        System.out.println (name + " cast Rekindle!");
+        SO.println (name + " cast Rekindle!");
         if (hpInitial > HP){
         HP += 10;
              if (HP > hpInitial){
                 HP = hpInitial;
-                System.out.println (name + " has full HP now.");
+                SO.println (name + " has full HP now.");
             }
         }
         else {
-            System.out.println ("It had no effect!");}
+            SO.println ("It had no effect!");}
         //healing = true;
         str = 0;
         magic = 0;

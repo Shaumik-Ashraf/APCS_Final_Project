@@ -8,6 +8,7 @@
 
 //custom api
 import gamechars.*;
+import gameutils.*;
  
 //java 7 api 
 import java.io.*;
@@ -29,9 +30,11 @@ import java.util.*;
         private gChar enemy;
         
         private boolean response;
+        public boolean enemyFirst;
         private String message;
         private String skillList;
         private String choice;
+        private String pause;
         
         //private InputStreamReader isr;
         //private BufferedReader in;
@@ -44,6 +47,7 @@ import java.util.*;
 	        in = new Scanner(System.in);
 	        response = false;
 	        stats.add ("Health");
+	        stats.add ("HP");
 	        stats.add ("Strength");
 	        stats.add ("Magic");
 	        stats.add ("Defense");
@@ -69,8 +73,15 @@ import java.util.*;
         }
         
         public void newGame(){
+        	
+            //character selections
             characterCreation();
+            
+            //for now, do battle
             battleSim();
+        
+        	
+        	
         }
         
         public void characterCreation(){
@@ -78,7 +89,7 @@ import java.util.*;
 			System.out.flush();
             message = "";
             message = "Welcome to Project Legendairy. \nWe appreciate you volunteering to help out. \nWould you mind telling me your name?";
-            System.out.println (message);
+            SO.println (message);
             
             //try {
 	            player.add (in.nextLine());
@@ -96,8 +107,8 @@ import java.util.*;
         	while (!response){
                 
                 //try {
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
+                	SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
 	                choice =in.nextLine();
 	               	System.out.print("\033[H\033[2J");
 					System.out.flush();
@@ -126,9 +137,9 @@ import java.util.*;
             while (!response){
                 
                 //try {
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
-	                String choice =in.nextLine();;
+                	SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
+	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( stats.contains (choice) ) {
@@ -157,9 +168,9 @@ import java.util.*;
             while (!response){
                 
                 //try {
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
-	                String choice =in.nextLine();
+                	SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
+	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( stats.contains (choice) ) {
@@ -185,9 +196,9 @@ import java.util.*;
             while (!response){
                 
                // try {
-               		System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
-	                String choice =in.nextLine();
+               		SO.println (message);
+                    SO.println("Please enter an appropriate response.\n");
+	                choice =in.nextLine();
 	                System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( traits.contains (choice) ) {
@@ -206,7 +217,7 @@ import java.util.*;
             message = "Hm, so you're " ;
             message += player.get(0);
             message += "?\n";
-            System.out.println (message);
+            SO.println (message);
             
             
             if (player.get(4).equals ("Outgoing") ){
@@ -272,14 +283,86 @@ import java.util.*;
         }
         
         public void expGain(gChar enemy){
+        	System.out.print("\033[H\033[2J");
+			System.out.flush();
         	cloud.EXP += enemy.EXP;
-        	System.out.println (cloud.name + " gained " + enemy.EXP + " exp!");
+        	SO.println (cloud.name + " gained " + enemy.EXP + " exp!");
         	if (cloud.EXP >= 100){
         		int lvls = cloud.EXP / 100;
         		cloud.level += lvls;
-        		System.out.println (cloud.name + " leveled up to level " + cloud.level);
+        		SO.println (cloud.name + " leveled up to level " + cloud.level);
         		cloud.EXP = cloud.EXP % 100;
+        		SO.println ("\n");
+        		skillPoints(cloud);
         	}
+        }
+        
+        public void skillPoints (gChar cloud){
+        	String message = "";
+        	SO.println ("You gained some skill points!\n");
+        	choice =in.nextLine();
+        	//try{
+       			//Thread.sleep(1500);
+       		//	}catch (Exception e){}
+       		
+        	for (int i = 3; i >0; i--){
+        		System.out.print("\033[H\033[2J");
+				System.out.flush();
+        		cloud.statSheet();
+        		message = "\nPlease allocate these points to the following stats.\nYou have " + i + " point(s).\n";
+        		message += "HP\n";
+        		message += "Strength\n";
+        		message += "Magic\n";
+        		message += "Defense\n";
+        		message += "Resistance\n";
+        		message += "Luck\n";
+        		message += "Agility\n";
+        		response = false;
+        		while (!response){
+       				SO.println (message);
+            		choice =in.nextLine();
+            		if (stats.contains (choice)) {
+            			if (choice.equals ("HP")){
+            				cloud.HP ++;
+            				cloud.hpInitial = cloud.HP;
+            			}
+            			if (choice.equals ("Strength")){
+            				cloud.str ++;
+            				cloud.strInitial = cloud.str;
+            			}
+            			if (choice.equals ("Magic")){
+            				cloud.magic ++;
+            				cloud.magicInitial = cloud.magic;
+            			}
+            			if (choice.equals ("Defense")){
+            				cloud.def ++;
+            				cloud.defInitial = cloud.def;
+            			}
+            			if (choice.equals ("Resistance")){
+            				cloud.res ++;
+            				cloud.resInitial = cloud.res;
+            			}
+            			if (choice.equals ("Luck")){
+            				cloud.luck ++;
+            				cloud.luckInitial = cloud.luck;
+            			}
+            			if (choice.equals ("Agility")){
+            				cloud.speed ++;
+            				cloud.speedInitial = cloud.speed;
+            			}
+            			
+            			response = true;
+            		
+            			}
+            			
+            			System.out.print("\033[H\033[2J");
+						System.out.flush();
+						cloud.statSheet();
+            		
+            		}
+            	
+        	}
+        	response = false;
         }
     
        		
@@ -290,8 +373,8 @@ import java.util.*;
        		message += "2. No way!\n";
        		
        		while (!response){
-       			System.out.println (message);
-            	String choice =in.nextLine();
+       			SO.println (message);
+            	choice =in.nextLine();
 	            System.out.print("\033[H\033[2J");
 				System.out.flush();
 				if ( choice.equals ("1" )) {
@@ -300,20 +383,22 @@ import java.util.*;
        		}
        		
        		enemy = new Monster();
-			System.out.println ("An enemy draws near! \n\n");
+			SO.println ("An enemy draws near! \n\n");
+			pause =in.nextLine();
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
+       				enemyFirst = false;
        				
-       				try{
-       					Thread.sleep(1000);
-       				}catch (Exception e){}
+       				//try{
+       				//	Thread.sleep(1000);
+       			//	}catch (Exception e){}
        				
        				while (!response){
        					System.out.print("\033[H\033[2J");
 						System.out.flush();
        			
-		    			System.out.println( "What will you do?" );
-		    			System.out.println( "Attack\nSkills\nNothing\n" );
+		    			SO.println( "What will you do?" );
+		    			SO.println( "Attack\nSkills\nNothing\n" );
 		    			choice =in.nextLine();
 		    			if ( commands.contains (choice) ) {
 	                    		response = true;
@@ -326,53 +411,56 @@ import java.util.*;
 		    		cloud.normalize();
 		    		enemy.normalize();
 		    		
-		    		if (choice.equals ("Attack")){
-		    			int d1 = cloud.regAtk( enemy );
-		    			if (d1 <= 0){
-							d1 = 0;
-						}
-						System.out.println ("\n"+ player.get(0) + " smacks the enemy with a regular attack!" +"\nThe enemy took " + d1 + "!\n\n");
-		    		}
+		    	
 		    		
 		    		if (choice.equals ("Skills") ){
-		    			if (cloud instanceof WarriorF){
+		    		
 		    				while (!response){
 		    				
 		    				System.out.print("\033[H\033[2J");
 							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
+		    				SO.println( "What will you do?" );
+		    				SO.println( skillList );
 		    				choice =in.nextLine();
 		    				if ( skills.contains (choice) ) {
 	                    		response = true;
 		    					}
 		    				}
+		    		}
+		    		
+		    		if (cloud.speed < enemy.speed){
+		    			enemyFirst = true;
+		    			int damage = enemy.regAtk(cloud);
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n\n");
+		    			
+						if (enemy.crit){
+							SO.println("It's a critical hit!\n\n");
+						}
+						
+						pause =in.nextLine();
+		    			
+		    		}
+		    		
+		    		if (choice.equals ("Attack")){
+		    			int damage = cloud.regAtk(enemy);
+		    			SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n\n");
+		    		}
+		    		
+		    				
+		    			if (cloud instanceof WarriorF){
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorF)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (WarriorF)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
-		    					int d1 = ( (WarriorF)cloud ).heatWave (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorF)cloud ).heatWave (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
-		    					int d1 = ( (WarriorF)cloud).flameCrash (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					 ((WarriorF)cloud).flameCrash (enemy);
 		    				}
 		
-		    			
 		    				if (choice.equals ("Rekindle")){
 		    					 ( (WarriorF)cloud ).reKindle();
 		    				
@@ -383,55 +471,20 @@ import java.util.*;
 		    			
 		    			
 		    			
-		    				if (cloud instanceof WarriorW){
-		    				while (!response){
+		    			if (cloud instanceof WarriorW){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorW)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorW)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
-		    					int hits = ( (WarriorW)cloud ).flowerDance();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Aqua") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str++;
-		    					}
+		    					( (WarriorW)cloud ).flowerDance(enemy);
+		    				
 		    				}
 		    			
 		    				if (choice.equals ("Wood Spike")){
-		    					int d1 = ( (WarriorW)cloud).woodSpike (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorW)cloud).woodSpike (enemy);
 		    				}
 		
 		    			
@@ -443,70 +496,18 @@ import java.util.*;
 		    			}
 		    			
 		    			if (cloud instanceof WarriorA){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorA)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (WarriorA)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
-		    					int hits = ( (WarriorA)cloud ).hailStorm();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Wood") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-							
-		    					}
+		    					( (WarriorA)cloud ).hailStorm(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Drizzle")){
-		    					int hits = ( (WarriorA)cloud ).drizzle();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Fire") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Wood") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-    								 
-    								 
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str--;
-		    					}
+		    					( (WarriorA)cloud ).drizzle(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Aqua Veil")){
@@ -518,40 +519,18 @@ import java.util.*;
 		    			
 		    			
 		    			if (cloud instanceof MageF){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageF)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageF)cloud ).arcaniteForce (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
-		    					int d1 = ( (MageF)cloud ).heatWave (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (MageF)cloud ).heatWave (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
-		    					int d1 = ( (MageF)cloud).flameCrash (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageF)cloud).flameCrash (enemy);
 		    				}
 		
 		    			
@@ -563,54 +542,19 @@ import java.util.*;
 		    			}
 		    			
 		    			if (cloud instanceof MageW){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageW)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageW)cloud ).arcaniteForce (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
-		    					int hits = ( (MageW)cloud ).flowerDance();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Aqua") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str++;
-		    					}
+		    					( (MageW)cloud ).flowerDance(enemy);
+		    					
 		    				}
 		    			
 		    				if (choice.equals ("Wood Spike")){
-		    					int d1 = ( (MageW)cloud).woodSpike (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageW)cloud).woodSpike (enemy);
 		    				}
 		
 		    			
@@ -622,70 +566,22 @@ import java.util.*;
 		    			}
 		    			
 		    			if (cloud instanceof MageA){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				System.out.println( "What will you do?" );
-		    				System.out.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
 		    					int d1 = ( (MageA)cloud ).arcaniteForce (enemy);
 		    					if (d1 <= 0){
 								d1 = 0;
 								}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
+								SO.println ("The enemy took " + d1 + "!\n\n");
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
-		    					int hits = ( (MageA)cloud ).hailStorm();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Wood") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-							
-		    					}
+		    					( (MageA)cloud ).hailStorm(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Drizzle")){
-		    					int hits = ( (MageA)cloud ).drizzle();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Fire") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Wood") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-    								 
-    								 
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								System.out.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str--;
-		    					}
+		    					( (MageA)cloud ).drizzle(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Aqua Veil")){
@@ -695,68 +591,61 @@ import java.util.*;
 		    			
 		    			}
 		    			
-		    			
-		    			
-		    			
-		    		}
-		    		
-		    		
-		    		
-		    		
-		
+
 						if (cloud.typeAdv){
-		    				System.out.println("It's super effective!\n\n");
+		    				SO.println("It's super effective!\n\n");
 						}
 						
 						if (cloud.typeDis){
-		    				System.out.println("It's not very effective!\n\n");
+		    				SO.println("It's not very effective!\n\n");
 						}
 						
 		    			if (cloud.crit){
-							System.out.println("It's a critical hit!\n\n");
+							SO.println("It's a critical hit!\n\n");
 						}
 						
-		    			try{
-       						Thread.sleep(200);
-       					}catch (Exception e){}
+						pause =in.nextLine();
+		    		//	try{
+       				//		Thread.sleep(200);
+       				//	}catch (Exception e){}
         				
         				//System.out.print("\033[H\033[2J");
 						//System.out.flush();
 		    		
 		    		
-		    		if (enemy.isAlive()) {
-						int d2 = enemy.regAtk( cloud );
-							if (d2 <= 0){
-								d2 = 0;
-						}
-						System.out.println ("The enemy slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + d2 + "!\n\n");
-						if (enemy.crit){
-							System.out.println("It's a critical hit!\n\n");
+		    		if ((enemy.isAlive()) && !enemyFirst) {
+		    			int damage = enemy.regAtk(cloud);
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n\n");
+		    			
+					if (enemy.crit){
+							SO.println("It's a critical hit!\n\n");
 						}
 						
-						try{
-       						Thread.sleep(1500);
-       					}catch (Exception e){}
+						pause =in.nextLine();
+					//	try{
+       				///		Thread.sleep(1500);
+       					//}catch (Exception e){}
         				System.out.print("\033[H\033[2J");
 						System.out.flush();
 		    		}
 		    		
-		    		else{
+		    		if (!( enemy.isAlive() ) ){
 		    			expGain (enemy);
-		    			System.out.println ("You win!");
+		    			SO.println ("You win!");
 		    			break;
 		    		}
 				
-			}
+			
 			
 			if (!cloud.isAlive()){
-				System.out.println ("You lose.");
+				SO.println ("You lose.");
 			}
 			
             
             
         
         }
+      	}
         
           
         

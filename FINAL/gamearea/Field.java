@@ -9,14 +9,16 @@
  *
  */
 
+package gamearea;
  
 import java.util.ArrayList;
-import Math;
+//import Math;
+import gamechars.*;
  
 public class Field extends Area {
 
 	//attributes
-	protected ArrayList<float> ChanceMonsterSpawn;
+    protected double[] ChanceMonsterSpawn;
 	protected ArrayList<Monster> MonsterTypes;
 	/*setup:
 	  ChanceMonsterSpawn is an array of percentages where the i-th element
@@ -34,14 +36,14 @@ public class Field extends Area {
 		super("Field-" + n);
 	}
 	
-	public Field(String name_arg, float chance, Monster mon) {  //creates a field that features only mon with a chance chance of encounter
+	public Field(String name_arg, double chance, Monster mon) {  //creates a field that features only mon with a chance chance of encounter
 		name = name_arg;
-		ChanceMonsterSpawn.add(chance);
+		ChanceMonsterSpawn = new double[] {chance};
 		MonsterTypes.add(mon);
 	}
 	
 	//creates field with chances and monsters determined by args
-	public Field(String name_arg, ArrayList<float> chances, ArrayList<Monster> mons) {
+	public Field(String name_arg, double[] chances, ArrayList<Monster> mons) {
 		name = name_arg;
 		ChanceMonsterSpawn = chances;
 		MonsterTypes = mons;
@@ -62,11 +64,12 @@ public class Field extends Area {
 			monster to the chance of the next monster, but cap it at 0.99; this is the fairest I can think of rn
 	*/
 	
-		float sumSoFar = 0.0;
+		double sumSoFar = 0.0;
 	
-		for(int i=0; i<ChanceMonsterSpawn.size(); i++) {
-			sumSoFar += ChanceMonsterSpawn.set(i, ChanceMonster.get(i)+sumSoFar);
-			if( ChanceMonsterSpawn.get(i) > 0.99 ) {
+		for(int i=0; i<ChanceMonsterSpawn.length; i++) {
+			sumSoFar += ChanceMonsterSpawn[i];
+			ChanceMonsterSpawn[i] = sumSoFar;
+			if( ChanceMonsterSpawn[i] > 0.99 ) {
 				ChanceMonsterSpawn.set(i, 0.99);
 			}
 		}
@@ -76,7 +79,7 @@ public class Field extends Area {
 	//event and description methods
 	public void event(gChar gch) {
 		
-		float r;
+		double r;
 		
 		for(int i=0; i<3; i++) { //3 possibilities for encounters
 			

@@ -9,6 +9,8 @@ package gamechars;
  
 import java.io.*;
 import java.util.*;
+import gameutils.*;
+ 
 
 public class MageW extends Mage implements Wood {
     
@@ -43,7 +45,7 @@ public class MageW extends Mage implements Wood {
     }
     
      public int woodSpike(gChar enemy){
-        System.out.println (name + " cast Wood Spike!");
+        SO.println (name + " cast Wood Spike!");
         this.crit = false; //Crit activation is set to false
         int damage = this.magic - enemy.def; //Work in progress. This is the damage that your character will do
         
@@ -63,6 +65,12 @@ public class MageW extends Mage implements Wood {
             damage /= 2;
         }
         
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
+        
+        
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     
@@ -70,27 +78,47 @@ public class MageW extends Mage implements Wood {
         
         
     //does multiple regular attacks   
-    public int flowerDance(){
-        System.out.println (name + " began the Flower Dance!");
+    public void flowerDance(gChar enemy){
+        SO.println (name + " began the Flower Dance!");
         
         int hits = (int)(Math.random() *4);
-        return hits;
-    
+        if (hits == 0 ){
+            SO.println (name + "trips!");
+        }
+            while (hits != 0){
+		        int damage = regAtk( enemy );
+		    	if ( enemy.element.equals ("Aqua") ){
+            		this.typeAdv = true;
+            		damage += regAtk( enemy );
+        			}
+        
+        		if ( enemy.element.equals ("Fire") ){
+            	    this.typeDis = true;
+            		damage = bestow (enemy, damage);
+    				}
+		    	if (damage <= 0){
+					damage = 0;
+		    		}
+				SO.println ("The enemy took " + damage + "!\n\n");
+				hits --;
+				this.str++;
+            }
+        this.str = this.strInitial;
         }
     
     
         
     public void pepperSong(){
-        System.out.println (name + " cast Pepper Song!");
+        SO.println (name + " cast Pepper Song!");
         if (hpInitial > HP){
         HP += 10;
              if (HP > hpInitial){
                 HP = hpInitial;
-                System.out.println (name + " has full HP now.");
+                SO.println (name + " has full HP now.");
             }
         }
         else {
-            System.out.println ("It had no effect!");}
+            SO.println ("It had no effect!");}
         //healing = true;
         str = 0;
         magic = 0;

@@ -10,6 +10,8 @@ package gamechars;
  
 import java.io.*;
 import java.util.*;
+import gameutils.*;
+ 
 
 public abstract class gChar{
 
@@ -51,7 +53,12 @@ public abstract class gChar{
             damage = (int)( (this.str )- (enemy.def /1.03) ) ;//This will be the new damage your character does
         }
         
+        if (damage <= 0){
+            damage = 0;
+        }
+        
         enemy.HP -= damage; //Final damage that your enemy will take
+        //SO.println ("\n"+ name + " smacks the enemy with a regular attack!" +"\nThe enemy took " + damage + "!\n\n");
         return damage; //Returns the damage dealt to enemy
     }
     
@@ -77,63 +84,77 @@ public abstract class gChar{
     public void bestStat(String stat){
         if (stat.equals ("Health")){
             HP *= 1.5;
+            hpInitial = HP;
         }
         else if (stat.equals ("Strength")){
             str *= 1.5;
+            strInitial = str;
         }
         
         else if (stat.equals ("Magic")){
             magic *= 1.5;
+            magicInitial = magic;
         }
         
         else if (stat.equals ("Defense")){
             def *= 1.5;
+            defInitial = def;
         }
         
         else if (stat.equals ("Resistance")){
             res *= 1.5;
+            resInitial = res;
         }
         
         else if (stat.equals ("Luck")){
             luck *= 1.5;
+            luckInitial = luck;
         }
         
         else if (stat.equals ("Agility")){
             speed *= 1.5;
+            speedInitial = speed;
         }
         else{
-            System.out.println ("Something went wrong...");
+            SO.println ("Something went wrong...");
         }
     }
     public void worstStat(String stat){
          if (stat.equals ("Health")){
             HP *= .5;
+            hpInitial = HP;
         }
         else if (stat.equals ("Strength")){
             str *= .5;
+            strInitial = str;
         }
         
         else if (stat.equals ("Magic")){
             magic *= .5;
+            magicInitial = magic;
         }
         
         else if (stat.equals ("Defense")){
             def *= .5;
+            defInitial = def;
         }
         
         else if (stat.equals ("Resistance")){
             res *= .5;
+            resInitial = res;
         }
         
         else if (stat.equals ("Luck")){
             luck *= .5;
+            luckInitial = luck;
         }
         
         else if (stat.equals ("Agility")){
             speed *= .5;
+            speedInitial = speed;
         }
         else{
-            System.out.println ("Something went wrong...");
+            SO.println ("Something went wrong...");
         }
         
     }
@@ -152,11 +173,11 @@ public abstract class gChar{
         stats.add("Luck: " + luck);
         stats.add("Speed: " + speed);
         
-        System.out.println (name);
-        System.out.println ("Level: " + level);
-        System.out.println ("Element :"+ element);
-        System.out.println ("EXP: " + EXP);
-        System.out.println (stats);
+        SO.println (name);
+        SO.println ("Level: " + level);
+        SO.println ("Element :"+ element);
+        SO.println ("EXP: " + EXP);
+        SO.println (stats);
     }
     
     
