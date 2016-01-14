@@ -43,20 +43,57 @@ public class MageA extends Mage implements Aqua {
         
 
     }
-    public int hailStorm (){
+    public void hailStorm (gChar enemy){
         
         SO.println (name + " began the Hail Storm!");
         int hits = 2;
-        return hits;
+            while (hits != 0){
+		        int damage = regAtk( enemy );
+		    	if ( enemy.element.equals ("Wood") ){
+            		this.typeAdv = true;
+            		damage += regAtk( enemy );
+        			}
         
+        		if ( enemy.element.equals ("Fire") ){
+            	    this.typeDis = true;
+            		damage = bestow (enemy, damage);
+    				}
+		    	if (damage <= 0){
+					damage = 0;
+		    		}
+				SO.println ("The enemy took " + damage + "!\n\n");
+				hits --;
+            }
+
         }
         
         
     //does damage on res based on str stat    
-    public int drizzle(){
+    public void drizzle(gChar enemy){
         SO.println (name + " cast Drizzle!");
-        int hits = (int)(Math.random() *5);
-        return hits;
+        int hits = (int)(Math.random() *6);
+        if (hits == 0 ){
+            SO.println ("But it failed!");
+        }
+            while (hits != 0){
+		        int damage = regAtkM( enemy );
+		    	if ( enemy.element.equals ("Fire") ){
+            		this.typeAdv = true;
+            		damage += regAtkM( enemy );
+        			}
+        
+        		if ( enemy.element.equals ("Aqua") ){
+            	    this.typeDis = true;
+            		damage = bestow (enemy, damage);
+    				}
+		    	if (damage <= 0){
+					damage = 0;
+		    		}
+				SO.println ("The enemy took " + damage + "!\n\n");
+				hits --;
+				this.str++;
+            }
+        this.str = this.strInitial;
         }
     
     

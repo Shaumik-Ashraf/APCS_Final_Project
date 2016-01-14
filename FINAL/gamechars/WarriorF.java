@@ -69,6 +69,11 @@ public class WarriorF extends Warrior implements Fire {
             damage /= 2;
         }
         
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
+        
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     
@@ -96,6 +101,11 @@ public class WarriorF extends Warrior implements Fire {
             this.typeDis = true;
             damage /= 2;
         }
+        
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
         
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy

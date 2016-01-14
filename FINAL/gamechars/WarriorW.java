@@ -63,6 +63,12 @@ public class WarriorW extends Warrior implements Wood{
             damage /= 2;
         }
         
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
+        
+        
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     
@@ -70,13 +76,35 @@ public class WarriorW extends Warrior implements Wood{
         
         
     //does multiple regular attacks   
-    public int flowerDance(){
+    public void flowerDance(gChar enemy){
         SO.println (name + " began the Flower Dance!");
         
         int hits = (int)(Math.random() *4);
-        return hits;
-    
+        if (hits == 0 ){
+            SO.println (name + "trips!");
         }
+            while (hits != 0){
+		        int damage = regAtk( enemy );
+		    	if ( enemy.element.equals ("Aqua") ){
+            		this.typeAdv = true;
+            		damage += regAtk( enemy );
+        			}
+        
+        		if ( enemy.element.equals ("Fire") ){
+            	    this.typeDis = true;
+            		damage = bestow (enemy, damage);
+    				}
+		    	if (damage <= 0){
+					damage = 0;
+		    		}
+				SO.println ("The enemy took " + damage + "!\n\n");
+				hits --;
+            }
+        this.str = this.strInitial;
+        }
+    
+    
+    
     
     
         

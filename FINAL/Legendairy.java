@@ -406,11 +406,8 @@ import java.util.*;
 		    		enemy.normalize();
 		    		
 		    		if (choice.equals ("Attack")){
-		    			int d1 = cloud.regAtk( enemy );
-		    			if (d1 <= 0){
-							d1 = 0;
-						}
-						SO.println ("\n"+ player.get(0) + " smacks the enemy with a regular attack!" +"\nThe enemy took " + d1 + "!\n\n");
+		    			int damage = cloud.regAtk(enemy);
+		    			SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n\n");
 		    		}
 		    		
 		    		if (choice.equals ("Skills") ){
@@ -428,30 +425,17 @@ import java.util.*;
 		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorF)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (WarriorF)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
-		    					int d1 = ( (WarriorF)cloud ).heatWave (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorF)cloud ).heatWave (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
-		    					int d1 = ( (WarriorF)cloud).flameCrash (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ((WarriorF)cloud).flameCrash (enemy);
 		    				}
 		
-		    			
 		    				if (choice.equals ("Rekindle")){
 		    					 ( (WarriorF)cloud ).reKindle();
 		    				
@@ -476,41 +460,16 @@ import java.util.*;
 		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorW)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorW)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
-		    					int hits = ( (WarriorW)cloud ).flowerDance();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Aqua") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str++;
-		    					}
+		    					( (WarriorW)cloud ).flowerDance(enemy);
+		    				
 		    				}
 		    			
 		    				if (choice.equals ("Wood Spike")){
-		    					int d1 = ( (WarriorW)cloud).woodSpike (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorW)cloud).woodSpike (enemy);
 		    				}
 		
 		    			
@@ -535,57 +494,15 @@ import java.util.*;
 		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorA)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (WarriorA)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
-		    					int hits = ( (WarriorA)cloud ).hailStorm();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Wood") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-							
-		    					}
+		    					( (WarriorA)cloud ).hailStorm(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Drizzle")){
-		    					int hits = ( (WarriorA)cloud ).drizzle();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Fire") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Wood") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-    								 
-    								 
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str--;
-		    					}
+		    					( (WarriorA)cloud ).drizzle(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Aqua Veil")){
@@ -610,27 +527,15 @@ import java.util.*;
 		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageF)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageF)cloud ).arcaniteForce (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
-		    					int d1 = ( (MageF)cloud ).heatWave (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (MageF)cloud ).heatWave (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
-		    					int d1 = ( (MageF)cloud).flameCrash (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageF)cloud).flameCrash (enemy);
 		    				}
 		
 		    			
@@ -655,41 +560,16 @@ import java.util.*;
 		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageW)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageW)cloud ).arcaniteForce (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
-		    					int hits = ( (MageW)cloud ).flowerDance();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Aqua") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str++;
-		    					}
+		    					( (MageW)cloud ).flowerDance(enemy);
+		    					
 		    				}
 		    			
 		    				if (choice.equals ("Wood Spike")){
-		    					int d1 = ( (MageW)cloud).woodSpike (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageW)cloud).woodSpike (enemy);
 		    				}
 		
 		    			
@@ -722,49 +602,11 @@ import java.util.*;
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
-		    					int hits = ( (MageA)cloud ).hailStorm();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Wood") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-							
-		    					}
+		    					( (MageA)cloud ).hailStorm(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Drizzle")){
-		    					int hits = ( (MageA)cloud ).drizzle();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Fire") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Wood") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-    								 
-    								 
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str--;
-		    					}
+		    					( (MageA)cloud ).drizzle(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Aqua Veil")){
@@ -805,12 +647,10 @@ import java.util.*;
 		    		
 		    		
 		    		if (enemy.isAlive()) {
-						int d2 = enemy.regAtk( cloud );
-							if (d2 <= 0){
-								d2 = 0;
-						}
-						SO.println ("The enemy slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + d2 + "!\n\n");
-						if (enemy.crit){
+		    			int damage = enemy.regAtk(cloud);
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n\n");
+		    			
+					if (enemy.crit){
 							SO.println("It's a critical hit!\n\n");
 						}
 						

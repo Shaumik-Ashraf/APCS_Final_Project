@@ -23,6 +23,11 @@ public abstract class Warrior extends gChar{
             damage = (int)( (this.str + 10 )- (enemy.def /1.03) ) ;//This will be the new damage your character does
         }
         
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
+        
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
     }
