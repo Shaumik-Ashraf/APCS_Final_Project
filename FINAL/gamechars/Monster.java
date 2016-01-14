@@ -11,7 +11,7 @@ public class Monster extends gChar{
             def = 3;
             res = 3;
             luck = 1;
-            speed = 3;
+            speed = 0;
             EXP = 100;
             
             hpInitial = HP;

@@ -30,9 +30,11 @@ import java.util.*;
         private gChar enemy;
         
         private boolean response;
+        public boolean enemyFirst;
         private String message;
         private String skillList;
         private String choice;
+        private String pause;
         
         //private InputStreamReader isr;
         //private BufferedReader in;
@@ -302,9 +304,10 @@ import java.util.*;
         	//try{
        			//Thread.sleep(1500);
        		//	}catch (Exception e){}
-       		System.out.print("\033[H\033[2J");
-			System.out.flush();
+       		
         	for (int i = 3; i >0; i--){
+        		System.out.print("\033[H\033[2J");
+				System.out.flush();
         		cloud.statSheet();
         		message = "\nPlease allocate these points to the following stats.\nYou have " + i + " point(s).\n";
         		message += "HP\n";
@@ -349,10 +352,13 @@ import java.util.*;
             			}
             			
             			response = true;
+            		
+            			}
+            			
             			System.out.print("\033[H\033[2J");
 						System.out.flush();
-            			
-            			}
+						cloud.statSheet();
+            		
             		}
             	
         	}
@@ -378,10 +384,10 @@ import java.util.*;
        		
        		enemy = new Monster();
 			SO.println ("An enemy draws near! \n\n");
-			choice =in.nextLine();
+			pause =in.nextLine();
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
-       				
+       				enemyFirst = false;
        				
        				//try{
        				//	Thread.sleep(1000);
@@ -405,10 +411,7 @@ import java.util.*;
 		    		cloud.normalize();
 		    		enemy.normalize();
 		    		
-		    		if (choice.equals ("Attack")){
-		    			int damage = cloud.regAtk(enemy);
-		    			SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n\n");
-		    		}
+		    	
 		    		
 		    		if (choice.equals ("Skills") ){
 		    		
@@ -423,6 +426,24 @@ import java.util.*;
 	                    		response = true;
 		    					}
 		    				}
+		    		}
+		    		
+		    		if (cloud.speed < enemy.speed){
+		    			enemyFirst = true;
+		    			int damage = enemy.regAtk(cloud);
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n\n");
+		    			
+						if (enemy.crit){
+							SO.println("It's a critical hit!\n\n");
+						}
+						
+						pause =in.nextLine();
+		    			
+		    		}
+		    		
+		    		if (choice.equals ("Attack")){
+		    			int damage = cloud.regAtk(enemy);
+		    			SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n\n");
 		    		}
 		    		
 		    				
@@ -583,7 +604,7 @@ import java.util.*;
 							SO.println("It's a critical hit!\n\n");
 						}
 						
-						choice =in.nextLine();
+						pause =in.nextLine();
 		    		//	try{
        				//		Thread.sleep(200);
        				//	}catch (Exception e){}
@@ -592,7 +613,7 @@ import java.util.*;
 						//System.out.flush();
 		    		
 		    		
-		    		if (enemy.isAlive()) {
+		    		if ((enemy.isAlive()) && !enemyFirst) {
 		    			int damage = enemy.regAtk(cloud);
 		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n\n");
 		    			
@@ -600,7 +621,7 @@ import java.util.*;
 							SO.println("It's a critical hit!\n\n");
 						}
 						
-						choice =in.nextLine();
+						pause =in.nextLine();
 					//	try{
        				///		Thread.sleep(1500);
        					//}catch (Exception e){}
@@ -608,7 +629,7 @@ import java.util.*;
 						System.out.flush();
 		    		}
 		    		
-		    		else{
+		    		if (!( enemy.isAlive() ) ){
 		    			expGain (enemy);
 		    			SO.println ("You win!");
 		    			break;
