@@ -405,7 +405,7 @@ import java.util.*;
        		}
        		
        		enemy = new Monster();
-			SO.println ("An enemy draws near! \n\n");
+			SO.println ("An enemy draws near! \n");
 			pause =in.nextLine();
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
@@ -452,10 +452,10 @@ import java.util.*;
 		    		if (cloud.speed < enemy.speed){
 		    			enemyFirst = true;
 		    			int damage = enemy.regAtk(cloud);
-		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n\n");
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
 		    			
 						if (enemy.crit){
-							SO.println("It's a critical hit!\n\n");
+							SO.println("It's a critical hit!\n");
 						}
 						
 						pause =in.nextLine();
@@ -464,7 +464,7 @@ import java.util.*;
 		    		
 		    		if (choice.equals ("Attack")){
 		    			int damage = cloud.regAtk(enemy);
-		    			SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n\n");
+		    			SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n");
 		    		}
 		    		
 		    				
@@ -655,15 +655,15 @@ import java.util.*;
 		    			
 
 						if (cloud.typeAdv){
-		    				SO.println("It's super effective!\n\n");
+		    				SO.println("It's super effective!\n");
 						}
 						
 						if (cloud.typeDis){
-		    				SO.println("It's not very effective!\n\n");
+		    				SO.println("It's not very effective!\n");
 						}
 						
 		    			if (cloud.crit){
-							SO.println("It's a critical hit!\n\n");
+							SO.println("It's a critical hit!\n");
 						}
 						
 						pause =in.nextLine();
@@ -677,10 +677,10 @@ import java.util.*;
 		    		
 		    		if ((enemy.isAlive()) && !enemyFirst) {
 		    			int damage = enemy.regAtk(cloud);
-		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n\n");
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
 		    			
 					if (enemy.crit){
-							SO.println("It's a critical hit!\n\n");
+							SO.println("It's a critical hit!\n");
 						}
 						
 						pause =in.nextLine();
