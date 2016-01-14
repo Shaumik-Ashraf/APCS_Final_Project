@@ -6,8 +6,7 @@
 
 package gamearea;
 
-//import Math;
-//import Thread;
+
 import java.util.Scanner;
 import gameutils.*;
 import gamechars.*;
@@ -42,7 +41,7 @@ public class Town extends Area {
 	public void event(gChar gch) {
 		
 		Scanner event_sc = new Scanner(System.in);
-		String buffer; 
+		String buffer = new String();
 		
 
 		
@@ -58,7 +57,7 @@ public class Town extends Area {
 				if( event_sc.hasNextLine() ) {
 					buffer = event_sc.nextLine();
 				}
-			} catch(IOException e) {
+			} catch( Exception e) {
 				//not sure how to handle...
 				System.err.println("Error! " + e);
 			}
@@ -67,7 +66,7 @@ public class Town extends Area {
 			
 			if( buffer.equals("rest") ) {
 				SO.P("resting...\n");
-				gch.HP = gch.HPInitial;  //restore HP
+				gch.HP = gch.hpInitial;  //restore HP
 				//do anything else?
 				
 				try {  //pause code for 1 sec

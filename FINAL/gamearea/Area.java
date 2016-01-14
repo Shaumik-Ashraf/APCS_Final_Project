@@ -31,6 +31,10 @@ public abstract class Area {
 	protected String name;
 	
 	//constructors
+	public Area() {
+		name = "<area_name>";
+	}
+
 	public Area(String name_arg) {
 		name = name_arg;
 	}
