@@ -14,7 +14,7 @@ import java.util.*;
 public abstract class Mage extends gChar{
 
 	public int arcaniteForce(gChar enemy) {
-		SO.println (name + "case Arcanite Force!");
+		SO.println (name + "cast Arcanite Force!");
 		this.crit = false;
 		int damage = this.magic - enemy.res + 10;
 
