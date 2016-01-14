@@ -171,7 +171,7 @@ public abstract class gChar{
         stats.add("Def: " + def);
         stats.add("Res: " + res);
         stats.add("Luck: " + luck);
-        stats.add("Speed: " + speed);
+        stats.add("Agility: " + speed);
         
         SO.println (name);
         SO.println ("Level: " + level);

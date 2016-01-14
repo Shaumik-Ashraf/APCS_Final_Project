@@ -1,4 +1,4 @@
-/* interface Water - defines element base atks (methods) 
+/* interface Aqua - defines element base atks (methods) 
  * 
  * Notes:
  *	

@@ -19,13 +19,13 @@ public class MageW extends Mage implements Wood {
         element = "Wood";
         
         //literally the stats for sMy Unit in Fire Emblem. ;)
-        HP = 19;
-        str = 2;
-        magic = 14;
+        HP = 16;
+        str = 1;
+        magic = 10;
         def = 3;
-        res = 5;
-        luck = 3;
-        speed = 5;
+        res = 4;
+        luck = 6;
+        speed = 7;
         EXP = 0;
         level = 1;
         
@@ -81,7 +81,7 @@ public class MageW extends Mage implements Wood {
     public void flowerDance(gChar enemy){
         SO.println (name + " began the Flower Dance!");
         
-        int hits = (int)(Math.random() *4);
+        int hits = (int)(Math.random() *7);
         if (hits == 0 ){
             SO.println (name + "trips!");
         }
@@ -110,6 +110,7 @@ public class MageW extends Mage implements Wood {
         
     public void pepperSong(){
         SO.println (name + " cast Pepper Song!");
+        SO.println ("The soothing song refreshes " + name + ". Recovered 10 HP!");
         if (hpInitial > HP){
         HP += 10;
              if (HP > hpInitial){
@@ -120,8 +121,7 @@ public class MageW extends Mage implements Wood {
         else {
             SO.println ("It had no effect!");}
         //healing = true;
-        str = 0;
-        magic = 0;
+      
     }
     
    

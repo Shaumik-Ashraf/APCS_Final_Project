@@ -58,6 +58,7 @@ import java.util.*;
 	        traits.add ("Outgoing");
 	        traits.add ("Optimistic");
 	        traits.add ("Calm");
+	        traits.add ("Carefree");
 	        
 	        jobs.add ("Warrior");
 	        jobs.add ("Mage");
@@ -190,6 +191,7 @@ import java.util.*;
         	message += "\nOutgoing\n";
 	        message += "Optimistic\n";
 	        message += "Calm\n";
+	        message += "Carefree\n";
         
 
             
@@ -276,6 +278,26 @@ import java.util.*;
             		skills.add ("Drizzle");
             		skills.add ("Aqua Veil");
             		skillList = "Arcanite Force\nHail Storm\nDrizzle\nAqua Veil\n";
+            	}
+            	
+            }
+            
+            if (player.get(4).equals ("Carefree") ){
+            	if (player.get(1).equals ("Warrior")){
+            		cloud = new WarriorG(player);
+            		skills.add ("Strong Swing");
+            		skills.add ("Tail Wind");
+            		skills.add ("Wind Strike");
+            		skills.add ("Gale Force");
+            		skillList = "Strong Swing\nWind Strike\nGale Force\nTail Wind\n";
+            	}
+            	if (player.get(1).equals("Mage")){
+            		cloud = new MageG(player);
+            		skills.add ("Arcanite Force");
+            		skills.add ("Tail Wind");
+            		skills.add ("Wind Strike");
+            		skills.add ("Gale Force");
+            		skillList = "Arcanite Force\nWind Strike\nGale Force\nTail Wind\n";
             	}
             	
             }
@@ -408,8 +430,7 @@ import java.util.*;
 		    		
 		    		
 		    		response = false;
-		    		cloud.normalize();
-		    		enemy.normalize();
+		    	
 		    		
 		    	
 		    		
@@ -517,6 +538,28 @@ import java.util.*;
 		    			
 		    			}
 		    			
+		    			if (cloud instanceof WarriorG){
+		    				
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					 ( (WarriorG)cloud ).strongSwing (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (WarriorG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (WarriorG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (WarriorG)cloud ).tailWind();
+		    				
+		    				}
+		    			
+		    			}
+		    			
 		    			
 		    			if (cloud instanceof MageF){
 		    				
@@ -569,11 +612,8 @@ import java.util.*;
 		    				
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageA)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageA)cloud ).arcaniteForce (enemy);
+		    					
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
@@ -586,6 +626,28 @@ import java.util.*;
 		    			
 		    				if (choice.equals ("Aqua Veil")){
 		    					 ( (MageA)cloud ).aquaVeil();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof MageG){
+		    				
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					 ( (MageG)cloud ).arcaniteForce (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (MageG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (MageG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (MageG)cloud ).tailWind();
 		    				
 		    				}
 		    			
@@ -630,8 +692,11 @@ import java.util.*;
 		    		}
 		    		
 		    		if (!( enemy.isAlive() ) ){
+		    			cloud.normalize();
+		    			enemy.normalize();
 		    			expGain (enemy);
 		    			SO.println ("You win!");
+		    		
 		    			break;
 		    		}
 				

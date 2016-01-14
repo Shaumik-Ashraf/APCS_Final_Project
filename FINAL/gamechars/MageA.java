@@ -19,12 +19,12 @@ public class MageA extends Mage implements Aqua {
         element = "Aqua";
         
         //literally the stats for sMy Unit in Fire Emblem. ;)
-        HP = 19;
+        HP = 18;
         str = 5;
-        magic = 11;
-        def = 4;
+        magic = 9;
+        def = 3;
         res = 4;
-        luck = 5;
+        luck = 4;
         speed = 6;
         EXP = 0;
         level = 1;
@@ -46,7 +46,7 @@ public class MageA extends Mage implements Aqua {
     public void hailStorm (gChar enemy){
         
         SO.println (name + " began the Hail Storm!");
-        int hits = 2;
+        int hits = 3;
             while (hits != 0){
 		        int damage = regAtk( enemy );
 		    	if ( enemy.element.equals ("Wood") ){
@@ -71,7 +71,7 @@ public class MageA extends Mage implements Aqua {
     //does damage on res based on str stat    
     public void drizzle(gChar enemy){
         SO.println (name + " cast Drizzle!");
-        int hits = (int)(Math.random() *6);
+        int hits = (int)(Math.random() *4);
         if (hits == 0 ){
             SO.println ("But it failed!");
         }
@@ -100,17 +100,8 @@ public class MageA extends Mage implements Aqua {
         
     public void aquaVeil(){
         SO.println (name + " cast Aqua Veil!");
-        if (hpInitial > HP){
-        HP += 10;
-             if (HP > hpInitial){
-                HP = hpInitial;
-                SO.println (name + " has full HP now.");
-            }
-        }
-        else {
-            SO.println ("It had no effect!");}
-        //healing = true;
-        str = 0;
-        magic = 0;
+        SO.println ("The ring of water increased " + name +"'s defenses!");
+        def += 4;
+       
     }
 }

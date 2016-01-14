@@ -13,13 +13,13 @@ public class WarriorW extends Warrior implements Wood{
         element = "Wood";
         
         //literally the stats for My Unit in Fire Emblem. ;)
-        HP = 19;
-        str = 5;
-        magic = 10;
+        HP = 20;
+        str = 4;
+        magic = 8;
         def = 5;
-        res = 3;
+        res = 5;
         luck = 4;
-        speed = 6;
+        speed = 4;
         EXP = 0;
         level = 1;
         
@@ -79,7 +79,7 @@ public class WarriorW extends Warrior implements Wood{
     public void flowerDance(gChar enemy){
         SO.println (name + " began the Flower Dance!");
         
-        int hits = (int)(Math.random() *4);
+        int hits = (int)(Math.random() *7);
         if (hits == 0 ){
             SO.println (name + "trips!");
         }
@@ -110,6 +110,7 @@ public class WarriorW extends Warrior implements Wood{
         
     public void pepperSong(){
         SO.println (name + " cast Pepper Song!");
+        SO.println ("The soothing song refreshes " + name + ". Recovered 10 HP!");
         if (hpInitial > HP){
         HP += 10;
              if (HP > hpInitial){
@@ -120,8 +121,7 @@ public class WarriorW extends Warrior implements Wood{
         else {
             SO.println ("It had no effect!");}
         //healing = true;
-        str = 0;
-        magic = 0;
+      
     }
     
    

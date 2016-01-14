@@ -19,11 +19,11 @@ public class WarriorF extends Warrior implements Fire {
         element = "Fire";
         
         //literally the stats for My Unit in Fire Emblem. ;)
-        HP = 19;
-        str = 8;
+        HP = 21;
+        str = 7;
         magic = 6;
-        def = 6;
-        res = 1;
+        def = 5;
+        res = 3;
         luck = 4;
         speed = 6;
         EXP = 0;
@@ -84,12 +84,12 @@ public class WarriorF extends Warrior implements Fire {
     public int flameCrash(gChar enemy){
         SO.println (name + " used Flame Crash!");
         this.crit = false; //Crit activation is set to false
-        int damage = this.str - enemy.res; //Work in progress. This is the damage that your character will do
+        int damage = this.str - enemy.def; //Work in progress. This is the damage that your character will do
         
         
         if ( (Math.random() *100) <= luck){
             this.crit = true; //Crit activation is set to true
-            damage = (int)( (this.str )- (enemy.res /1.03) ) ;//This will be the new damage your character does
+            damage = (int)( (this.str )- (enemy.def /1.03) ) ;//This will be the new damage your character does
         }
         
         if ( enemy.element.equals ("Wood") ){
@@ -116,18 +116,8 @@ public class WarriorF extends Warrior implements Fire {
         
     public void reKindle(){
         SO.println (name + " cast Rekindle!");
-        if (hpInitial > HP){
-        HP += 10;
-             if (HP > hpInitial){
-                HP = hpInitial;
-                SO.println (name + " has full HP now.");
-            }
-        }
-        else {
-            SO.println ("It had no effect!");}
-        //healing = true;
-        str = 0;
-        magic = 0;
+        SO.println (name + " is enveloped by a firey aura! Resistance to magic has increased!");
+        res += 4;
     }
     
         

@@ -19,8 +19,8 @@ public class WarriorA extends Warrior implements Aqua {
         element = "Aqua";
         
         //literally the stats for My Unit in Fire Emblem. ;)
-        HP = 19;
-        str = 9;
+        HP = 22;
+        str = 10;
         magic = 5;
         def = 4;
         res = 4;
@@ -52,9 +52,9 @@ public class WarriorA extends Warrior implements Aqua {
     public void hailStorm (gChar enemy){
         
         SO.println (name + " began the Hail Storm!");
-        int hits = 2;
+        int hits = 3;
             while (hits != 0){
-		        int damage = regAtk( enemy );
+		        int damage = regAtkM( enemy );
 		    	if ( enemy.element.equals ("Wood") ){
             		this.typeAdv = true;
             		damage += regAtk( enemy );
@@ -79,15 +79,15 @@ public class WarriorA extends Warrior implements Aqua {
     //does damage on res based on str stat    
     public void drizzle(gChar enemy){
         SO.println (name + " cast Drizzle!");
-        int hits = (int)(Math.random() *6);
+        int hits = (int)(Math.random() *4);
         if (hits == 0 ){
             SO.println ("But it failed!");
         }
             while (hits != 0){
-		        int damage = regAtkM( enemy );
+		        int damage = regAtk( enemy );
 		    	if ( enemy.element.equals ("Fire") ){
             		this.typeAdv = true;
-            		damage += regAtkM( enemy );
+            		damage += regAtk( enemy );
         			}
         
         		if ( enemy.element.equals ("Aqua") ){
@@ -109,18 +109,9 @@ public class WarriorA extends Warrior implements Aqua {
         
     public void aquaVeil(){
         SO.println (name + " cast Aqua Veil!");
-        if (hpInitial > HP){
-        HP += 8;
-             if (HP > hpInitial){
-                HP = hpInitial;
-                SO.println (name + " has full HP now.");
-            }
-        }
-        else {
-            SO.println ("It had no effect!");}
-        //healing = true;
-        str = 0;
-        magic = 0;
+        SO.println ("The ring of water increased " + name +"'s defenses!");
+        def += 4;
+       
     }
     
         
