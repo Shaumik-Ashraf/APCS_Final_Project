@@ -14,6 +14,7 @@ package gamearea;
 import java.util.ArrayList;
 //import Math;
 import gamechars.*;
+import gameutils.*;
  
 public class Field extends Area {
 
@@ -70,7 +71,7 @@ public class Field extends Area {
 			sumSoFar += ChanceMonsterSpawn[i];
 			ChanceMonsterSpawn[i] = sumSoFar;
 			if( ChanceMonsterSpawn[i] > 0.99 ) {
-				ChanceMonsterSpawn.set(i, 0.99);
+				ChanceMonsterSpawn[i] = 0.99;
 			}
 		}
 	
@@ -85,9 +86,10 @@ public class Field extends Area {
 			
 			r = Math.random();
 			
-			for(int j=0; j<ChanceMonsterSpawn.size(); j++) {
-				if( r < ChanceMonsterSpawn.get(j) ) {
-					gch.battle( MonsterTypes.get(j) );
+			for(int j=0; j<ChanceMonsterSpawn.length; j++) {
+				if( r < ChanceMonsterSpawn[i] ) {
+					//gch.battle( MonsterTypes.get(j) );
+					SO.P("Assume battle method here!!!\n");
 					break;  //gives same effect as if-else ladder
 				}
 			}
