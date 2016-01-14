@@ -15,6 +15,7 @@ An MMORPG! A Legendairy Story.
 
 ##TODO
 - Get proposal approval
+- UML submission
 - INTEGRATE CODE
 - Complete interfaces (water, wood, sky)
 - Complete other classes (Mage, Archer)
@@ -24,7 +25,6 @@ An MMORPG! A Legendairy Story.
 - Saving
 - Shopping
 - Pvp/Partying via networking
-- 
 
 ##Description
 We want to create a turn based RPG. At the very least, the game will be able to do this: the user creates a character with a special class and element. The character will start in a common hub, where the user can go down a path of fields (featuring monsters, who have their own elements) or towns (featuring healing). We want to implement features such as elemental weaknesses and exp into our battle system as well as strongest/weakest stat for better player cutomization. 
