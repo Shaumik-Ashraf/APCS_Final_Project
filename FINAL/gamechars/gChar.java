@@ -218,23 +218,15 @@ public abstract class gChar{
     
     /*======================================================================================
 	========================================================================================
-	========================================================================================*/
-    
-    //stats stay the same
-	//regAtk, bestStat, and worstStat stay the same
-	
-	protected ArrayList<String> skillList = new ArrayList();
-	
-	/* shouldn't ther be one?
-	public Character() {  //overload constructor
-		
-	}
-	*/
-	
-/*	public abstract int classAtk1();
-	
-	public abstract int elemAtk1();
-	
-	public abstract int elemAtk2();*/ 
-	
+	=======================================================================================
+    */
+   
+   public void heal() {
+	HP = hpInitial;
+   } 
+   
+   /*
+   public void battle(gChar askldfjako;jva;j) {...}  MAKE!!!!!!!!!!
+   */
+
 }
