@@ -1,6 +1,7 @@
 import java.util.*;
 public class Inventory
 {
+    private int effectDuration = 0;
     private ArrayList<Item> inv = new ArrayList<Item>();
     private HashMap<String, Equipable> equipped = new HashMap<String, Equipable>();
     private HashMap<String, Integer> effect = new HashMap<String, Integer>();
@@ -68,7 +69,24 @@ public class Inventory
                 }
             }
             inv.remove(index);
-        } catch(Exception e) {}
+        } catch(Exception e) {return;}
+    }
+    
+    public boolean removeItemB(String itemName)
+    {
+        try 
+        {
+            int index = -1;
+            for (int k = 0; k < inv.size(); k++)
+            {
+                if (inv.get(k).toString().equals(itemName))
+                {
+                    index = k;
+                }
+            }
+            inv.remove(index);
+            return true;
+        } catch(Exception e) {return false;}        
     }
     
     public void equipItem(String itemName)
@@ -107,8 +125,25 @@ public class Inventory
         data.put("hpMod", hpMod);
         data.put("mpMod", mpMod);
         data.put("luckMod", luckMod);
-        resetEffects();
+        effectDuration -= 1;
+        if (effectDuration == 0)
+        {
+            resetEffects();            
+        }
         return data;
+    }
+    
+    public void useItem(String itemName)
+    {
+        try 
+        {
+            Useable u = new Useable(itemName);
+            if(removeItemB(inv.get(inv.indexOf(u)).toString()))
+            {
+                effectDuration = u.getDuration;
+                effect = u.use();
+            }
+        } catch (Exception e){}
     }
     
     public static void main(String[] args)
@@ -140,6 +175,21 @@ public class Inventory
 //        System.out.println(i);
 //        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
         System.out.println(i);
+        System.out.println(i.scrapeStats());
+        boolean k = i.removeItemB("Bronze Helmet");
+        System.out.println(k);
+        k = i.removeItemB("Wooden Helmet");
+        i.equipItem("Wooden Pole");
+        System.out.println(i);
+        System.out.println(i.scrapeStats());
+        System.out.println(k);
+        i.effect.put("hpMod", 10000);
+        i.effectDuration = 5;
+        System.out.println(i.scrapeStats());
+        System.out.println(i.scrapeStats());
+        System.out.println(i.scrapeStats());
+        System.out.println(i.scrapeStats());
+        System.out.println(i.scrapeStats());  
         System.out.println(i.scrapeStats());
     }
     

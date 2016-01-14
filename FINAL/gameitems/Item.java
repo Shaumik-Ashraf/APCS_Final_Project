@@ -193,3 +193,15 @@ class Armor extends Equipable
     }
 }
 //-------------------------------------------------------------------------------------------
+
+//---------------------------------------USEABLE CLASSES-------------------------------------
+abstract class Useable extends Item
+{
+    protected int duration;
+    public abstract HashMap<String, Integer> use();
+    
+    public int getDuration()
+    {
+        return duration;
+    }
+}
