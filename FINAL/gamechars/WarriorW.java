@@ -124,6 +124,30 @@ public class WarriorW extends Warrior implements Wood{
       
     }
     
+    public String skillListChange( String skillList){
+        if (this.level == 2){
+            skillList += "Proud Swivel\n";
+            System.out.println (this.name + " learned Proud Swivel!");
+        }
+        
+        if (this.level == 3){
+            skillList += "Finishing Touch\n";
+            System.out.println (this.name + " learned Finishing Touch!");
+        }
+        
+        return skillList;
+    }
+    
+    public ArrayList<String> skillChange( ArrayList<String> skills){
+         if (this.level == 2){
+             skills.add ("Proud Swivel");
+         }
+         if (this.level == 3){
+             skills.add ("Finishing Touch");
+         }
+         return skills;
+    }
+    
    
     
         

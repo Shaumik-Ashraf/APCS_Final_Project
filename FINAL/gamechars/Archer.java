@@ -32,8 +32,8 @@ public abstract class Archer extends gChar{
 
         }
         
-    public void arrowStorm(gChar eneny){
-    	 SO.println (name + " fired some arrows into the sky");
+    public void arrowStorm(gChar enemy){
+    	 SO.println (name + " fired some arrows into the sky.");
         
         int hits = (int)(Math.random() *5);
         if (hits == 0 ){

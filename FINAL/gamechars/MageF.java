@@ -120,6 +120,30 @@ public class MageF extends Mage implements Fire {
         res += 4;
     }
     
+     public String skillListChange( String skillList){
+        if (this.level == 2){
+            skillList += "Arcane Bullets\n";
+            System.out.println (this.name + " learned Arcane Bullets!");
+        }
+        
+        if (this.level == 3){
+            skillList += "Concentrate\n";
+            System.out.println (this.name + " learned Concentrate!");
+        }
+        
+        return skillList;
+    }
+    
+    public ArrayList<String> skillChange( ArrayList<String> skills){
+         if (this.level == 2){
+             skills.add ("Arcane Bullets");
+         }
+         if (this.level == 3){
+             skills.add ("Concentrate");
+         }
+         return skills;
+    }
+    
         
         
         

@@ -32,8 +32,8 @@ public abstract class Mage extends gChar{
 
         }
         
-    public void arcaneBullets (gchar enemy){
-    	SO.println (name + " surrounds the enemy with magical orbs");
+    public void arcaneBullets (gChar enemy){
+    	SO.println (name + " surrounds the enemy with magical orbs.");
         
         int hits = 3;
        

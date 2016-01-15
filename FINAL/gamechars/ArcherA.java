@@ -114,6 +114,31 @@ public class ArcherA extends Archer implements Aqua {
        
     }
     
+    public String skillListChange( String skillList){
+        if (this.level == 2){
+            skillList += "Arrow Storm\n";
+            System.out.println (this.name + " learned Arrow Storm!");
+        }
+        
+        if (this.level == 3){
+            skillList += "Focus\n";
+            System.out.println (this.name + " learned Focus!");
+        }
+        
+        return skillList;
+    }
+    
+    public ArrayList<String> skillChange( ArrayList<String> skills){
+         if (this.level == 2){
+             skills.add ("Arrow Storm");
+         }
+         if (this.level == 3){
+             skills.add ("Focus");
+         }
+         return skills;
+    }
+    
+    
         
         
         

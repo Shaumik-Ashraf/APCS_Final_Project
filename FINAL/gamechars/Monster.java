@@ -1,6 +1,9 @@
 
 package gamechars;
 
+import java.io.*;
+import java.util.*;
+
 public class Monster extends gChar{
         public Monster(){
             name = "Jellyfish";
@@ -22,4 +25,14 @@ public class Monster extends gChar{
             luckInitial = luck;
             speedInitial = speed;
         }
+        
+        public String skillListChange( String skillList){
+            return "No.";
+        }
+        
+        public ArrayList<String> skillChange(ArrayList<String> skills){
+            ArrayList<String> No = new ArrayList<String>();
+            return No;
+        }
+        
 }

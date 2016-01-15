@@ -48,7 +48,7 @@ public abstract class Warrior extends gChar{
         SO.println ("The enemy took " + damage + "!\n\n");
         
         enemy.HP -= damage; //Final damage that your enemy will take
-        SO.println (name + "'s attack decreases due to fatigue!")
+        SO.println (name + "'s attack decreases due to fatigue!");
         this.str *= .75;
         return damage; //Returns the damage dealt to enemy
         

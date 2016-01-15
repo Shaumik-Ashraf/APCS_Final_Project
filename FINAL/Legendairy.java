@@ -22,7 +22,7 @@ import java.util.*;
         private static final ArrayList<String> traits = new ArrayList();
         private static final ArrayList<String> jobs = new ArrayList();
         private static final ArrayList<String> commands = new ArrayList();
-        private static final ArrayList<String> skills = new ArrayList();
+        private static ArrayList<String> skills = new ArrayList();
         
         private static ArrayList<String> player = new ArrayList();
 
@@ -354,6 +354,8 @@ import java.util.*;
         		cloud.EXP = cloud.EXP % 100;
         		SO.println ("\n");
         		skillPoints(cloud);
+        		skillList = cloud.skillListChange(skillList);
+        		skills = cloud.skillChange(skills);
         	}
         }
         
@@ -442,6 +444,7 @@ import java.util.*;
 	                }
        		}
        		
+       		while (true){
        		enemy = new Monster();
 			SO.println ("An enemy draws near! \n");
 			pause =in.nextLine();
@@ -524,6 +527,16 @@ import java.util.*;
 		    					 ( (WarriorF)cloud ).reKindle();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorF)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorF)cloud ).finishingTouch(enemy);
+		    				
+		    				}
 		    			
 		    			}
 		    			
@@ -551,6 +564,16 @@ import java.util.*;
 		    					 ( (WarriorW)cloud ).pepperSong();
 		    				
 		    				}
+		    				
+		    					if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorW)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorW)cloud ).finishingTouch(enemy);
+		    				
+		    				}
 		    			
 		    			}
 		    			
@@ -573,6 +596,16 @@ import java.util.*;
 		    					 ( (WarriorA)cloud ).aquaVeil();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorA)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorA)cloud ).finishingTouch(enemy);
+		    				
+		    				}
 		    			
 		    			}
 		    			
@@ -593,6 +626,16 @@ import java.util.*;
 		    			
 		    				if (choice.equals ("Tail Wind")){
 		    					 ( (WarriorG)cloud ).tailWind();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorG)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorG)cloud ).finishingTouch(enemy);
 		    				
 		    				}
 		    			
@@ -619,6 +662,16 @@ import java.util.*;
 		    					 ( (MageF)cloud ).reKindle();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageF)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageF)cloud ).concentrate();
+		    				
+		    				}
 		    			
 		    			}
 		    			
@@ -641,6 +694,16 @@ import java.util.*;
 		    			
 		    				if (choice.equals ("Pepper Song")){
 		    					 ( (MageW)cloud ).pepperSong();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageW)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageW)cloud ).concentrate();
 		    				
 		    				}
 		    			
@@ -666,6 +729,16 @@ import java.util.*;
 		    					 ( (MageA)cloud ).aquaVeil();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageA)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageA)cloud ).concentrate();
+		    				
+		    				}
 		    			
 		    			}
 		    			
@@ -688,7 +761,15 @@ import java.util.*;
 		    					 ( (MageG)cloud ).tailWind();
 		    				
 		    				}
-		    			
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageG)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageG)cloud ).concentrate();
+		    				
+		    				}
 		    			}
 		    			
 		    			if (cloud instanceof ArcherF){
@@ -709,6 +790,17 @@ import java.util.*;
 		    			
 		    				if (choice.equals ("Rekindle")){
 		    					 ( (ArcherF)cloud ).reKindle();
+		    				
+		    				}
+		    				
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherF)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherF)cloud ).focus();
 		    				
 		    				}
 		    			
@@ -735,6 +827,16 @@ import java.util.*;
 		    					 ( (ArcherW)cloud ).pepperSong();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherW)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherW)cloud ).focus();
+		    				
+		    				}
 		    			
 		    			}
 		    			
@@ -758,6 +860,16 @@ import java.util.*;
 		    					 ( (ArcherA)cloud ).aquaVeil();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherA)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherA)cloud ).focus();
+		    				
+		    				}
 		    			
 		    			}
 		    			
@@ -778,6 +890,16 @@ import java.util.*;
 		    			
 		    				if (choice.equals ("Tail Wind")){
 		    					 ( (ArcherG)cloud ).tailWind();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherG)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherG)cloud ).focus();
 		    				
 		    				}
 		    			
@@ -830,19 +952,21 @@ import java.util.*;
 		    			expGain (enemy);
 		    			SO.println ("You win!");
 		    		
-		    			break;
+		    			
 		    		}
 				
 			
 			
 			if (!cloud.isAlive()){
 				SO.println ("You lose.");
+				break;
 			}
 			
             
             
         
         }
+      	}
       	}
         
           
