@@ -8,10 +8,9 @@ public abstract class Item
     protected boolean important;
     public String name;
     
-    public abstract int[] getStats(String itemName, String type);
-    
     public static HashMap<String, int[]> weapons = new HashMap<String, int[]>(); //Creates dictionary of items, uses name to label lists of weapon stats. Weapon data accessed by name. Array contains data in order of definitions in equipable
     public static HashMap<String, int[]> armor = new HashMap<String, int[]>(); //Creates dictionary of items, uses name to label lists of armor stats. Armor data accessed by name. Array contains data in order of definitions in equipable    
+    public static HashMap<String, int[]> effectItems = new HashMap<String, int[]>(); //Creates dictionary of useable items that affect stats
     public static void consEquipList()
     {
         /* ------WEAPON DATABASE------ */
@@ -67,20 +66,20 @@ public abstract class Item
         /* ------ARMOR DATABASE------ */
         
         /* --HEAD-- */
-        armor.put("Wooden Helmet", new int[] {10,0,0,5,0,5,0,0,2});
-        armor.put("Bronze Helmet", new int[] {15,0,0,5,0,5,0,0,2});
+        armor.put("Wooden Helmet", new int[] {10,0,0,5,0,0,0,0,2});
+        armor.put("Bronze Helmet", new int[] {15,0,0,5,0,0,0,0,2});
         /* -------- */
         
         /* --BODY-- */
-        armor.put("Copper Chestplate", new int[] {15,0,0,10,0,10,0,0,3});
+        armor.put("Copper Chestplate", new int[] {15,0,0,10,0,0,0,0,3});
         /* -------- */
         
         /* --LEGS-- */
-        armor.put("Leather Pants", new int[] {5,0,0,5,0,5,0,5,4});        
+        armor.put("Leather Pants", new int[] {5,0,0,5,0,0,0,5,4});        
         /* -------- */
         
         /* --FEET-- */
-        armor.put("Leather Boots", new int[] {5,0,0,5,5,5,0,5,5});    
+        armor.put("Leather Boots", new int[] {5,0,0,5,5,0,0,5,5});    
         /* -------- */
         
         /* --ACCESSORY-- */
@@ -88,6 +87,37 @@ public abstract class Item
         /* ------------- */
         
         /* -------------------------- */
+        
+        /* -------EFFECT USEABLE DATABASE---------- */
+        
+        effectItems.put("Lesser Healing Potion", new int[] {0,0,0,0,0,15,0,0,1});
+        effectItems.put("Weak Healing Potion", new int[] {0,0,0,0,0,20,0,0,1});
+        effectItems.put("Healing Posion", new int[] {0,0,0,0,0,35,0,0,1});
+        effectItems.put("Effective Healing Potion", new int[] {0,0,0,0,0,50,0,0,1});
+        effectItems.put("Strong Healing Potion", new int[] {0,0,0,0,0,65,0,0,1});
+        effectItems.put("Powerful Healing Potion", new int[] {0,0,0,0,0,85,0,0,1});
+        effectItems.put("Super Healing Potion", new int[] {0,0,0,0,0,55,0,0,2});            //Super, Ultra, and Ultimate potions of all types heal for multiple turns
+        effectItems.put("Ultra Healing Potion", new int[] {0,0,0,0,0,70,0,0,2});
+        effectItems.put("Ultimate Healing Potion", new int[] {0,0,0,0,0,60,0,0,3});
+        effectItems.put("Lesser Revitalizer", new int[] {0,-10,-10,0,-10,50,0,0,1});        //Revitalizers for emergencies or healing out of combat - have drawback effects
+        effectItems.put("Revitalizer", new int[] {0,-18,-18,0,-20,100,0,0,1});
+        effectItems.put("Strong Revitalizer", new int[] {0,-26,-26,0,-30,175,0,0,1});
+        effectItems.put("Super Revitalizer", new int[] {0,-40,-40,0,-35,300,0,0,1});
+        
+        effectItems.put("Lesser Mana Potion", new int[] {0,0,0,0,0,0,15,0,1});
+        effectItems.put("Weak Mana Potion", new int[] {0,0,0,0,0,0,25,0,1});
+        effectItems.put("Mana Posion", new int[] {0,0,0,0,0,0,35,0,1});
+        effectItems.put("Effective Mana Potion", new int[] {0,0,0,0,0,0,50,0,1});
+        effectItems.put("Strong Mana Potion", new int[] {0,0,0,0,0,0,65,0,1});
+        effectItems.put("Powerful Mana Potion", new int[] {0,0,0,0,0,0,85,0,1});
+        effectItems.put("Super Mana Potion", new int[] {0,0,0,0,0,0,55,0,2});            //Super, Ultra, and Ultimate potions of all types heal for multiple turns
+        effectItems.put("Ultra Mana Potion", new int[] {0,0,0,0,0,0,70,0,2});
+        effectItems.put("Ultimate Mana Potion", new int[] {0,0,0,0,0,0,60,0,3});
+        
+        effectItems.put("Minor Strength Potion", new int[] {0,5,0,0,0,0,0,0,3});
+        effectItems.put("Improved Minor Strength Potion", new int[] {0,5,0,0,0,0,0,0,5});
+        effectItems.put("Strength Potion", new int[] {0,10,0,0,0,0,0,0,4});
+        effectItems.put("Improved Strength Potion", new int[] {0,10,0,0,0,0,0,0,6});
     }
     
     public String toString() {return name;}
@@ -203,5 +233,31 @@ abstract class Useable extends Item
     public int getDuration()
     {
         return duration;
+    }
+    
+}
+
+class EffectItem extends Useable
+{
+    protected int[] data;
+    public EffectItem (String itemName)
+    {
+        name = itemName;
+        data = effectItems.get(itemName);
+        duration = data[8];
+    }
+    
+    public HashMap<String, Integer> use()
+    {
+        HashMap<String, Integer> effects = new HashMap<String, Integer>();
+        effects.put("defMod",data[0]);
+        effects.put("strMod",data[1]);  
+        effects.put("magicMod",data[2]);
+        effects.put("resMod",data[3]);
+        effects.put("speedMod",data[4]);
+        effects.put("hpMod",data[5]);
+        effects.put("mpMod",data[6]);
+        effects.put("luckMod",data[7]);
+        return effects;
     }
 }
