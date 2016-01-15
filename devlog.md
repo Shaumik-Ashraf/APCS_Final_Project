@@ -14,7 +14,7 @@
 | SA          | 1/12/16  |  created and worked on Area, Town, and Field                              |
 | MA          | 1/12/16  |  created items and inventory   |
 | SA          | 1/13/16  |  debugged and tested Area and subclasses 
-| JA            1/13/16     added Gale Class and revamped Legendairy battle system to increase readability. Added turn order by speed,
+| JA            1/13/16  |  added Gale Class and revamped Legendairy battle system to increase readability. Added turn order by speed
 | MA          | 1/14/16  |  Inventory functionality finished for the forseeable future, useable items implemented in item.java                              |
 |             |          |                                |
 |             |          |                                |
