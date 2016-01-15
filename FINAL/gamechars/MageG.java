@@ -1,4 +1,4 @@
-/* WarriorA class - extend warrior and implement Aqua
+/* MageA class - extend Mage and implement Gale
  * 
  * Notes:
  *	packaging everything
