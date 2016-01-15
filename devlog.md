@@ -14,7 +14,7 @@
 | SA          | 1/12/16  |  created and worked on Area, Town, and Field                              |
 | MA          | 1/12/16  |  created items and inventory   |
 | SA          | 1/13/16  |  debugged and tested Area and subclasses                              |
-|             |          |                                |
+| MA          | 1/14/16  |  Inventory functionality finished for the forseeable future, useable items implemented in item.java                              |
 |             |          |                                |
 |             |          |                                |
 |             |          |                                |

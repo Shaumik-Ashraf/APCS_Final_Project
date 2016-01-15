@@ -217,11 +217,304 @@ public abstract class gChar{
     =================================================================================================================
     */
    
+   /*
+   // only commented and modified part of it, look down for where I left off
+   // i'm confused in some parts too
    public void battle(gChar enemy) {
-   	
-   	;
-   	
-   }
+       
+       Scanner in = new Scanner(System.in);
+       		
+			    SO.println("An enemy draws near! \n");
+			    pause = in.nextLine();
+       
+       //start attack exchange loop
+       while( this.isAlive() && enemy.isAlive() ) {
+       		 
+       				response = false;
+       				enemyFirst = false;
+       	
+       	   //get user action choice			
+       				while(!response) {
+       					   
+       			     SO.clearScreen();
+      		    			SO.println( "What will you do?" );
+      		    			SO.println( "Attack\nSkills\nNothing\n" );
+      		    			choice = in.nextLine();
+      		    			if ( commands.contains(choice) ) {
+      	                    		response = true;
+      		    				}
+      		    				
+       				}
+       	
+		       		response = false;
+		    
+		    		   if(choice.equals ("Skills") ) {
+		    		
+     		    				while (!response) {
+        		    				SO.clearScreen();
+        		    				SO.println( "What will you do?" );
+        		    				SO.println( skillList );
+        		    				choice =in.nextLine();
+        		    				if ( skills.contains (choice) ) {
+        	                    		response = true;
+        		    				}
+     		    				}
+     		    }
+		    		
+		    		   if (this.speed < enemy.speed){
+      		    			enemyFirst = true;
+      		    			int damage = enemy.regAtk(cloud);
+      		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
+      		    			
+      						   if (enemy.crit){
+      							     SO.println("It's a critical hit!\n");
+      						   }
+      						
+      						   pause = in.nextLine();
+      		    			
+		    		   }
+		    		
+   		    		else if (choice.equals ("Attack")){
+   		    			  int damage = cloud.regAtk(enemy);
+   		    			  SO.println("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n");
+   		    		}
+		    		
+		    				 //Nothing case????
+		    				 
+		    			  else if (cloud instanceof WarriorF){
+		    			
+     		    				if (choice.equals ("Strong Swing")){
+     		    					 ( (WarriorF)this ).strongSwing (enemy);  //does this typecast work??? I put it in to switch cloud to this
+     		    				}
+     		    			
+     		    				if (choice.equals ("Heat Wave")){
+     		    					( (WarriorF)this ).heatWave (enemy);
+     		    				}
+     		    			
+     		    				if (choice.equals ("Flame Crash")){
+     		    					 ((WarriorF)this ).flameCrash (enemy);
+     		    				}
+     		
+     		    				if (choice.equals ("Rekindle")){
+     		    					 ( (WarriorF)this ).reKindle();
+     		    				
+     		    				}
+		    			
+		    			}
+		    			
+		    			/*
+		    			 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		    			 Unedited beyond this point
+		    			 ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+		    			 *
+		    			 /*
+		    			if (cloud instanceof WarriorW){
+		    				
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					( (WarriorW)cloud ).strongSwing (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Flower Dance")){
+		    					( (WarriorW)cloud ).flowerDance(enemy);
+		    				
+		    				}
+		    			
+		    				if (choice.equals ("Wood Spike")){
+		    					( (WarriorW)cloud).woodSpike (enemy);
+		    				}
+		
+		    			
+		    				if (choice.equals ("Pepper Song")){
+		    					 ( (WarriorW)cloud ).pepperSong();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof WarriorA){
+		    				
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					 ( (WarriorA)cloud ).strongSwing (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Hail Storm")){
+		    					( (WarriorA)cloud ).hailStorm(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Drizzle")){
+		    					( (WarriorA)cloud ).drizzle(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Aqua Veil")){
+		    					 ( (WarriorA)cloud ).aquaVeil();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof WarriorG){
+		    				
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					 ( (WarriorG)cloud ).strongSwing (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (WarriorG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (WarriorG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (WarriorG)cloud ).tailWind();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			
+		    			if (cloud instanceof MageF){
+		    				
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					( (MageF)cloud ).arcaniteForce (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Heat Wave")){
+		    					 ( (MageF)cloud ).heatWave (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Flame Crash")){
+		    					( (MageF)cloud).flameCrash (enemy);
+		    				}
+		
+		    			
+		    				if (choice.equals ("Rekindle")){
+		    					 ( (MageF)cloud ).reKindle();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof MageW){
+		    				
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					( (MageW)cloud ).arcaniteForce (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Flower Dance")){
+		    					( (MageW)cloud ).flowerDance(enemy);
+		    					
+		    				}
+		    			
+		    				if (choice.equals ("Wood Spike")){
+		    					( (MageW)cloud).woodSpike (enemy);
+		    				}
+		
+		    			
+		    				if (choice.equals ("Pepper Song")){
+		    					 ( (MageW)cloud ).pepperSong();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof MageA){
+		    				
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					( (MageA)cloud ).arcaniteForce (enemy);
+		    					
+		    				}
+		    			
+		    				if (choice.equals ("Hail Storm")){
+		    					( (MageA)cloud ).hailStorm(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Drizzle")){
+		    					( (MageA)cloud ).drizzle(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Aqua Veil")){
+		    					 ( (MageA)cloud ).aquaVeil();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof MageG){
+		    				
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					 ( (MageG)cloud ).arcaniteForce (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (MageG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (MageG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (MageG)cloud ).tailWind();
+		    				
+		    				}
+		    			
+		    			}
+		    *
+
+						if (this.typeAdv){
+		    				SO.println("It's super effective!\n");
+						}
+						
+						if (this.typeDis){
+		    				SO.println("It's not very effective!\n");
+						}
+						
+		    if (this.crit){
+							   SO.println("It's a critical hit!\n");
+						}
+						
+						pause =in.nextLine();
+		    		
+		   if ((enemy.isAlive()) && !enemyFirst) {
+		    			int damage = enemy.regAtk(cloud);
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
+		    			
+					if (enemy.crit){
+							SO.println("It's a critical hit!\n");
+						}
+						
+						pause =in.nextLine();
+					 System.out.print("\033[H\033[2J");
+						System.out.flush();
+						
+		}  //end while loop (?)
+		    		
+		    		if (!( enemy.isAlive() ) ){
+		    			cloud.normalize();
+		    			enemy.normalize();
+		    			expGain (enemy);
+		    			SO.println ("You win!");
+		    		
+		    			break;
+		    		}
+
+     			if (!cloud.isAlive()){
+     				SO.println ("You lose.");
+     			}
+        
+        } //what does this cloes?
+      	}  //what does this close?
+   }  //what does this close
    
    
 }
+*/
