@@ -31,6 +31,33 @@ public abstract class Archer extends gChar{
 		return(damage);
 
         }
+        
+    public void arrowStorm(gChar eneny){
+    	 SO.println (name + " fired some arrows into the sky");
+        
+        int hits = (int)(Math.random() *5);
+        if (hits == 0 ){
+            SO.println (" The arrows miss " + enemy.name +"!");
+        }
+            while (hits != 0){
+		        int damage = regAtk( enemy );
+		    	if (damage <= 0){
+					damage = 0;
+		    		}
+				SO.println ("The enemy took " + damage + "!\n\n");
+				hits --;
+            }
+        
+    }
+    
+    public void focus (){
+    	SO.println (name + " begins to concentrate! Offensive stats have increase!");
+    	SO.println (name + " is more vulnerable to enemy attacks!");
+    	str *= 1.5;
+    	luck *= 1.5;
+    	def /= 2;
+    	res /= 2;
+    }
 	
 	
 	

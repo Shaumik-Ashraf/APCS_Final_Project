@@ -31,6 +31,30 @@ public abstract class Mage extends gChar{
 		return(damage);
 
         }
+        
+    public void arcaneBullets (gchar enemy){
+    	SO.println (name + " surrounds the enemy with magical orbs");
+        
+        int hits = 3;
+       
+            while (hits != 0){
+		        int damage = regAtkM( enemy );
+		    	if (damage <= 0){
+					damage = 0;
+		    		}
+				SO.println ("The enemy took " + damage + "!\n\n");
+				hits --;
+            }
+       
+    }
+    
+    public void concentrate(){
+    	SO.println (name + " begins to chant magical incantations.");
+    	SO.println ("Magic damage have increased dramatically! Speed and luck have decresed.");
+    	magic *= 2;
+    	speed /= 2;
+    	luck /= 2;
+    }
 	
 	
 	
