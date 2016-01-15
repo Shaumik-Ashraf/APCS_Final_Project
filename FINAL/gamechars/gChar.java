@@ -202,6 +202,7 @@ public abstract class gChar{
     
     //reset stats
     //also use as heal (boolean healing not required; usage: class Town -> rest case)
+    //may cause conflicts when using equips
     public void normalize(){
        // healing = false;
         str = strInitial;
@@ -215,9 +216,13 @@ public abstract class gChar{
         typeDis = false;
     }
     
+    /*
+     =========================================================================================================================================================
+     ===Battle Methods========================================================================================================================================
+     =========================================================================================================================================================
+     */
     
     
     
-    
-}
+}  //close class
 
