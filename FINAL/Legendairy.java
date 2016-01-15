@@ -240,6 +240,17 @@ import java.util.*;
             		skills.add ("Rekindle");
             		skillList = "Arcanite Force\nHeat Wave\nFlame Crash\nRekindle\n";
             	}
+            	
+            	if (player.get(1).equals ("Archer")){
+            		cloud = new ArcherF(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Heat Wave");
+            		skills.add ("Flame Crash");
+            		skills.add ("Rekindle");
+            		skillList = "Bow Throw\nHeat Wave\nFlame Crash\nRekindle\n";
+            	}
+            	
+            	
             }
             
             if (player.get(4).equals ("Optimistic") ){
@@ -259,6 +270,15 @@ import java.util.*;
             		skills.add ("Wood Spike");
             		skills.add ("Pepper Song");
             		skillList = "Arcanite Force\nFlower Dance\nWood Spike\nPepper Song\n";
+            	}
+            	
+            	if (player.get(1).equals ("Archer")){
+            		cloud = new ArcherW(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Flower Dance");
+            		skills.add ("Wood Spike");
+            		skills.add ("Pepper Song");
+            		skillList = "Bow Throw\nFlower Dance\nWood Spike\nPepper Song\n";
             	}
             }
             
@@ -280,6 +300,15 @@ import java.util.*;
             		skillList = "Arcanite Force\nHail Storm\nDrizzle\nAqua Veil\n";
             	}
             	
+            		if (player.get(1).equals("Archer")){
+            		cloud = new ArcherA(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Hail Storm");
+            		skills.add ("Drizzle");
+            		skills.add ("Aqua Veil");
+            		skillList = "Bow Throw\nHail Storm\nDrizzle\nAqua Veil\n";
+            	}
+            	
             }
             
             if (player.get(4).equals ("Carefree") ){
@@ -298,6 +327,15 @@ import java.util.*;
             		skills.add ("Wind Strike");
             		skills.add ("Gale Force");
             		skillList = "Arcanite Force\nWind Strike\nGale Force\nTail Wind\n";
+            	}
+            	
+            	if (player.get(1).equals("Archer")){
+            		cloud = new ArcherG(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Tail Wind");
+            		skills.add ("Wind Strike");
+            		skills.add ("Gale Force");
+            		skillList = "Bow Throw\nWind Strike\nGale Force\nTail Wind\n";
             	}
             	
             }
@@ -652,6 +690,101 @@ import java.util.*;
 		    				}
 		    			
 		    			}
+		    			
+		    			if (cloud instanceof ArcherF){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					( (ArcherF)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Heat Wave")){
+		    					 ( (ArcherF)cloud ).heatWave (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Flame Crash")){
+		    					( (ArcherF)cloud).flameCrash (enemy);
+		    				}
+		
+		    			
+		    				if (choice.equals ("Rekindle")){
+		    					 ( (ArcherF)cloud ).reKindle();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherW){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					( (ArcherW)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Flower Dance")){
+		    					( (ArcherW)cloud ).flowerDance(enemy);
+		    					
+		    				}
+		    			
+		    				if (choice.equals ("Wood Spike")){
+		    					( (ArcherW)cloud).woodSpike (enemy);
+		    				}
+		
+		    			
+		    				if (choice.equals ("Pepper Song")){
+		    					 ( (ArcherW)cloud ).pepperSong();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherA){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					( (ArcherA)cloud ).bowThrow(enemy);
+		    					
+		    				}
+		    			
+		    				if (choice.equals ("Hail Storm")){
+		    					( (ArcherA)cloud ).hailStorm(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Drizzle")){
+		    					( (ArcherA)cloud ).drizzle(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Aqua Veil")){
+		    					 ( (ArcherA)cloud ).aquaVeil();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherG){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					 ( (ArcherG)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (ArcherG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (ArcherG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (ArcherG)cloud ).tailWind();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			
+		    			
 		    			
 
 						if (cloud.typeAdv){

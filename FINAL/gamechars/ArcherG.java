@@ -1,4 +1,4 @@
-/* WarriorA class - extend warrior and implement Gale
+/* ArcherA class - extend Archer and implement Gale
  * 
  * Notes:
  *	packaging everything
@@ -12,19 +12,19 @@ import java.util.*;
 import gameutils.*;
  
 
-public class WarriorG extends Warrior implements Gale {
+public class ArcherG extends Archer implements Gale {
     
-    public WarriorG (ArrayList<String> player){
+    public ArcherG (ArrayList<String> player){
         name = player.get(0);
         element = "Gale";
         
         //literally the stats for My Unit in Fire Emblem. ;)
-        HP = 15;
+        HP = 17;
         str = 8;
-        magic = 8;
-        def = 3;
-        res = 5;
-        luck = 3;
+        magic = 5;
+        def = 2;
+        res = 2;
+        luck = 5;
         speed = 10;
         EXP = 0;
         level = 1;
@@ -52,7 +52,7 @@ public class WarriorG extends Warrior implements Gale {
     public int windStrike(gChar enemy){
         SO.println (name + " cast Wind Strike!");
         this.crit = false; //Crit activation is set to false
-        int damage = this.magic - enemy.def; //Work in progress. This is the damage that your character will do
+        int damage = this.str - enemy.res; //Work in progress. This is the damage that your character will do
         
         
         if ( (Math.random() *100) <= luck){
