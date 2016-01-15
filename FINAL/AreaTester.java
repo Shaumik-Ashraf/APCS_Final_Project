@@ -16,7 +16,8 @@ public final class AreaTester {   //final modifier means class cant be extended;
 
 	public static void main(String[] args) {
 		
-		ArrayList<Area> map = new ArrayList<Area>(10);
+		int areamap_len = 10;
+		ArrayList<Area> areamap = new ArrayList<Area>(areamap_len);
 
 		ArrayList<String> sora_builder = new ArrayList<String>();
 		sora_builder.add("Sora");
@@ -27,18 +28,21 @@ public final class AreaTester {   //final modifier means class cant be extended;
 		gChar sora = new WarriorW( sora_builder ); 
 
 
-		map.add(0, new Town());
-		for(int i=1; i<map.size(); i++) {
+		areamap.add(0, new Town());
+		for(int i=1; i<areamap_len; i++) {
 			if( Math.random()*100 < 67 ) {
-				map.add( i, new Field(i) );  //constructor will create field named field-i
+				areamap.add( i, new Field(i) );  //constructor will create field named field-i
 			}
 			else {
-				map.add( i, new Town(i) ); //likewise, town-i
+				areamap.add( i, new Town(i) ); //likewise, town-i
 			}
 		}
 
-		for(int i=0; i<map.size(); i++) {
-			map.get(i).event(sora);
+		System.err.println("DEBUGGING: " + areamap);
+
+		for(int i=0; i<areamap_len; i++) {
+			System.err.print("DEBUGGING: looping area event: " + i + "\n");
+			areamap.get(i).event(sora);
 		}
 		
 		

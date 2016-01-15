@@ -14,7 +14,7 @@ import gamechars.*;
 public class Town extends Area {
 
 	//attributes
-	//a list of possible Town names; Disclaimer: Town names from SAO, Kid Icarus Uprising, and Super Smash Brothers, respectively
+	//a list of possible Town names; Disclaimer: Town names from SAO, RS, Kid Icarus Uprising, and Super Smash Brothers, respectively
 	private final String[] TownNames = new String[] {"Town of Beginnings", "Lumbridge", "That Burning Town", "Final Destination"};
 	private boolean response = false;
 	
@@ -43,7 +43,7 @@ public class Town extends Area {
 		Scanner event_sc = new Scanner(System.in);
 		String buffer = new String();
 		
-
+		description();
 		
 		SO.P("What would you like to do?\n");
 		SO.P("Rest\n");
@@ -62,9 +62,9 @@ public class Town extends Area {
 				System.err.println("Error! " + e);
 			}
 			
-			buffer.toLowerCase();   //compare everything in lower case to remove case sensitivity
+			//case sensitivity?
 			
-			if( buffer.equals("rest") ) {
+			if( buffer.equals("Rest") ) {
 				SO.P("resting...\n");
 				gch.HP = gch.hpInitial;  //restore HP
 				//do anything else?

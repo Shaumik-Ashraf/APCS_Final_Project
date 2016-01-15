@@ -18,6 +18,8 @@ import gameutils.*;
  
 public class Field extends Area {
 
+    //RECREATE with HashTable
+
 	//attributes
     protected double[] ChanceMonsterSpawn;
 	protected ArrayList<Monster> MonsterTypes;
@@ -31,6 +33,8 @@ public class Field extends Area {
 	//constructors
 	public Field(String name_arg) {
 		super(name_arg);
+		ChanceMonsterSpawn = new double[] { 0.6, 0.5 };
+		MonsterTypes = new ArrayList();
 	}
 	
 	public Field(int n) {   //creates numbered fields named Field-n; ie Field-1, Field-2...
@@ -81,18 +85,19 @@ public class Field extends Area {
 	public void event(gChar gch) {
 		
 		double r;
+		int i, j;
 		
-		for(int i=0; i<3; i++) { //3 possibilities for encounters
+		for(i=0; i<3; i++) { //3 possibilities for encounters
 			
-			r = Math.random();
+		    r = (double)Math.random();
 			
-			for(int j=0; j<ChanceMonsterSpawn.length; j++) {
-				if( r < ChanceMonsterSpawn[i] ) {
-					//gch.battle( MonsterTypes.get(j) );
-					SO.P("Assume battle method here!!!\n");
-					break;  //gives same effect as if-else ladder
-				}
+		    for(j=0; j < ChanceMonsterSpawn.length; j++) {
+			if( r < ChanceMonsterSpawn[i] ) {
+				//gch.battle( MonsterTypes.get(j) );
+				SO.P("Assume battle method here!!!\n");
+				break;  //gives same effect as if-else ladder
 			}
+		    }
 			
 		}
 		
