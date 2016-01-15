@@ -135,15 +135,28 @@ public class Inventory
     
     public void useItem(String itemName)
     {
-        try 
-        {
-            Useable u = new Useable(itemName);
-            if(removeItemB(inv.get(inv.indexOf(u)).toString()))
+        //try 
+       // {
+            EffectItem u = new EffectItem(itemName);
+            if (effectDuration > 0)
             {
-                effectDuration = u.getDuration;
-                effect = u.use();
+                System.out.println("Being under the effects of multiple strong chemicals could make you fatally ill. Try again later.");
+                return;
             }
-        } catch (Exception e){}
+            if(removeItemB(itemName))
+            {
+                effectDuration = u.getDuration();
+                HashMap<String, Integer> effectTemp = u.use();
+                effect.put("defMod",effectTemp.get("defMod"));
+                effect.put("magicMod",effectTemp.get("magicMod"));
+                effect.put("resMod",effectTemp.get("resMod"));
+                effect.put("speedMod",effectTemp.get("speedMod"));
+                effect.put("hpMod",effectTemp.get("hpMod"));
+                effect.put("mpMod",effectTemp.get("mpMod"));
+                effect.put("luckMod",effectTemp.get("luckMod"));
+                effect.put("strMod",effectTemp.get("strMod"));                  
+            }
+       // } catch (Exception e){}
     }
     
     public static void main(String[] args)
@@ -174,7 +187,7 @@ public class Inventory
 //        System.out.println("Attempting to equip nonexistant item");
 //        System.out.println(i);
 //        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
-        System.out.println(i);
+/*        System.out.println(i);
         System.out.println(i.scrapeStats());
         boolean k = i.removeItemB("Bronze Helmet");
         System.out.println(k);
@@ -191,6 +204,34 @@ public class Inventory
         System.out.println(i.scrapeStats());
         System.out.println(i.scrapeStats());  
         System.out.println(i.scrapeStats());
+
+        i.giveItem(new EffectItem("Lesser Healing Potion"));
+        System.out.println(i);
+        System.out.println(i.scrapeStats());
+        i.useItem("Lesser Healing Potion");
+        System.out.println(i);
+        System.out.println(i.scrapeStats());
+        System.out.println(i.scrapeStats());
+        i.giveItem(new EffectItem("Weak Healing Potion"));
+        System.out.println(i);
+        System.out.println(i.scrapeStats());
+        i.useItem("Weak Healing Potion");
+        System.out.println(i);
+        System.out.println(i.scrapeStats());
+        System.out.println(i.scrapeStats());
+        i.useItem("Weak Healing Potion");  
+        System.out.println(i.scrapeStats());
+*/
+/*
+        System.out.println(i.scrapeStats());
+        i.giveItem(new EffectItem("Ultimate Healing Potion"));
+        i.giveItem(new EffectItem("Ultimate Mana Potion"));
+        i.useItem("Ultimate Healing Potion");
+        System.out.println(i.scrapeStats());
+        i.useItem("Ultimate Mana Potion");
+        System.out.println(i.scrapeStats());
+        System.out.println(i);
+*/
     }
     
 }
