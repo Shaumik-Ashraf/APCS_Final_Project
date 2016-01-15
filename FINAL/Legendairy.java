@@ -59,6 +59,7 @@ import java.util.*;
 	        traits.add ("Optimistic");
 	        traits.add ("Calm");
 	        traits.add ("Carefree");
+	        traits.add ("Empty");
 	        
 	        jobs.add ("Warrior");
 	        jobs.add ("Mage");
@@ -192,6 +193,7 @@ import java.util.*;
 	        message += "Optimistic\n";
 	        message += "Calm\n";
 	        message += "Carefree\n";
+	        message += "Empty\n";
         
 
             
@@ -340,6 +342,35 @@ import java.util.*;
             	
             }
             
+            if (player.get(4).equals ("Empty") ){
+            	if (player.get(1).equals ("Warrior")){
+            		cloud = new WarriorB(player);
+            		skills.add ("Strong Swing");
+            		skills.add ("Noise Pulse");
+            		skills.add ("Gravity");
+            		skills.add ("Abnormalize");
+            		skillList = "Strong Swing\nNoise Pulse\nGravity\nAbnormalize\n";
+            	}
+            	if (player.get(1).equals("Mage")){
+            		cloud = new MageB(player);
+            		skills.add ("Arcanite Force");
+            		skills.add ("Noise Pulse");
+            		skills.add ("Gravity");
+            		skills.add ("Abnormalize");
+            		skillList = "Arcanite Force\nNoise Pulse\nGravity\nAbnormalize\n";
+            	}
+            	
+            	if (player.get(1).equals("Archer")){
+            		cloud = new ArcherB(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Noise Pulse");
+            		skills.add ("Gravity");
+            		skills.add ("Abnormalize");
+            		skillList = "Bow Throw\nNoise Pulse\nGravity\nAbnormalize\n";
+            	}
+            	
+            }
+            
         }
         
         public void expGain(gChar enemy){
@@ -451,6 +482,8 @@ import java.util.*;
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
        				enemyFirst = false;
+       				cloud.typeAdv = false;
+       				cloud.typeDis = false;
        				
        				//try{
        				//	Thread.sleep(1000);
@@ -641,6 +674,38 @@ import java.util.*;
 		    			
 		    			}
 		    			
+		    			if (cloud instanceof WarriorB){
+		    				
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					 ( (WarriorB)cloud ).strongSwing (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Noise Pulse")){
+		    					( (WarriorB)cloud ).noisePulse(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gravity")){
+		    					( (WarriorB)cloud ).gravity(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Abnormalize")){
+		    					 ( (WarriorB)cloud ).abnormalize();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorB)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorB)cloud ).finishingTouch(enemy);
+		    				
+		    				}
+		    			
+		    			}
+		    			
 		    			
 		    			if (cloud instanceof MageF){
 		    				
@@ -772,6 +837,40 @@ import java.util.*;
 		    				}
 		    			}
 		    			
+		    			if (cloud instanceof MageB){
+		    				
+		    	
+		    				if (choice.equals ("Arcanite Force")){
+		    					 ( (MageB)cloud ).arcaniteForce (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Noise Pulse")){
+		    					( (MageB)cloud ).noisePulse(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gravity")){
+		    					( (MageB)cloud ).gravity(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Abnormalize")){
+		    					 ( (MageB)cloud ).abnormalize();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageB)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageB)cloud ).concentrate();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			
+		    			
 		    			if (cloud instanceof ArcherF){
 		    				
 		    			
@@ -900,6 +999,38 @@ import java.util.*;
 		    				
 		    				if (choice.equals ("Focus")){
 		    					 ( (ArcherG)cloud ).focus();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherB){
+		    				
+		    	
+		    				if (choice.equals ("Bow Throw")){
+		    					 ( (ArcherB)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Noise Pulse")){
+		    					( (ArcherB)cloud ).noisePulse(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gravity")){
+		    					( (ArcherB)cloud ).gravity(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Abnormalize")){
+		    					 ( (ArcherB)cloud ).abnormalize();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherB)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherB)cloud ).focus();
 		    				
 		    				}
 		    			

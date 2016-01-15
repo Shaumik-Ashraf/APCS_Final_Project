@@ -1,4 +1,4 @@
-/* MageG class - extend Mage and implement Gale
+/* MageB class - extend Mage and implement Blank
  * 
  * Notes:
  *	packaging everything
@@ -12,20 +12,20 @@ import java.util.*;
 import gameutils.*;
  
 
-public class MageG extends Mage implements Gale {
+public class MageB extends Mage implements Blank {
     
-    public MageG (ArrayList<String> player){
+    public MageB (ArrayList<String> player){
         name = player.get(0);
-        element = "Gale";
+        element = "Blank";
         
         //literally the stats for My Unit in Fire Emblem. ;)
-        HP = 16;
-        str = 3;
-        magic = 9;
-        def = 3;
-        res = 3;
-        luck = 3;
-        speed = 10;
+        HP = 10;
+        str = 10;
+        magic = 20;
+        def = 1;
+        res = 1;
+        luck = 0;
+        speed = 8;
         EXP = 0;
         level = 1;
         
@@ -49,32 +49,28 @@ public class MageG extends Mage implements Gale {
     
     }
     
-    public int windStrike(gChar enemy){
-        SO.println (name + " cast Wind Strike!");
+   public int noisePulse(gChar enemy){
+        SO.println ("Drown in noise...");
         this.crit = false; //Crit activation is set to false
-        int damage = this.magic - enemy.def; //Work in progress. This is the damage that your character will do
+        int damage = ((this.magic+this.str)/2) - enemy.res; //Work in progress. This is the damage that your character will do
         
         
         if ( (Math.random() *100) <= luck){
             this.crit = true; //Crit activation is set to true
-            damage = (int)( (this.magic )- (enemy.def /1.03) ) ;//This will be the new damage your character does
+            damage = (int)( (((this.magic+this.str)/2) )- (enemy.res /1.03) ) ;//This will be the new damage your character does
         }
-        /*
-        if ( enemy.element.equals ("Fire") ){
+        
+        if ( ( enemy.element.equals ("Dark") ) ||( enemy.element.equals ("Light") ) ){
             this.typeAdv = true;
             damage *= 2;
         }
         
-        if ( enemy.element.equals ("Aqua") ){
-            this.typeDis = true;
-            damage /= 2;
-        }*/
         
         if (damage <= 0){
             damage = 0;
         }
-        SO.println ("The enemy took " + damage + "!\n\n");
         
+        SO.println ("The enemy took " + damage + "!\n\n");
         
         enemy.HP -= damage; //Final damage that your enemy will take
         return damage; //Returns the damage dealt to enemy
@@ -82,47 +78,39 @@ public class MageG extends Mage implements Gale {
         }
         
         
-    //does multiple regular attacks   
-    public int galeForce(gChar enemy){
-       SO.println (name + " cast Wind Strike!");
-        this.crit = false; //Crit activation is set to false
-        int damage = this.magic - enemy.res; //Work in progress. This is the damage that your character will do
-        
-        
-        if ( (Math.random() *60) <= luck){
-            this.crit = true; //Crit activation is set to true
-            damage = (int)( (this.magic )- (enemy.res /1.03) ) ;//This will be the new damage your character does
-        }
-        
-      /*  if ( enemy.element.equals ("Fire") ){
-            this.typeAdv = true;
-            damage *= 2;
-        }
-        
-        if ( enemy.element.equals ("Aqua") ){
-            this.typeDis = true;
-            damage /= 2;
-        }*/
-        
-        if (damage <= 0){
-            damage = 0;
-        }
-        SO.println ("The enemy took " + damage + "!\n\n");
-        
-        
-        enemy.HP -= damage; //Final damage that your enemy will take
-        return damage; //Returns the damage dealt to enemy
-    
-        }
-    
-    
-        
-    public void tailWind(){
-        SO.println (name + " started a Tail Wind!");
-        SO.println ("The gust of wind made " + name + " faster!");
-        speed += 4;
-    }
+    //does damage on res based on str stat    
+    public int gravity (gChar enemy){
+        SO.println ("Down.");
+       
+        int damage = enemy.HP /4; //Work in progress. This is the damage that your character will do
 
+        
+        if ( ( enemy.element.equals ("Wood") ) ||  ( enemy.element.equals ("Fire") ) ||  ( enemy.element.equals ("Aqua") ) ||  ( enemy.element.equals ("Gale") ) ){
+            this.typeAdv = true;
+            damage *= 2;
+        }
+        
+        if (damage <= 0){
+            damage = 0;
+        }
+        SO.println ("The enemy took " + damage + "!\n\n");
+        
+        enemy.HP -= damage; //Final damage that your enemy will take
+        return damage; //Returns the damage dealt to enemy
+    
+        }
+    
+    
+        
+    public void abnormalize(){
+        SO.println ("This is the end...");
+        SO.println (name + " becomes one with the void. Offensive stats have drastically increased!");
+        str *= 2;
+        magic *= 2;
+        speed *= 2;
+    }
+    
+    
     public String skillListChange( String skillList){
         if (this.level == 2){
             skillList += "Arcane Bullets\n";
