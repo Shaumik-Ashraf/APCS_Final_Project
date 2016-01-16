@@ -15,6 +15,11 @@ import gameutils.*;
 
 public abstract class gChar{
 
+    /*
+    =================================================================================================================
+    =========================FIELD===================================================================================
+    =================================================================================================================
+    */
     public String name;
     public String element;
     
@@ -42,97 +47,88 @@ public abstract class gChar{
     public int luckInitial;
     public int speedInitial;
     
+    /*
+    =================================================================================================================
+    ==========STAT METHODS===========================================================================================
+    =================================================================================================================
+    */
     
-    //Basic attack that every character can perform
-    public int regAtk( gChar enemy){
-        this.crit = false; //Crit activation is set to false
-        int damage = this.str - enemy.def; //Work in progress. This is the damage that your character will do
-        
-        if ( (Math.random() *100) <= luck){
-            this.crit = true; //Crit activation is set to true
-            damage = (int)( (this.str )- (enemy.def /1.03) ) ;//This will be the new damage your character does
-        }
-        
-        enemy.HP -= damage; //Final damage that your enemy will take
-        return damage; //Returns the damage dealt to enemy
-    }
-    
-    public int regAtkM( gChar enemy){
-        this.crit = false; //Crit activation is set to false
-        int damage = this.magic - enemy.res; //Work in progress. This is the damage that your character will do
-        
-        if ( (Math.random() *100) <= luck){
-            this.crit = true; //Crit activation is set to true
-            damage = (int)( (this.magic )- (enemy.res /1.03) ) ;//This will be the new damage your character does
-        }
-        
-        enemy.HP -= damage; //Final damage that your enemy will take
-        return damage; //Returns the damage dealt to enemy
-    }
-    
-    public int bestow (gChar enemy, int damage){
-        enemy.HP += damage/2;
-        return damage/2;
-    }
+    public abstract String skillListChange( String skillList);
+    public abstract ArrayList<String> skillChange( ArrayList<String> skills);
     
     
     public void bestStat(String stat){
         if (stat.equals ("Health")){
             HP *= 1.5;
+            hpInitial = HP;
         }
         else if (stat.equals ("Strength")){
             str *= 1.5;
+            strInitial = str;
         }
         
         else if (stat.equals ("Magic")){
             magic *= 1.5;
+            magicInitial = magic;
         }
         
         else if (stat.equals ("Defense")){
             def *= 1.5;
+            defInitial = def;
         }
         
         else if (stat.equals ("Resistance")){
             res *= 1.5;
+            resInitial = res;
         }
         
         else if (stat.equals ("Luck")){
             luck *= 1.5;
+            luckInitial = luck;
         }
         
         else if (stat.equals ("Agility")){
             speed *= 1.5;
+            speedInitial = speed;
         }
         else{
             SO.println ("Something went wrong...");
         }
     }
+    
     public void worstStat(String stat){
          if (stat.equals ("Health")){
             HP *= .5;
+            hpInitial = HP;
         }
         else if (stat.equals ("Strength")){
             str *= .5;
+            strInitial = str;
         }
         
         else if (stat.equals ("Magic")){
             magic *= .5;
+            magicInitial = magic;
         }
         
         else if (stat.equals ("Defense")){
             def *= .5;
+            defInitial = def;
         }
         
         else if (stat.equals ("Resistance")){
             res *= .5;
+            resInitial = res;
         }
         
         else if (stat.equals ("Luck")){
             luck *= .5;
+            luckInitial = luck;
         }
         
         else if (stat.equals ("Agility")){
             speed *= .5;
+            speedInitial = speed;
         }
         else{
             SO.println ("Something went wrong...");
@@ -152,7 +148,7 @@ public abstract class gChar{
         stats.add("Def: " + def);
         stats.add("Res: " + res);
         stats.add("Luck: " + luck);
-        stats.add("Speed: " + speed);
+        stats.add("Agility: " + speed);
         
         SO.println (name);
         SO.println ("Level: " + level);
@@ -161,10 +157,9 @@ public abstract class gChar{
         SO.println (stats);
     }
     
-    
-    
-    
-    
+    //reset stats
+    //also use as heal (boolean healing not required; usage: class Town -> rest case)
+    //may cause conflicts when using equips
     public void normalize(){
        // healing = false;
         str = strInitial;
@@ -178,26 +173,13 @@ public abstract class gChar{
         typeDis = false;
     }
     
+    /*
+     =========================================================================================================================================================
+     ===Battle Methods========================================================================================================================================
+     =========================================================================================================================================================
+     */
     
-    /*======================================================================================
-	========================================================================================
-	========================================================================================*/
     
-    //stats stay the same
-	//regAtk, bestStat, and worstStat stay the same
-	
-	protected ArrayList<String> skillList = new ArrayList();
-	
-	/* shouldn't ther be one?
-	public Character() {  //overload constructor
-		
-	}
-	*/
-	
-/*	public abstract int classAtk1();
-	
-	public abstract int elemAtk1();
-	
-	public abstract int elemAtk2();*/ 
-	
-}
+    
+}  //close class
+

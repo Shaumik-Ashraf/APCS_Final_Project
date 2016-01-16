@@ -22,7 +22,7 @@ import java.util.*;
         private static final ArrayList<String> traits = new ArrayList();
         private static final ArrayList<String> jobs = new ArrayList();
         private static final ArrayList<String> commands = new ArrayList();
-        private static final ArrayList<String> skills = new ArrayList();
+        private static ArrayList<String> skills = new ArrayList();
         
         private static ArrayList<String> player = new ArrayList();
 
@@ -30,9 +30,11 @@ import java.util.*;
         private gChar enemy;
         
         private boolean response;
+        public boolean enemyFirst;
         private String message;
         private String skillList;
         private String choice;
+        private String pause;
         
         //private InputStreamReader isr;
         //private BufferedReader in;
@@ -56,6 +58,8 @@ import java.util.*;
 	        traits.add ("Outgoing");
 	        traits.add ("Optimistic");
 	        traits.add ("Calm");
+	        traits.add ("Carefree");
+	        traits.add ("Empty");
 	        
 	        jobs.add ("Warrior");
 	        jobs.add ("Mage");
@@ -188,6 +192,8 @@ import java.util.*;
         	message += "\nOutgoing\n";
 	        message += "Optimistic\n";
 	        message += "Calm\n";
+	        message += "Carefree\n";
+	        message += "Empty\n";
         
 
             
@@ -236,6 +242,17 @@ import java.util.*;
             		skills.add ("Rekindle");
             		skillList = "Arcanite Force\nHeat Wave\nFlame Crash\nRekindle\n";
             	}
+            	
+            	if (player.get(1).equals ("Archer")){
+            		cloud = new ArcherF(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Heat Wave");
+            		skills.add ("Flame Crash");
+            		skills.add ("Rekindle");
+            		skillList = "Bow Throw\nHeat Wave\nFlame Crash\nRekindle\n";
+            	}
+            	
+            	
             }
             
             if (player.get(4).equals ("Optimistic") ){
@@ -255,6 +272,15 @@ import java.util.*;
             		skills.add ("Wood Spike");
             		skills.add ("Pepper Song");
             		skillList = "Arcanite Force\nFlower Dance\nWood Spike\nPepper Song\n";
+            	}
+            	
+            	if (player.get(1).equals ("Archer")){
+            		cloud = new ArcherW(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Flower Dance");
+            		skills.add ("Wood Spike");
+            		skills.add ("Pepper Song");
+            		skillList = "Bow Throw\nFlower Dance\nWood Spike\nPepper Song\n";
             	}
             }
             
@@ -276,6 +302,73 @@ import java.util.*;
             		skillList = "Arcanite Force\nHail Storm\nDrizzle\nAqua Veil\n";
             	}
             	
+            		if (player.get(1).equals("Archer")){
+            		cloud = new ArcherA(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Hail Storm");
+            		skills.add ("Drizzle");
+            		skills.add ("Aqua Veil");
+            		skillList = "Bow Throw\nHail Storm\nDrizzle\nAqua Veil\n";
+            	}
+            	
+            }
+            
+            if (player.get(4).equals ("Carefree") ){
+            	if (player.get(1).equals ("Warrior")){
+            		cloud = new WarriorG(player);
+            		skills.add ("Strong Swing");
+            		skills.add ("Tail Wind");
+            		skills.add ("Wind Strike");
+            		skills.add ("Gale Force");
+            		skillList = "Strong Swing\nWind Strike\nGale Force\nTail Wind\n";
+            	}
+            	if (player.get(1).equals("Mage")){
+            		cloud = new MageG(player);
+            		skills.add ("Arcanite Force");
+            		skills.add ("Tail Wind");
+            		skills.add ("Wind Strike");
+            		skills.add ("Gale Force");
+            		skillList = "Arcanite Force\nWind Strike\nGale Force\nTail Wind\n";
+            	}
+            	
+            	if (player.get(1).equals("Archer")){
+            		cloud = new ArcherG(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Tail Wind");
+            		skills.add ("Wind Strike");
+            		skills.add ("Gale Force");
+            		skillList = "Bow Throw\nWind Strike\nGale Force\nTail Wind\n";
+            	}
+            	
+            }
+            
+            if (player.get(4).equals ("Empty") ){
+            	if (player.get(1).equals ("Warrior")){
+            		cloud = new WarriorB(player);
+            		skills.add ("Strong Swing");
+            		skills.add ("Noise Pulse");
+            		skills.add ("Gravity");
+            		skills.add ("Abnormalize");
+            		skillList = "Strong Swing\nNoise Pulse\nGravity\nAbnormalize\n";
+            	}
+            	if (player.get(1).equals("Mage")){
+            		cloud = new MageB(player);
+            		skills.add ("Arcanite Force");
+            		skills.add ("Noise Pulse");
+            		skills.add ("Gravity");
+            		skills.add ("Abnormalize");
+            		skillList = "Arcanite Force\nNoise Pulse\nGravity\nAbnormalize\n";
+            	}
+            	
+            	if (player.get(1).equals("Archer")){
+            		cloud = new ArcherB(player);
+            		skills.add ("Bow Throw");
+            		skills.add ("Noise Pulse");
+            		skills.add ("Gravity");
+            		skills.add ("Abnormalize");
+            		skillList = "Bow Throw\nNoise Pulse\nGravity\nAbnormalize\n";
+            	}
+            	
             }
             
         }
@@ -292,6 +385,8 @@ import java.util.*;
         		cloud.EXP = cloud.EXP % 100;
         		SO.println ("\n");
         		skillPoints(cloud);
+        		skillList = cloud.skillListChange(skillList);
+        		skills = cloud.skillChange(skills);
         	}
         }
         
@@ -302,9 +397,10 @@ import java.util.*;
         	//try{
        			//Thread.sleep(1500);
        		//	}catch (Exception e){}
-       		System.out.print("\033[H\033[2J");
-			System.out.flush();
+       		
         	for (int i = 3; i >0; i--){
+        		System.out.print("\033[H\033[2J");
+				System.out.flush();
         		cloud.statSheet();
         		message = "\nPlease allocate these points to the following stats.\nYou have " + i + " point(s).\n";
         		message += "HP\n";
@@ -349,10 +445,13 @@ import java.util.*;
             			}
             			
             			response = true;
+            		
+            			}
+            			
             			System.out.print("\033[H\033[2J");
 						System.out.flush();
-            			
-            			}
+						cloud.statSheet();
+            		
             		}
             	
         	}
@@ -376,12 +475,15 @@ import java.util.*;
 	                }
        		}
        		
+       		while (true){
        		enemy = new Monster();
-			SO.println ("An enemy draws near! \n\n");
-			choice =in.nextLine();
+			SO.println ("An enemy draws near! \n");
+			pause =in.nextLine();
        		while( cloud.isAlive() && enemy.isAlive() ) {
        				response = false;
-       				
+       				enemyFirst = false;
+       				cloud.typeAdv = false;
+       				cloud.typeDis = false;
        				
        				//try{
        				//	Thread.sleep(1000);
@@ -402,19 +504,12 @@ import java.util.*;
 		    		
 		    		
 		    		response = false;
-		    		cloud.normalize();
-		    		enemy.normalize();
+		    	
 		    		
-		    		if (choice.equals ("Attack")){
-		    			int d1 = cloud.regAtk( enemy );
-		    			if (d1 <= 0){
-							d1 = 0;
-						}
-						SO.println ("\n"+ player.get(0) + " smacks the enemy with a regular attack!" +"\nThe enemy took " + d1 + "!\n\n");
-		    		}
+		    	
 		    		
 		    		if (choice.equals ("Skills") ){
-		    			if (cloud instanceof WarriorF){
+		    		
 		    				while (!response){
 		    				
 		    				System.out.print("\033[H\033[2J");
@@ -426,34 +521,53 @@ import java.util.*;
 	                    		response = true;
 		    					}
 		    				}
+		    		}
+		    		
+		    		if (cloud.speed < enemy.speed){
+		    			enemyFirst = true;
+		    			int damage = enemy.regAtk(cloud);
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
+		    			
+						if (enemy.crit){
+							SO.println("It's a critical hit!\n");
+						}
+						
+						pause =in.nextLine();
+		    			
+		    		}
+		    		
+		    		if (choice.equals ("Attack")){
+		    			int damage = cloud.regAtk(enemy);
+		    			SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n");
+		    		}
+		    		
+		    				
+		    			if (cloud instanceof WarriorF){
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorF)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (WarriorF)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
-		    					int d1 = ( (WarriorF)cloud ).heatWave (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorF)cloud ).heatWave (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
-		    					int d1 = ( (WarriorF)cloud).flameCrash (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ((WarriorF)cloud).flameCrash (enemy);
 		    				}
 		
-		    			
 		    				if (choice.equals ("Rekindle")){
 		    					 ( (WarriorF)cloud ).reKindle();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorF)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorF)cloud ).finishingTouch(enemy);
 		    				
 		    				}
 		    			
@@ -462,55 +576,20 @@ import java.util.*;
 		    			
 		    			
 		    			
-		    				if (cloud instanceof WarriorW){
-		    				while (!response){
+		    			if (cloud instanceof WarriorW){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorW)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorW)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
-		    					int hits = ( (WarriorW)cloud ).flowerDance();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Aqua") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str++;
-		    					}
+		    					( (WarriorW)cloud ).flowerDance(enemy);
+		    				
 		    				}
 		    			
 		    				if (choice.equals ("Wood Spike")){
-		    					int d1 = ( (WarriorW)cloud).woodSpike (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (WarriorW)cloud).woodSpike (enemy);
 		    				}
 		
 		    			
@@ -518,78 +597,110 @@ import java.util.*;
 		    					 ( (WarriorW)cloud ).pepperSong();
 		    				
 		    				}
+		    				
+		    					if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorW)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorW)cloud ).finishingTouch(enemy);
+		    				
+		    				}
 		    			
 		    			}
 		    			
 		    			if (cloud instanceof WarriorA){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Strong Swing")){
-		    					int d1 = ( (WarriorA)cloud ).strongSwing (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (WarriorA)cloud ).strongSwing (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
-		    					int hits = ( (WarriorA)cloud ).hailStorm();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Wood") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-							
-		    					}
+		    					( (WarriorA)cloud ).hailStorm(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Drizzle")){
-		    					int hits = ( (WarriorA)cloud ).drizzle();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Fire") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Wood") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-    								 
-    								 
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str--;
-		    					}
+		    					( (WarriorA)cloud ).drizzle(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Aqua Veil")){
 		    					 ( (WarriorA)cloud ).aquaVeil();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorA)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorA)cloud ).finishingTouch(enemy);
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof WarriorG){
+		    				
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					 ( (WarriorG)cloud ).strongSwing (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (WarriorG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (WarriorG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (WarriorG)cloud ).tailWind();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorG)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorG)cloud ).finishingTouch(enemy);
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof WarriorB){
+		    				
+		    			
+		    				if (choice.equals ("Strong Swing")){
+		    					 ( (WarriorB)cloud ).strongSwing (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Noise Pulse")){
+		    					( (WarriorB)cloud ).noisePulse(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gravity")){
+		    					( (WarriorB)cloud ).gravity(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Abnormalize")){
+		    					 ( (WarriorB)cloud ).abnormalize();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Proud Swivel")){
+		    					 ( (WarriorB)cloud ).proudSwivel(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Finishing Touch")){
+		    					 ( (WarriorB)cloud ).finishingTouch(enemy);
 		    				
 		    				}
 		    			
@@ -597,40 +708,18 @@ import java.util.*;
 		    			
 		    			
 		    			if (cloud instanceof MageF){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageF)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageF)cloud ).arcaniteForce (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Heat Wave")){
-		    					int d1 = ( (MageF)cloud ).heatWave (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					 ( (MageF)cloud ).heatWave (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flame Crash")){
-		    					int d1 = ( (MageF)cloud).flameCrash (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageF)cloud).flameCrash (enemy);
 		    				}
 		
 		    			
@@ -638,58 +727,33 @@ import java.util.*;
 		    					 ( (MageF)cloud ).reKindle();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageF)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageF)cloud ).concentrate();
+		    				
+		    				}
 		    			
 		    			}
 		    			
 		    			if (cloud instanceof MageW){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageW)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageW)cloud ).arcaniteForce (enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Flower Dance")){
-		    					int hits = ( (MageW)cloud ).flowerDance();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Aqua") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str++;
-		    					}
+		    					( (MageW)cloud ).flowerDance(enemy);
+		    					
 		    				}
 		    			
 		    				if (choice.equals ("Wood Spike")){
-		    					int d1 = ( (MageW)cloud).woodSpike (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageW)cloud).woodSpike (enemy);
 		    				}
 		
 		    			
@@ -697,105 +761,298 @@ import java.util.*;
 		    					 ( (MageW)cloud ).pepperSong();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageW)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageW)cloud ).concentrate();
+		    				
+		    				}
 		    			
 		    			}
 		    			
 		    			if (cloud instanceof MageA){
-		    				while (!response){
 		    				
-		    				System.out.print("\033[H\033[2J");
-							System.out.flush();
-		    				SO.println( "What will you do?" );
-		    				SO.println( skillList );
-		    				choice =in.nextLine();
-		    				if ( skills.contains (choice) ) {
-	                    		response = true;
-		    					}
-		    				}
 		    			
 		    				if (choice.equals ("Arcanite Force")){
-		    					int d1 = ( (MageA)cloud ).arcaniteForce (enemy);
-		    					if (d1 <= 0){
-								d1 = 0;
-								}
-								SO.println ("The enemy took " + d1 + "!\n\n");
+		    					( (MageA)cloud ).arcaniteForce (enemy);
+		    					
 		    				}
 		    			
 		    				if (choice.equals ("Hail Storm")){
-		    					int hits = ( (MageA)cloud ).hailStorm();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Wood") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Fire") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-							
-		    					}
+		    					( (MageA)cloud ).hailStorm(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Drizzle")){
-		    					int hits = ( (MageA)cloud ).drizzle();
-		    					while (hits != 0){
-		    						int d1 = cloud.regAtk( enemy );
-		    						if ( enemy.element.equals ("Fire") ){
-            							cloud.typeAdv = true;
-            							d1 += cloud.regAtk( enemy );
-        							}
-        
-        							if ( enemy.element.equals ("Wood") ){
-            							cloud.typeDis = true;
-            							d1 = cloud.bestow (enemy, d1);
-    								 }
-    								 
-    								 
-		    						if (d1 <= 0){
-										d1 = 0;
-		    						}
-								SO.println ("The enemy took " + d1 + "!\n\n");
-								hits --;
-								cloud.str--;
-		    					}
+		    					( (MageA)cloud ).drizzle(enemy);
 		    				}
 		    			
 		    				if (choice.equals ("Aqua Veil")){
 		    					 ( (MageA)cloud ).aquaVeil();
 		    				
 		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageA)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageA)cloud ).concentrate();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof MageG){
+		    				
+		    			
+		    				if (choice.equals ("Arcanite Force")){
+		    					 ( (MageG)cloud ).arcaniteForce (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (MageG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (MageG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (MageG)cloud ).tailWind();
+		    				
+		    				}
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageG)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageG)cloud ).concentrate();
+		    				
+		    				}
+		    			}
+		    			
+		    			if (cloud instanceof MageB){
+		    				
+		    	
+		    				if (choice.equals ("Arcanite Force")){
+		    					 ( (MageB)cloud ).arcaniteForce (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Noise Pulse")){
+		    					( (MageB)cloud ).noisePulse(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gravity")){
+		    					( (MageB)cloud ).gravity(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Abnormalize")){
+		    					 ( (MageB)cloud ).abnormalize();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arcane Bullets")){
+		    					 ( (MageB)cloud ).arcaneBullets(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Concentrate")){
+		    					 ( (MageB)cloud ).concentrate();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			
+		    			
+		    			if (cloud instanceof ArcherF){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					( (ArcherF)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Heat Wave")){
+		    					 ( (ArcherF)cloud ).heatWave (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Flame Crash")){
+		    					( (ArcherF)cloud).flameCrash (enemy);
+		    				}
+		
+		    			
+		    				if (choice.equals ("Rekindle")){
+		    					 ( (ArcherF)cloud ).reKindle();
+		    				
+		    				}
+		    				
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherF)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherF)cloud ).focus();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherW){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					( (ArcherW)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Flower Dance")){
+		    					( (ArcherW)cloud ).flowerDance(enemy);
+		    					
+		    				}
+		    			
+		    				if (choice.equals ("Wood Spike")){
+		    					( (ArcherW)cloud).woodSpike (enemy);
+		    				}
+		
+		    			
+		    				if (choice.equals ("Pepper Song")){
+		    					 ( (ArcherW)cloud ).pepperSong();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherW)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherW)cloud ).focus();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherA){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					( (ArcherA)cloud ).bowThrow(enemy);
+		    					
+		    				}
+		    			
+		    				if (choice.equals ("Hail Storm")){
+		    					( (ArcherA)cloud ).hailStorm(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Drizzle")){
+		    					( (ArcherA)cloud ).drizzle(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Aqua Veil")){
+		    					 ( (ArcherA)cloud ).aquaVeil();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherA)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherA)cloud ).focus();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherG){
+		    				
+		    			
+		    				if (choice.equals ("Bow Throw")){
+		    					 ( (ArcherG)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Wind Strike")){
+		    					( (ArcherG)cloud ).windStrike(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gale Force")){
+		    					( (ArcherG)cloud ).galeForce(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Tail Wind")){
+		    					 ( (ArcherG)cloud ).tailWind();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherG)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherG)cloud ).focus();
+		    				
+		    				}
+		    			
+		    			}
+		    			
+		    			if (cloud instanceof ArcherB){
+		    				
+		    	
+		    				if (choice.equals ("Bow Throw")){
+		    					 ( (ArcherB)cloud ).bowThrow (enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Noise Pulse")){
+		    					( (ArcherB)cloud ).noisePulse(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Gravity")){
+		    					( (ArcherB)cloud ).gravity(enemy);
+		    				}
+		    			
+		    				if (choice.equals ("Abnormalize")){
+		    					 ( (ArcherB)cloud ).abnormalize();
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Arrow Storm")){
+		    					 ( (ArcherB)cloud ).arrowStorm(enemy);
+		    				
+		    				}
+		    				
+		    				if (choice.equals ("Focus")){
+		    					 ( (ArcherB)cloud ).focus();
+		    				
+		    				}
 		    			
 		    			}
 		    			
 		    			
 		    			
 		    			
-		    		}
-		    		
-		    		
-		    		
-		    		
-		
+
 						if (cloud.typeAdv){
-		    				SO.println("It's super effective!\n\n");
+		    				SO.println("It's super effective!\n");
 						}
 						
 						if (cloud.typeDis){
-		    				SO.println("It's not very effective!\n\n");
+		    				SO.println("It's not very effective!\n");
 						}
 						
 		    			if (cloud.crit){
-							SO.println("It's a critical hit!\n\n");
+							SO.println("It's a critical hit!\n");
 						}
 						
-						choice =in.nextLine();
+						pause =in.nextLine();
 		    		//	try{
        				//		Thread.sleep(200);
        				//	}catch (Exception e){}
@@ -804,17 +1061,15 @@ import java.util.*;
 						//System.out.flush();
 		    		
 		    		
-		    		if (enemy.isAlive()) {
-						int d2 = enemy.regAtk( cloud );
-							if (d2 <= 0){
-								d2 = 0;
-						}
-						SO.println ("The enemy slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + d2 + "!\n\n");
-						if (enemy.crit){
-							SO.println("It's a critical hit!\n\n");
+		    		if ((enemy.isAlive()) && !enemyFirst) {
+		    			int damage = enemy.regAtk(cloud);
+		    			SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
+		    			
+					if (enemy.crit){
+							SO.println("It's a critical hit!\n");
 						}
 						
-						choice =in.nextLine();
+						pause =in.nextLine();
 					//	try{
        				///		Thread.sleep(1500);
        					//}catch (Exception e){}
@@ -822,22 +1077,28 @@ import java.util.*;
 						System.out.flush();
 		    		}
 		    		
-		    		else{
+		    		if (!( enemy.isAlive() ) ){
+		    			cloud.normalize();
+		    			enemy.normalize();
 		    			expGain (enemy);
 		    			SO.println ("You win!");
-		    			break;
+		    		
+		    			
 		    		}
 				
-			}
+			
 			
 			if (!cloud.isAlive()){
 				SO.println ("You lose.");
+				break;
 			}
 			
             
             
         
         }
+      	}
+      	}
         
           
         
