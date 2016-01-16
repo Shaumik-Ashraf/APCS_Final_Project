@@ -17,7 +17,7 @@
 | JA          | 1/13/16  |  added Gale Class and revamped Legendairy battle system to increase readability. Added turn order by speed
 | MA          | 1/14/16  |  Inventory functionality finished for the forseeable future, useable items implemented in item.java       |
 | JA          | 1/14/16  |     Added new skills. Did to-do-list and UML diagram. Added Archer class. Created Blank element. Player able to learn skills after level up.                           |
-| MA          | 1/16/16  | Allows for player cancellation of potion effects. Flavor text for most player activities. Added tons of new items. Improved text formatting of item 'database'                               |
+| MA          | 1/16/16  | Allows for player cancellation of potion effects. Flavor text for most Inventory activities. Added tons of new items. Improved text formatting of item 'database'                               |
 |             |          |                                |
 |             |          |                                |
 |             |          |                                |
