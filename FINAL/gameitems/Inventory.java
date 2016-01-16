@@ -31,6 +31,14 @@ public class Inventory
         effect.put("strMod",0);        
     }
     
+    //Allows user to cancel all effects, with flavor text.
+    public void killEffects()
+    {
+        System.out.println("Through sheer willpower you supress all chemical effects on you.");
+        resetEffects();
+        effectDuration = 0;
+    }
+    
     public String toString()
     {
         String s = "------------------------------------------------- YOUR STUFF -------------------------------------------------\n";
@@ -54,6 +62,7 @@ public class Inventory
     public void giveItem(Item i)
     {
         inv.add(i);
+        System.out.println("You gain: " + i.toString() + ".");
     }
     
     public void removeItem(String itemName)
@@ -101,11 +110,13 @@ public class Inventory
                     equipped.remove(((Equipable)i).getSlot());
                     equipped.put(((Equipable)i).getSlot(), (Equipable)i);
                     this.removeItem(itemName);
+                    System.out.println("You Equip " + itemName + ".");
                 }
             }
         } catch (Exception e) {System.out.println("You don't own this item, or it cannot be equipped");}
     }
     
+    //adds all item and effect bonuses, and exports data as hashmap for easy use
     public HashMap<String, Integer> scrapeStats()
     {
         HashMap<String, Integer> data = new HashMap<String, Integer>();
@@ -137,6 +148,7 @@ public class Inventory
     {
         //try 
        // {
+            //spawn new item because it's easier to get its effects than search for the same item in the inventory, since removeItemB has removed it if it exists already
             EffectItem u = new EffectItem(itemName);
             if (effectDuration > 0)
             {
@@ -154,7 +166,17 @@ public class Inventory
                 effect.put("hpMod",effectTemp.get("hpMod"));
                 effect.put("mpMod",effectTemp.get("mpMod"));
                 effect.put("luckMod",effectTemp.get("luckMod"));
-                effect.put("strMod",effectTemp.get("strMod"));                  
+                effect.put("strMod",effectTemp.get("strMod"));
+                //print flavor text based on buffs/debuffs
+                System.out.println("You consume a(n) " + itemName + ".");
+                if (effectTemp.get("strMod") > 0) {System.out.println("You feel empowered.");} else if (effectTemp.get("strMod") < 0) {System.out.println("You feel enfeebled.");}
+                if (effectTemp.get("defMod") > 0) {System.out.println("You feel fortified.");} else if (effectTemp.get("defMod") < 0) {System.out.println("You feel vulnerable.");}
+                if (effectTemp.get("magicMod") > 0) {System.out.println("You feel a rush of arcane energy.");} else if (effectTemp.get("magicMod") < 0) {System.out.println("You feel drained.");}
+                if (effectTemp.get("resMod") > 0) {System.out.println("You feel resolute.");} else if (effectTemp.get("resMod") < 0) {System.out.println("You feel nervous and uneasy.");}
+                if (effectTemp.get("speedMod") > 0) {System.out.println("Your sense of awareness is heightened.");} else if (effectTemp.get("speedMod") < 0) {System.out.println("You feel lethargic.");}
+                if (effectTemp.get("hpMod") > 0) {System.out.println("You feel revitalized.");} else if (effectTemp.get("hpMod") < 0) {System.out.println("You feel ill.");}
+                if (effectTemp.get("mpMod") > 0) {System.out.println("You feel rejuvinated.");} else if (effectTemp.get("mpMod") < 0) {System.out.println("You are drained of arcane willpower.");}
+                if (effectTemp.get("luckMod") > 0) {System.out.println("Your sense of perception is heightened.");} else if (effectTemp.get("luckMod") < 0) {System.out.println("Your perception is dulled.");}
             }
        // } catch (Exception e){}
     }
@@ -222,16 +244,17 @@ public class Inventory
         i.useItem("Weak Healing Potion");  
         System.out.println(i.scrapeStats());
 */
-/*
+
         System.out.println(i.scrapeStats());
         i.giveItem(new EffectItem("Ultimate Healing Potion"));
         i.giveItem(new EffectItem("Ultimate Mana Potion"));
         i.useItem("Ultimate Healing Potion");
         System.out.println(i.scrapeStats());
+        i.killEffects();
         i.useItem("Ultimate Mana Potion");
         System.out.println(i.scrapeStats());
         System.out.println(i);
-*/
+
     }
     
 }
