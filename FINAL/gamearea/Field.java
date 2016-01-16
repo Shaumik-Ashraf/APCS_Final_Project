@@ -1,8 +1,8 @@
 /* 
  * My commenting formats so inconsistent...
  *
- * class Town - subclass of area where players encounter monsters and battle
- * This version is for Ideas
+ * class Field - subclass of area where players encounter monsters and battle
+ * 
  *
  * ASSUMES BATTLE METHOD
  *
@@ -12,7 +12,7 @@
 package gamearea;
  
 import java.util.ArrayList;
-//import Math;
+
 import gamechars.*;
 import gameutils.*;
  
@@ -21,41 +21,44 @@ public class Field extends Area {
     //RECREATE with HashTable
 
 	//attributes
-    protected double[] ChanceMonsterSpawn;
-	protected ArrayList<Monster> MonsterTypes;
-	/*setup:
-	  ChanceMonsterSpawn is an array of percentages where the i-th element
-	  is the chance of encountering the i-th monster in MonsterTypes
-	
-	  This setup allows us to add multiple types of monsters quickly
-	*/
+    Hashtable<Monster, Double> Encounters;  //possible encounters
 	
 	//constructors
+	public Field() {
+		super("Field");
+		areatype = AT_FIELD;
+	}
+	
 	public Field(String name_arg) {
 		super(name_arg);
-		ChanceMonsterSpawn = new double[] { 0.6, 0.5 };
-		MonsterTypes = new ArrayList();
+		areatype = AT_FIELD;
+		
 	}
 	
-	public Field(int n) {   //creates numbered fields named Field-n; ie Field-1, Field-2...
+	//creates numbered fields named Field-n; ie Field-1, Field-2...
+	public Field(int n) { 
 		super("Field-" + n);
+		areatype = AT_FIELD;
 	}
 	
-	public Field(String name_arg, double chance, Monster mon) {  //creates a field that features only mon with a chance chance of encounter
+	//creates a field that features only mon with a chance chance of encounter
+	public Field(String name_arg, Monster mon, Double chance) {  
 		name = name_arg;
-		ChanceMonsterSpawn = new double[] {chance};
-		MonsterTypes.add(mon);
+		areatype = AT_FIELD;
+		Encounters.put(mon, chance);
 	}
 	
 	//creates field with chances and monsters determined by args
-	public Field(String name_arg, double[] chances, ArrayList<Monster> mons) {
+	//assumes mons and chances are of same length
+	public Field(String name_arg, Monster[] mons, Double[] chances) {
 		name = name_arg;
-		ChanceMonsterSpawn = chances;
-		MonsterTypes = mons;
+		areatype = AT_FIELD;
+		for(int i=0; i<mons.length; i++) {
+			Encounters.put(mons[i], chances[i]);
+		}
 	}
 	
-	//other methods
-	protected void recalibrateChances() {
+	//protected void recalibrateChances() {}
 	/* Suppose there was a .1 chance encountering monster A and .1 chance encountering monster B,
 		My code first checks if random()<.1; if true then battle monster A
 		
@@ -65,21 +68,9 @@ public class Field extends Area {
 		if the first is true and I use consecutive if statements, then if random()<.1 for B, I can encounter
 			both A and B in only one possible encounter (which is not intended)
 			
-		To Compensate for the scenarios above, I will use an if-else ladder and add the chances of all previous
-			monster to the chance of the next monster, but cap it at 0.99; this is the fairest I can think of rn
+		The method should compensate for this
 	*/
 	
-		double sumSoFar = 0.0;
-	
-		for(int i=0; i<ChanceMonsterSpawn.length; i++) {
-			sumSoFar += ChanceMonsterSpawn[i];
-			ChanceMonsterSpawn[i] = sumSoFar;
-			if( ChanceMonsterSpawn[i] > 0.99 ) {
-				ChanceMonsterSpawn[i] = 0.99;
-			}
-		}
-	
-	}
 	
 	//event and description methods
 	public void event(gChar gch) {
@@ -91,13 +82,9 @@ public class Field extends Area {
 			
 		    r = (double)Math.random();
 			
-		    for(j=0; j < ChanceMonsterSpawn.length; j++) {
-			if( r < ChanceMonsterSpawn[i] ) {
-				//gch.battle( MonsterTypes.get(j) );
-				SO.P("Assume battle method here!!!\n");
-				break;  //gives same effect as if-else ladder
-			}
-		    }
+		    /**
+			CONTINUE HERE
+			*/
 			
 		}
 		

@@ -17,9 +17,10 @@ public abstract class gChar{
 
     /*
     =================================================================================================================
-    =========================FIELD===================================================================================
+    =========================ATTRIBUTES==============================================================================
     =================================================================================================================
     */
+	
     public String name;
     public String element;
     
@@ -37,7 +38,6 @@ public abstract class gChar{
     public int EXP;
     public int level;
    
-    
     //used for normalize
     public int hpInitial;
     public int strInitial;
@@ -47,14 +47,36 @@ public abstract class gChar{
     public int luckInitial;
     public int speedInitial;
     
-    /*
+	//items!
+	Inventory inv; 
+	
+	//Arrays/Lists that hold vital information for functionality
+	public ArrayList<String> Builder;
+	/* Builder is the ArrayList<String> used to initially create gChar
+	Builder formatted as follows:
+		{<class>, <strongest_stat>, <weakest_stat>, <personality>, ...}
+	*/
+	public ArrayList<String> Rebuilder;
+	/* Rebuilder is used to store all info necessary to reinstantiate a formerly existing gChar
+	Will eventually be needed for saving
+	Rebuilder format TBD
+	*/
+	public LinkedList<String> Skills_LinkedList;
+	/* Skill_LinkedList is a collection of attacks useable by player
+	A LinkedList, for current intents and purposes, is same as an ArrayList
+	Technical difference (crudely explained): Linked Lists are faster at changing size, but slower as they get larger
+	SKILLS GAINED IN SUBCLASSES OR LEVEL UPS MUST BE ADDED TO THIS LIST
+    */
+	public String[] StatTypes = new String[] {"Health", "Strength", "Magic", "Defense", "Resistance", "Luck", "Agility"}; 
+	
+	/*
     =================================================================================================================
     ===========ATTACK SKILL METHODS==================================================================================
     =================================================================================================================
     */
     
     //Basic attack that every character can perform
-    public int regAtk( gChar enemy){
+    public int regAtk(gChar enemy){
         this.crit = false; //Crit activation is set to false
         int damage = this.str - enemy.def; //Work in progress. This is the damage that your character will do
         
@@ -72,7 +94,7 @@ public abstract class gChar{
         return damage; //Returns the damage dealt to enemy
     }
     
-    public int regAtkM( gChar enemy){
+    public int regAtkM(gChar enemy){
         this.crit = false; //Crit activation is set to false
         int damage = this.magic - enemy.res; //Work in progress. This is the damage that your character will do
         
@@ -96,9 +118,9 @@ public abstract class gChar{
     =================================================================================================================
     */
     
-    public abstract String skillListChange( String skillList);
-    public abstract ArrayList<String> skillChange( ArrayList<String> skills);
+    public abstract String skillListChange(String skillList);
     
+	public abstract ArrayList<String> skillChange( ArrayList<String> skills);
     
     public void bestStat(String stat){
         if (stat.equals ("Health")){
@@ -179,10 +201,14 @@ public abstract class gChar{
         
     }
     
-     public boolean isAlive(){
+    public boolean isAlive(){
         return (HP > 0);
     }
     
+	public boolean isFasterThan(gChar enemy) {
+		return( this.agility >= enemy.agility );
+	}
+	
     public void statSheet(){
         ArrayList<String> stats = new ArrayList();
         stats.add("HP: " + HP);
@@ -200,10 +226,7 @@ public abstract class gChar{
         SO.println (stats);
     }
     
-    //reset stats
-    //also use as heal (boolean healing not required; usage: class Town -> rest case)
-    //may cause conflicts when using equips
-    public void normalize(){
+    public void normalize(){  //restore stats
        // healing = false;
         str = strInitial;
         magic = magicInitial;
@@ -221,636 +244,95 @@ public abstract class gChar{
      ===Battle Methods========================================================================================================================================
      =========================================================================================================================================================
      */
-    
-    public void battle(gChar enemy) {
 
-	SO.P("Enemy " + enemy + " encountered!\n");
-	
-	//boolean whilebattle = true;
-	
-	do {  //
-
-	} while(1);
-
-
-while( cloud.isAlive() && enemy.isAlive() ) {
-
-response = false;
-enemyFirst = false;
-cloud.typeAdv = false;
-cloud.typeDis = false;
-
-
-while (!response){
-	System.out.print("\033[H\033[2J");
-		System.out.flush();
-
-	SO.println( "What will you do?" );
-	SO.println( "Attack\nSkills\nNothing\n" );
-	choice =in.nextLine();
-	if ( commands.contains (choice) ) {
-	response = true;
+	//take user input on what to do and perform indicated action
+	//current possible actions: Attack, Use Item, Nothing
+	public void doBattleTurn() {
+		
+		Scanner sc = new Scanner(System.in);
+		String input;  //input buffer
+		
+		//print user options and get response:
+		do {
+			SO.P("It is your turn. What would you like to do?\n");
+			SO.P("Attack\n");
+			SO.P("Use Item\n");
+			SO.P("Nothing\n");
+		
+			if( input.hasNextLine() ) {
+				input = sc.nextLine();
 			}
-}
-
-
-
-response = false;
-
-
-
-
-if (choice.equals ("Skills") ){
-
-		while (!response){
-		
-		System.out.print("\033[H\033[2J");
-			System.out.flush();
-		SO.println( "What will you do?" );
-		SO.println( skillList );
-		choice =in.nextLine();
-		if ( skills.contains (choice) ) {
-	response = true;
+			
+			input.toLowerCase(Locale.ENGLISH);
+			
+			//check for proper input, if proper break loop and continue on, otherwise continue loop
+			if( "attack".equals(input) || "use item".equals(input) || "nothing".equals(input) ) {
+				break;
 			}
-		}
-}
-
-if (cloud.speed < enemy.speed){
-	enemyFirst = true;
-	int damage = enemy.regAtk(cloud);
-	SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
-	
-		if (enemy.crit){
-			SO.println("It's a critical hit!\n");
-		}
-		
-		pause =in.nextLine();
-	
-}
-
-if (choice.equals ("Attack")){
-	int damage = cloud.regAtk(enemy);
-	SO.println ("\n"+ player.get(0) + " smacks the enemy!" +"\nThe enemy took " + damage + "!\n");
-}
-
-		
-	if (cloud instanceof WarriorF){
-	
-		if (choice.equals ("Strong Swing")){
-			 ( (WarriorF)cloud ).strongSwing (enemy);
-		}
-	
-		if (choice.equals ("Heat Wave")){
-			( (WarriorF)cloud ).heatWave (enemy);
-		}
-	
-		if (choice.equals ("Flame Crash")){
-			 ((WarriorF)cloud).flameCrash (enemy);
-		}
-
-		if (choice.equals ("Rekindle")){
-			 ( (WarriorF)cloud ).reKindle();
-		
-		}
-		
-		if (choice.equals ("Proud Swivel")){
-			 ( (WarriorF)cloud ).proudSwivel(enemy);
-		
-		}
-		
-		if (choice.equals ("Finishing Touch")){
-			 ( (WarriorF)cloud ).finishingTouch(enemy);
-		
-		}
-	
-	}
-	
-	
-	
-	
-	if (cloud instanceof WarriorW){
-		
-	
-		if (choice.equals ("Strong Swing")){
-			( (WarriorW)cloud ).strongSwing (enemy);
-		}
-	
-		if (choice.equals ("Flower Dance")){
-			( (WarriorW)cloud ).flowerDance(enemy);
-		
-		}
-	
-		if (choice.equals ("Wood Spike")){
-			( (WarriorW)cloud).woodSpike (enemy);
-		}
-
-	
-		if (choice.equals ("Pepper Song")){
-			 ( (WarriorW)cloud ).pepperSong();
-		
-		}
-		
-			if (choice.equals ("Proud Swivel")){
-			 ( (WarriorW)cloud ).proudSwivel(enemy);
-		
-		}
-		
-		if (choice.equals ("Finishing Touch")){
-			 ( (WarriorW)cloud ).finishingTouch(enemy);
-		
-		}
-	
-	}
-	
-	if (cloud instanceof WarriorA){
-		
-	
-		if (choice.equals ("Strong Swing")){
-			 ( (WarriorA)cloud ).strongSwing (enemy);
-		}
-	
-		if (choice.equals ("Hail Storm")){
-			( (WarriorA)cloud ).hailStorm(enemy);
-		}
-	
-		if (choice.equals ("Drizzle")){
-			( (WarriorA)cloud ).drizzle(enemy);
-		}
-	
-		if (choice.equals ("Aqua Veil")){
-			 ( (WarriorA)cloud ).aquaVeil();
-		
-		}
-		
-		if (choice.equals ("Proud Swivel")){
-			 ( (WarriorA)cloud ).proudSwivel(enemy);
-		
-		}
-		
-		if (choice.equals ("Finishing Touch")){
-			 ( (WarriorA)cloud ).finishingTouch(enemy);
-		
-		}
-	
-	}
-	
-	if (cloud instanceof WarriorG){
-		
-	
-		if (choice.equals ("Strong Swing")){
-			 ( (WarriorG)cloud ).strongSwing (enemy);
-		}
-	
-		if (choice.equals ("Wind Strike")){
-			( (WarriorG)cloud ).windStrike(enemy);
-		}
-	
-		if (choice.equals ("Gale Force")){
-			( (WarriorG)cloud ).galeForce(enemy);
-		}
-	
-		if (choice.equals ("Tail Wind")){
-			 ( (WarriorG)cloud ).tailWind();
-		
-		}
-		
-		if (choice.equals ("Proud Swivel")){
-			 ( (WarriorG)cloud ).proudSwivel(enemy);
-		
-		}
-		
-		if (choice.equals ("Finishing Touch")){
-			 ( (WarriorG)cloud ).finishingTouch(enemy);
-		
-		}
-	
-	}
-	
-	if (cloud instanceof WarriorB){
-		
-	
-		if (choice.equals ("Strong Swing")){
-			 ( (WarriorB)cloud ).strongSwing (enemy);
-		}
-	
-		if (choice.equals ("Noise Pulse")){
-			( (WarriorB)cloud ).noisePulse(enemy);
-		}
-	
-		if (choice.equals ("Gravity")){
-			( (WarriorB)cloud ).gravity(enemy);
-		}
-	
-		if (choice.equals ("Abnormalize")){
-			 ( (WarriorB)cloud ).abnormalize();
-		
-		}
-		
-		if (choice.equals ("Proud Swivel")){
-			 ( (WarriorB)cloud ).proudSwivel(enemy);
-		
-		}
-		
-		if (choice.equals ("Finishing Touch")){
-			 ( (WarriorB)cloud ).finishingTouch(enemy);
-		
-		}
-	
-	}
-	
-	
-	if (cloud instanceof MageF){
-		
-	
-		if (choice.equals ("Arcanite Force")){
-			( (MageF)cloud ).arcaniteForce (enemy);
-		}
-	
-		if (choice.equals ("Heat Wave")){
-			 ( (MageF)cloud ).heatWave (enemy);
-		}
-	
-		if (choice.equals ("Flame Crash")){
-			( (MageF)cloud).flameCrash (enemy);
-		}
-
-	
-		if (choice.equals ("Rekindle")){
-			 ( (MageF)cloud ).reKindle();
-		
-		}
-		
-		if (choice.equals ("Arcane Bullets")){
-			 ( (MageF)cloud ).arcaneBullets(enemy);
-		
-		}
-		
-		if (choice.equals ("Concentrate")){
-			 ( (MageF)cloud ).concentrate();
-		
-		}
-	
-	}
-	
-	if (cloud instanceof MageW){
-		
-	
-		if (choice.equals ("Arcanite Force")){
-			( (MageW)cloud ).arcaniteForce (enemy);
-		}
-	
-		if (choice.equals ("Flower Dance")){
-			( (MageW)cloud ).flowerDance(enemy);
+			else {
+				SO.P("That pokemon game's words echoed in your mind... There is a time and place for everything.\n");
+			}
 			
-		}
+		} while (1);
 	
-		if (choice.equals ("Wood Spike")){
-			( (MageW)cloud).woodSpike (enemy);
+		//have user's gChar perform response
+		if( "attack".equals(input) ) {
+			player.useAttack(enemy);
 		}
-
+		else if( "use item".equals(input) ) {
+			player.useItem();
+		}
+		else if( "nothing".equals(input) ) {
+			SO.P("You did nothing...\n");
+		}
+		else ;
+	} 
 	
-		if (choice.equals ("Pepper Song")){
-			 ( (MageW)cloud ).pepperSong();
+	//prompt user to select an attack
+	//player then performs attack
+	//all usable attacks must be added to SkillList
+	public abstract void useAttack(gChar enemy);
+	/* Begin with following: {
+		Scanner sc = new Scanner(System.in);
+		String input_buffer = new String();
 		
+		SO.P("Which attack will you use?\n");
+		
+		for( String s : Skills_LinkedList ) {
+			SO.P(s + "\n");
 		}
 		
-		if (choice.equals ("Arcane Bullets")){
-			 ( (MageW)cloud ).arcaneBullets(enemy);
-		
+		if( sc.hasNextLine() ) {
+			input_buffer = sc.nextLine();
 		}
 		
-		if (choice.equals ("Concentrate")){
-			 ( (MageW)cloud ).concentrate();
+		//if-else ladder for attacks
 		
-		}
+	}*/
 	
+	//prints inv, prompts user for what Item to use, and uses said item
+	public void useItem() {
+	
+		Scanner sc = new Scanner(System.in);
+		String input_buffer = new String();
+		
+		SO.P(this.inv);
+		
+		SO.P("What item would you like to use?\n");
+		if( sc.hasNextLine() ) {
+			input_buffer = sc.nextLine();
+		}
+		
+		inv.useItem(input_buffer);
+		
 	}
 	
-	if (cloud instanceof MageA){
-		
-	
-		if (choice.equals ("Arcanite Force")){
-			( (MageA)cloud ).arcaniteForce (enemy);
-			
-		}
-	
-		if (choice.equals ("Hail Storm")){
-			( (MageA)cloud ).hailStorm(enemy);
-		}
-	
-		if (choice.equals ("Drizzle")){
-			( (MageA)cloud ).drizzle(enemy);
-		}
-	
-		if (choice.equals ("Aqua Veil")){
-			 ( (MageA)cloud ).aquaVeil();
-		
-		}
-		
-		if (choice.equals ("Arcane Bullets")){
-			 ( (MageA)cloud ).arcaneBullets(enemy);
-		
-		}
-		
-		if (choice.equals ("Concentrate")){
-			 ( (MageA)cloud ).concentrate();
-		
-		}
-	
+	//uses a random attack from Skills_LinkedList
+	//can implement better AI here later - may require making abstract
+	//for now, I will just use regAtk
+	public void useRandomAttck(gChar enemy) {
+		this.regAtk(enemy);
 	}
 	
-	if (cloud instanceof MageG){
-		
-	
-		if (choice.equals ("Arcanite Force")){
-			 ( (MageG)cloud ).arcaniteForce (enemy);
-		}
-	
-		if (choice.equals ("Wind Strike")){
-			( (MageG)cloud ).windStrike(enemy);
-		}
-	
-		if (choice.equals ("Gale Force")){
-			( (MageG)cloud ).galeForce(enemy);
-		}
-	
-		if (choice.equals ("Tail Wind")){
-			 ( (MageG)cloud ).tailWind();
-		
-		}
-		if (choice.equals ("Arcane Bullets")){
-			 ( (MageG)cloud ).arcaneBullets(enemy);
-		
-		}
-		
-		if (choice.equals ("Concentrate")){
-			 ( (MageG)cloud ).concentrate();
-		
-		}
-	}
-	
-	if (cloud instanceof MageB){
-		
-
-		if (choice.equals ("Arcanite Force")){
-			 ( (MageB)cloud ).arcaniteForce (enemy);
-		}
-	
-		if (choice.equals ("Noise Pulse")){
-			( (MageB)cloud ).noisePulse(enemy);
-		}
-	
-		if (choice.equals ("Gravity")){
-			( (MageB)cloud ).gravity(enemy);
-		}
-	
-		if (choice.equals ("Abnormalize")){
-			 ( (MageB)cloud ).abnormalize();
-		
-		}
-		
-		if (choice.equals ("Arcane Bullets")){
-			 ( (MageB)cloud ).arcaneBullets(enemy);
-		
-		}
-		
-		if (choice.equals ("Concentrate")){
-			 ( (MageB)cloud ).concentrate();
-		
-		}
-	
-	}
-	
-	
-	
-	if (cloud instanceof ArcherF){
-		
-	
-		if (choice.equals ("Bow Throw")){
-			( (ArcherF)cloud ).bowThrow (enemy);
-		}
-	
-		if (choice.equals ("Heat Wave")){
-			 ( (ArcherF)cloud ).heatWave (enemy);
-		}
-	
-		if (choice.equals ("Flame Crash")){
-			( (ArcherF)cloud).flameCrash (enemy);
-		}
-
-	
-		if (choice.equals ("Rekindle")){
-			 ( (ArcherF)cloud ).reKindle();
-		
-		}
-		
-		
-		if (choice.equals ("Arrow Storm")){
-			 ( (ArcherF)cloud ).arrowStorm(enemy);
-		
-		}
-		
-		if (choice.equals ("Focus")){
-			 ( (ArcherF)cloud ).focus();
-		
-		}
-	
-	}
-	
-	if (cloud instanceof ArcherW){
-		
-	
-		if (choice.equals ("Bow Throw")){
-			( (ArcherW)cloud ).bowThrow (enemy);
-		}
-	
-		if (choice.equals ("Flower Dance")){
-			( (ArcherW)cloud ).flowerDance(enemy);
-			
-		}
-	
-		if (choice.equals ("Wood Spike")){
-			( (ArcherW)cloud).woodSpike (enemy);
-		}
-
-	
-		if (choice.equals ("Pepper Song")){
-			 ( (ArcherW)cloud ).pepperSong();
-		
-		}
-		
-		if (choice.equals ("Arrow Storm")){
-			 ( (ArcherW)cloud ).arrowStorm(enemy);
-		
-		}
-		
-		if (choice.equals ("Focus")){
-			 ( (ArcherW)cloud ).focus();
-		
-		}
-	
-	}
-	
-	if (cloud instanceof ArcherA){
-		
-	
-		if (choice.equals ("Bow Throw")){
-			( (ArcherA)cloud ).bowThrow(enemy);
-			
-		}
-	
-		if (choice.equals ("Hail Storm")){
-			( (ArcherA)cloud ).hailStorm(enemy);
-		}
-	
-		if (choice.equals ("Drizzle")){
-			( (ArcherA)cloud ).drizzle(enemy);
-		}
-	
-		if (choice.equals ("Aqua Veil")){
-			 ( (ArcherA)cloud ).aquaVeil();
-		
-		}
-		
-		if (choice.equals ("Arrow Storm")){
-			 ( (ArcherA)cloud ).arrowStorm(enemy);
-		
-		}
-		
-		if (choice.equals ("Focus")){
-			 ( (ArcherA)cloud ).focus();
-		
-		}
-	
-	}
-	
-	if (cloud instanceof ArcherG){
-		
-	
-		if (choice.equals ("Bow Throw")){
-			 ( (ArcherG)cloud ).bowThrow (enemy);
-		}
-	
-		if (choice.equals ("Wind Strike")){
-			( (ArcherG)cloud ).windStrike(enemy);
-		}
-	
-		if (choice.equals ("Gale Force")){
-			( (ArcherG)cloud ).galeForce(enemy);
-		}
-	
-		if (choice.equals ("Tail Wind")){
-			 ( (ArcherG)cloud ).tailWind();
-		
-		}
-		
-		if (choice.equals ("Arrow Storm")){
-			 ( (ArcherG)cloud ).arrowStorm(enemy);
-		
-		}
-		
-		if (choice.equals ("Focus")){
-			 ( (ArcherG)cloud ).focus();
-		
-		}
-	
-	}
-	
-	if (cloud instanceof ArcherB){
-		
-
-		if (choice.equals ("Bow Throw")){
-			 ( (ArcherB)cloud ).bowThrow (enemy);
-		}
-	
-		if (choice.equals ("Noise Pulse")){
-			( (ArcherB)cloud ).noisePulse(enemy);
-		}
-	
-		if (choice.equals ("Gravity")){
-			( (ArcherB)cloud ).gravity(enemy);
-		}
-	
-		if (choice.equals ("Abnormalize")){
-			 ( (ArcherB)cloud ).abnormalize();
-		
-		}
-		
-		if (choice.equals ("Arrow Storm")){
-			 ( (ArcherB)cloud ).arrowStorm(enemy);
-		
-		}
-		
-		if (choice.equals ("Focus")){
-			 ( (ArcherB)cloud ).focus();
-		
-		}
-	
-	}
-	
-	
-	
-	
-
-		if (cloud.typeAdv){
-		SO.println("It's super effective!\n");
-		}
-		
-		if (cloud.typeDis){
-		SO.println("It's not very effective!\n");
-		}
-		
-	if (cloud.crit){
-			SO.println("It's a critical hit!\n");
-		}
-		
-		pause =in.nextLine();
-//	try{
-//		Thread.sleep(200);
-//	}catch (Exception e){}
-	
-	//System.out.print("\033[H\033[2J");
-		//System.out.flush();
-
-
-if ((enemy.isAlive()) && !enemyFirst) {
-	int damage = enemy.regAtk(cloud);
-	SO.println ("\nThe "+ enemy.name + " slaps " + player.get(0) +"!" +"\n" + player.get(0)+ " took " + damage + "!\n");
-	
-	if (enemy.crit){
-			SO.println("It's a critical hit!\n");
-		}
-		
-		pause =in.nextLine();
-	//	try{
-///		Thread.sleep(1500);
-	//}catch (Exception e){}
-	System.out.print("\033[H\033[2J");
-		System.out.flush();
-}
-
-if (!( enemy.isAlive() ) ){
-	cloud.normalize();
-	enemy.normalize();
-	expGain (enemy);
-	SO.println ("You win!");
-
-	
-}
-
-
-
-if (!cloud.isAlive()){
-SO.println ("You lose.");
-break;
-}
-
-
-
-
-}
-      
-      	}
-    
 }  //close class
 
