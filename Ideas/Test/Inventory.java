@@ -31,6 +31,14 @@ public class Inventory
         effect.put("strMod",0);        
     }
     
+    public void onlyViewing()
+    {
+        if (effectDuration != 0)
+        {
+            effectDuration += 1;
+        }
+    }
+    
     //Allows user to cancel all effects, with flavor text.
     public void killEffects()
     {

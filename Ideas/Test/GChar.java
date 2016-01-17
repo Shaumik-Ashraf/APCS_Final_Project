@@ -286,7 +286,7 @@ public class GChar{
      public void expGain (GChar c)
      {
         this.EXP += c.EXP;
-        System.out.println ("You gained " + c.EXP + " EXP!");
+        System.out.println (name + " gained " + c.EXP + " EXP!");
         if (this.EXP >= 100)
         {
             System.out.print("\033[H\033[2J");
@@ -320,7 +320,7 @@ public class GChar{
         {
             System.out.print("\033[H\033[2J");
 			System.out.flush();            
-            System.out.println ("Type the stats you want allocate points to. You have " + SP + " points.\n");
+            System.out.println ("Type the stats " + name + " wants allocate points to. " + name + " have " + SP + " points.\n");
             this.statSheet();
             System.out.println("\nStat: ");
             
@@ -381,7 +381,7 @@ public class GChar{
      
      public void printKnown()
      {
-         System.out.println("Skills you know: " + known);
+         System.out.println("Skills " + name + " knows: " + known);
      }
      
      public void useSkill(String skillName, GChar target)
@@ -392,11 +392,11 @@ public class GChar{
          }
          else if ((known.contains(skillName)) &&(!((this.MP - Skill.getAllSkills().get(skillName).getMpCost()) >= 0)))
          {
-            System.out.println("You don't have enough MP."); 
+            System.out.println("" + name + " does not have enough MP."); 
          }
          else
          {
-             System.out.println("You don't know that skill.");
+             System.out.println("" + name + " does not know that skill.");
          }
      }
      
@@ -407,7 +407,7 @@ public class GChar{
             known.add(learnable.get(0));
             System.out.println(this.name + " has learned " + learnable.get(0));
             learnable.remove(0);
-         } catch (Exception e) {System.out.println("You know everything already");}
+         } catch (Exception e) {System.out.println("" + name + " knows everything already");}
      }
      
      public void takeDamage(int damage)
@@ -454,75 +454,112 @@ public class GChar{
      =========================================================================================================================================================
      */     
      
-     public void battleBeat (GChar enemy)
-     {
+    public void battleBeat (GChar enemy)
+    {
         Scanner in = new Scanner(System.in);
 		String input;  //input buffer
 		String delay;
-		while (this.isAlive() && enemy.isAlive())
-		{
             do
              {
              System.out.print("\033[H\033[2J");
 		     System.out.flush();
-             System.out.println ("What will you do?");
+             System.out.println ("What will " + name + " do?");
              System.out.println ("Fight\nItems\nNothing\n" );
             
             input = in.nextLine();
             input = input.toLowerCase(Locale.ENGLISH);
         
          
-            if( "fight".equals(input) || "items".equals(input) ) 
+            if( "fight".equals(input)) 
                 {
 			    	break;
 		        }
+            if (input.equals ("items"))
+		        {
+
+		            while(!(input.equals("nothing")))
+		            {
+                        System.out.print("\033[H\033[2J");
+            		    System.out.flush();
+			            System.out.println(this.getInventory() + "\nWhat will " + name + " do?\nEquip Item\nUse Item\nClear Effects\nView Stats\nNothing (go back)\n");	                
+		                input = in.nextLine().toLowerCase(Locale.ENGLISH);
+		                switch(input)
+		                {
+		                    case "use item":
+		                        try 
+		                        {
+		                            System.out.println("\nUse what item? ");
+		                            this.getInventory().useItem(in.nextLine());		                            
+		                        } catch(Exception e) {System.out.println("" + name + " can't use that item.");}
+
+		                        break;
+		                    case "equip item":
+		                        try 
+		                        {
+    		                        System.out.println("\nEquip what item?");
+    		                        this.getInventory().equipItem(in.nextLine());		                            
+		                        } catch(Exception e) {System.out.println("" + name + " can't equip that item.");}
+
+		                        break;
+		                    case "clear effects":
+		                        this.getInventory().killEffects();
+		                        break;
+		                    case "nothing":
+		                        break;
+		                    case "view stats":
+		                        this.getInventory().onlyViewing();
+		                        this.augmentStats();
+		                        System.out.println("\nStats: ");
+		                        this.statSheet();
+		                        this.normalize();
+		                        break;
+		                }
+		                System.out.println("\nType any character to continue");
+		                delay = in.nextLine();
+		            }
+		            
+		            
+		            
+		        }
+		        
              } while(true);
 		 
 		     
 		 
 		     if (input.equals ("fight"))
 		        {
+		            this.normalize();
+		            this.augmentStats();
 		            System.out.println ("Select an attack to use.");
 		            this.printKnown();
 		            input = in.nextLine();
-		            //this.useSkill (input, enemy);
-		        }
-		    
-		    if (input.equals ("items"))
-		        {
-		            //display items and such
 		        }
 		        
-		  //used to determine battle order. DOES NOT WORK WITH ITEMS YET      
-		  if (isFaster(enemy)){
-		      this.useSkill (input, enemy);
-		      enemy.useSkill ("Basic Attack", this);
-		  }
-		  
-		  else{
-		    enemy.useSkill ("Basic Attack", this);
-		    this.useSkill (input, enemy);
-		  }
-		  
-			delay = in.nextLine();
-		}
-		results (this , enemy);
-     }
+        		    this.useSkill (input, enemy);
+        		    delay = in.nextLine();
+        
+        results (this , enemy);
+    }
      
      public void results(GChar user, GChar enemy){
          if (!(user.isAlive()))
          {
-             System.out.println ("You died.");
+             System.out.println ("" + name + " died.");
          }
-         else
+         else if (!(enemy.isAlive()))
          {
-             System.out.println ("You win the battle!");
+             System.out.println ("" + name + " win the battle!");
              user.expGain (enemy);
          }
      }
      
      public boolean isFaster (GChar enemy){
          return (this.speed > enemy.speed);
+     }
+     
+     public String toString()
+     {
+         return name;
      }
     
     
@@ -534,13 +571,13 @@ public class GChar{
         Skill.consAllSkills();
         GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
         GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
-        Logan.getInventory().giveItem(new Weapon("Zweihänder"));
-        Logan.getInventory().equipItem("Zweihänder");
-        Wendell.getInventory().giveItem(new Weapon("Zweihänder"));
-        Wendell.getInventory().equipItem("Zweihänder");
    
        
-       Logan.battleBeat(Wendell);
+        ArrayList<GChar> chars = new ArrayList<GChar>();
+        chars.add(Logan);
+        chars.add(Wendell);
+        Event e = new CombatEvent(chars);
+        chars = e.beginEvent();
     /*    Logan.augmentStats();
         Wendell.augmentStats();
         Wendell.statSheet();

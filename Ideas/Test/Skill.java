@@ -60,7 +60,6 @@ class basicAttack extends Skill
         else
         {
             c.takeDamage(user.str-c.def);
-            System.out.println (user.name + " deals " + (user.str-c.def ) );
         }
         
     }
