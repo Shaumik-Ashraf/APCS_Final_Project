@@ -571,12 +571,13 @@ public class GChar{
         Skill.consAllSkills();
         GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
         GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
+
    
        
         ArrayList<GChar> chars = new ArrayList<GChar>();
         chars.add(Logan);
         chars.add(Wendell);
-        Event e = new CombatEvent(chars);
+        Event e = new ChestEvent(chars);
         chars = e.beginEvent();
     /*    Logan.augmentStats();
         Wendell.augmentStats();
