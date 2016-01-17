@@ -81,16 +81,24 @@ public class GChar{
             case "warrior":
                 
                 //Stat modifications upon instantiation
-                strInitial = str = 13;
+                strInitial = str = 999;
                 magicInitial = magic = 8;
-           
                 
+             
                 //Basic Skills upon instantiation
                 known.add ("Strong Swing");
-                known.add ("Heat Wave");
-                
-                //Possible skills to learn upon level up
                 learnable.add ("Proud Swivel");
+                learnable.add ("Finishing Touch");
+                
+                if (element.equals ("Fire"))
+                {
+                    known.add ("Heat Wave");
+                    learnable.add ("Rekindle");
+                    learnable.add ("Flame Crash");
+                }
+                
+                
+               
                 
                 //construct inventory with warrior default weapon
                 i = new Inventory("Bronze Longsword");
@@ -104,6 +112,9 @@ public class GChar{
             case "rogue":
                 i = new Inventory("Bronze Dagger");                
                 //construct inventory with rogue default weapon                
+                break;
+                
+            case "monster":
                 break;
             
         }
@@ -241,6 +252,7 @@ public class GChar{
      public void expGain (GChar c)
      {
         this.EXP += c.EXP;
+        System.out.println ("You gained " + c.EXP + " EXP!");
         if (this.EXP >= 100)
         {
             System.out.print("\033[H\033[2J");
@@ -333,7 +345,7 @@ public class GChar{
      
      public void printKnown()
      {
-         System.out.println("Skills you know:" + known);
+         System.out.println("Skills you know: " + known);
      }
      
      public void useSkill(String skillName, GChar target)
@@ -342,7 +354,7 @@ public class GChar{
          {
             Skill.getAllSkills().get(skillName).use(this, target);
          }
-         else if (!((this.MP - Skill.getAllSkills().get(skillName).getMpCost()) >= 0))
+         else if ((known.contains(skillName)) &&(!((this.MP - Skill.getAllSkills().get(skillName).getMpCost()) >= 0)))
          {
             System.out.println("You don't have enough MP."); 
          }
@@ -369,6 +381,7 @@ public class GChar{
          {
              HP -= damage;
          }
+         System.out.println (this.name + " takes " + damage + " damage!");
      }
      
     /*
@@ -399,6 +412,68 @@ public class GChar{
         
     }
     
+    /*
+     =========================================================================================================================================================
+     ===Enemy Encounter Methods==========================================================================================================================================
+     =========================================================================================================================================================
+     */     
+     
+     public void battleBeat (GChar enemy)
+     {
+        Scanner in = new Scanner(System.in);
+		String input;  //input buffer
+		String delay;
+		while (this.isAlive() && enemy.isAlive())
+		{
+            do
+             {
+             System.out.print("\033[H\033[2J");
+		     System.out.flush();
+             System.out.println ("What will you do?");
+             System.out.println ("Fight\nItems\nNothing\n" );
+            
+            input = in.nextLine();
+        
+         
+            if( "Fight".equals(input) || "Items".equals(input) ) 
+                {
+			    	break;
+		        }
+             } while(true);
+		 
+		     
+		 
+		     if (input.equals ("Fight"))
+		        {
+		            System.out.println ("Select an attack to use.");
+		            this.printKnown();
+		            input = in.nextLine();
+		            this.useSkill (input, enemy);
+		        }
+		    
+		    if (input.equals ("Items"))
+		        {
+		            //display items and such
+		        }
+		        
+		    enemy.useSkill ("Basic Attack", this);
+			delay = in.nextLine();
+		}
+		results (this , enemy);
+     }
+     
+     public void results(GChar user, GChar enemy){
+         if (!(user.isAlive()))
+         {
+             System.out.println ("You died.");
+         }
+         else
+         {
+             System.out.println ("You win the battle!");
+             user.expGain (enemy);
+         }
+     }
+    
     
     
     //Main Method for Testing
@@ -413,8 +488,9 @@ public class GChar{
         Wendell.getInventory().giveItem(new Weapon("Zweihänder"));
         Wendell.getInventory().equipItem("Zweihänder");
    
-/*        
-        Logan.augmentStats();
+       
+       Logan.battleBeat(Wendell);
+    /*    Logan.augmentStats();
         Wendell.augmentStats();
         Wendell.statSheet();
         System.out.println("");
@@ -426,7 +502,7 @@ public class GChar{
         Wendell.statSheet();
         Logan.normalize();
         Wendell.normalize();
-*/        
+       
         Logan.augmentStats();
         Wendell.augmentStats();
         Logan.learnSkill();
@@ -452,12 +528,8 @@ public class GChar{
         
         Wendell.augmentStats();
         Logan.augmentStats();
-        Wendell.useSkill ("Basic Attack", Logan);
-        if ( !( Logan.isAlive()) ) 
-        {
-            Wendell.expGain(Logan);
-            Wendell.statSheet();
-        }
+        Wendell.useSkill ("Basic Attack", Logan);*/
+     
         
     }
     

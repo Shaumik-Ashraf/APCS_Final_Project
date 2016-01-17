@@ -8,9 +8,16 @@ public abstract class Skill
     public static void consAllSkills()
     {
         allSkills.put("Basic Attack", new basicAttack());
+        
+        //Warrior Skills
         allSkills.put("Strong Swing", new strongSwing());
         allSkills.put("Proud Swivel", new proudSwivel());
+        allSkills.put("Finishing Touch", new finishingTouch());
+        
+        //Fire skills
         allSkills.put("Heat Wave", new heatWave());
+        allSkills.put("Rekindle", new reKindle());
+        allSkills.put ("Flame Crash", new flameCrash());
     }
     
     public static HashMap<String,Skill> getAllSkills()
@@ -32,6 +39,7 @@ class basicAttack extends Skill
     
     public void use(GChar user, GChar c)
     {
+        System.out.println (user.name + " bashes " + c.name);
         user.MP -= mpCost;
         if (((Math.random() * 100)) <= user.luck)
         {
@@ -41,6 +49,7 @@ class basicAttack extends Skill
         else
         {
             c.takeDamage(user.str-c.def);
+            System.out.println (user.name + " deals " + (user.str-c.def ) );
         }
         
     }
@@ -57,10 +66,11 @@ class strongSwing extends Skill
     
     public void use (GChar user, GChar c)
     {
+        System.out.println (user.name + " used Strong Swing!");
         user.MP -= mpCost;
      if (((Math.random() * 100)) <= user.luck)
         {
-            c.takeDamage (user.str - c.def / 2 );
+            c.takeDamage (user.str + 10 - c.def / 2 );
             System.out.println ("It's a critical hit! REKT");
         }
     else
@@ -75,11 +85,12 @@ class proudSwivel extends Skill
 {
     public proudSwivel()
     {
-        mpCost = 5;
+        mpCost = 25;
     }
     
     public void use (GChar user, GChar c)
     {
+        System.out.println (user.name + " used Proud Swivel!");
         user.MP -= mpCost;
         if (((Math.random() * 100)) <= user.luck)
         {
@@ -94,6 +105,29 @@ class proudSwivel extends Skill
 }
 
 
+class finishingTouch extends Skill
+{
+    public finishingTouch()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " used Finishing Touch!"); 
+        user.MP -= mpCost;
+        if (((Math.random() * 100)) <= user.luck)
+        {
+            c.takeDamage (user.str + user.HP - c.def / 2 );
+            System.out.println ("It's a critical hit! REKT");
+        }
+        else
+        {
+            c.takeDamage (user.str + user.HP - c.def);
+        }
+    }
+}
+
 
 
 //element Fire skills
@@ -106,6 +140,7 @@ class heatWave extends Skill
     
     public void use (GChar user, GChar c)
     {
+        System.out.println (user.name + " cast Heat Wave"); 
         user.MP -= mpCost;
         if (c.element.equals ("Wood") )
         {
@@ -115,7 +150,54 @@ class heatWave extends Skill
         
         else if (c.element.equals ("Aqua") )
         {
-           c.takeDamage (user.magic*2 - c.res); 
+           c.takeDamage (user.magic/2 - c.res); 
+           System.out.println ("It's not very effective...");
+        }
+        
+        else
+        {
+            c.takeDamage (user.magic - c.res);
+        }
+    }
+}
+
+
+
+class reKindle extends Skill
+{
+    public reKindle()
+    {
+        mpCost = 10;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " cast Rekindle!");
+        System.out.println (user.name + " is enveloped by a firey aura! Resistance to magic has increased!");
+        user.res += 4;
+    }
+}
+
+class flameCrash extends Skill
+{
+    public flameCrash()
+    {
+        mpCost = 15;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " used Flame Crash!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Wood") )
+        {
+           c.takeDamage (user.str*2 - c.res); 
+           System.out.println ("It's super effective!");
+        }
+        
+        else if (c.element.equals ("Aqua") )
+        {
+           c.takeDamage (user.str/2 - c.res); 
            System.out.println ("It's not very effective...");
         }
         
