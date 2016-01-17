@@ -24,7 +24,6 @@ import java.util.*;
       
         private GChar enemy;
         
-        private boolean response;
         private String message;
         private String choice;
 
@@ -41,26 +40,24 @@ import java.util.*;
         public Legendairy() {
          
 	        in = new Scanner(System.in);
-			response = false;
 			
-	        stats.add ("Health");
-	        stats.add ("HP");
-	        stats.add ("Strength");
-	        stats.add ("Magic");
-	        stats.add ("Defense");
-	        stats.add ("Resistance");
-	        stats.add ("Luck");
-	        stats.add ("Agility");
+	        stats.add ("health");
+	        stats.add ("strength");
+	        stats.add ("magic");
+	        stats.add ("defense");
+	        stats.add ("resistance");
+	        stats.add ("luck");
+	        stats.add ("agility");
 	        
-	        traits.add ("Outgoing");
-	        traits.add ("Optimistic");
-	        traits.add ("Calm");
-	        traits.add ("Carefree");
-	        traits.add ("Empty");
+	        traits.add ("outgoing");
+	        traits.add ("optimistic");
+	        traits.add ("calm");
+	        traits.add ("carefree");
+	        traits.add ("empty");
 	        
-	        jobs.add ("Warrior");
-	        jobs.add ("Mage");
-	        jobs.add ("Archer");
+	        jobs.add ("warrior");
+	        jobs.add ("mage");
+	        jobs.add ("archer");
 	        
 
 	        newGame();
@@ -97,21 +94,23 @@ import java.util.*;
         	message += "Archer\n";
         	
         	
-        	while (!response){
+        	do
+        	{
                 
                 	System.out.println (message);
                     System.out.println("Please enter an appropriate response.\n");
 	                choice =in.nextLine();
+	                choice = choice.toLowerCase(Locale.ENGLISH);
 	               	System.out.print("\033[H\033[2J");
 					System.out.flush();
 	                if ( jobs.contains (choice) ) {
 	                    job = choice;
-	                    response = true;
+	                    break;
 	                }
 
-            }
+            }while (true);
             
-            response = false;
+      
 	        System.out.print("\033[H\033[2J");
 			System.out.flush();
 	        message = "What do you think is your strongest asset?\n";
@@ -124,22 +123,23 @@ import java.util.*;
         	message += "Agility\n";
        
             
-            
-            while (!response){
-               
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
-	                choice =in.nextLine();
-	                System.out.print("\033[H\033[2J");
-					System.out.flush();
-	                if ( stats.contains (choice) ) {
-	                    best = choice;
-	                    response = true;
+            do
+        	{
+              
+                System.out.println (message);
+                System.out.println("Please enter an appropriate response.\n");
+	            choice =in.nextLine();
+	            choice = choice.toLowerCase(Locale.ENGLISH);
+	            System.out.print("\033[H\033[2J");
+				System.out.flush();
+	            if ( stats.contains (choice) ) {
+	               	best = choice;
+	                break;
 	                }
-	         
-            }
+
+            }while (true);
             
-            response = false;
+      
             
             System.out.print("\033[H\033[2J");
 			System.out.flush();
@@ -153,25 +153,25 @@ import java.util.*;
         	message += "Agility\n";
        
             
-            
-            while (!response){
-                
+ 			do
+        	{
               
-                	System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
-	                choice =in.nextLine();
-	                System.out.print("\033[H\033[2J");
-					System.out.flush();
-	                if ( stats.contains (choice) ) {
-	                    worst = choice;
-	                    response = true;
+                System.out.println (message);
+                System.out.println("Please enter an appropriate response.\n");
+	            choice =in.nextLine();
+	            choice = choice.toLowerCase(Locale.ENGLISH);
+	            System.out.print("\033[H\033[2J");
+				System.out.flush();
+	            if ( stats.contains (choice) ) {
+	               	worst = choice;
+	                break;
 	                }
-	           
-            }
+
+            }while (true);
             
         
         
-         response = false;
+        
             System.out.print("\033[H\033[2J");
 			System.out.flush();
             message = "Which of the following best describes your character?\n";
@@ -181,39 +181,54 @@ import java.util.*;
 	        message += "Carefree\n";
 	        message += "Empty\n";
         
-
-            
-            while (!response){
-                
-             
-               		System.out.println (message);
-                    System.out.println("Please enter an appropriate response.\n");
-	                choice =in.nextLine();
-	                System.out.print("\033[H\033[2J");
-					System.out.flush();
-	                if ( traits.contains (choice) ) {
+			do
+        	{
+              
+                System.out.println (message);
+                System.out.println("Please enter an appropriate response.\n");
+	            choice =in.nextLine();
+	            choice = choice.toLowerCase(Locale.ENGLISH);
+	            System.out.print("\033[H\033[2J");
+				System.out.flush();
+	            if ( traits.contains (choice) ) {
 	                    element = choice;
-	                    if (element.equals ("Outgoing") ){
+	                    if (element.equals ("outgoing") ){
 	                    	element = "Fire";
 	                    }
-	                    response = true;
-	                }
-	           
-            }
+	                    if (element.equals ("optimistic") ){
+	                    	element = "Wood";
+	                    }
+	                    if (element.equals ("calm") ){
+	                    	element = "Aqua";
+	                    }
+	                    if (element.equals ("carefree") ){
+	                    	element = "Gale";
+	                    }
+	                    if (element.equals ("empty") ){
+	                    	element = "Void";
+	                    }
+	               break;
+	            }
+
+            }while (true);
             
-            response = false;
-            
-            //Description will be customized to fit what the player inputed previously
+
             System.out.print("\033[H\033[2J");
 			System.out.flush();
 			
-		
+			System.out.println (name);
+			System.out.println (element);
+			System.out.println (best);
+			System.out.println (worst);
+			System.out.println (job);
+			
 			
 			GChar cloud = new GChar (name, element, best, worst, job);
             message = "Hm, so you're " ;
             message += name;
             message += "?\n";
             System.out.println (message);
+          
         }
             
           

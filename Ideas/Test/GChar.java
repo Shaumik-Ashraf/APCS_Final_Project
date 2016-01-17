@@ -128,36 +128,36 @@ public class GChar{
     
     
     public void bestStat(String stat){
-        if (stat.equals ("Health")){
+        if (stat.equals ("health")){
             HP *= 1.5;
             hpInitial = HP;
         }
-        else if (stat.equals ("Strength")){
+        else if (stat.equals ("strength")){
             str *= 1.5;
             strInitial = str;
         }
         
-        else if (stat.equals ("Magic")){
+        else if (stat.equals ("magic")){
             magic *= 1.5;
             magicInitial = magic;
         }
         
-        else if (stat.equals ("Defense")){
+        else if (stat.equals ("defense")){
             def *= 1.5;
             defInitial = def;
         }
         
-        else if (stat.equals ("Resistance")){
+        else if (stat.equals ("resistance")){
             res *= 1.5;
             resInitial = res;
         }
         
-        else if (stat.equals ("Luck")){
+        else if (stat.equals ("luck")){
             luck *= 1.5;
             luckInitial = luck;
         }
         
-        else if (stat.equals ("Agility")){
+        else if (stat.equals ("agility")){
             speed *= 1.5;
             speedInitial = speed;
         }
@@ -167,36 +167,36 @@ public class GChar{
     }
     
     public void worstStat(String stat){
-         if (stat.equals ("Health")){
+         if (stat.equals ("health")){
             HP *= .5;
             hpInitial = HP;
         }
-        else if (stat.equals ("Strength")){
+        else if (stat.equals ("strength")){
             str *= .5;
             strInitial = str;
         }
         
-        else if (stat.equals ("Magic")){
+        else if (stat.equals ("magic")){
             magic *= .5;
             magicInitial = magic;
         }
         
-        else if (stat.equals ("Defense")){
+        else if (stat.equals ("defense")){
             def *= .5;
             defInitial = def;
         }
         
-        else if (stat.equals ("Resistance")){
+        else if (stat.equals ("resistance")){
             res *= .5;
             resInitial = res;
         }
         
-        else if (stat.equals ("Luck")){
+        else if (stat.equals ("luck")){
             luck *= .5;
             luckInitial = luck;
         }
         
-        else if (stat.equals ("Agility")){
+        else if (stat.equals ("agility")){
             speed *= .5;
             speedInitial = speed;
         }
