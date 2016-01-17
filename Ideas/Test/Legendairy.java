@@ -59,19 +59,17 @@ import java.util.*;
 	        jobs.add ("mage");
 	        jobs.add ("archer");
 	        
+	        Item.consEquipList();
+        	Skill.consAllSkills();
 
 	        newGame();
         }
         
         public void newGame(){
         	
-            //character selections
+
             characterCreation();
-            
-            //for now, do battle
-           // battleSim();
-        
-        	
+	
         	
         }
         
