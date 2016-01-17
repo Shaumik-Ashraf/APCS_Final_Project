@@ -76,8 +76,18 @@ public class GChar{
         bestStat(best);
         worstStat(worst);
         known.add("Basic Attack");
+        
+        if (element.equals ("Fire"))
+            {
+                known.add ("Heat Wave");
+                learnable.add ("Rekindle");
+                learnable.add ("Flame Crash");
+              }
+              
         switch(job.toLowerCase())
         {
+            
+                
             case "warrior":
                 
                 //Stat modifications upon instantiation
@@ -87,35 +97,59 @@ public class GChar{
              
                 //Basic Skills upon instantiation
                 known.add ("Strong Swing");
+                
+                //Skills learned upon level up
                 learnable.add ("Proud Swivel");
                 learnable.add ("Finishing Touch");
                 
-                if (element.equals ("Fire"))
-                {
-                    known.add ("Heat Wave");
-                    learnable.add ("Rekindle");
-                    learnable.add ("Flame Crash");
-                }
-                
-                
-               
+
+             
                 
                 //construct inventory with warrior default weapon
                 i = new Inventory("Bronze Longsword");
                 break;
+                
             case "mage":
-                //add mage learnable and owned skills here, and construct inventory with archer default weapon
+                
+                //Stat modifications upon instantiation
+                strInitial = str = 8;
+                magicInitial = magic = 13;
+                
+                //Basic Skills upon instantiation
+                known.add ("Arcanite Force");
+                
+                //Skills learned upon level up
+                learnable.add ("Arcane Bullets");
+                learnable.add ("Concentrate");
+                
+                i = new Inventory("Wooden Pole");
                 break;
+                
             case "archer":
-                //add archer learnable and owned skills here, and construct inventory with mage default weapon
+                //Stat modifications upon instantiation
+                speedInitial = speed = 13;
+                magicInitial = magic = 8;
+                //Basic Skills upon instantiation
+                known.add ("Bow Throw");
+                
+                //Skills learned upon level up
+                learnable.add ("Focus");
+                learnable.add ("Arrow Storm");
+                
+                i = new Inventory("Bronze Longsword");//Archer doesn't have a weapon yet. T_T
                 break;
+                
             case "rogue":
                 i = new Inventory("Bronze Dagger");                
-                //construct inventory with rogue default weapon                
+                //construct inventory with rogue default weapon       
+              
+                
                 break;
                 
             case "monster":
                 break;
+                
+          
             
         }
     }
@@ -270,7 +304,9 @@ public class GChar{
             this.HP = hpInitial;
             this.MP = mpInitial;
             this.skillPoints(lvlGain);
-            this.learnSkill();
+            if (this.level % 5 == 0){
+                this.learnSkill();
+            }
         }
      }
      
@@ -482,7 +518,7 @@ public class GChar{
     {
         Item.consEquipList();
         Skill.consAllSkills();
-        GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
+        GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Archer");
         GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
         Logan.getInventory().giveItem(new Weapon("Zweihänder"));
         Logan.getInventory().equipItem("Zweihänder");
