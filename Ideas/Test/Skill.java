@@ -226,7 +226,7 @@ class focus extends Skill
 
 class arcaniteForce extends Skill
 {
-    public strongSwing()
+    public arcaniteForce()
     {
         mpCost = 10;
     }
@@ -262,7 +262,7 @@ class arcaneBullets extends Skill
 
 class concentrate extends Skill
 {
-    public focus()
+    public concentrate()
     {
         mpCost = 15;
     }
