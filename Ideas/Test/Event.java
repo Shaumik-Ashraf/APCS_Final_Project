@@ -214,7 +214,7 @@ class NoEvent extends Event
     		            {
                             System.out.print("\033[H\033[2J");
                 		    System.out.flush();
-    			            System.out.println(charInput.getInventory() + "\nWhat will " + charInput.toString() + " do?\nEquip Item\nUse Item\nClear Effects\nView Stats\nNothing (go back)\n");	                
+    			            System.out.println(charInput.getInventory() + "\nWhat will " + charInput.toString() + " do?\nEquip Item\nUse Item\nClear Effects\nView Stats\nGive Item\nNothing (go back)\n");	                
     		                input = in.nextLine().toLowerCase(Locale.ENGLISH);
     		                switch(input)
     		                {
@@ -246,6 +246,20 @@ class NoEvent extends Event
     		                        charInput.statSheet();
     		                        charInput.normalize();
     		                        break;
+    		                    case "give item":
+    		                        System.out.println("Give it to who?");
+    		                        input = in.nextLine();
+    		                        GChar charInput2 = party.get(0);
+		                            for (int j = 0; j < party.size(); j++)
+		                            {
+		                                if (party.get(j).name.equals(input))
+		                                {
+		                                    charInput2 = party.get(j);
+		                                }
+		                            }
+		                            System.out.println("Give what item to " + charInput2.name + "?");
+		                            input = in.nextLine();
+		                            charInput.getInventory().giveItemTo(input, charInput2);
     		                }
     		                System.out.println("\nType any character to continue");
     		                delay = in.nextLine();
@@ -376,7 +390,7 @@ class ChestEvent extends Event
     		        {
     		            System.out.println("The chest creaks open. "+ charInput.toString() + " receives glorious loot.");
     		            //
-    		            //CODE FOR LOOT HERE
+    		            charInput.getInventory().giveItem(new Weapon("Bronze Dagger"));
     		            //
     		            isComplete = true;
     		        }
@@ -397,14 +411,36 @@ class ChestEvent extends Event
     		            }
     		        }
     		        System.out.println("You send " +charInput.toString()+ " to pick the lock...");
+    		        System.out.println("Would " + charInput.name + " like to use lock picking tools? (y/n)");
+    		        input = in.nextLine();
+    		        if (input.equals("y"))
+    		        {
+    		            if (charInput.getInventory().removeItemB("Advanced Lock Picking Kit"))
+    		            {
+    		                charInput.speed += 12;
+    		                charInput.luck += 22;
+    		                System.out.println("Used one advanced lockpick's kit.");
+    		            }
+    		            else if (charInput.getInventory().removeItemB("Lock Picking Kit"))
+    		            {
+    		                charInput.luck += 13;
+    		                charInput.speed += 5;
+    		                System.out.println("Used one lockpick's kit.");
+    		            }
+    		            else
+    		            {
+    		                System.out.println(charInput.name + " does not have any.");
+    		            }
+    		        }
     		        switch (type)
     		        {
     		            case "normal":
-    		                System.out.println("This chest is not locked");
+    		                System.out.println("This chest is not locked.");
     		                break;
     		            case "locked":
     		                if (charInput.luck > (35 + chestLevel * chestLevel*Math.random() /2))
     		                {
+    		                    charInput.normalize();
     		                    System.out.println (charInput + " unlocks the chest.");
     		                    type = "normal";
     		                }
@@ -413,6 +449,7 @@ class ChestEvent extends Event
     		                    System.out.println (charInput + " unlocks the chest, after fumbling for a while");
     		                    if ((charInput.speed < 9*Math.random()*chestLevel) || (charInput.luck < 9*Math.random()*chestLevel))
     		                    {
+    		                        charInput.normalize();
     		                        System.out.println(charInput.toString() + " opened the chest too slowly and with too much noise. The attention of nearby enemies has been drawn!");
     		                        CombatEvent surprise = new CombatEvent(party, true);
     		                        party = surprise.beginEvent();
@@ -424,6 +461,7 @@ class ChestEvent extends Event
     		                    System.out.println(charInput + " could not open the chest.");
     		                    if ((charInput.speed < 14*Math.random()*chestLevel) || (charInput.luck < 14*Math.random()*chestLevel))
     		                    {
+    		                        charInput.normalize();
     		                        System.out.println(charInput.toString() + " attempted to open the chest too slowly and with too much noise. The attention of nearby enemies has been drawn!");
     		                        CombatEvent surprise = new CombatEvent(party, true);
     		                        party = surprise.beginEvent();
@@ -432,12 +470,14 @@ class ChestEvent extends Event
     		                }
     		                break;
     		            case "ambush":
+    		                charInput.normalize();
     		                System.out.println(charInput + " unlocks the chest. It was very easy to unlock.\nYou are ambushed!!!");
     		                CombatEvent surprise = new CombatEvent(party, true);
     		                party = surprise.beginEvent();	
     		                type = "normal";
     		                break;
     		            case "trapped":
+    		                charInput.normalize();
     		                System.out.println(charInput + " unlocks the chest.");	
     		                type = "normal";
     		                if (charInput.speed < chestLevel*15*Math.random())

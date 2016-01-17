@@ -11,6 +11,7 @@ public abstract class Item
     public static HashMap<String, int[]> weapons = new HashMap<String, int[]>(); //Creates dictionary of items, uses name to label lists of weapon stats. Weapon data accessed by name. Array contains data in order of definitions in equipable
     public static HashMap<String, int[]> armor = new HashMap<String, int[]>(); //Creates dictionary of items, uses name to label lists of armor stats. Armor data accessed by name. Array contains data in order of definitions in equipable    
     public static HashMap<String, int[]> effectItems = new HashMap<String, int[]>(); //Creates dictionary of useable items that affect stats
+    public static HashMap<String, int[]> miscItems = new HashMap<String, int[]>(); //Creates dictionary of miscellaneous items
     public static void consEquipList()
     {
         /* ------WEAPON DATABASE------ */
@@ -203,6 +204,13 @@ public abstract class Item
         effectItems.put("Improved Powerful Luck Potion", new int[] {0,0,0,0,0,0,0,15,7});
         effectItems.put("Super Luck Potion", new int[] {0,0,0,0,0,0,0,22,5});
         effectItems.put("Improved Super Luck Potion", new int[] {0,0,0,0,0,0,0,22,7});
+        
+        
+        
+        
+        /* -------MISC ITEM DATABASE---------- */
+        miscItems.put("Lock Picking Kit", new int[]{});
+        miscItems.put("Advanced Lock Picking Kit", new int[]{});
     }
     
     public String toString() {return name;}
@@ -344,5 +352,17 @@ class EffectItem extends Useable
         effects.put("mpMod",data[6]);
         effects.put("luckMod",data[7]);
         return effects;
+    }
+}
+
+//-------------------------------------------------------------------------------------------
+
+//---------------------------------------MISC CLASSES-------------------------------------
+
+class MiscItem extends Item
+{
+    public MiscItem (String n)
+    {
+        name = n;
     }
 }

@@ -73,6 +73,23 @@ public class Inventory
         System.out.println("You gain: " + i.toString() + ".");
     }
     
+    public void giveItemTo(String itemName, GChar c)
+    {
+        try 
+        {
+            int index = -1;
+            for (int k = 0; k < inv.size(); k++)
+            {
+                if (inv.get(k).toString().equals(itemName))
+                {
+                    index = k;
+                }
+            }
+            c.getInventory().giveItem(inv.get(index));
+            inv.remove(index);
+        } catch(Exception e) {return;}
+    }
+    
     public void removeItem(String itemName)
     {
         try 
@@ -123,6 +140,7 @@ public class Inventory
             }
         } catch (Exception e) {System.out.println("You don't own this item, or it cannot be equipped");}
     }
+    
     
     //adds all item and effect bonuses, and exports data as hashmap for easy use
     public HashMap<String, Integer> scrapeStats()
