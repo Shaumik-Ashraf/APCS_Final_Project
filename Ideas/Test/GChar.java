@@ -93,7 +93,7 @@ public class GChar{
                 //Stat modifications upon instantiation
                 strInitial = str = 13;
                 magicInitial = magic = 8;
-                
+   
              
                 //Basic Skills upon instantiation
                 known.add ("Strong Swing");
@@ -485,7 +485,7 @@ public class GChar{
 		            System.out.println ("Select an attack to use.");
 		            this.printKnown();
 		            input = in.nextLine();
-		            this.useSkill (input, enemy);
+		            //this.useSkill (input, enemy);
 		        }
 		    
 		    if (input.equals ("items"))
@@ -493,7 +493,17 @@ public class GChar{
 		            //display items and such
 		        }
 		        
+		  //used to determine battle order. DOES NOT WORK WITH ITEMS YET      
+		  if (isFaster(enemy)){
+		      this.useSkill (input, enemy);
+		      enemy.useSkill ("Basic Attack", this);
+		  }
+		  
+		  else{
 		    enemy.useSkill ("Basic Attack", this);
+		    this.useSkill (input, enemy);
+		  }
+		  
 			delay = in.nextLine();
 		}
 		results (this , enemy);
@@ -510,6 +520,10 @@ public class GChar{
              user.expGain (enemy);
          }
      }
+     
+     public boolean isFaster (GChar enemy){
+         return (this.speed > enemy.speed);
+     }
     
     
     
@@ -518,7 +532,7 @@ public class GChar{
     {
         Item.consEquipList();
         Skill.consAllSkills();
-        GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Archer");
+        GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
         GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
         Logan.getInventory().giveItem(new Weapon("Zweihänder"));
         Logan.getInventory().equipItem("Zweihänder");
