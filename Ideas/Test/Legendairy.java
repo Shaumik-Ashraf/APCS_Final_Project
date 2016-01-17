@@ -53,6 +53,8 @@ import java.util.*;
 	        traits.add ("optimistic");
 	        traits.add ("calm");
 	        traits.add ("carefree");
+	        traits.add ("malevolent");
+	        traitsadd ("benevolent")
 	        traits.add ("empty");
 	        
 	        jobs.add ("warrior");
@@ -183,7 +185,9 @@ import java.util.*;
 	        message += "Optimistic\n";
 	        message += "Calm\n";
 	        message += "Carefree\n";
-	        message += "Empty\n";
+	        message += "Malevolent\n";
+	        message += "Benevolent\n";
+	       // message += "Empty\n"; // Blank is a secret class.
         
 			do
         	{
@@ -207,6 +211,12 @@ import java.util.*;
 	                    }
 	                    if (element.equals ("carefree") ){
 	                    	element = "Gale";
+	                    }
+	                    if (element.equals ("malevolent") ){
+	                    	element = "Dark";
+	                    }
+	                    if (element.equals ("benevolent") ){
+	                    	element = "Light";
 	                    }
 	                    if (element.equals ("empty") ){
 	                    	element = "Void";

@@ -139,6 +139,16 @@ public class GChar{
                     learnable.add ("Blood Rain");
                 }
                 
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Feather Duster");
+                    learnable.add ("Spiral Assault");
+                    learnable.add ("Proud Swivel");
+                    learnable.add ("Finishing Touch");
+                    learnable.add ("Tail Wind");
+                }
+                
+                
                 //construct inventory with warrior default weapon
                 i = new Inventory("Bronze Longsword");
                 break;
@@ -193,6 +203,15 @@ public class GChar{
                     known.add ("Demon Fury");
                     learnable.add ("Blood Rain");
                     learnable.add ("Zombie Strike");
+                    learnable.add ("Arcane Bullets");
+                    learnable.add ("Concentrate");
+                }
+                
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Spiral Assault");
+                    learnable.add ("Feather Duster");
+                    learnable.add ("Tail Wind");
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
                 }
@@ -253,6 +272,15 @@ public class GChar{
                     learnable.add ("Blood Rain");
                 }
                 
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Feather Duster");
+                    learnable.add ("Spiral Assault");
+                    learnable.add ("Focus");
+                    learnable.add ("Arrow Storm");
+                    learnable.add ("Tail Wind");
+                }
+                
                 i = new Inventory("Bronze Longsword");//Archer doesn't have a weapon yet. T_T
                 break;
                 
@@ -305,6 +333,16 @@ public class GChar{
                     learnable.add ("Zombie Strike");
                     learnable.add ("Gamble");
                     learnable.add ("Blood Rain");
+                    learnable.add ("Assassinate");
+                }
+                
+                  
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Feather Duster");
+                    learnable.add ("Spiral Assault");
+                    learnable.add ("Gamble");
+                    learnable.add ("Tail Wind");
                     learnable.add ("Assassinate");
                 }
                 

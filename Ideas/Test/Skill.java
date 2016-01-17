@@ -54,6 +54,12 @@ public abstract class Skill
         allSkills.put("Zombie Strike", new zombieStrike());
         allSkills.put ("Demon Fury", new demonFury());
         allSkills.put ("Blood Rain", new bloodRain());
+        
+        //Gale Skills
+        allSkills.put("Tail Wind", new tailWind());
+        allSkills.put ("Spiral Assault", new spiralAssault());
+        allSkills.put ("Feather Duster", new featherDuster());
+        
     }
     
     public static HashMap<String,Skill> getAllSkills()
@@ -637,7 +643,7 @@ class salvation extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " begins to glow");
-        System.out.println ( + user.name + "'s health has been fully recovered!");
+        System.out.println ( user.name + "'s health has been fully recovered!");
         user.HP = user.hpInitial;
     }
 }
@@ -686,7 +692,7 @@ class zombieStrike extends Skill
 
         else
         {
-            c.takeDamage (user.HP *1.5 - c.res - c.def);
+            c.takeDamage ((int)(user.HP *1.5 - c.res - c.def));
         }
     }
 }
@@ -703,7 +709,7 @@ class demonFury extends Skill
         System.out.println (user.name + " calls for the powers of an otherworldly entity!");
         System.out.println ("The entity has granted " + user.name + " the powers of darkness. Offensive strengths have increased!");
         user.str += 5;
-        user.mag += 5;
+        user.magic += 5;
     }
 }
 
@@ -719,11 +725,11 @@ class bloodRain extends Skill
         int hits = (int)(Math.random() *7 + 1);
         while (hits != 0)
         {
-            if (hit % 2 == 0){
+            if (hits % 2 == 0){
                 c.takeDamage (user.magic - c.def); 
             }
             else{
-                c.takeDamage (user.strength - c.def); 
+                c.takeDamage (user.str - c.def); 
             }
             hits --;
         }
@@ -733,6 +739,71 @@ class bloodRain extends Skill
     }
 }
 
+//element Gale skills
+class tailWind extends Skill
+{
+    public tailWind()
+    {
+        mpCost = 20;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " whips up a tail wind");
+        System.out.println ("The blistering winds increase " + user.name + "'s speed");
+        user.speed += 10;
+    }
+}
+
+
+class spiralAssault extends Skill
+{
+    public spiralAssault()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " spins violently and charges at the " +c.name+"!"); 
+        user.MP -= mpCost;
+        if (((Math.random() * 100)) <= user.luck)
+        {
+            c.takeDamage (user.str - c.res / 4 );
+            System.out.println ("It's a critical hit! REKT");
+        }
+        else
+        {
+            c.takeDamage (user.str - c.res/2);
+        }
+        
+    }
+}
+
+
+class featherDuster extends Skill
+{
+    public featherDuster()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " fires a burst of air at " +c.name+"!"); 
+        user.MP -= mpCost;
+        if (((Math.random() * 100)) <= user.luck)
+        {
+            c.takeDamage (user.magic - c.def / 4 );
+            System.out.println ("It's a critical hit! REKT");
+        }
+        else
+        {
+            c.takeDamage (user.magic - c.def/2);
+        }
+        
+    }
+}
 
 
 
