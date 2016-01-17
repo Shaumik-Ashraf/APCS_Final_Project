@@ -81,7 +81,7 @@ public class GChar{
             case "warrior":
                 
                 //Stat modifications upon instantiation
-                strInitial = str = 999;
+                strInitial = str = 13;
                 magicInitial = magic = 8;
                 
              
@@ -289,7 +289,7 @@ public class GChar{
             System.out.println("\nStat: ");
             
             input = in.nextLine();
-            input.toLowerCase(Locale.ENGLISH);
+            input = input.toLowerCase(Locale.ENGLISH);
             
             
             if (input.equals ("strength") || input.equals("str") )
@@ -433,9 +433,10 @@ public class GChar{
              System.out.println ("Fight\nItems\nNothing\n" );
             
             input = in.nextLine();
+            input = input.toLowerCase(Locale.ENGLISH);
         
          
-            if( "Fight".equals(input) || "Items".equals(input) ) 
+            if( "fight".equals(input) || "items".equals(input) ) 
                 {
 			    	break;
 		        }
@@ -443,7 +444,7 @@ public class GChar{
 		 
 		     
 		 
-		     if (input.equals ("Fight"))
+		     if (input.equals ("fight"))
 		        {
 		            System.out.println ("Select an attack to use.");
 		            this.printKnown();
@@ -451,7 +452,7 @@ public class GChar{
 		            this.useSkill (input, enemy);
 		        }
 		    
-		    if (input.equals ("Items"))
+		    if (input.equals ("items"))
 		        {
 		            //display items and such
 		        }
