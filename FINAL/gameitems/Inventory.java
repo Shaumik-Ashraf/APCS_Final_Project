@@ -180,7 +180,9 @@ public class Inventory
             }
        // } catch (Exception e){}
     }
-    
+
+
+/*    
     public static void main(String[] args)
     {
         Item.consEquipList();
@@ -209,7 +211,7 @@ public class Inventory
 //        System.out.println("Attempting to equip nonexistant item");
 //        System.out.println(i);
 //        System.out.println("\n\n\n\n\n\n\n\n\n\n\n\n");
-/*        System.out.println(i);
+        System.out.println(i);
         System.out.println(i.scrapeStats());
         boolean k = i.removeItemB("Bronze Helmet");
         System.out.println(k);
@@ -243,7 +245,7 @@ public class Inventory
         System.out.println(i.scrapeStats());
         i.useItem("Weak Healing Potion");  
         System.out.println(i.scrapeStats());
-*/
+
 
         System.out.println(i.scrapeStats());
         i.giveItem(new EffectItem("Ultimate Healing Potion"));
@@ -256,5 +258,6 @@ public class Inventory
         System.out.println(i);
 
     }
+    */
     
 }

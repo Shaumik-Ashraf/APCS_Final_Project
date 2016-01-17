@@ -128,7 +128,7 @@ public abstract class Item
         
         effectItems.put("Lesser Healing Potion", new int[] {0,0,0,0,0,15,0,0,1});
         effectItems.put("Weak Healing Potion", new int[] {0,0,0,0,0,20,0,0,1});
-        effectItems.put("Healing Posion", new int[] {0,0,0,0,0,35,0,0,1});
+        effectItems.put("Healing Potion", new int[] {0,0,0,0,0,35,0,0,1});
         effectItems.put("Effective Healing Potion", new int[] {0,0,0,0,0,50,0,0,1});
         effectItems.put("Strong Healing Potion", new int[] {0,0,0,0,0,65,0,0,1});
         effectItems.put("Powerful Healing Potion", new int[] {0,0,0,0,0,85,0,0,1});
