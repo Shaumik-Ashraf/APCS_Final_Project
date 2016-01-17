@@ -34,6 +34,8 @@ class CombatEvent extends Event
             party.add(c);
             engagement.add(c);
             aliveParty.add(c);
+            c.normalize();
+            c.augmentStats();
         }
         spawnEnemies();
         
@@ -62,6 +64,8 @@ class CombatEvent extends Event
             party.add(c);
             engagement.add(c);
             aliveParty.add(c);
+            c.normalize();
+            c.augmentStats();
         }
         spawnEnemies();
         
@@ -314,15 +318,15 @@ class ChestEvent extends Event
         int spawnType = (int)(Math.random()*100);
         if (spawnType <= 15)
         {
-            type = "ambush";
+            type = "ambush"; //ambush
         }
         else if ((spawnType > 15) && (spawnType <= 35))
         {
-            type = "trap";
+            type = "trapped";
         }
         else if ((spawnType > 35) && (spawnType <= 65))
         {
-            type = "locked";
+            type = "locked"; //locked
         }
         else
         {
@@ -483,7 +487,8 @@ class ChestEvent extends Event
     		                if (charInput.speed < chestLevel*15*Math.random())
     		                {
     		                    System.out.println(charInput + " was too slow!\nA trap is sprung!");
-    		                    //TRAP EVENT CODE GOES HERE
+    		                    TrapEvent tev = new TrapEvent(party);
+    		                    party = tev.beginEvent();
     		                }
     		                break;
     		        }
@@ -493,5 +498,246 @@ class ChestEvent extends Event
         }
     NoEvent resting = new NoEvent(party);
     return resting.beginEvent();
+    }
+}
+
+//-----------------TRAP EVENT-----------------
+class TrapEvent extends Event
+{
+    String delay;
+    private Scanner in = new Scanner(System.in);
+    public ArrayList<GChar> party = new ArrayList<GChar>();
+    public ArrayList<GChar> aliveParty = new ArrayList<GChar>();
+    String type;
+    private int trapLevel;   
+    private int damage;
+    
+    public TrapEvent(ArrayList<GChar> p)
+    {
+        for (GChar c : p)
+        {
+            party.add(c);
+        }
+        trapLevel = party.get(0).level;
+        
+        int spawnType = (int)(Math.random()*100);
+        if (spawnType <= 15)
+        {
+            type = "Fire";
+        }
+        else if ((spawnType > 15) && (spawnType <= 35))
+        {
+            type = "Arrow";
+        }
+        else if ((spawnType > 35) && (spawnType <= 65))
+        {
+            type = "Boulder";
+        }
+        else
+        {
+            type = "Confusion";
+        }
+        damage = (int)(trapLevel * 11 * Math.random());
+    }
+    
+    public ArrayList<GChar> beginEvent()
+    {
+        switch(type)
+        {
+            case "Arrow":
+                System.out.println("Your party is impaled by arrows!");
+                for (GChar d : party)
+                {
+                    d.augmentStats();
+                    d.takeDamage(damage - d.def);
+                    d.normalize();
+                }
+            case "Fire":
+                System.out.println("Your party is scorched by fire!");
+                for (GChar d : party)
+                {
+                    d.augmentStats();
+                    d.takeDamage(damage - d.res);
+                    d.normalize();
+                }
+            case "Boulder":
+                System.out.println("Your party is chased by a boulder!");
+                for (GChar d : party)
+                {
+                    d.augmentStats();
+                    d.takeDamage(damage - d.def);
+                    d.normalize();
+                }
+            case "Confusion":
+                System.out.println("Your party is dazed by a shining blast of arcane power, and drained of energy!");
+                for (GChar d : party)
+                {
+                    d.augmentStats();
+                    d.takeDamageMp(damage - d.magic);
+                    d.normalize();
+                }
+        }
+        for (GChar a : party)
+        {
+            if (a.isAlive())
+            {
+                aliveParty.add(a);
+            }
+            else
+            {
+                System.out.println(a.name + " has died!");
+            }
+        }
+        return aliveParty;
+    }
+}
+
+/*---------------------CAVERN EVENT---------------------*/
+
+class CavernEvent extends Event
+{
+    String delay;
+    private Scanner in = new Scanner(System.in);
+    public ArrayList<GChar> party = new ArrayList<GChar>();
+    public ArrayList<GChar> aliveParty = new ArrayList<GChar>();
+    public ArrayList<GChar> uncrossed = new ArrayList<GChar>();
+    public ArrayList<GChar> crossed = new ArrayList<GChar>();
+    String type;
+    private int cavernLevel;   
+    private int damage;
+    
+    public CavernEvent(ArrayList<GChar> p)
+    {
+        for (GChar c : p)
+        {
+            party.add(c);
+            uncrossed.add(c);
+        }
+        cavernLevel = party.get(0).level + 5;
+        damage = (int)(cavernLevel * 18 * Math.random());
+    }
+    
+    public ArrayList<GChar> beginEvent()
+    {
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        System.out.println("Your party is met with a cavernous expanse.");
+        String input;
+        while (!(uncrossed.size() == 0))
+        {
+            System.out.println("\nCrossed: " + aliveParty + "\nNot Crossed: " + uncrossed);
+            System.out.println("\nWhat do you do?\nJump It\nToss Rope\nVenture Elsewhere\nItems\n");
+            input = in.nextLine().toLowerCase();
+            switch(input)
+            {
+                case "jump it":
+                        System.out.println("\nWho should jump?");
+                        input = in.nextLine();
+                        GChar charInput = party.get(0);
+        		        for (int j = 0; j < party.size(); j++)
+        		        {
+        		            if (party.get(j).name.equals(input))
+        		            {
+        		                    charInput = party.get(j);
+        		            }
+        		        }
+        		        charInput.normalize();
+        		        charInput.augmentStats();
+        		        System.out.println(charInput.name + " leaps...");
+        		        uncrossed.remove(charInput);
+        		        if ((charInput.speed + charInput.str) < cavernLevel*16*Math.random())
+        		        {
+        		            charInput.takeDamage(damage - charInput.def - charInput.luck - charInput.speed);
+        		            if (charInput.isAlive())
+        		            {
+        		                System.out.println(charInput.name + " fell, but climbed to the other side.");        		                
+        		            }
+        		        }
+        		        else if (charInput.isAlive())
+        		        {
+        		            System.out.println(charInput.name + " landed on the other side safely.");
+        		        }
+        		      
+        		        if (charInput.isAlive())
+        		        {
+        		            aliveParty.add(charInput);
+        		            crossed.add(charInput);
+        		        }
+        		        else
+        		        {
+        		            System.out.println(charInput.name + " has died.");
+        		            party.remove(charInput);
+        		        }
+        		        break;
+        	   case "toss rope":
+                        System.out.println("\nWho should toss it?");
+                        input = in.nextLine();
+                        charInput = party.get(0);
+        		        for (int j = 0; j < party.size(); j++)
+        		        {
+        		            if (party.get(j).name.equals(input))
+        		            {
+        		                    charInput = party.get(j);
+        		            }
+        		        }
+        	            charInput.normalize();
+        	            charInput.augmentStats();        		        
+        		        if (crossed.contains(charInput) && aliveParty.contains(charInput))
+        		        {
+        		            if (charInput.getInventory().removeItemB("Rope"))
+        		            {
+        		                if (100*Math.random() < (55 - 2*cavernLevel + charInput.speed))
+        		                {
+        		                    System.out.println("The rope makes it across. All party members make it to the other side of the cavern.");
+        		                    for (GChar ac : uncrossed)
+        		                    {
+        		                        aliveParty.add(ac);
+        		                    }
+        		                    System.out.println("Your party has crossed. Type any character to advance.");
+                                    delay = in.nextLine();
+                                    System.out.print("\033[H\033[2J");
+                                    System.out.flush();
+                    		        //EXP CODE HERE
+                    		        return aliveParty;
+        		                }
+        		                else
+        		                {
+        		                    System.out.println("The rope doesn't make it across. You see it disappear into the abyss.");
+        		                }
+        		            }
+        		            else
+        		            {
+        		                System.out.println(charInput.name + " doesn't have any rope.");
+        		            }
+        		        }
+        		        else
+        		        {
+        		            System.out.println("Only party members who have crossed can throw rope back to the other side.");
+        		        }
+        		        break;
+        	    case "venture elsewhere":
+        	            if (crossed.size() == 0)
+        	            {
+            	            System.out.println("You leave, and take a different route. Monsters were following you. You find yourself in combat.");
+            	            CombatEvent surprise = new CombatEvent(party);
+            	            return surprise.beginEvent();
+        	            }
+        	            else
+        	            {
+        	                System.out.println("You can't leave when some of your members are on the other side!");
+        	            }
+        	            break;
+        	   case "items":
+        	       System.out.println("Only those who have not crossed can use their inventories. Selection will default to first uncrossed character if no valid input.");
+        	       GChar.itemInterface(uncrossed);
+        	       break;
+        	       
+            }
+        }
+        System.out.println("Your party has crossed. Type any character to advance.");
+        delay = in.nextLine();
+        System.out.print("\033[H\033[2J");
+        System.out.flush();
+        return aliveParty;
     }
 }

@@ -211,6 +211,7 @@ public abstract class Item
         /* -------MISC ITEM DATABASE---------- */
         miscItems.put("Lock Picking Kit", new int[]{});
         miscItems.put("Advanced Lock Picking Kit", new int[]{});
+        miscItems.put("Rope", new int[]{});
     }
     
     public String toString() {return name;}

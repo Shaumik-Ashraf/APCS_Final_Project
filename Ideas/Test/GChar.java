@@ -77,12 +77,7 @@ public class GChar{
         worstStat(worst);
         known.add("Basic Attack");
         
-        if (element.equals ("Fire"))
-            {
-                known.add ("Heat Wave");
-                learnable.add ("Rekindle");
-                learnable.add ("Flame Crash");
-              }
+        
               
         switch(job.toLowerCase())
         {
@@ -98,12 +93,33 @@ public class GChar{
                 //Basic Skills upon instantiation
                 known.add ("Strong Swing");
                 
-                //Skills learned upon level up
-                learnable.add ("Proud Swivel");
-                learnable.add ("Finishing Touch");
+                if (element.equals ("Fire"))
+                {
+                    known.add ("Heat Wave");
+                    learnable.add ("Rekindle");
+                    learnable.add ("Proud Swivel");
+                    learnable.add ("Flame Crash");
+                    learnable.add ("Finishing Touch");
+                }
                 
+                if (element.equals ("Aqua"))
+                {
+                    known.add ("Hail Storm");
+                    learnable.add ("Aqua Veil");
+                    learnable.add ("Proud Swivel");
+                    learnable.add ("Tidal Wave");
+                    learnable.add ("Finishing Touch");
+                }
+                
+                if (element.equals ("Wood"))
+                {
+                    known.add ("Pepper Song");
+                    learnable.add ("Wood Spike");
+                    learnable.add ("Proud Swivel");
+                    learnable.add ("Flower Dance");
+                    learnable.add ("Finishing Touch");
+                }
 
-             
                 
                 //construct inventory with warrior default weapon
                 i = new Inventory("Bronze Longsword");
@@ -118,9 +134,34 @@ public class GChar{
                 //Basic Skills upon instantiation
                 known.add ("Arcanite Force");
                 
-                //Skills learned upon level up
-                learnable.add ("Arcane Bullets");
-                learnable.add ("Concentrate");
+                if (element.equals ("Fire"))
+                {
+                    known.add ("Heat Wave");
+                    learnable.add ("Rekindle");
+                    learnable.add ("Flame Crash");
+                    learnable.add ("Arcane Bullets");
+                    learnable.add ("Concentrate");
+                }
+                
+                if (element.equals ("Aqua"))
+                {
+                    known.add ("Hail Storm");
+                    learnable.add ("Aqua Veil");
+                    learnable.add ("Tidal Wave");
+                    learnable.add ("Arcane Bullets");
+                    learnable.add ("Concentrate");
+                }
+                
+                if (element.equals ("Wood"))
+                {
+                    known.add ("Pepper Song");
+                    learnable.add ("Flower Dance");
+                    learnable.add ("Wood Spike");
+                    learnable.add ("Arcane Bullets");
+                    learnable.add ("Concentrate");
+                }
+                
+           
                 
                 i = new Inventory("Wooden Pole");
                 break;
@@ -132,14 +173,71 @@ public class GChar{
                 //Basic Skills upon instantiation
                 known.add ("Bow Throw");
                 
-                //Skills learned upon level up
-                learnable.add ("Focus");
-                learnable.add ("Arrow Storm");
+                
+                if (element.equals ("Fire"))
+                {
+                    known.add ("Heat Wave");
+                    learnable.add ("Rekindle");
+                    learnable.add ("Focus");
+                    learnable.add ("Flame Crash");
+                    learnable.add ("Arrow Storm");
+                }
+                
+                if (element.equals ("Aqua"))
+                {
+                    known.add ("Hail Storm");
+                    learnable.add ("Aqua Veil");
+                    learnable.add ("Focus");
+                    learnable.add ("Tidal Wave");
+                    learnable.add ("Arrow Storm");
+                }
+                
+                if (element.equals ("Wood"))
+                {
+                    known.add ("Pepper Song");
+                    learnable.add ("Wood Spike");
+                    learnable.add ("Focus");
+                    learnable.add ("Flower Dance");
+                    learnable.add ("Arrow Storm");
+                }
                 
                 i = new Inventory("Bronze Longsword");//Archer doesn't have a weapon yet. T_T
                 break;
                 
             case "rogue":
+                luckInitial = luck = 13;
+                magicInitial = magic = 8;
+                strInitial = str = 8;
+                
+                known.add ("Back Stab");
+                
+                if (element.equals ("Fire"))
+                {
+                    known.add ("Heat Wave");
+                    learnable.add ("Rekindle");
+                    learnable.add ("Flame Crash");
+                    learnable.add ("Gamble");
+                    learnable.add ("Assassinate");
+                }
+                
+                if (element.equals ("Aqua"))
+                {
+                    known.add ("Hail Storm");
+                    learnable.add ("Aqua Veil");
+                    learnable.add ("Tidal Wave");
+                    learnable.add ("Gamble");
+                    learnable.add ("Assassinate");
+                }
+                
+                if (element.equals ("Wood"))
+                {
+                    known.add ("Pepper Song");
+                    learnable.add ("Wood Spike");
+                    learnable.add ("Flower Dance");
+                    learnable.add ("Gamble");
+                    learnable.add ("Assassinate");
+                }
+                
                 i = new Inventory("Bronze Dagger");                
                 //construct inventory with rogue default weapon       
               
@@ -370,6 +468,11 @@ public class GChar{
         }
      }
      
+     //sets exp of GChars. Use when monsters are created so the player can get some exp from killing them
+     public void setEXP (GChar target, int value){
+         target.EXP = value;
+     }
+     
     
      
     
@@ -418,6 +521,20 @@ public class GChar{
              HP -= damage;
          }
          System.out.println (this.name + " takes " + damage + " damage!");
+     }
+
+     public void takeDamageMp(int damage)
+     {
+         if (damage < 0) {damage = 0;}
+         else
+         {
+             MP -= damage;
+         }
+         if (MP <= 0)
+         {
+             MP = 0;
+         }
+         System.out.println (this.name + " takes " + damage + " MP damage!");
      }
      
     /*
@@ -476,7 +593,7 @@ public class GChar{
 		        }
             if (input.equals ("items"))
 		        {
-
+                    this.normalize();
 		            while(!(input.equals("nothing")))
 		            {
                         System.out.print("\033[H\033[2J");
@@ -561,6 +678,82 @@ public class GChar{
      {
          return name;
      }
+     
+     public static void itemInterface(ArrayList <GChar> party)
+{
+                    Scanner in = new Scanner(System.in);
+                    String delay;
+                    String input;
+		            System.out.println("Whose items?\n");
+		            input = in.nextLine();
+		            GChar charInput = party.get(0);
+		            for (int j = 0; j < party.size(); j++)
+		            {
+		                if (party.get(j).name.equals(input))
+		                {
+		                    charInput = party.get(j);
+		                }
+		            }
+		            
+		            if (party.contains(charInput))
+		            {
+		                charInput.normalize();
+                        while(!(input.equals("nothing")))
+    		            {
+                            System.out.print("\033[H\033[2J");
+                		    System.out.flush();
+    			            System.out.println(charInput.getInventory() + "\nWhat will " + charInput.toString() + " do?\nEquip Item\nUse Item\nClear Effects\nView Stats\nGive Item\nNothing (go back)\n");	                
+    		                input = in.nextLine().toLowerCase(Locale.ENGLISH);
+    		                switch(input)
+    		                {
+    		                    case "use item":
+    		                        try 
+    		                        {
+    		                            System.out.println("\nUse what item? ");
+    		                            charInput.getInventory().useItem(in.nextLine());		                            
+    		                        } catch(Exception e) {System.out.println("" + charInput.toString() + " can't use that item.");}
+    
+    		                        break;
+    		                    case "equip item":
+    		                        try 
+    		                        {
+        		                        System.out.println("\nEquip what item?");
+        		                        charInput.getInventory().equipItem(in.nextLine());		                            
+    		                        } catch(Exception e) {System.out.println("" + charInput.toString() + " can't equip that item.");}
+    
+    		                        break;
+    		                    case "clear effects":
+    		                        charInput.getInventory().killEffects();
+    		                        break;
+    		                    case "nothing":
+    		                        break;
+    		                    case "view stats":
+    		                        charInput.getInventory().onlyViewing();
+    		                        charInput.augmentStats();
+    		                        System.out.println("\nStats: ");
+    		                        charInput.statSheet();
+    		                        charInput.normalize();
+    		                        break;
+    		                    case "give item":
+    		                        System.out.println("Give it to who?");
+    		                        input = in.nextLine();
+    		                        GChar charInput2 = party.get(0);
+		                            for (int j = 0; j < party.size(); j++)
+		                            {
+		                                if (party.get(j).name.equals(input))
+		                                {
+		                                    charInput2 = party.get(j);
+		                                }
+		                            }
+		                            System.out.println("Give what item to " + charInput2.name + "?");
+		                            input = in.nextLine();
+		                            charInput.getInventory().giveItemTo(input, charInput2);
+    		                }
+    		                System.out.println("\nType any character to continue");
+    		                delay = in.nextLine();
+    		            }		                
+		            }
+}
     
     
     
@@ -577,7 +770,11 @@ public class GChar{
         ArrayList<GChar> chars = new ArrayList<GChar>();
         chars.add(Logan);
         chars.add(Wendell);
-        Event e = new ChestEvent(chars);
+        Wendell.getInventory().giveItem(new MiscItem("Advanced Lock Picking Kit"));
+        Wendell.getInventory().giveItem(new MiscItem("Rope"));
+        Event e = new CavernEvent(chars);
+        chars = e.beginEvent();
+        e = new ChestEvent(chars);
         chars = e.beginEvent();
     /*    Logan.augmentStats();
         Wendell.augmentStats();
