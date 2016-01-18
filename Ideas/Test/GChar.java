@@ -36,6 +36,7 @@ public class GChar{
     public int EXP;
     public int level;
     public int MP;
+
    
     
     //used for normalize
@@ -116,10 +117,37 @@ public class GChar{
                     known.add ("Pepper Song");
                     learnable.add ("Wood Spike");
                     learnable.add ("Proud Swivel");
-                    learnable.add ("Flower Dance");
                     learnable.add ("Finishing Touch");
+                    learnable.add ("Flower Dance");
                 }
 
+                if (element.equals ("Light"))
+                {
+                    known.add ("Heavenly Light");
+                    learnable.add ("Luster Wave");
+                    learnable.add ("Proud Swivel");
+                    learnable.add ("Finishing Touch");
+                    learnable.add ("Salvation");
+                }
+                
+                if (element.equals ("Dark"))
+                {
+                    known.add ("Demon Fury");
+                    learnable.add ("Zombie Strike");
+                    learnable.add ("Proud Swivel");
+                    learnable.add ("Finishing Touch");
+                    learnable.add ("Blood Rain");
+                }
+                
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Feather Duster");
+                    learnable.add ("Spiral Assault");
+                    learnable.add ("Proud Swivel");
+                    learnable.add ("Finishing Touch");
+                    learnable.add ("Tail Wind");
+                }
+                
                 
                 //construct inventory with warrior default weapon
                 i = new Inventory("Bronze Longsword");
@@ -137,8 +165,8 @@ public class GChar{
                 if (element.equals ("Fire"))
                 {
                     known.add ("Heat Wave");
-                    learnable.add ("Rekindle");
                     learnable.add ("Flame Crash");
+                    learnable.add ("Rekindle");
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
                 }
@@ -161,7 +189,32 @@ public class GChar{
                     learnable.add ("Concentrate");
                 }
                 
-           
+                if (element.equals ("Light"))
+                {
+                    known.add ("Heavenly Light");
+                    learnable.add ("Salvation");
+                    learnable.add ("Arcane Bullets");
+                    learnable.add ("Luster Wave");
+                    learnable.add ("Concentrate");
+                }
+                
+                if (element.equals ("Dark"))
+                {
+                    known.add ("Demon Fury");
+                    learnable.add ("Blood Rain");
+                    learnable.add ("Zombie Strike");
+                    learnable.add ("Arcane Bullets");
+                    learnable.add ("Concentrate");
+                }
+                
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Spiral Assault");
+                    learnable.add ("Feather Duster");
+                    learnable.add ("Tail Wind");
+                    learnable.add ("Arcane Bullets");
+                    learnable.add ("Concentrate");
+                }
                 
                 i = new Inventory("Wooden Pole");
                 break;
@@ -197,8 +250,35 @@ public class GChar{
                     known.add ("Pepper Song");
                     learnable.add ("Wood Spike");
                     learnable.add ("Focus");
-                    learnable.add ("Flower Dance");
                     learnable.add ("Arrow Storm");
+                    learnable.add ("Flower Dance");
+                }
+                
+                if (element.equals ("Light"))
+                {
+                    known.add ("Luster Wave");
+                    learnable.add ("Heavenly Light");
+                    learnable.add ("Focus");
+                    learnable.add ("Salvation");
+                    learnable.add ("Arrow Storm");
+                }
+                
+                if (element.equals ("Dark"))
+                {
+                    known.add ("Zombie Strike");
+                    learnable.add ("Demon Fury");
+                    learnable.add ("Focus");
+                    learnable.add ("Arrow Storm");
+                    learnable.add ("Blood Rain");
+                }
+                
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Feather Duster");
+                    learnable.add ("Spiral Assault");
+                    learnable.add ("Focus");
+                    learnable.add ("Arrow Storm");
+                    learnable.add ("Tail Wind");
                 }
                 
                 i = new Inventory("Bronze Longsword");//Archer doesn't have a weapon yet. T_T
@@ -233,8 +313,36 @@ public class GChar{
                 {
                     known.add ("Pepper Song");
                     learnable.add ("Wood Spike");
-                    learnable.add ("Flower Dance");
                     learnable.add ("Gamble");
+                    learnable.add ("Flower Dance");
+                    learnable.add ("Assassinate");
+                }
+                
+                if (element.equals ("Light"))
+                {
+                    known.add ("Heavenly Light");
+                    learnable.add ("Luster Wave");
+                    learnable.add ("Gamble");
+                    learnable.add ("Salvation");
+                    learnable.add ("Assassinate");
+                }
+                
+                if (element.equals ("Dark"))
+                {
+                    known.add ("Demon Fury");
+                    learnable.add ("Zombie Strike");
+                    learnable.add ("Gamble");
+                    learnable.add ("Blood Rain");
+                    learnable.add ("Assassinate");
+                }
+                
+                  
+                if (element.equals ("Gale"))
+                {
+                    known.add ("Feather Duster");
+                    learnable.add ("Spiral Assault");
+                    learnable.add ("Gamble");
+                    learnable.add ("Tail Wind");
                     learnable.add ("Assassinate");
                 }
                 

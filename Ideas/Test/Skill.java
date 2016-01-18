@@ -44,6 +44,22 @@ public abstract class Skill
         allSkills.put("Flower Dance", new flowerDance());
         allSkills.put ("Wood Spike", new woodSpike());
         allSkills.put ("Pepper Song", new pepperSong());
+        
+        //Light Skills
+        allSkills.put("Salvation", new salvation());
+        allSkills.put ("Heavenly Light", new heavenlyLight());
+        allSkills.put ("Luster Wave", new lusterWave());
+        
+        //Dark Skills
+        allSkills.put("Zombie Strike", new zombieStrike());
+        allSkills.put ("Demon Fury", new demonFury());
+        allSkills.put ("Blood Rain", new bloodRain());
+        
+        //Gale Skills
+        allSkills.put("Tail Wind", new tailWind());
+        allSkills.put ("Spiral Assault", new spiralAssault());
+        allSkills.put ("Feather Duster", new featherDuster());
+        
     }
     
     public static HashMap<String,Skill> getAllSkills()
@@ -539,7 +555,7 @@ class flowerDance extends Skill
     }
     
     public void use (GChar user, GChar c){
-        System.out.println (user.name + " begins a gallant dnace");
+        System.out.println (user.name + " begins a gallant dance!");
         int hits = (int)(Math.random() *7);
         if (hits == 0 )
         {
@@ -599,3 +615,279 @@ class pepperSong extends Skill
         user.HP += 10;
     }
 }
+
+//element light skills
+class heavenlyLight extends Skill
+{
+    public heavenlyLight()
+    {
+        mpCost = 10;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " summons a holy light from the sky.");
+        System.out.println ("The radiant light envelops " + user.name + ". Defensive abiltiies have increased!");
+        user.def += 5;
+        user.res += 5;
+    }
+}
+
+class salvation extends Skill
+{
+    public salvation()
+    {
+        mpCost = 50;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " begins to glow");
+        System.out.println ( user.name + "'s health has been fully recovered!");
+        user.HP = user.hpInitial;
+    }
+}
+
+class lusterWave extends Skill
+{
+    public lusterWave()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " releases a blinding light"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Dark") )
+        {
+           c.takeDamage (user.magic*3 - c.res); 
+           System.out.println ("It's super effective!");
+        }
+
+        else
+        {
+            c.takeDamage (user.magic - c.res);
+        }
+    }
+}
+
+//element dark
+class zombieStrike extends Skill
+{
+    public zombieStrike()
+    {
+        mpCost = 35;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " slams the opponent with a undead aura"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Light") )
+        {
+           c.takeDamage (user.HP *3 - c.res - c.def); 
+           System.out.println ("It's super effective!");
+        }
+
+        else
+        {
+            c.takeDamage ((int)(user.HP *1.5 - c.res - c.def));
+        }
+    }
+}
+
+class demonFury extends Skill
+{
+    public demonFury()
+    {
+        mpCost = 20;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " calls for the powers of an otherworldly entity!");
+        System.out.println ("The entity has granted " + user.name + " the powers of darkness. Offensive strengths have increased!");
+        user.str += 5;
+        user.magic += 5;
+    }
+}
+
+class bloodRain extends Skill
+{
+    public bloodRain()
+    {
+        mpCost = 50;
+    }
+    
+    public void use (GChar user, GChar c){
+        System.out.println ("The sky turns crimson.");
+        int hits = (int)(Math.random() *7 + 1);
+        while (hits != 0)
+        {
+            if (hits % 2 == 0){
+                c.takeDamage (user.magic - c.def); 
+            }
+            else{
+                c.takeDamage (user.str - c.def); 
+            }
+            hits --;
+        }
+        System.out.println ( user.name + " is severely weakened!");
+        user.HP *= .25;
+        
+    }
+}
+
+//element Gale skills
+class tailWind extends Skill
+{
+    public tailWind()
+    {
+        mpCost = 20;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " whips up a tail wind");
+        System.out.println ("The blistering winds increase " + user.name + "'s speed");
+        user.speed += 10;
+    }
+}
+
+
+class spiralAssault extends Skill
+{
+    public spiralAssault()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " spins violently and charges at the " +c.name+"!"); 
+        user.MP -= mpCost;
+        if (((Math.random() * 100)) <= user.luck)
+        {
+            c.takeDamage (user.str - c.res / 4 );
+            System.out.println ("It's a critical hit! REKT");
+        }
+        else
+        {
+            c.takeDamage (user.str - c.res/2);
+        }
+        
+    }
+}
+
+
+class featherDuster extends Skill
+{
+    public featherDuster()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " fires a burst of air at " +c.name+"!"); 
+        user.MP -= mpCost;
+        if (((Math.random() * 100)) <= user.luck)
+        {
+            c.takeDamage (user.magic - c.def / 4 );
+            System.out.println ("It's a critical hit! REKT");
+        }
+        else
+        {
+            c.takeDamage (user.magic - c.def/2);
+        }
+        
+    }
+}
+
+//blank element skills too op pls nerf. Let MA final boss have this element because why not. ;)
+
+class noisePulse extends Skill
+{
+    public noisePulse()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println ("Drown in noise..."); 
+        user.MP -= mpCost;
+        if ( (c.element.equals ("Dark") ) || c.element.equals ("Light") )
+        {
+           c.takeDamage (user.magic + user.str); 
+           System.out.println ("Everything is nothing...");
+        }
+
+        else
+        {
+            c.takeDamage ((user.magic + user.str) /2);
+        }
+        
+        System.out.println ("Give up...");
+        c.def /= 2;
+        c.res /= 2;
+        
+         if (((Math.random() * 300)) <= user.luck){
+             System.out.println ("Resistance is futile..."); 
+              c.takeDamage (c.HP); 
+         } 
+    }
+}
+
+class gravity extends Skill
+{
+    public gravity()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println ("Kneel before me..."); 
+        user.MP -= mpCost;
+        if ( (c.element.equals ("Fire") ) || c.element.equals ("Aqua") || c.element.equals ("Wood") || c.element.equals ("Gale")) 
+        {
+           c.takeDamage (c.HP * .5); 
+           System.out.println ("Everything is nothing...");
+        }
+
+        else
+        {
+            c.takeDamage (c.HP * .25);
+        }
+        
+        System.out.println ("Why bother anymore?");
+        c.speed /= 2;
+        
+         if (((Math.random() * 300)) <= user.luck){
+             System.out.println ("Resistance is futile..."); 
+              c.takeDamage (c.HP); 
+         } 
+    }
+}
+
+class abnormalize extends Skill
+{
+    public abnormalize()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println ("This is the end...");
+        System.out.println (user.name + " becomes one with the void");
+        user.str *=2;
+        user.magic *= 2;
+        user.speed *= 2;
+    }
+}
+
+
+
