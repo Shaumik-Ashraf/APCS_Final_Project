@@ -109,7 +109,7 @@ class CombatEvent extends Event
                 {
                     break;
                 }
-                if (aliveParty.contains(c))
+                if (aliveParty.contains(c) && (c.isAlive()))
                 {
                     //System.out.print("\033[H\033[2J");
         			//System.out.flush(); 
@@ -136,7 +136,7 @@ class CombatEvent extends Event
                     {
                         try 
                         {
-                            aliveEnemies.remove(ap);                        
+                            aliveParty.remove(ap);                        
                         } catch(Exception e) {}
                     }                    
                 }
