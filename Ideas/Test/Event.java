@@ -633,7 +633,7 @@ class CavernEvent extends Event
                 case "jump it":
                         System.out.println("\nWho should jump?");
                         input = in.nextLine();
-                        GChar charInput = party.get(0);
+                        GChar charInput = uncrossed.get(0);
         		        for (int j = 0; j < party.size(); j++)
         		        {
         		            if (party.get(j).name.equals(input))
