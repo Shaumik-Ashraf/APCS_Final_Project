@@ -805,7 +805,7 @@ class featherDuster extends Skill
     }
 }
 
-//blank element skills too op pls nerf. Let MA final boss have this element because why not. ;)
+//blank element skills too op pls nerf. Let Mls final boss have this element because why not. ;)
 
 class noisePulse extends Skill
 {
@@ -853,13 +853,13 @@ class gravity extends Skill
         user.MP -= mpCost;
         if ( (c.element.equals ("Fire") ) || c.element.equals ("Aqua") || c.element.equals ("Wood") || c.element.equals ("Gale")) 
         {
-           c.takeDamage (c.HP * .5); 
+           c.takeDamage ((int)(c.HP * .5)); 
            System.out.println ("Everything is nothing...");
         }
 
         else
         {
-            c.takeDamage (c.HP * .25);
+            c.takeDamage ((int)(c.HP * .25));
         }
         
         System.out.println ("Why bother anymore?");

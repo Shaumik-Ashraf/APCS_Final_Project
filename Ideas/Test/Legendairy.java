@@ -54,12 +54,13 @@ import java.util.*;
 	        traits.add ("calm");
 	        traits.add ("carefree");
 	        traits.add ("malevolent");
-	        traitsadd ("benevolent")
+	        traits.add ("benevolent");
 	        traits.add ("empty");
 	        
 	        jobs.add ("warrior");
 	        jobs.add ("mage");
 	        jobs.add ("archer");
+	        jobs.add ("rogue");
 	        
 	        Item.consEquipList();
         	Skill.consAllSkills();
@@ -98,6 +99,7 @@ import java.util.*;
 	        message += "Warrior\n";
 	        message += "Mage\n";
         	message += "Archer\n";
+        	message += "Rogue\n";
         	
         	
         	do
