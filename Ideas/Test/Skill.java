@@ -805,5 +805,89 @@ class featherDuster extends Skill
     }
 }
 
+//blank element skills too op pls nerf. Let MA final boss have this element because why not. ;)
+
+class noisePulse extends Skill
+{
+    public noisePulse()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println ("Drown in noise..."); 
+        user.MP -= mpCost;
+        if ( (c.element.equals ("Dark") ) || c.element.equals ("Light") )
+        {
+           c.takeDamage (user.magic + user.str); 
+           System.out.println ("Everything is nothing...");
+        }
+
+        else
+        {
+            c.takeDamage ((user.magic + user.str) /2);
+        }
+        
+        System.out.println ("Give up...");
+        c.def /= 2;
+        c.res /= 2;
+        
+         if (((Math.random() * 300)) <= user.luck){
+             System.out.println ("Resistance is futile..."); 
+              c.takeDamage (c.HP); 
+         } 
+    }
+}
+
+class gravity extends Skill
+{
+    public gravity()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println ("Kneel before me..."); 
+        user.MP -= mpCost;
+        if ( (c.element.equals ("Fire") ) || c.element.equals ("Aqua") || c.element.equals ("Wood") || c.element.equals ("Gale")) 
+        {
+           c.takeDamage (c.HP * .5); 
+           System.out.println ("Everything is nothing...");
+        }
+
+        else
+        {
+            c.takeDamage (c.HP * .25);
+        }
+        
+        System.out.println ("Why bother anymore?");
+        c.speed /= 2;
+        
+         if (((Math.random() * 300)) <= user.luck){
+             System.out.println ("Resistance is futile..."); 
+              c.takeDamage (c.HP); 
+         } 
+    }
+}
+
+class abnormalize extends Skill
+{
+    public abnormalize()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println ("This is the end...");
+        System.out.println (user.name + " becomes one with the void");
+        user.str *=2;
+        user.magic *= 2;
+        user.speed *= 2;
+    }
+}
+
 
 
