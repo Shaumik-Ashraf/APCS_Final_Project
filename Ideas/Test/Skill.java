@@ -805,7 +805,7 @@ class featherDuster extends Skill
     }
 }
 
-//blank element skills too op pls nerf. Let MA final boss have this element because why not. ;)
+//blank element skills too op pls nerf. Let Mls final boss have this element because why not. ;)
 
 class noisePulse extends Skill
 {

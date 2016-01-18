@@ -60,6 +60,7 @@ import java.util.*;
 	        jobs.add ("warrior");
 	        jobs.add ("mage");
 	        jobs.add ("archer");
+	        jobs.add ("rogue");
 	        
 	        Item.consEquipList();
         	Skill.consAllSkills();
@@ -98,6 +99,7 @@ import java.util.*;
 	        message += "Warrior\n";
 	        message += "Mage\n";
         	message += "Archer\n";
+        	message += "Rogue\n";
         	
         	
         	do
