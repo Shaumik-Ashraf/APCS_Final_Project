@@ -79,9 +79,9 @@ public abstract class Item
         /* ------ARMOR DATABASE------ */
         
         /* --HEAD-- */
-        armor.put("Wooden Helmet",          new int[] {1,0,0,0,0,0,0,0,2});
+        armor.put("Wooden Helmet",          new int[] {0,0,0,0,0,0,0,0,2});
         
-        armor.put("Bronze Helmet",          new int[] {3,0,0,1,-1,0,0,0,2});
+        armor.put("Bronze Helmet",          new int[] {1,0,0,1,-1,0,0,0,2});
         armor.put("Iron Helmet",            new int[] {6,0,0,3,-2,0,0,0,2});
         armor.put("Steel Helmet",           new int[] {9,0,0,5,-3,0,0,0,2});
         
@@ -96,15 +96,15 @@ public abstract class Item
         /* -------- */
         
         /* --BODY-- */
-        armor.put("Copper Chestplate", new int[] {15,0,0,10,0,0,0,0,3});
+        armor.put("Copper Chestplate", new int[] {2,0,0,10,0,0,0,0,3});
         /* -------- */
         
         /* --LEGS-- */
-        armor.put("Leather Pants", new int[] {5,0,0,5,0,0,0,5,4});        
+        armor.put("Leather Pants", new int[] {1,0,0,5,0,0,0,5,4});        
         /* -------- */
         
         /* --FEET-- */
-        armor.put("Leather Boots", new int[] {5,0,0,5,5,0,0,5,5});    
+        armor.put("Leather Boots", new int[] {1,0,0,5,5,0,0,5,5});    
         /* -------- */
         
         /* --ACCESSORY-- */

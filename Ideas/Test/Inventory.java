@@ -2,7 +2,7 @@ import java.util.*;
 public class Inventory
 {
     private int effectDuration = 0;
-    private ArrayList<Item> inv = new ArrayList<Item>();
+    public ArrayList<Item> inv = new ArrayList<Item>();
     private HashMap<String, Equipable> equipped = new HashMap<String, Equipable>();
     private HashMap<String, Integer> effect = new HashMap<String, Integer>();
     //HashMap has "Wep", "Head","Body","Legs","Feet","Accessory" Slots.

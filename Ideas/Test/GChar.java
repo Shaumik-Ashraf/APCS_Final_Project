@@ -66,9 +66,9 @@ public class GChar{
         element = e;
         hpInitial = HP = 35;
         mpInitial = MP = 35;
-        strInitial = str = 10;
+        strInitial = str = 13;
         magicInitial = magic = 10;
-        defInitial = def = 10;
+        defInitial = def = 0;
         resInitial = res = 10;
         luckInitial = luck = 10;
         speedInitial = speed = 10;
@@ -507,8 +507,6 @@ public class GChar{
             this.EXP = this.EXP % 100;
             this.hpInitial += 10 * lvlGain;
             this.mpInitial += 10 * lvlGain;
-            this.HP = hpInitial;
-            this.MP = mpInitial;
             this.skillPoints(lvlGain);
             if (this.level % 5 == 0){
                 this.learnSkill();
@@ -536,36 +534,42 @@ public class GChar{
             
             if (input.equals ("strength") || input.equals("str") )
             {
+                this.strInitial ++;
                 this.str ++;
                 SP -- ;
             }
             
             if (input.equals ("magic") || input.equals("mag") )
             {
+                this.magicInitial ++;
                 this.magic ++;
                 SP -- ;
             }     
             
             if (input.equals ("defense") || input.equals("def") )
             {
+                this.defInitial ++;
                 this.def ++;
                 SP -- ;
             }
             
             if (input.equals ("resistance") || input.equals("res") )
             {
+                this.resInitial ++;
                 this.res ++;
                 SP -- ;
             }     
             
             if (input.equals ("luck") || input.equals("luk") )
             {
+                this.luckInitial ++;
                 this.luck ++;
                 SP -- ;
             }
             
             if (input.equals ("speed") || input.equals("spe") )
             {
+                this.speedInitial ++;
                 this.speed ++;
                 SP -- ;
             }
