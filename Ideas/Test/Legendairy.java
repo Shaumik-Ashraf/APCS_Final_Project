@@ -54,7 +54,7 @@ import java.util.*;
 	        traits.add ("calm");
 	        traits.add ("carefree");
 	        traits.add ("malevolent");
-	        traitsadd ("benevolent")
+	        traits.add ("benevolent");
 	        traits.add ("empty");
 	        
 	        jobs.add ("warrior");

@@ -853,13 +853,13 @@ class gravity extends Skill
         user.MP -= mpCost;
         if ( (c.element.equals ("Fire") ) || c.element.equals ("Aqua") || c.element.equals ("Wood") || c.element.equals ("Gale")) 
         {
-           c.takeDamage (c.HP * .5); 
+           c.takeDamage ((int)(c.HP * .5)); 
            System.out.println ("Everything is nothing...");
         }
 
         else
         {
-            c.takeDamage (c.HP * .25);
+            c.takeDamage ((int)(c.HP * .25));
         }
         
         System.out.println ("Why bother anymore?");
