@@ -860,6 +860,7 @@ public class GChar{
 		                            System.out.println("Give what item to " + charInput2.name + "?");
 		                            input = in.nextLine();
 		                            charInput.getInventory().giveItemTo(input, charInput2);
+		                            break;
     		                }
     		                System.out.println("\nType any character to continue");
     		                delay = in.nextLine();

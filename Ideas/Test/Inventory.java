@@ -5,6 +5,7 @@ public class Inventory
     public ArrayList<Item> inv = new ArrayList<Item>();
     private HashMap<String, Equipable> equipped = new HashMap<String, Equipable>();
     private HashMap<String, Integer> effect = new HashMap<String, Integer>();
+    private boolean viewing;
     //HashMap has "Wep", "Head","Body","Legs","Feet","Accessory" Slots.
     
     //Creates inventory for new character with basic equips. Beginner's weapon determined by character class. Char has no effects when first created
@@ -36,6 +37,7 @@ public class Inventory
         if (effectDuration != 0)
         {
             effectDuration += 1;
+            viewing = true;
         }
     }
     
@@ -154,6 +156,11 @@ public class Inventory
         int hpMod = effect.get("hpMod") + equipped.get("Wep").getHpMod() + equipped.get("Head").getHpMod() + equipped.get("Body").getHpMod() + equipped.get("Legs").getHpMod() + equipped.get("Feet").getHpMod() + equipped.get("Accessory").getHpMod();
         int mpMod = effect.get("mpMod") + equipped.get("Wep").getMpMod() + equipped.get("Head").getMpMod() + equipped.get("Body").getMpMod() + equipped.get("Legs").getMpMod() + equipped.get("Feet").getMpMod() + equipped.get("Accessory").getMpMod();
         int luckMod = effect.get("luckMod") + equipped.get("Wep").getLuckMod() + equipped.get("Head").getLuckMod() + equipped.get("Body").getLuckMod() + equipped.get("Legs").getLuckMod() + equipped.get("Feet").getLuckMod() + equipped.get("Accessory").getLuckMod();
+        if (viewing == true)
+        {
+            mpMod = 0;
+            hpMod = 0;
+        }
         data.put("strMod", strMod);
         data.put("defMod", defMod);
         data.put("magicMod", magicMod);
@@ -167,6 +174,7 @@ public class Inventory
         {
             resetEffects();            
         }
+        viewing = false;
         return data;
     }
     

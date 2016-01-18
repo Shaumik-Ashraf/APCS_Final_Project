@@ -29,6 +29,7 @@ class CombatEvent extends Event
     {
         called = false;
         isComplete = false;
+        spawnEnemies();
         for (GChar c: p)
         {
             party.add(c);
@@ -37,12 +38,13 @@ class CombatEvent extends Event
             c.normalize();
             c.augmentStats();
         }
-        spawnEnemies();
         
         for (int k = 0; k < engagement.size(); k++)
         {
-            for (int i = 1; i < engagement.size()-1; i++)
+            for (int i = 0; i < engagement.size()-1; i++)
             {
+               // System.out.println(engagement);
+            //    for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
                 if (engagement.get(i).speed < engagement.get(i+1).speed)
                 {
                     GChar lower = engagement.get(i);
@@ -59,6 +61,7 @@ class CombatEvent extends Event
     {
         called = call;
         isComplete = false;
+        spawnEnemies();
         for (GChar c: p)
         {
             party.add(c);
@@ -67,12 +70,11 @@ class CombatEvent extends Event
             c.normalize();
             c.augmentStats();
         }
-        spawnEnemies();
-        
         for (int k = 0; k < engagement.size(); k++)
         {
             for (int i = 1; i < engagement.size()-1; i++)
             {
+                System.out.println(engagement);
                 if (engagement.get(i).speed < engagement.get(i+1).speed)
                 {
                     GChar lower = engagement.get(i);
@@ -86,12 +88,15 @@ class CombatEvent extends Event
     
     public void spawnEnemies()
     {
-        enemies.add(new GChar("Goblin Spellcaster", "Fire", "Magic", "Agility", "Mage"));
-        enemies.add(new GChar("Goblin Recruit", "Wood", "Agility", "Magic", "Rogue"));
+        enemies.add(new GChar("Goblin Spellcaster", "Fire", "magic", "agility", "Mage"));
+        System.out.println(enemies.get(0).speed);
+        enemies.add(new GChar("Goblin Recruit", "Wood", "agility", "magic", "Rogue"));
+        System.out.println(enemies.get(0).speed);        
         for (GChar c : enemies)
         {
             engagement.add(c);
             aliveEnemies.add(c);
+            c.augmentStats();
         }
     }
     
@@ -103,8 +108,9 @@ class CombatEvent extends Event
             {
                 isComplete = true;
             }
-            for (GChar c : engagement)
+            for (int k = 0; k < engagement.size(); k++)
             {
+                GChar c = engagement.get(k);
                 if ((aliveEnemies.size() == 0) || (aliveParty.size() == 0))
                 {
                     break;
@@ -198,7 +204,7 @@ class NoEvent extends Event
             System.out.flush();
             System.out.println("You are safe... For now...");
             System.out.println("Party: " + party);
-            System.out.println("What do you do?\nItems\nAdvance\nRest\n");
+            System.out.println("What do you do?\nItems\nAdvance\nRest\nWait\n");
             input = in.nextLine().toLowerCase();
             if (input.equals ("items"))
 		        {
@@ -264,6 +270,7 @@ class NoEvent extends Event
 		                            System.out.println("Give what item to " + charInput2.name + "?");
 		                            input = in.nextLine();
 		                            charInput.getInventory().giveItemTo(input, charInput2);
+		                            break;
     		                }
     		                System.out.println("\nType any character to continue");
     		                delay = in.nextLine();
@@ -291,6 +298,17 @@ class NoEvent extends Event
 		    if (input.equals("advance"))
 		    {
 		        break;
+		    }
+		    
+		    if (input.equals("wait"))
+		    {
+        		System.out.println("Time Passes.");
+        		for (GChar p : party)
+            	{
+                		p.normalize();
+                	    p.augmentStats();
+                		p.normalize();
+            	}
 		    }
             
         }
@@ -720,6 +738,7 @@ class CavernEvent extends Event
         	            {
             	            System.out.println("You leave, and take a different route. Monsters were following you. You find yourself in combat.");
             	            CombatEvent surprise = new CombatEvent(party);
+            	                            String delay = in.nextLine();
             	            return surprise.beginEvent();
         	            }
         	            else

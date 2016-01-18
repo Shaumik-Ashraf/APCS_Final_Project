@@ -108,10 +108,11 @@ import java.util.*;
 		System.out.println("You are heavily damaged. You lay on the floor as yet another entitiy hobbles toward you. There is nothing you can do.");
 		System.out.println("'Hello there...' it says. Take this, and come with me.");
 		c1.getInventory().giveItem(new EffectItem("Lesser Healing Potion"));
-		System.out.println("'Go on, drink it'");
-		while (c1.getInventory().inv.size() > 0)
+		System.out.println("'Go on, drink it. You'll have to wait for its effects to kick in. We can stay here for now.");
+		int hptemp = c1.HP;
+		while ((c1.getInventory().inv.size() > 0) || (c1.HP == hptemp))
 		{
-		System.out.println("Access your items to use the potion");
+		System.out.println("Access your items to use the potion. Then, wait for the potion to do its work");
 		e = new NoEvent(party);
 		party = e.beginEvent();
 		}
