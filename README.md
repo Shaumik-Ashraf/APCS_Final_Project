@@ -14,25 +14,15 @@ An MMORPG! A Legendairy Story.
 - code packaged into gameitems, gameutils, gamechars, and gamearea
 
 ##TODO
-- Get proposal approval
-- UML submission
-- INTEGRATE CODE
-- Complete interfaces (water, wood, sky)
-- Complete other classes (Mage, Archer)
-- Update devlog
-- Create different classes of Monsters similarly to how there are different jobs and elements for the player. (01/15) Total: 3-6 hours
-- Integrate Inventory and Item class into gChar. (01/16) Total: 3-4 hours
-- Implement item functionality in battle and character stats.(01/16) Total: 3-4 hours
-- Allow the user to access attacks and items via hotkeys. (01/17) Total : 1-2 hours
-- Implement Area into main method. (01/18) Total:4-6 hours
-- Create various dungeons and towns in the Area array.   (01/18) Total: 3-5 hours
-- Implement saving. (01/18) Total: 6-8 hours
-- Expand on player choice by adding more classes and elements. (01/19) Total: 1-2 hours
-- Add a shop in Town in which players can buy and sell items. (01/20) Total: 3-4 hours
-- Robustify game dialogue. (01/20) Total: 1-2 hours
-- Implement multiplayer functionality. (01/22) Total:6-18 hours
-
-
+-Create Monster class which constructs Characters with stats based on player level. (01/19)
+-Create different classes of Monsters similarly to how there are different jobs and elements for the player. (01/19) Total: 1-10 hours
+-Implement Area into main method. Events spawn based on area. TOWNS! (01/19) Total:1-5 hours
+-Expand on choice by adding more items (1/19) Total: 3-4 hrs
+-Expand on player choice by adding more classes and elements. (01/20) Total: 1-5 hours
+-Robustify game dialogue. (01/20) Total: 8-12 hours
+-Allow the user to access attacks and items via hotkeys. (01/21) Total : 3-5 hours
+-Implement saving. (01/22) Total: 3-4 hours
+-Implement multiplayer functionality. (01/30) Total: 50-75 hours
 
 ##Later Additions
 - Saving
