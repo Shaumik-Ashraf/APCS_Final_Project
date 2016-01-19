@@ -8,10 +8,15 @@ An MMORPG! A Legendairy Story.
 - Max Anderson
 
 ##Notes
-- *_Original is a dir of work done individually prior to the official assignment of the project
-- Ideas contains ideas/test codes
-- FINAL contains "final" codes
-- code packaged into gameitems, gameutils, gamechars, and gamearea
+###Beta version!
+- PLEASE USE THIS ONE
+- integrated & implemented Inventory, Skill and SA's Area,
+- still has bugs :cries:, but compiles :smiley:
+- to run, type: "java JASC --solo"
+- created class Battler in gameutils with static method Battle; for battling
+- created class Creater in gameutils with static method characterCreation
+- Beta doesn't have light, dark, empty/blank, rogue, or leveling implemented yet
+- 
 
 ##TODO
 - Create Monster class which constructs Characters with stats based on player level. (01/19)
