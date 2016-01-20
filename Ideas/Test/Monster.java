@@ -2,34 +2,10 @@ import java.io.*;
 import java.util.*;
 
 public class Monster extends GChar{
+    
     public static HashMap <String, Monster> bestiary = new HashMap <String, Monster>();
     
-    public String name;
-    public String element;
-    
-    public int HP; //Player's health
-    public int str; //Determines damage of physical attacks
-    public int magic; //Determines damage of spells
-    public int def; //Reduces the damage taken by physical attacks
-    public int res; //Reduces the damage taken by magic attacks
-    public int luck; //Affects critical hit ratio and total damage taken (min/max damage)
-    public int speed; //Determines turn order and battle and affects evasion rate
-    public boolean crit; //if true, the attack will be a critical hit and do more damage
-    public int EXP;
-    public int level;
-    public int MP;
 
-   
-    
-    //used for normalize
-    public int hpInitial;
-    public int strInitial;
-    public int magicInitial;
-    public int defInitial;
-    public int resInitial;
-    public int luckInitial;
-    public int speedInitial;
-    public int mpInitial;
     
     public Monster(){}
     
