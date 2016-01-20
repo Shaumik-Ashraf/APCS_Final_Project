@@ -14,7 +14,8 @@ public class Monster extends GChar{
     
     public void initMonsters()
     {
-        bestiary.put ("Pumpkin Head", new String[" insert mods here"] );
+        //====================================   Basic Skill   Spe Skill     xHP    xStr   xMag
+        bestiary.put ("Pumpkin Head", new String["Basic Attack", "Rekindle","1.2," "1.2", "1.2", ".8"] );
     }
     
     public void scale (int lvl, int exp){
