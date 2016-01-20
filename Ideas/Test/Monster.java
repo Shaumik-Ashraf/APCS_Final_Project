@@ -3,19 +3,41 @@ import java.util.*;
 
 public class Monster extends GChar{
     
-    public static HashMap <String, String[]r> bestiary = new HashMap <String, Monster>();
+    public static HashMap <String, String[]> bestiary = new HashMap <String, String[]>();
     
 
-    
-    public Monster(){}
     
     //Skills
     protected ArrayList<String> known = new ArrayList<String>();
     
     public void initMonsters()
     {
-        //====================================   Basic Skill   Spe Skill     xHP    xStr   xMag
-        bestiary.put ("Pumpkin Head", new String["Basic Attack", "Rekindle","1.2," "1.2", "1.2", ".8"] );
+        //====================================      Name      Element     Basic Skill   Spe Skill  xHP  xStr xMag  EXP
+        bestiary.put ("Pumpkin Head", new String[] {"Pumpkin Head","Wood","Basic Attack", "Rekindle", "1.2",  "1.2", ".8" , "10"});
+    }
+    
+    //=========================Scaling monsters
+    
+    public Monster ()
+    {
+        name = "James";
+        element = "Null";
+        hpInitial = HP = 20;
+        mpInitial = MP = 999999;
+        strInitial = str = 10;
+        magicInitial = magic = 10;
+        defInitial = def = 10;
+        resInitial = res = 10;
+        luckInitial = luck = 10;
+        speedInitial = speed = 10;
+        EXP = 0;
+    }
+    
+    public Monster (String[] details)
+    {
+        this();
+        name = details[0];
+    
     }
     
     public void scale (int lvl, int exp){
