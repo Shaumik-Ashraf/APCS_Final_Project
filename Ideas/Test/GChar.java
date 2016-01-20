@@ -75,7 +75,6 @@ public class GChar{
         luckInitial = luck = 10;
         speedInitial = speed = 10;
         EXP = 50;
-        level = 1;
         bestStat(best);
         worstStat(worst);
         known.add("Basic Attack");
@@ -405,9 +404,9 @@ public class GChar{
             speed *= 1.5;
             speedInitial = speed;
         }
-        else{
-            System.out.println ("System.outmething went wrong...");
-        }
+       // else{
+      //      System.out.println ("System.outmething went wrong...");
+      //  }
     }
     
     public void worstStat(String stat){
@@ -444,9 +443,9 @@ public class GChar{
             speed *= .5;
             speedInitial = speed;
         }
-        else{
-            System.out.println ("System.outmething went wrong...");
-        }
+        //else{
+       //     System.out.println ("System.outmething went wrong...");
+       // }
         
     }
     
@@ -653,6 +652,13 @@ public class GChar{
          System.out.println (this.name + " takes " + damage + " MP damage!");
      }
      
+     
+     public void randomSkill (GChar target)
+     {
+        int index =(int)(Math.random() * known.size());
+        String skill = known.get (index);
+        this.useSkill(skill, target);
+    }
     /*
      =========================================================================================================================================================
      ===Item Methods==========================================================================================================================================
@@ -768,7 +774,7 @@ public class GChar{
 		            input = in.nextLine();
 		        }
 		        
-        		    this.useSkill (input, enemy);
+            		    this.useSkill (input, enemy);
         		    delay = in.nextLine();
         
         results (this , enemy);
@@ -781,7 +787,7 @@ public class GChar{
          }
          else if (!(enemy.isAlive()))
          {
-             System.out.println ("" + name + " win the battle!");
+             System.out.println ("" + name + " defeated the enemy!");
              user.expGain (enemy);
          }
      }
@@ -879,6 +885,7 @@ public class GChar{
     {
         Item.consEquipList();
         Skill.consAllSkills();
+        Monster.initMonsters();
         GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
         GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
 

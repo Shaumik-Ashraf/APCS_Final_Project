@@ -88,15 +88,15 @@ class CombatEvent extends Event
     
     public void spawnEnemies()
     {
-        enemies.add(new GChar("Goblin Spellcaster", "Fire", "magic", "agility", "Mage"));
-        System.out.println(enemies.get(0).speed);
-        enemies.add(new GChar("Goblin Recruit", "Wood", "agility", "magic", "Rogue"));
+        enemies.add(new Monster (Monster.bestiary.get("Pumpkin Head")));
+        System.out.println(enemies.get(0).speed); 
+        enemies.add(new Monster (Monster.bestiary.get("Moo Cow")));
         System.out.println(enemies.get(0).speed);        
         for (GChar c : enemies)
         {
             engagement.add(c);
             aliveEnemies.add(c);
-            c.augmentStats();
+          //  c.augmentStats(); // Monsters can't use augment stats because no equips.
         }
     }
     
@@ -134,7 +134,7 @@ class CombatEvent extends Event
                 }
                 if (aliveEnemies.contains(c))
                 {
-                    c.useSkill("Basic Attack", aliveParty.get((int)(party.size()*Math.random())));
+                    c.randomSkill(aliveParty.get((int)(party.size()*Math.random())));
                 }
                 for (GChar ap : party)
                 {
@@ -1144,13 +1144,14 @@ class PoolCombatEvent extends Event
     {
         for (GChar r : engagement)  
         {
-            enemies.add(new GChar((r.name), r.stuff[1], r.stuff[2], r.stuff[3], r.stuff[4]));
+            enemies.add(new Monster (Monster.bestiary.get("Pumpkin Head")));
+            enemies.add(new Monster (Monster.bestiary.get("Moo Cow")));
         }
         for (GChar c : enemies)
         {
             engagement.add(c);
             aliveEnemies.add(c);
-            c.augmentStats();
+           // c.augmentStats(); Monsters don't have equipss
         }
     }
     
