@@ -1,8 +1,8 @@
-/* abstract Character class - contains everything required for battling, and all methods for any character
+/* Character class - contains everything required for battling, and all methods for any character
  * 
  * Notes:
- *	maybe add a public void battle(Character x) method? remove some of the "weight" from Legendairy
- *	packaging everything
+ *	subclasses?
+ *	
  *
  */
 
@@ -82,7 +82,7 @@ public class GChar{
         
         
               
-        switch(job.toLowerCase())
+        switch(job.toLowerCase()) 
         {
             
                 
@@ -355,6 +355,7 @@ public class GChar{
                 break;
                 
             case "monster":
+		
                 break;
                 
           

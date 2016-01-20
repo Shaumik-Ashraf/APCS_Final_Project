@@ -84,6 +84,7 @@ public abstract class gChar{
     
     public gChar() {
 		//This should nvr be called...
+		Item.consEquipList();
 		SkillSet = new LinkedList<String>();
 		SkillSet.add("Basic Attack");
 		SkillSet.add("Basic AttackM");
@@ -112,6 +113,8 @@ public abstract class gChar{
         luckInitial = luck;
         speedInitial = speed;
 		
+		Item.consEquipList();
+		
 		//System.err.println("Debug: " + builder + "----");
 		name = builder.get(0);
 		bestStat(builder.get(2));
@@ -120,6 +123,7 @@ public abstract class gChar{
 		SkillSet = new LinkedList<String>();
 		SkillSet.add("Basic Attack");
 		SkillSet.add("Basic AttackM");
+		
 		
 	}
 	
