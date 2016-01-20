@@ -22,7 +22,16 @@
 |MA           | 1/16/16  |rewrote almost entire character class for full class modularity                                |
 |MA           | 1/17/16  |wrote implementation for event objects. Coded multiple specific events. Small changes/additions to Inventory, Item, and character                              |
 |MA           | 1/18/16  |Fixed "soft" bugs such as broken combat order, character duplication, multiple uses of single use items, and more. Scripted game intro in Legendairy. Rebalanced some items. Players can wait during rest periods.
+|SA           | 1/18/16  |Integrated Area, Skill, Cchar; created Battler, Creator   |
 |MA           | 1/19/16  |Added two new events: an augmented combat and a magical crypt event|
-|             |          |                                |
-
+|SA           | 1/19/16  | Created Printer class - does java IO             |
+|             |          |                                                 |
+|             |          |                                                 |
+|             |          |                                                 |
+|             |          |                                                 |
+|             |          |                                                 |
+|             |          |                                                 |
+|             |          |                                                 |
+|             |          |                                                 |
+|             |          |                                                 |
 

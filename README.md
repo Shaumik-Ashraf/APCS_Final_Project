@@ -2,21 +2,10 @@
 # JASC - APCS_Final_Project
 An MMORPG! A Legendairy Story. 
 
-##Collaborators
-- Shaumik Ashraf
-- James Cao
-- Max Anderson
 
 ##Notes
-###Beta version!
-- PLEASE USE THIS ONE
-- integrated & implemented Inventory, Skill and SA's Area,
-- still has bugs :cries:, but compiles :smiley:
-- to run, type: "java JASC --solo"
-- created class Battler in gameutils with static method Battle; for battling
-- created class Creater in gameutils with static method characterCreation
-- Beta doesn't have light, dark, empty/blank, rogue, or leveling implemented yet
-- 
+- Printer class made - handles file output
+- Will implement saving in json format
 
 ##TODO
 - Create Monster class which constructs Characters with stats based on player level. (01/19)
@@ -39,4 +28,8 @@ We want to create a turn based RPG. At the very least, the game will be able to 
 
 Our project will solidify and showcase the usage of Java class hierarchy and interfaces. We will be using abstract classes and interfaces. We will also use some Java 7 API classes such as Scanner and ArrayList. We may stretch out to Java file I/O (with util.Writer and util.Scanner) and enumerations. 
 
+##Collaborators
+- Shaumik Ashraf
+- James Cao
+- Max Anderson
 

@@ -17,22 +17,31 @@ public class Printer {
 	protected PrintWriter out;
 
 	//constructor
-	public Printer(File file) {
-		out = new PrintWriter(new BufferredWriter(new FileWriter(file)));
+	public Printer(File file) throws IOException {
+		try {
+			out = new PrintWriter(new BufferedWriter(new FileWriter(file)));
+		} catch( IOException e ) {
+			System.err.println("Error! "  + e);
+			//print e.printStackTrace();
+		}
 	}
 	
-	public Printer(String filename) {
-		out = new PrintWriter(new BufferredWriter(new FileWriter(filename)), true);
+	public Printer(String filename) throws IOException {
+		try {
+			out = new PrintWriter(new BufferedWriter(new FileWriter(filename)), true);
+		catch( IOException e ) {
+			System.err.println("Error! "  + e);
+			
+		}
 	}
 	
 	//methods
-	
 	public void print(String s) {
 		out.print( s.toCharArray() );	
 	}
 	
 	public void println(String s) {
-		out.print( s.toCharArray() );
+		out.println( s.toCharArray() );
 	}
 	
 	public void flush() {
@@ -41,7 +50,7 @@ public class Printer {
 	
 	public void close() {
 		out.flush();
-		out.close;
+		out.close();
 	}
 
 }
