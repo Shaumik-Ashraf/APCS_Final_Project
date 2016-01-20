@@ -21,7 +21,7 @@
 |JC           | 1/16/16  | Added levelup/exp and battle into the new GChar. Added more skills and classes to Skills and Char. Revamped Legendairy to reflect new changes. Fixed upper/lowercase input issues.                                |
 |MA           | 1/16/16  |rewrote almost entire character class for full class modularity                                |
 |MA           | 1/17/16  |wrote implementation for event objects. Coded multiple specific events. Small changes/additions to Inventory, Item, and character                              |
-|MA           | 1/18/16  |Fixed "soft" bugs such as broken combat order, character duplication, multiple uses of single use items, and more. Scripted game intro in Legendairy. Rebalanced some items. Players can wait during rest periods.                                 |MA           | 1/19/16  |Added two new events: an augmented combat and a magical crypt event                  |
+|MA           | 1/18/16  |Fixed "soft" bugs such as broken combat order, character duplication, multiple uses of single use items, and more. Scripted game intro in Legendairy. Rebalanced some items. Players can wait during rest periods.                                 | MA          | 1/19/16  |Added two new events: an augmented combat and a magical crypt event                  |
 |             |          |                                |
 |             |          |                                |
 
