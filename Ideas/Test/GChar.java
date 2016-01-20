@@ -36,6 +36,7 @@ public class GChar{
     public int EXP;
     public int level;
     public int MP;
+    public String[] stuff;
 
    
     
@@ -77,6 +78,7 @@ public class GChar{
         bestStat(best);
         worstStat(worst);
         known.add("Basic Attack");
+        stuff = new String[] {n, e, best, worst, job};
         
         
               

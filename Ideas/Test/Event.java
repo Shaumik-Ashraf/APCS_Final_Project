@@ -760,3 +760,473 @@ class CavernEvent extends Event
         return aliveParty;
     }
 }
+
+/*---------------------CRYPT EVENT---------------------*/
+class CryptEvent extends Event
+{
+    String delay;
+    String input;
+    private Scanner in = new Scanner(System.in);
+    public ArrayList<GChar> party = new ArrayList<GChar>();
+    private ArrayList<String> torches = new ArrayList<String>();
+    private ArrayList<String> litTorches = new ArrayList<String>();
+    private ArrayList<String> answer = new ArrayList<String>();
+    private int answerLen;
+    
+    public CryptEvent (ArrayList<GChar> p)
+    {
+        for (GChar c : p)
+        {
+            party.add(c);
+        }
+        
+        torches.add("green");
+        torches.add("black");
+        torches.add("blue");
+        torches.add("red");
+        torches.add("white");
+        torches.add("yellow");
+        
+        answerLen = (int)(1 + 6*Math.random());
+        for (int i = 0; i < torches.size(); i++)
+        {
+            int torchInd = (int)(6*Math.random());
+            if (!(answer.contains(torches.get(torchInd))))
+            {
+                answer.add(torches.get(torchInd));
+            }
+        }
+        
+        isComplete = false;
+        answerLen = answer.size();
+        //System.out.println("DEBUG: " + answer);
+    }
+    
+    public ArrayList<GChar> beginEvent()
+    {
+        System.out.println("Party: " + party);
+        System.out.println("Your party encounters a mysterious, gloomy room. There is a door with strange markings on it. To your left, there are six torches, each a different color. You send one member to investigate. Who do you send?");
+        input = in.nextLine();
+        GChar charInput = party.get(0);
+        for (int j = 0; j < party.size(); j++)
+        {
+            if (party.get(j).name.equals(input))
+            {
+                charInput = party.get(j);
+            }
+        }
+        System.out.println("Your party sends " + charInput.name + ".");
+        while (!(isComplete))
+        {
+            System.out.println("Lit Torches: " + litTorches);
+            System.out.println("What does " + charInput.name + " do?\nExamine\nLight Torch\nReset Torches\nOpen Door\nLeave\n");
+            input = in.nextLine().toLowerCase();
+            switch(input)
+            {
+                case "leave":
+                    isComplete = true;
+                    System.out.println("you leave.");
+                    break;
+                case "examine":
+                    int intelligence = charInput.magic;
+                    String intelString = "";
+                    if (intelligence >= 0)
+                    {
+                        intelString = "minimal";
+                    }
+                    if (intelligence > 20)
+                    {
+                        intelString = "limited";
+                    }
+                    if (intelligence > 30)
+                    {
+                        intelString = "moderate";
+                    }
+                    if (intelligence > 45)
+                    {
+                        intelString = "broad";
+                    }
+                    if (intelligence > 70)
+                    {
+                        intelString = "specialized";
+                    }
+                    if (intelligence > 90)
+                    {
+                        intelString = "vast";
+                    }
+                    System.out.println(charInput.name + " uses his/her " + intelString + " knowledge of magic arts to decipher the following:");
+                    switch(intelString)
+                    {
+                        case "vast":
+                            System.out.println(charInput.name + " manages to read the rusty and incomplete marks on the door. They may be damaged, but " + charInput.name + "'s experience allows him/her to figure out their meaning anyway:\nThe void speaks to " + charInput.name + " as he communes with the magical markings. They call out the following:\n");
+                            for (int k = 0; k < answer.size(); k++)
+                            {
+                                String torchType = answer.get(k);
+                                switch (torchType)
+                                {
+                                    case "green":
+                                        System.out.println("Nature...");
+                                        break;
+                                    case "yellow":
+                                        System.out.println("Warmth...");
+                                        break;
+                                    case "blue":
+                                        System.out.println("Serenity...");
+                                        break;
+                                    case "red":
+                                        System.out.println("Flame...");
+                                        break;
+                                    case "black":
+                                        System.out.println("Death...");
+                                        break;
+                                    case "white":
+                                        System.out.println("Emptyness...");
+                                        break;
+                                }
+                            }
+                            break;
+                        case "specialized":
+                            System.out.println(charInput.name + " manages to read all but one of the rusty and incomplete marks on the door. They may be damaged, but " + charInput.name + "'s experience allows him/her to figure out their meaning anyway:\nThe void speaks to " + charInput.name + " as he communes with the magical markings. They call out the following:\n");
+                            for (int k = 0; k < answer.size()-1; k++)
+                            {
+                                String torchType = "";
+                                try 
+                                {
+                                    torchType = answer.get(k);                                    
+                                } catch(Exception e) {}
+                                switch (torchType)
+                                {
+                                    case "green":
+                                        System.out.println("Nature...");
+                                        break;
+                                    case "yellow":
+                                        System.out.println("Warmth...");
+                                        break;
+                                    case "blue":
+                                        System.out.println("Serenity...");
+                                        break;
+                                    case "red":
+                                        System.out.println("Flame...");
+                                        break;
+                                    case "black":
+                                        System.out.println("Death...");
+                                        break;
+                                    case "white":
+                                        System.out.println("Emptyness...");
+                                        break;
+                                    default:
+                                        System.out.println("There was only one mark and it was undecipherable.");
+                                        break;
+                                }
+                            }
+                            break;
+                        case "broad":
+                            System.out.println("- The door is held shut by some kind of magical seal");
+                            System.out.println("- The seals correspond to the lighting of the torches in some way");
+                            System.out.println("- The ceiling and walls also have weird glyphs and markings on them. A mistake could potentially lead to the activation of some kind of trap");
+                            System.out.println("- The door has " + answerLen + " distinct seals on it");
+                            break;
+                        case "moderate":
+                            System.out.println("- The door is held shut by some kind of magical seal");
+                            System.out.println("- The seals correspond to the lighting of the torches in some way");
+                            System.out.println("- The ceiling and walls also have weird glyphs and markings on them. A mistake could potentially lead to the activation of some kind of trap");
+                            break;
+                        case "limited":
+                            System.out.println("- The door is held shut by some kind of magical seal");
+                            System.out.println("- The seals correspond to the lighting of the torches in some way");
+                            break;
+                        case "minimal":
+                            System.out.println("- The door is held shut by some kind of magical seal");
+                            break;
+                    }
+                    break;
+                case "light torch":
+                    System.out.println("Torches: " + torches);
+                    System.out.println("Light Which Torch?");
+                    input = in.nextLine().toLowerCase();
+                    switch(input)
+                    {
+                        case "green":
+                            System.out.println(charInput.name + " lights the torch using magical force. The green flame sparks into existance, and a natural aura percolates throughout the air. The room now smells like grass");
+                            if (!(litTorches.contains("green"))){litTorches.add("green");}
+                            break;
+                        case "yellow":
+                            System.out.println(charInput.name + " lights the torch using magical force. A yellow flame springs to life. The room now has a conforting glow about it.");
+                            if (!(litTorches.contains("yellow"))){litTorches.add("yellow");}
+                            break;
+                        case "blue":
+                            System.out.println(charInput.name + " lights the torch using magical force. A blue flame slowly manifests itself. A calm enchantment envelops the room.");
+                            if (!(litTorches.contains("blue"))){litTorches.add("blue");}
+                            break;
+                        case "red":
+                            System.out.println(charInput.name + " lights the torch using magical force. A red flame bursts out of nothingness. The room fills with the soothing cackling of a fireplace.");
+                            if (!(litTorches.contains("red"))){litTorches.add("red");}
+                            break;
+                        case "black":
+                            System.out.println(charInput.name + " lights the torch using magical force. Instead of setting aflame, the torch emits a black aura surrounding it. The room fills with shadow.");
+                            if (!(litTorches.contains("black"))){litTorches.add("black");}
+                            break;
+                        case "white":
+                            System.out.println(charInput.name + " lights the torch using magical force. A white flame grows. Its part of room fills with an almost blinding white light.");
+                            if (!(litTorches.contains("white"))){litTorches.add("white");}
+                            break;
+                        default:
+                            System.out.println("Please enter a valid response.");
+                            break;
+                    }
+                    break;
+                case "reset torches":
+                    System.out.println(charInput.name + ", through sheer willpower, extinguishes all the flames in the torches simultaneously.");
+                    while (litTorches.size() > 0)
+                    {
+                        litTorches.remove(0);
+                    }
+                    break;
+                case "open door":
+                    boolean open = true;
+                    if (litTorches.size() == 0)
+                    {
+                        open = false;
+                    }
+                    
+                    for (int l = 0; l < litTorches.size(); l++)
+                    {
+                        if (!(answer.contains(litTorches.get(l))))
+                        {
+                            open = false;
+                        }
+                    }
+                    
+                    if (litTorches.size() != answer.size())
+                    {
+                        open = false;
+                    }
+                    
+                    if (open == true)
+                    {
+                        System.out.println("With a thud the door loosens and swings open, with rifts of dust from the other side sweeping the floor as they escape the sealed room.");
+                        while (litTorches.size() > 0)
+                        {
+                            litTorches.remove(0);
+                        }
+                        //PoolEvent e = new PoolEvent(party);
+                        //party = e.beginEvent();
+                        isComplete = true;
+                    }
+                    else
+                    {
+                        int clickCounter = 0;
+                        for (int k = 0; k < answer.size(); k++)
+                        {
+                            if (answer.contains(litTorches.get(k)))
+                            {clickCounter += 1;}
+                        }
+                        
+                        System.out.println("You hear a clicking noise from the door " + clickCounter + " times...");
+                        
+                        if (Math.random()*100 > 65)
+                        {
+                            System.out.println("All the flames quickly perish. A trap is sprung as " + charInput.name + " attempts to open the door.");
+                            while (litTorches.size() > 0)
+                            {
+                                litTorches.remove(0);
+                            }
+                            TrapEvent surprise = new TrapEvent(party);
+                            party = surprise.beginEvent();
+                        }
+                        else
+                        {
+                            while (litTorches.size() > 0)
+                            {
+                                litTorches.remove(0);
+                            }                            
+                            System.out.println("All the flames quickly perish as " + charInput.name + " attempts to open the door.");                            
+                        }
+                    }
+                    break;
+                    
+            }
+        }
+        return party;
+    }
+    
+    /*
+    public static void main (String[] args)
+    {
+        Item.consEquipList();
+        Skill.consAllSkills();
+        GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
+        GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
+        ArrayList<GChar> chars = new ArrayList<GChar>();
+        chars.add(Logan);
+        chars.add(Wendell);
+        PoolCombatEvent e = new PoolCombatEvent(chars);
+        chars = e.beginEvent();
+    }
+    */
+    
+}
+
+/*---------------------REFLECTION POOL EVENT---------------------*/
+
+/*---------------------AUGMENTED COMBAT EVENT (POOL)---------------------*/
+class PoolCombatEvent extends Event
+{
+    public ArrayList<GChar> enemies = new ArrayList<GChar>();
+    public ArrayList<GChar> party = new ArrayList<GChar>();
+    public ArrayList<GChar> engagement = new ArrayList<GChar>();
+    public ArrayList<GChar> aliveParty = new ArrayList<GChar>();
+    public ArrayList<GChar> aliveEnemies = new ArrayList<GChar>();    
+    private Scanner in = new Scanner(System.in);
+    private boolean called;
+   
+    public PoolCombatEvent (ArrayList<GChar> p)
+    {
+        called = false;
+        isComplete = false;
+        for (GChar c: p)
+        {
+            party.add(c);
+            engagement.add(c);
+            aliveParty.add(c);
+            c.normalize();
+            c.augmentStats();
+        }
+        spawnEnemies();        
+        for (int k = 0; k < engagement.size(); k++)
+        {
+            for (int i = 0; i < engagement.size()-1; i++)
+            {
+               // System.out.println(engagement);
+            //    for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
+                if (engagement.get(i).speed < engagement.get(i+1).speed)
+                {
+                    GChar lower = engagement.get(i);
+                    GChar higher = engagement.get(i+1);
+                    engagement.set(i, higher);
+                    engagement.set(i+1, lower);
+                }
+            }            
+        }
+    }
+    
+    //if combat event is called from another event, no NoEvent() takes place
+    public PoolCombatEvent (ArrayList<GChar> p, boolean call)
+    {
+        called = call;
+        isComplete = false;
+        for (GChar c: p)
+        {
+            party.add(c);
+            engagement.add(c);
+            aliveParty.add(c);
+            c.normalize();
+            c.augmentStats();
+        }
+        spawnEnemies();
+        for (int k = 0; k < engagement.size(); k++)
+        {
+            for (int i = 1; i < engagement.size()-1; i++)
+            {
+                System.out.println(engagement);
+                if (engagement.get(i).speed < engagement.get(i+1).speed)
+                {
+                    GChar lower = engagement.get(i);
+                    GChar higher = engagement.get(i+1);
+                    engagement.set(i, higher);
+                    engagement.set(i+1, lower);
+                }
+            }            
+        }
+    }
+    
+    public void spawnEnemies()
+    {
+        for (GChar r : engagement)  
+        {
+            enemies.add(new GChar((r.name), r.stuff[1], r.stuff[2], r.stuff[3], r.stuff[4]));
+        }
+        for (GChar c : enemies)
+        {
+            engagement.add(c);
+            aliveEnemies.add(c);
+            c.augmentStats();
+        }
+    }
+    
+    public ArrayList<GChar> beginEvent()
+    {
+        while (!(eventComplete()))
+        {
+            if ((aliveEnemies.size() == 0) || (aliveParty.size() == 0))
+            {
+                isComplete = true;
+            }
+            for (int k = 0; k < engagement.size(); k++)
+            {
+                GChar c = engagement.get(k);
+                if ((aliveEnemies.size() == 0) || (aliveParty.size() == 0))
+                {
+                    break;
+                }
+                if (aliveParty.contains(c) && (c.isAlive()))
+                {
+                    //System.out.print("\033[H\033[2J");
+        			//System.out.flush(); 
+                    System.out.println("\nEnemies: " + aliveEnemies);
+                    System.out.println("Party: " + aliveParty);
+                    System.out.println("Who will " + c.name + " engage?\n");
+                    String input = in.nextLine();
+                    for (GChar e : aliveEnemies)
+                    {
+                        if (e.toString().equals(input))
+                        {
+                            c.battleBeat(e);
+                            break;
+                        }
+                    }
+                }
+                if (aliveEnemies.contains(c))
+                {
+                    c.useSkill(c.known.get((int)(c.known.size() * Math.random())), aliveParty.get((int)(party.size()*Math.random())));
+                }
+                for (GChar ap : party)
+                {
+                    if (!(ap.isAlive()))
+                    {
+                        try 
+                        {
+                            aliveParty.remove(ap);                        
+                        } catch(Exception e) {}
+                    }                    
+                }
+                for (GChar ae : enemies)
+                {
+                    if (!(ae.isAlive()))
+                    {
+                        try 
+                        {
+                            aliveEnemies.remove(ae);                            
+                        } catch(Exception e) {}
+                    }
+                }
+                if ((aliveEnemies.size() == 0) || (aliveParty.size() == 0))
+                {
+                    break;
+                }
+                
+            }
+        }
+        System.out.println("Your Party is Victorious");
+        System.out.println("Your Remaining Party: " + aliveParty);
+        if (called == false)
+        {
+            NoEvent e = new NoEvent(aliveParty);
+            return e.beginEvent();            
+        }
+        else
+        {
+            return party;
+        }
+    }
+}
