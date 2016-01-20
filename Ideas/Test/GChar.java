@@ -59,6 +59,7 @@ public class GChar{
     //Inventory
     private Inventory i;
     
+    public GChar(){}
     
     //Constructor -- using word "class" creates problems, using word "job" as the character class works fine
     public GChar(String n, String e, String best, String worst, String job)
