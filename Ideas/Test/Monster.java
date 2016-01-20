@@ -113,49 +113,7 @@ public class Monster extends GChar{
     }
     
     
-     public void useSkill(String skillName, GChar target)
-     {
-         if ((known.contains(skillName)) && ((this.MP - Skill.getAllSkills().get(skillName).getMpCost()) >= 0))
-         {
-            Skill.getAllSkills().get(skillName).use(this, target);
-         }
-         else if ((known.contains(skillName)) &&(!((this.MP - Skill.getAllSkills().get(skillName).getMpCost()) >= 0)))
-         {
-            System.out.println("" + name + " does not have enough MP."); 
-         }
-         else
-         {
-             System.out.println("" + name + " does not know that skill.");
-         }
-     }
-     
-     public void useSkill(String skillName, Monster target){}
-     
-     
-     public void takeDamage(int damage)
-     {
-         if (damage < 0) {damage = 0;}
-         else
-         {
-             HP -= damage;
-         }
-         System.out.println (this.name + " takes " + damage + " damage!");
-     }
-
-     public void takeDamageMp(int damage)
-     {
-         if (damage < 0) {damage = 0;}
-         else
-         {
-             MP -= damage;
-         }
-         if (MP <= 0)
-         {
-             MP = 0;
-         }
-         System.out.println (this.name + " takes " + damage + " MP damage!");
-     }
-     
+   
      
     
     class pumpkinHead extends Monster{
