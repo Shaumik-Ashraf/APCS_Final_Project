@@ -36,6 +36,7 @@ public class GChar{
     public int EXP;
     public int level;
     public int MP;
+    private int gold;
     public String[] stuff;
 
    
@@ -76,6 +77,7 @@ public class GChar{
         luckInitial = luck = 10;
         speedInitial = speed = 10;
         EXP = 50;
+        gold = 250;
         bestStat(best);
         worstStat(worst);
         known.add("Basic Attack");
@@ -496,7 +498,9 @@ public class GChar{
      public void expGain (GChar c)
      {
         this.EXP += c.EXP;
+        this.gold += c.gold;
         System.out.println (name + " gained " + c.EXP + " EXP!");
+        System.out.println (name + " gained " + c.gold + " gold!");
         if (this.EXP >= 100)
         {
             System.out.print("\033[H\033[2J");
@@ -790,6 +794,7 @@ public class GChar{
          {
              System.out.println ("" + name + " defeated the enemy!");
              user.expGain (enemy);
+             
          }
      }
      
