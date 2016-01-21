@@ -5,7 +5,7 @@ public class Monster extends GChar{
     
     public static HashMap <String, String[]> bestiary = new HashMap <String, String[]>();
     
-    // Inventory i;
+    //Inventory i;
     
     
     public static void initMonsters()
@@ -28,7 +28,7 @@ public class Monster extends GChar{
         bestiary.put ("Sorcerer", new String[]         {"Sorcerer",       "Dark",   "Basic Attack",   "Arcanite Force",   ".3",     ".1",   "1.4" ,    "10"});
         bestiary.put ("Shark Pirate", new String[]     {"Shark Pirate",   "Aqua",   "Basic Attack",   "Back Stab",       "1.1",     "1.1",    "1" ,    "10"});
         bestiary.put ("Titan", new String[]            {"Titan",         " Fire",   "Basic Attack",   "Finishing Touch", "1.6",     "1.5",   ".1" ,    "10"});
-        bestiary.put ("Nokia", new String[]            {"Nokia",         "Blank",    "Basic Attack",  "Assassinate",       "30",     ".1",    ".1" ,    "10"});
+        bestiary.put ("Nokia", new String[]            {"Nokia",         "Blank",    "Basic Attack",  "Assassinate",       "3",     ".1",    ".1" ,    "10"});
     }
     
     //=========================Scaling monsters
@@ -60,6 +60,7 @@ public class Monster extends GChar{
         resInitial = res = 10;
         luckInitial = luck = 10;
         speedInitial = speed = 10;
+        gold = 100;
         EXP = 0;
         
         String[] details = bestiary.get(monsterName);
@@ -81,13 +82,14 @@ public class Monster extends GChar{
     public void scale (int lvl){
         level = lvl;
         hpInitial = HP = (int)(HP * (1 + (int)(level/5)));
-        mpInitial = MP = (int)(MP * (1 + level/5));
-        strInitial = str = (int)(str * (1 + level/5));
-        magicInitial = magic = (int)(magic * (1 + level/5));
-        defInitial = def = (int)(def * (1 + level/5));
-        resInitial = res = (int)(res * (1 + level/5));
-        luckInitial = luck = (int)(luck * (1 + level/5));
-        speedInitial = speed = (int)(speed * (1 + level/5));
+        mpInitial = MP = (int)(MP * (1 + (int)level/5));
+        strInitial = str = (int)(str * (1 + (int)level/5));
+        magicInitial = magic = (int)(magic * (int)(1 + level/5));
+        defInitial = def = (int)(def * (1 + (int)level/5));
+        resInitial = res = (int)(res * (1 + (int)level/5));
+        luckInitial = luck = (int)(luck * (1 + (int)level/5));
+        speedInitial = speed = (int)(speed * (1 + (int)level/5));
+        gold *= (int)(level/5);
         //System.out.println(speed);
     }
     
