@@ -36,7 +36,7 @@ public class GChar{
     public int EXP;
     public int level;
     public int MP;
-    private int gold;
+    public int gold;  //making this public
     public String[] stuff;
 
    
@@ -51,14 +51,14 @@ public class GChar{
     public int speedInitial;
     public int mpInitial;
     
-    //Skills
-    protected ArrayList<String> learnable = new ArrayList<String>();
-    protected ArrayList<String> known = new ArrayList<String>();
+    //Skills -made these public
+    public ArrayList<String> learnable = new ArrayList<String>();
+    public ArrayList<String> known = new ArrayList<String>();
     
     
     
-    //Inventory
-    private Inventory i;
+    //Inventory -made this public
+    public Inventory i;
     
     public GChar(){}
     
@@ -446,9 +446,7 @@ public class GChar{
             speed *= .5;
             speedInitial = speed;
         }
-        //else{
-       //     System.out.println ("System.outmething went wrong...");
-       // }
+        else; //System.out.println("System.outmething went wrong...");
         
     }
     
