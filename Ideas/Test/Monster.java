@@ -34,9 +34,19 @@ public class Monster extends GChar{
         
     }
     
-    public Monster (String[] details)
+    public Monster (String monsterName, int lvl)
     {
-        this();
+        hpInitial = HP = 20;
+        mpInitial = MP = 999999;
+        strInitial = str = 10;
+        magicInitial = magic = 10;
+        defInitial = def = 10;
+        resInitial = res = 10;
+        luckInitial = luck = 10;
+        speedInitial = speed = 10;
+        EXP = 0;
+        
+        String[] details = bestiary.get(monsterName);
         name = details[0];
         element = details [1];
         
@@ -48,18 +58,21 @@ public class Monster extends GChar{
         magicInitial = magic = (int)(magic * Double.parseDouble (details[6])); 
         
         EXP = Integer.parseInt (details[7]);
+        //System.out.println("scaling" + speed);
+        this.scale(lvl);
     }
     
     public void scale (int lvl){
         level = lvl;
-        hpInitial = HP = HP * (1 + lvl/5);
-        mpInitial = MP = MP * (1 + lvl/5);
-        strInitial = str = str * (1 + lvl/5);
-        magicInitial = magic = magic * (1 + lvl/5);
-        defInitial = def = def * (1 + lvl/5);
-        resInitial = res = res * (1 + lvl/5);
-        luckInitial = luck = luck * (1 + lvl/5);
-        speedInitial = speed = speed * (1 + lvl/5);
+        hpInitial = HP = (int)(HP * (1 + (int)(level/5)));
+        mpInitial = MP = (int)(MP * (1 + level/5));
+        strInitial = str = (int)(str * (1 + level/5));
+        magicInitial = magic = (int)(magic * (1 + level/5));
+        defInitial = def = (int)(def * (1 + level/5));
+        resInitial = res = (int)(res * (1 + level/5));
+        luckInitial = luck = (int)(luck * (1 + level/5));
+        speedInitial = speed = (int)(speed * (1 + level/5));
+        //System.out.println(speed);
     }
     
 

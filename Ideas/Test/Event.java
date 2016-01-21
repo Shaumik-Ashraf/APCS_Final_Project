@@ -29,7 +29,8 @@ class CombatEvent extends Event
     {
         called = false;
         isComplete = false;
-        spawnEnemies();
+        int partyLvl = 0;
+        int counter = 0;
         for (GChar c: p)
         {
             party.add(c);
@@ -37,14 +38,17 @@ class CombatEvent extends Event
             aliveParty.add(c);
             c.normalize();
             c.augmentStats();
+            partyLvl += c.level;
+            counter += 1;
         }
-        
+        partyLvl = (int)(partyLvl/counter);
+        spawnEnemies(partyLvl);        
         for (int k = 0; k < engagement.size(); k++)
         {
             for (int i = 0; i < engagement.size()-1; i++)
             {
-               // System.out.println(engagement);
-            //    for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
+                //System.out.println(engagement);
+                //for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
                 if (engagement.get(i).speed < engagement.get(i+1).speed)
                 {
                     GChar lower = engagement.get(i);
@@ -61,7 +65,8 @@ class CombatEvent extends Event
     {
         called = call;
         isComplete = false;
-        spawnEnemies();
+        int partyLvl = 0;
+        int counter = 0;
         for (GChar c: p)
         {
             party.add(c);
@@ -69,14 +74,20 @@ class CombatEvent extends Event
             aliveParty.add(c);
             c.normalize();
             c.augmentStats();
+            partyLvl += c.level;
+            counter += 1;
         }
+        partyLvl = (int)(partyLvl/counter);
+        spawnEnemies(partyLvl);
         for (int k = 0; k < engagement.size(); k++)
         {
-            for (int i = 1; i < engagement.size()-1; i++)
+            for (int i = 0; i < engagement.size()-1; i++)
             {
-                System.out.println(engagement);
+                //System.out.println(engagement);
+                //for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
                 if (engagement.get(i).speed < engagement.get(i+1).speed)
                 {
+                 
                     GChar lower = engagement.get(i);
                     GChar higher = engagement.get(i+1);
                     engagement.set(i, higher);
@@ -86,11 +97,12 @@ class CombatEvent extends Event
         }
     }
     
-    public void spawnEnemies()
+    public void spawnEnemies(int level)
     {
-        enemies.add(new Monster (Monster.bestiary.get("Pumpkin Head")));
+        
+        enemies.add(new Monster ("Pumpkin Head", level));
         System.out.println(enemies.get(0).speed); 
-        enemies.add(new Monster (Monster.bestiary.get("Moo Cow")));
+        enemies.add(new Monster ("Moo Cow", level));
         System.out.println(enemies.get(0).speed);        
         for (GChar c : enemies)
         {
@@ -172,7 +184,7 @@ class CombatEvent extends Event
         }
         else
         {
-            return party;
+            return aliveParty;
         }
     }
 }
@@ -1050,7 +1062,7 @@ class CryptEvent extends Event
         return party;
     }
     
-    /*
+    
     public static void main (String[] args)
     {
         Item.consEquipList();
@@ -1063,7 +1075,7 @@ class CryptEvent extends Event
         PoolCombatEvent e = new PoolCombatEvent(chars);
         chars = e.beginEvent();
     }
-    */
+    
     
 }
 
@@ -1097,8 +1109,8 @@ class PoolCombatEvent extends Event
         {
             for (int i = 0; i < engagement.size()-1; i++)
             {
-               // System.out.println(engagement);
-            //    for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
+                //System.out.println(engagement);
+                //for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
                 if (engagement.get(i).speed < engagement.get(i+1).speed)
                 {
                     GChar lower = engagement.get(i);
@@ -1144,16 +1156,26 @@ class PoolCombatEvent extends Event
     {
         for (GChar r : engagement)  
         {
-            enemies.add(new Monster (Monster.bestiary.get("Pumpkin Head")));
-            enemies.add(new Monster (Monster.bestiary.get("Moo Cow")));
+            GChar c = new GChar((r.name), r.stuff[1], r.stuff[2], r.stuff[3], r.stuff[4]);
+            c.HP = r.HP;
+            c.MP = 99999;
+            c.def = r.def;
+            c.res = r.res;
+            c.str = (int)(r.str/1.5);
+            c.magic = (int)(r.magic/1.5);
+            c.speed = r.speed-1;
+            c.luck = (int)(r.luck/2);
+            c.known = r.known;
+            enemies.add(c);
+        
         }
         for (GChar c : enemies)
         {
             engagement.add(c);
             aliveEnemies.add(c);
-           // c.augmentStats(); Monsters don't have equipss
         }
     }
+
     
     public ArrayList<GChar> beginEvent()
     {

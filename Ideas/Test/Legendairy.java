@@ -66,6 +66,7 @@ import java.util.*;
 	        
 	        Item.consEquipList();
         	Skill.consAllSkills();
+        	Monster.initMonsters();
 
 	        newGame();
         }
@@ -103,12 +104,14 @@ import java.util.*;
 		}
 		e = new CombatEvent(party, true);
 		party = e.beginEvent();
+		//String delay = in.nextLine(); //////////////////
         System.out.print("\033[H\033[2J");
 		System.out.flush();     
 		System.out.println("You are heavily damaged. You lay on the floor as yet another entitiy hobbles toward you. There is nothing you can do.");
 		System.out.println("'Hello there...' it says. Take this, and come with me.");
 		c1.getInventory().giveItem(new EffectItem("Lesser Healing Potion"));
 		System.out.println("'Go on, drink it. You'll have to wait for its effects to kick in. We can stay here for now.");
+		c1.HP = (int)(c1.HP/2) + 1;
 		int hptemp = c1.HP;
 		while ((c1.getInventory().inv.size() > 0) || (c1.HP == hptemp))
 		{
