@@ -627,7 +627,7 @@ class CavernEvent extends Event
     public CavernEvent(ArrayList<GChar> p)
     {
         for (GChar c : p)
-        {
+	{
             party.add(c);
             uncrossed.add(c);
         }
