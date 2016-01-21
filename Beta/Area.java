@@ -95,9 +95,9 @@ class AreaField extends Area {
 	areatype = "field";
 	qe.add( new NoEvent(party) );
 	qe.add( new NoEvent(party) );
-	for(int i=0; i<3; i++) {   //add 3 random events, with 40% CombatEvent, 40% NoEvent, 20% CavernEvent 
+	for(int i=0; i<3; i++) {   //add 3 random events, with 60% CombatEvent, 20% NoEvent, 20% CavernEvent 
 	    int r = Math.random();
-	    if( r < 0.4 ) {
+	    if( r < 0.6 ) {
 		qe.add( new CombatEvent(party) );
 	    }
 	    else if( r < 0.8 ) {

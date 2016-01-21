@@ -28,7 +28,7 @@ public class Monster extends GChar{
         bestiary.put ("Sorcerer", new String[]         {"Sorcerer",       "Dark",   "Basic Attack",   "Arcanite Force",   ".3",     ".1",   "1.4" ,    "10"});
         bestiary.put ("Shark Pirate", new String[]     {"Shark Pirate",   "Aqua",   "Basic Attack",   "Back Stab",       "1.1",     "1.1",    "1" ,    "10"});
         bestiary.put ("Titan", new String[]            {"Titan",         " Fire",   "Basic Attack",   "Finishing Touch", "1.6",     "1.5",   ".1" ,    "10"});
-        bestiary.put ("Nokia", new String[]            {"Nokia",         "Blank",    "Basic Attack",  "Assassinate",       "3",     ".1",    ".1" ,    "10"});
+        bestiary.put ("Nokia", new String[]            {"Nokia",         "Blank",    "Basic Attack",  "Assassinate",       "30",     ".1",    ".1" ,    "10"});
     }
     
     //=========================Scaling monsters
