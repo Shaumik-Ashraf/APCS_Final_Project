@@ -1108,7 +1108,7 @@ class TownEvent extends Event {
         {
             System.out.print("\033[H\033[2J");
             System.out.flush();
-            System.out.println("Welcome to " + Townname);
+            System.out.println("Welcome to Town");
             System.out.println("Party: " + party);
             System.out.println("What do you do?\nSave\nShop\nItems\nAdvance\nRest\nWait\n");
             input = in.nextLine().toLowerCase();

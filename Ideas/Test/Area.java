@@ -1,5 +1,6 @@
 /* Area class
  *
+ * Note: Queue is actually an interface; so I'm changing Queue to linkedlist, which holds the same LIFO properties
  * Needs Testing!!
  *
  * Usage (so far):
@@ -14,8 +15,8 @@ import java.util.*;
 public abstract class Area {
 
 	public String name;
-	public Queue<String> qs;
-	public Queue<Event> qe;
+    //public Queue<String> qs;
+	public LinkedList<Event> qe;
 	public String areatype;
 	/* Possible areatypes as of now:
 		Empty - default areatype, not to be instantiated
@@ -27,7 +28,7 @@ public abstract class Area {
 	public Area() {
 		name = "Area";
 		//qs = new Queue<String>();
-		qe = new Queue<Event>();
+		qe = new LinkedList<Event>();
 		areatype = "Empty";
 	}
 	
@@ -42,6 +43,10 @@ public abstract class Area {
 	public abstract ArrayList<GChar> callEvent(ArrayList<GChar> Party);
 	
 	public abstract void update(ArrayList<GChar> Party);
+
+    public boolean noMoreEvents() {
+	return( qe.peek()==null );
+    }
 
     //public abstract void restore(); //readd popped Events
 	
@@ -62,9 +67,18 @@ class TownArea extends Area {
 		super();
 		name = townnameslist.remove( (int)(Math.random()*townnameslist.length) );
 		areatype = "Town";
-		qe.add( new TownEvent(party), name );
-		qe.add( new TownEvent(party), name );
+		qe.add( new TownEvent(party) );
+		qe.add( new TownEvent(party) );
 	}
+
+    public TownArea(ArrayList<GChar> party, String name_arg) {
+	super();
+	name = name_arg;
+	areatype = "Town";
+	qe.add( new TownEvent(party) );
+	qe.add( new TownEvent(party) );
+	
+    }
 	
 	public ArrayList<GChar> callEvent(ArrayList<GChar> Party) {
 		update(Party);
@@ -85,14 +99,14 @@ class AreaField extends Area {
 
     //the following vars are currently incompatible with CombatEvent and spawnMonsters
     //could create another CombatEvent constructor: public CombatEvent(ArrayList<GChar> party, ArrayList<GChar> monsters) {...} 
-    public String[] monsterlist;  //array of names of possible monsters to encounter
-    public double[] chancespawn;  //chance that monster of corresponding index spawns
+    //public String[] monsterlist;  //array of names of possible monsters to encounter
+    //public double[] chancespawn;  //chance that monster of corresponding index spawns
 
     public AreaField(ArrayList<GChar> party) {
 	super();
 	name = "Field-" + fieldctr; //OR could do "Route-" + fieldctr
 	fieldctr++;
-	areatype = "field";
+	areatype = "Field";
 	qe.add( new NoEvent(party) );
 	qe.add( new NoEvent(party) );
 	for(int i=0; i<3; i++) {   //add 3 random events, with 60% CombatEvent, 20% NoEvent, 20% CavernEvent 
@@ -132,20 +146,62 @@ class AreaField extends Area {
 
 /*===============AreaDungeon========================================================*/
 
-/*
+
 class AreaDungeon extends Area {
 
+    //currently incompatible, read Field
+    //public String[] monsterlist;
+    //public double[] spawnchance; 
+    
     public AreaDungeon(ArrayList<GChar> party) {
-	;
+	super();
+	name = "Dungeon";  //IMPROVE
+	areatype = "Dungeon";
+	qe.add( new NoEvent(party) );
+	qe.add( new NoEvent(party) );
+	for(int i=0; i<3; i++) {   //add 5 random events: 20% TrapEvent, 20% CryptEvent, 20% ChestEvent, 30% CombatEvent, 10% NoEvent
+	    int r = Math.random();
+	    if( r < 0.2 ) {
+		qe.add( new TrapEvent(party) );
+	    }
+	    else if( r < 0.4 ) {
+		qe.add( new CryptEvent(party) );
+	    }
+	    else if( r < 0.6 ) {
+		qe.add( new ChestEvent(party) );
+	    }
+	    else if( r < 0.9 ) {
+		qe.add( new CombatEvent(party) );
+	    }
+	    //add other Events here
+	    else {
+		qe.add( new NoEvent(party) );
+	    }
+	} //close for-loop
     }
 
     public ArrayList<GChar> callEvent(ArrayList<GChar> party) {
 	;
     }
 
-    public void update() {
-	;
+    public void update(ArrayList<GChar> party) {
+	if( e instanceof ChestEvent ) {
+	    qe.add( new ChestEvent(party) );
+	}
+	else if( e instanceof TrapEvent ) {
+	    qe.add( new TrapEvent(party) );
+	}
+	else if( e instanceof CryptEvent ) {
+	    qe.add( new CryptEvent(party) );
+	}
+	else if( e instanceof CombatEvent ) {
+	    qe.add( new CombatEvent(party) );
+	}
+	//If other Events added to Field, add here
+	else {
+	    qe.add( new NoEvent(party) );
+	}
     }
 
 }
-*/
+
