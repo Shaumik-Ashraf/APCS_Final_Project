@@ -110,7 +110,7 @@ class AreaField extends Area {
 	qe.add( new NoEvent(party) );
 	qe.add( new NoEvent(party) );
 	for(int i=0; i<3; i++) {   //add 3 random events, with 60% CombatEvent, 20% NoEvent, 20% CavernEvent 
-	    int r = Math.random();
+	    double r = Math.random();
 	    if( r < 0.6 ) {
 		qe.add( new CombatEvent(party) );
 	    }
@@ -160,7 +160,7 @@ class AreaDungeon extends Area {
 	qe.add( new NoEvent(party) );
 	qe.add( new NoEvent(party) );
 	for(int i=0; i<3; i++) {   //add 5 random events: 20% TrapEvent, 20% CryptEvent, 20% ChestEvent, 30% CombatEvent, 10% NoEvent
-	    int r = Math.random();
+	    double r = Math.random();
 	    if( r < 0.2 ) {
 		qe.add( new TrapEvent(party) );
 	    }
