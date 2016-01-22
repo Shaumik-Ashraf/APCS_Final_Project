@@ -28,10 +28,10 @@ public class Monster extends GChar{
         bestiary.put ("Sorcerer", new String[]         {"Sorcerer",         "Dark",   "Basic Attack",   "Arcanite Force",    ".3",      ".1",   "1.4" ,    "10",    ".9"   });
         bestiary.put ("Shark Pirate", new String[]     {"Shark Pirate",     "Aqua",   "Basic Attack",   "Back Stab",        "1.1",     "1.1",     "1" ,    "10",   "1.2"   });
         bestiary.put ("Titan", new String[]            {"Titan",           " Fire",   "Basic Attack",   "Finishing Touch",  "1.6",     "1.5",    ".1" ,    "10",    ".5"   });
-        bestiary.put ("Nokia", new String[]            {"Nokia",           "Blank",   "Basic Attack",   "Assassinate",        "3",      ".1",    ".1" ,    "10",    ".1"   });
+        bestiary.put ("Nokia", new String[]            {"Nokia",           "Blank",   "Basic Attack",   "Assassinate",       "30",      ".1",    ".1" ,    "10",    ".1"   });
         bestiary.put ("Axe Villager", new String[]     {"Axe Villager",    " Wood",   "Basic Attack",   "Strong Swing",      ".6",       "2",    ".1" ,    "10",     "1"   });
         bestiary.put ("Gelatinous Cube", new String[]  {"Gelatinous Cube",  "Aqua",   "Basic Attack",   "Tidal Wave",       "2.5",      ".1",    ".1" ,    "10",    ".9"   });
-        bestiary.put ("Hollow Golem", new String[]     {"Hollow Golem",    "Light",   "Basic Attack",   "Strong Swin",      "2.5",     "1.2",    ".1" ,    "10",    ".9"   });
+        bestiary.put ("Hollow Golem", new String[]     {"Hollow Golem",    "Light",   "Basic Attack",   "Strong Swing",      "2.5",     "1.2",    ".1" ,    "10",    ".9"   });
         bestiary.put ("Magitek Delta", new String[]    {"Magitek Delta",    "Dark",   "Basic Attack",   "Arcane Bullets",   "1.1",      ".1",    "1.2",    "10",    ".8"   });    
         bestiary.put ("Magitek Epsilon", new String[]  {"Magictek Epsilon","Light",   "Basic Attack",   "Arcanite Force",   "1.1",      ".1",    "1.4",    "10",    ".7"   });
         bestiary.put ("Air Chair", new String[]        {"Air Chair",        "Gale",   "Basic Attack",   "Luster Wave",       ".4",     "1.1",    ".7" ,    "10",   "1.4"   });
@@ -41,10 +41,13 @@ public class Monster extends GChar{
         bestiary.put ("Stage Killer", new String[]     {"Stage Killer",     "Aqua",   "Assassinate",    "Arrow Rain",  "     1.1",     "1.1",    "1.1",    "10",   "1.8"   }); 
         bestiary.put ("Modern Airplane", new String[]  {"Modern Airplane", "Blank",   "Basic Attack",   "Tidal Wave",         "2",      ".8",     ".8",    "10",     "1"   });
         bestiary.put ("Mossgreen Moss", new String[]   {"Mossgreen Moss",  "Light",   "Basic Attack",   "Luster Wave",      "1.2",     "1.1",    "1.1",    "10",   "1.1"   });
-        bestiary.put ("Future Fencer", new String[]    {"Future Fencer",    "Dark",   "Finishing Touch", "Blood Rain",       ".1",     "1.7",    "1.5",    "10",   "1.6"   });
-        
-        
-        
+        bestiary.put ("Future Fencer", new String[]    {"Future Fencer",    "Dark",   "Finishing Touch","Blood Rain",        ".1",     "1.7",    "1.5",    "10",   "1.6"   });
+        bestiary.put ("Desert Snail", new String[]     {"Desert Snail",     "Fire",   "Basic Attack",   "Heat Wave",          "1",     "1.1",    "1.3",    "10",   ".4"    });
+        bestiary.put ("Boomerang Shark", new String[]  {"Boomerang Shark",  "Aqua",   "Finishing Touch","Tidal Wave",       "1.2",     "1.7",    "1.7",    "10",   "1.5"   });
+        bestiary.put ("Destiny Ferret", new String[]   {"Destiny Ferret",   "Dark",   "Flower Dance",   "Blood Rain",        ".1",     "1.5",    "1.5",    "10",     "1"   });
+        bestiary.put ("Cardboard Fox", new String[]    {"Cardboard Fox",    "Wood",   "Basic Attack",   "Flower Dance",       "1",      ".8",    "1.1",    "10",   "1.2"   });
+        bestiary.put ("Granola Dragon", new String[]   {"Granola Dragon",   "Fire",   "Basic Attack",   "Arcane Bullets",   "1.6",      ".4",    "1.5",    "10",   "1.6"   });
+        bestiary.put ("Cliff Chomper", new String[]    {"Cliff Chomper",   "Light",   "Basic Attack",   "Finishing Touch",    "2",      "1.8",    ".1",    "10",   ".4"    });
     }
     
     //=========================Scaling monsters
