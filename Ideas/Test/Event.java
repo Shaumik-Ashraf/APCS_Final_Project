@@ -168,6 +168,7 @@ class CombatEvent extends Event
                         } catch(Exception e) {}
                     }
                 }
+		//battle over check
                 if ((aliveEnemies.size() == 0) || (aliveParty.size() == 0))
                 {
                     break;
@@ -175,8 +176,17 @@ class CombatEvent extends Event
                 
             }
         }
-        System.out.println("Your Party is Victorious");
-        System.out.println("Your Remaining Party: " + aliveParty);
+
+	//victory/defeat
+	if( aliveEnemies.size()==0 && aliveParty.size()!=0 ) {
+	    System.out.println("Your Party is Victorious");
+	    System.out.println("Your Remaining Party: " + aliveParty);
+	}
+	else if( aliveEnemies.size()==0 && aliveParty.size()!=0 ) {
+	    System.out.println("Your party is Dead XP");
+	    System.out.println("GG");
+	    //is there any java exit() or abort function?
+	}
         if (called == false)
         {
             NoEvent e = new NoEvent(aliveParty);

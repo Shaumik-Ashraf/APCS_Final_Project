@@ -14,28 +14,6 @@ import java.util.*;
 
 public class Legendairy2 {
 
-	/*
-	private static final ArrayList<String> stats = new ArrayList();
-	private static final ArrayList<String> traits = new ArrayList();
-	private static final ArrayList<String> jobs = new ArrayList();
-	public Event e;
-	public GChar c1;
-	    
-
-	private GChar enemy;
-
-	private String message;
-	private String choice;
-
-	
-
-	public String name;
-	public String element;
-	public String best;
-	public String worst;
-	public String job;
-	*/
-
 	public Event e;
 	public GChar c1;
 	public GChar enemy;
@@ -44,32 +22,9 @@ public class Legendairy2 {
 
 
 
-	public Legendairy() {
+	public Legendairy2() {
 	 
 		in = new Scanner(System.in);
-
-		/*		
-		stats.add ("health");
-		stats.add ("strength");
-		stats.add ("magic");
-		stats.add ("defense");
-		stats.add ("resistance");
-		stats.add ("luck");
-		stats.add ("agility");
-		
-		traits.add ("outgoing");
-		traits.add ("optimistic");
-		traits.add ("calm");
-		traits.add ("carefree");
-		traits.add ("malevolent");
-		traits.add ("benevolent");
-		traits.add ("empty");
-		
-		jobs.add ("warrior");
-		jobs.add ("mage");
-		jobs.add ("archer");
-		jobs.add ("rogue");
-		*/
 
 		Item.consEquipList();
 		Skill.consAllSkills();
@@ -114,9 +69,11 @@ public class Legendairy2 {
 				System.out.println("Input a valid response.");
 			}
 		}
+
 		e = new CombatEvent(party, true);
 		party = e.beginEvent();
-		//String delay = in.nextLine(); //////////////////
+	
+	//String delay = in.nextLine(); //////////////////
 	System.out.print("\033[H\033[2J");
 		System.out.flush();     
 		System.out.println("You are heavily damaged. You lay on the floor as yet another entitiy hobbles toward you. There is nothing you can do.");
@@ -133,17 +90,12 @@ public class Legendairy2 {
 		}
 		System.out.println("You feel much better.");
 		System.out.println("'Now come with me,' he says.");
-		GChar c2 = characterCreation();
+		GChar c2 = Creator.characterCreation();
 		party.add(c2);
 		System.out.println(c2.name + " has joined the party!");
 		e = new CombatEvent(party);
 		party = e.beginEvent();
 		//----------------------------END TUTORIAL
-	    /*
-
-		Add dungeon stuff here
-
-		*/
 	    
 
 	
@@ -151,7 +103,9 @@ public class Legendairy2 {
 
 
 	public static void main (String[] args){
+
 	    Legendairy game = new Legendairy();
+
 	} //close main
 
 
