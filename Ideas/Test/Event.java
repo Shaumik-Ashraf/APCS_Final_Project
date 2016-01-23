@@ -1029,14 +1029,22 @@ class CryptEvent extends Event
                         {
                             litTorches.remove(0);
                         }
-                        //PoolEvent e = new PoolEvent(party);
-                        //party = e.beginEvent();
+                        if (100*Math.random() < 13)
+                        {
+                            PoolEvent e = new PoolEvent(party);
+                            party = e.beginEvent();                            
+                        }
+                        else
+                        {
+                            ChestEvent e = new ChestEvent(party);
+                            party = e.beginEvent();
+                        }
                         isComplete = true;
                     }
                     else
                     {
                         int clickCounter = 0;
-                        for (int k = 0; k < answer.size(); k++)
+                        for (int k = 0; k < litTorches.size(); k++)
                         {
                             if (answer.contains(litTorches.get(k)))
                             {clickCounter += 1;}
@@ -1077,10 +1085,11 @@ class CryptEvent extends Event
         Skill.consAllSkills();
         GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
         GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
+        Wendell.magic = 1000;
         ArrayList<GChar> chars = new ArrayList<GChar>();
         chars.add(Logan);
         chars.add(Wendell);
-        PoolCombatEvent e = new PoolCombatEvent(chars);
+        CryptEvent e = new CryptEvent(chars);
         chars = e.beginEvent();
     }
     
@@ -1088,6 +1097,71 @@ class CryptEvent extends Event
 }
 
 /*---------------------REFLECTION POOL EVENT---------------------*/
+class PoolEvent extends Event
+{
+    String delay;
+    String input;
+    private Scanner in = new Scanner(System.in);
+    public ArrayList<GChar> party = new ArrayList<GChar>();
+    public PoolEvent(ArrayList<GChar> p)
+    {
+        isComplete = false;
+        for (GChar c: p)
+        {
+            party.add(c);
+        }
+    } 
+    
+    public ArrayList<GChar> beginEvent()
+    {
+        System.out.println("You enter a long dark room with a huge rectangular pool spanning its length. The water emits an arcane aura around its surface.");
+        while (!isComplete)
+        {
+            System.out.println("What do you do?\nLeave\nExamine\nCommune\n");
+            input = in.nextLine().toLowerCase();
+            switch(input)
+            {
+                case "leave":
+                    isComplete = true;
+                    break;
+                case "examine":
+                    System.out.println("The pool radiates magic.");
+                    break;
+                case "commune":
+                    System.out.println("You send one member to communicate with the pool's magic. Who do you send?");
+                    input = in.nextLine();
+                    GChar charInput = party.get(0);
+                    for (int j = 0; j < party.size(); j++)
+                    {
+                        if (party.get(j).name.equals(input))
+                        {
+                            charInput = party.get(j);
+                        }
+                    }
+                    System.out.println("You send " + charInput.name);
+                    System.out.println(charInput.name + " Communes with the reflection pool...\nEnter any key to continue");
+                    delay = in.nextLine();
+                    if (charInput.magic + 100*Math.random() > 115)
+                    {
+                        System.out.println("The magic infuses itself into " + charInput.name);
+                        charInput.giveEXP(100);
+                        isComplete = true;
+                    }
+                    else
+                    {
+                        System.out.println(charInput.name + " is unable to tame the magic stored in the water... Your once clear reflections become muddled and blackened.");
+                        System.out.println("Your minds are inflicted overwhelming pain. What once were reflections in the water have risen as horrible aberrations, pure essences of each of your greatist weaknesses.");
+                        System.out.println("You are assaulted by these unbearable images.");
+                        PoolCombatEvent e = new PoolCombatEvent(party);
+                        party = e.beginEvent();     
+                        isComplete = true;
+                    }
+                    break;
+            }
+        }
+        return party;
+    }
+}
 
 /*------------------------------------TOWN EVENT--------------------------------*/
 //INCOMPLETE

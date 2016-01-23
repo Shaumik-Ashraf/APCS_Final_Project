@@ -664,6 +664,17 @@ public class GChar{
          target.EXP = value;
      }
      
+     public void giveEXP(int amount)
+     {
+         this.EXP += amount;
+         System.out.println(this.name + " has gained " + amount + " exp.");
+         if (this.EXP >= 100)
+         {
+             this.EXP = this.EXP%100;
+             this.skillPoints(1);
+         }
+     }
+     
     
      
     
