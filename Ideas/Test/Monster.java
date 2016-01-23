@@ -63,7 +63,7 @@ public class Monster extends GChar{
         bestiary.put ("Candle Speaker", new String[]   {"Candle Speaker",   "Fire",   "Rekindle",       "Heat Wave",        "1.5",     "1.1",    "1.9",    "10",   "1.4"   });
         bestiary.put ("Lodestar", new String[]         {"Lodestar",        "Light",   "Holy Smite",     "Luster Wave",        "2",       "2",      "2",    "10",   "1.7"   });
         bestiary.put ("Psychoham", new String[]        {"Psychoham",        "Gale",   "BasicAttack",    "Pickpocket",       "1.6",     "1.1",    "1.1",    "10",   "2.1"   });
-        bestiary.put ("Magictek Beta", new String[]    {"Magitek Beta",    "Blank",   "Brain Shock",    "Mana Burst",         "1",       "1",      "2",    "10",   "1.9"   });
+        bestiary.put ("Magictek Beta", new String[]    {"Magitek Beta",    "Blank",   "Brain Shock",    "Arcanite Force",     "1",       "1",      "2",    "10",   "1.9"   });
         bestiary.put ("Fair Gunslinger", new String[]  {"Fair Gunslinger",  "Fire",   "Quick Draw",     "Fatal Shot",       "1.8",     "1.7",    "1.2",    "10",   "1.7"   });
         bestiary.put ("Atlas", new String[]            {"Atlas",           "Light",   "Strong Swing",   "Planet",             "2",       "2",      "0",    "10",   "1.5"   });
         bestiary.put ("Mercenary", new String[]        {"Mercenary",       "Blank",   "Assassinate",    "Arrow Storm",      "1.5",     "1.9",    "1.5",    "10",   "2.2"   });

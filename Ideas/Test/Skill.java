@@ -84,6 +84,14 @@ public abstract class Skill
         allSkills.put ("Hurricane Force", new hurricaneForce());
         allSkills.put ("Maelstrom", new maelstrom());
         
+        
+        //Final Boss Brown Skills
+        allSkills.put ("Keys to Success", new keys());
+        allSkills.put ("Wadatah", new wadatah());
+        allSkills.put ("Day of Relaxation", new csExam());
+        allSkills.put ("Beard of Justice", new beard());
+        allSkills.put ("Bun of Fate", new bun());
+        
     }
     
     public static HashMap<String,Skill> getAllSkills()
@@ -1454,6 +1462,85 @@ class abnormalize extends Skill
         c.speed /= 2;
     }
 }
+
+
+//Brown Skills
+class keys extends Skill
+{
+    public keys()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " used Keys to Success!"); 
+        System.out.println ("It was a major key! Bless up! " + user.name "'s stats dramatically increase!");
+        user.str *= 1.5;
+        user.magic *= 1.5
+        user.def *= 1.5
+        user.res *= 1.5
+        user.speed *= 1.5
+    }
+}
+
+class wadatah extends Skill
+{
+    public wadatah()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " used WADATAHHHH!"); 
+        c.takeDamage (c.hpInitial * .5);
+    }
+}
+
+class csExam extends Skill
+{
+    public csExam()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " gave " + c.name + " a Day of Relaxation!"); 
+        c.takeDamage (c.hpInitial);
+        System.out.println (user.name + " got sent to the gift shop!"); 
+    }
+}
+
+class beard extends Skill
+{
+    public beard()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " used his Beard of Justice!"); 
+        c.takeDamage (user.str - c.def);
+    }
+}
+
+class bun extends Skill
+{
+    public bun()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " used his Bun of Fate!"); 
+        c.takeDamage (user.magic - c.res);
+    }
+}
+
 
 
 
