@@ -100,10 +100,8 @@ class CombatEvent extends Event
     public void spawnEnemies(int level)
     {
         
-        enemies.add(new Monster ("Pumpkin Head", level));
-        System.out.println(enemies.get(0).speed); 
-        enemies.add(new Monster ("Moo Cow", level));
-        System.out.println(enemies.get(0).speed);        
+        enemies.add(new Monster ("Future Fencer", level));
+        enemies.add(new Monster ("Stage Killer", level));
         for (GChar c : enemies)
         {
             engagement.add(c);
