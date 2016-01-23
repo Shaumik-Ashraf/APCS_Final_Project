@@ -70,7 +70,7 @@ public abstract class Skill
         allSkills.put("Zombie Strike", new zombieStrike());
         allSkills.put ("Demon Fury", new demonFury());
         allSkills.put ("Blood Rain", new bloodRain());
-        allSkills.put ("Vampire", new vampire())
+        allSkills.put ("Vampire", new vampire());
         allSkills.put ("Darkness", new darkness());
         
         //Gale Skills
@@ -241,6 +241,32 @@ class rushDown extends Skill
     }
 }
 
+class weaken extends Skill
+{
+    public weaken()
+    {
+        mpCost = 35;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " swings at " + c.name +"'s weakspot!");
+        user.MP -= mpCost;
+        if (((Math.random() * 100)) <= user.luck)
+        {
+            c.takeDamage (user.str - c.def / 2 );
+            System.out.println ("It's a critical hit! REKT");
+        }
+        else
+        {
+            c.takeDamage (user.str  - c.def);
+        }
+        System.out.println (c.name + "'s defense dropped!");
+        c.def *= .8;
+    }
+}
+
+
 
 
 //class Archer skills
@@ -337,6 +363,31 @@ class fatalShot extends Skill
     }
 }
 
+class quickDraw extends Skill
+{
+    public quickDraw()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " fires a series of quick bolts");
+        user.MP -= mpCost;
+     if (((Math.random() * 100)) <= user.luck)
+        {
+            c.takeDamage (user.str + user.speed - c.def / 2 );
+            System.out.println ("It's a critical hit! REKT");
+        }
+    else
+        {
+            c.takeDamage (user.str + user.speed - c.def);
+        }
+    }
+}
+
+
+
 
 //class Mage skills
 
@@ -423,6 +474,22 @@ class brainShock extends Skill
         user.MP += (int)(c.MP * .3);
         c.takeDamageMp ((int)(c.MP *.3));
         
+    }
+}
+
+class manaBreak extends Skill
+{
+    public manaBreak()
+    {
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        mpCost = user.MP;
+        System.out.println (user.name + " released all of their mana!");
+        user.MP -= mpCost;
+        c.takeDamage ((user.MP + user.magic) * 2);
+        System.out.println (user.name + " feels drained!");
     }
 }
 
@@ -547,6 +614,27 @@ class shuffleTime extends Skill //needs to be fixed
     }
 }
 
+class pickpocket extends Skill
+{
+    public pickpocket()
+    {
+        mpCost = 30;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " performs a sly attack on " + c.name + "!");
+        user.MP -= mpCost;
+        c.takeDamage (user.str/2 - c.def);
+        if (((Math.random() * 100)) <= c.luck)
+        {
+            System.out.println (user.name + " found " + c.name + "'s secret nest egg! Finders keepers!");
+            user.gold += c.gold;
+        }
+        
+    }
+}
+
 
 
 
@@ -631,7 +719,7 @@ class flameCrash extends Skill
 
 class innerFire extends Skill
 {
-    public flameCrash()
+    public innerFire()
     {
         mpCost = 30;
     }
@@ -855,7 +943,7 @@ class flowerDance extends Skill
     }
 }
 
-class seedburst extends Skill
+class seedBurst extends Skill
 {
     public seedBurst()
     {
@@ -1248,7 +1336,7 @@ class featherDuster extends Skill
 
 class hurricaneForce extends Skill
 {
-    public featherDuster()
+    public hurricaneForce()
     {
         mpCost = 35;
     }
