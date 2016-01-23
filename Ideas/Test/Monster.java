@@ -47,7 +47,19 @@ public class Monster extends GChar{
         bestiary.put ("Destiny Ferret", new String[]   {"Destiny Ferret",   "Dark",   "Flower Dance",   "Blood Rain",       "1.1",     "1.5",    "1.5",    "10",     "1"   });
         bestiary.put ("Cardboard Fox", new String[]    {"Cardboard Fox",    "Wood",   "Basic Attack",   "Flower Dance",     "1.2",      ".8",    "1.1",    "10",   "1.2"   });
         bestiary.put ("Granola Dragon", new String[]   {"Granola Dragon",   "Fire",   "Basic Attack",   "Inferno",          "1.6",      ".4",    "1.5",    "10",   "1.6"   });
-        bestiary.put ("Cliff Chomper", new String[]    {"Cliff Chomper",   "Light",   "Rush Down",      "Finishing Touch",    "2",      "1.8",    ".1",    "10",   ".4"    });
+        bestiary.put ("Cliff Chomper", new String[]    {"Cliff Chomper",   "Light",   "Rush Down",      "Finishing Touch",    "2",     "1.8",     ".1",    "10",   ".4"    });
+        bestiary.put ("Paint Scarecrow", new String[]  {"Paint Scarecrow", "Light",   "Basic Attack",   "Shuffle Time",     "1.1",     "1.3",    "1.3",    "10",   ".1"    });
+        bestiary.put ("Chain Reaper", new String[]     {"Chain Reaper",     "Dark",   "Blood Rain",     "Brain Shock",        "2",     "1.9",    "1.3",    "10",   "1.3"   });
+        bestiary.put ("Cloudforce Knight", new String[]{"Cloudforce Knight","Gale",   "Basic Attack",   "Feather Duster",   "1.2",     "1.4",    "1.4",    "10",   "1.6"   });
+        bestiary.put ("Frankenfish", new String[]      {"Frankenfish",      "Aqua",   "Brain Shock",    "Tidal Wave",         "1",     "1.1",    "1.1",    "10",   "2.1"   });
+        bestiary.put ("Neon Werewolf", new String[]    {"Neon Werewolf",   "Light",   "Flower Dance",   "Radiance",         "1.1",     "1.6",    "1.6",    "10",   "1.1"   });
+        bestiary.put ("Bear Lancer", new String[]      {"Bear Lancer",      "Wood",   "Proud Swivel",   "Wood Spike",       "1.8",       "2",      "1",    "10",   ".6"    });
+        bestiary.put ("Goat Commander", new String[]   {"Goat Commander",   "Gale",   "Basic Attack",   "Fatal Shot",       "1.3",     "1.2",    "1.1",    "10",   "1.3"   });
+        bestiary.put ("Mega Eagle", new String[]       {"Mega Eagle",       "Fire",   "Feather Duster", "Rush Down",        "1.1",     "1.5",     ".6",    "10",   "1.7"   });
+        bestiary.put ("Manabot", new String[]          {"Manabot",         "Blank",   "Brain Shock",    "Arcanite Force",   "1.7",      ".7",    "1.8",    "10",   ".7"    });
+        bestiary.put ("Spirit Corn", new String[]      {"Spirit Corn",      "Wood",   "Luster Wave",    "Pepper Song",      "1.2",     "1.7",    "1.5",    "10",   "1.6"   });
+        bestiary.put ("Solar Spider", new String[]     {"Solar Spider",    "Light",   "Heat Wave",      "Radiance",           "1",     "1.1",    "1.6",    "10",   "1.7"   });
+      
     }
     
     //=========================Scaling monsters
