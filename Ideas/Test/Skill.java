@@ -1475,12 +1475,12 @@ class keys extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " used Keys to Success!"); 
-        System.out.println ("It was a major key! Bless up! " + user.name "'s stats dramatically increase!");
+        System.out.println ("It was a major key! Bless up! " + user.name + "'s stats dramatically increase!");
         user.str *= 1.5;
-        user.magic *= 1.5
-        user.def *= 1.5
-        user.res *= 1.5
-        user.speed *= 1.5
+        user.magic *= 1.5;
+        user.def *= 1.5;
+        user.res *= 1.5;
+        user.speed *= 1.5;
     }
 }
 
@@ -1494,7 +1494,7 @@ class wadatah extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " used WADATAHHHH!"); 
-        c.takeDamage (c.hpInitial * .5);
+        c.takeDamage ((int)(c.hpInitial * .5));
     }
 }
 
