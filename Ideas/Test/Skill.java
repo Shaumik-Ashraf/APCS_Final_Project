@@ -15,24 +15,28 @@ public abstract class Skill
         allSkills.put("Proud Swivel", new proudSwivel());
         allSkills.put("Finishing Touch", new finishingTouch());
         allSkills.put("War Cry", new warCry());
+        allSkills.put("Rush Down", new rushDown());
         
         //Archer Skills
         allSkills.put("Bow Throw", new bowThrow());
         allSkills.put("Arrow Storm", new arrowStrom());
         allSkills.put("Focus", new focus());
         allSkills.put ("Markdown", new markDown());
+        allSkills.put ("Fatal Shot", new fatalShot());
         
         //Mage Skills
         allSkills.put("Arcanite Force", new arcaniteForce());
         allSkills.put("Arcane Bullets", new arcaneBullets());
         allSkills.put("Concentrate", new concentrate());
         allSkills.put("Stagnate", new stagnate());
+        allSkills.put("Brain Shock", new brainShock());
         
         //Rogue Skills
         allSkills.put ("Back Stab", new backStab());
         allSkills.put ("Assassinate", new assassinate());
         allSkills.put ("Gamble", new gamble());
         allSkills.put ("Curtains", new curtains());
+        allSkills.put ("Shuffle Time", new shuffleTime());
         
         //Fire skills
         allSkills.put("Heat Wave", new heatWave());
