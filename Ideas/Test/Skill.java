@@ -16,6 +16,7 @@ public abstract class Skill
         allSkills.put("Finishing Touch", new finishingTouch());
         allSkills.put("War Cry", new warCry());
         allSkills.put("Rush Down", new rushDown());
+        allSkills.put("Weaken", new weaken());
         
         //Archer Skills
         allSkills.put("Bow Throw", new bowThrow());
@@ -23,6 +24,7 @@ public abstract class Skill
         allSkills.put("Focus", new focus());
         allSkills.put ("Markdown", new markDown());
         allSkills.put ("Fatal Shot", new fatalShot());
+        allSkills.put ("Quick Draw", new quickDraw());
         
         //Mage Skills
         allSkills.put("Arcanite Force", new arcaniteForce());
@@ -30,6 +32,7 @@ public abstract class Skill
         allSkills.put("Concentrate", new concentrate());
         allSkills.put("Stagnate", new stagnate());
         allSkills.put("Brain Shock", new brainShock());
+        allSkills.put("Mana Break", new manaBreak());
         
         //Rogue Skills
         allSkills.put ("Back Stab", new backStab());
@@ -37,6 +40,7 @@ public abstract class Skill
         allSkills.put ("Gamble", new gamble());
         allSkills.put ("Curtains", new curtains());
         allSkills.put ("Shuffle Time", new shuffleTime());
+        allSkills.put ("Pickpocket", new pickpocket());
         
         //Fire skills
         allSkills.put("Heat Wave", new heatWave());

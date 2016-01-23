@@ -107,6 +107,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Inner Fire");
                     learnable.add ("Flame Crash");
+                    learnable.add ("Weaken");
                     learnable.add ("Rush Down");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Inferno");
@@ -120,6 +121,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Icicle Charge");
                     learnable.add ("Tidal Wave");
+                    learnable.add ("Weaken");
                     learnable.add ("Rush Down");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Geyser");
@@ -133,6 +135,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Rush Down");
                     learnable.add ("Seed Burst");
+                    learnable.add ("Weaken");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Flower Dance");
                     learnable.add ("Planet");
@@ -145,6 +148,7 @@ public class GChar{
                     learnable.add ("Luster Wave");
                     learnable.add ("Proud Swivel");
                     learnable.add ("Rush Down");
+                    learnable.add ("Weaken");
                     learnable.add ("Holy Smite");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Salvation");
@@ -158,6 +162,7 @@ public class GChar{
                     learnable.add ("War Cry");
                     learnable.add ("Zombie Strike");
                     learnable.add ("Rush Down");
+                    learnable.add ("Weaken");
                     learnable.add ("Proud Swivel");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Blood Rain");
@@ -171,6 +176,7 @@ public class GChar{
                     learnable.add ("Spiral Assault");
                     learnable.add ("Proud Swivel");
                     learnable.add ("Rush Down");
+                    learnable.add ("Weaken");
                     learnable.add ("Hurricane Force");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Tail Wind");
@@ -202,6 +208,7 @@ public class GChar{
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
                     learnable.add ("Inferno");
+                    learnable.add ("Mana Break");
                 }
                 
                 if (element.equals ("Aqua"))
@@ -215,6 +222,7 @@ public class GChar{
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
                     learnable.add ("Geyser");
+                    learnable.add ("Mana Break");
                 }
                 
                 if (element.equals ("Wood"))
@@ -228,6 +236,7 @@ public class GChar{
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
                     learnable.add ("Planet");
+                    learnable.add ("Mana Break");
                 }
                 
                 if (element.equals ("Light"))
@@ -241,6 +250,7 @@ public class GChar{
                     learnable.add ("Luster Wave");
                     learnable.add ("Concentrate");
                     learnable.add ("Radiance");
+                    learnable.add ("Mana Break");
                 }
                 
                 if (element.equals ("Dark"))
@@ -254,6 +264,7 @@ public class GChar{
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
                     learnable.add ("Darkness");
+                    learnable.add ("Mana Break");
                 }
                 
                 if (element.equals ("Gale"))
@@ -267,6 +278,7 @@ public class GChar{
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
                     learnable.add ("Maelstrom");
+                    learnable.add ("Mana Break");
                 }
                 
                 i = new Inventory("Wooden Pole");
@@ -287,6 +299,7 @@ public class GChar{
                     learnable.add ("Focus");
                     learnable.add ("Flame Crash");
                     learnable.add ("Markdown");
+                    learnable.add ("Quick Draw");
                     learnable.add ("Inner Fire");
                     learnable.add ("Fatal Shot");
                     learnable.add ("Arrow Storm");
@@ -299,6 +312,7 @@ public class GChar{
                     learnable.add ("Aqua Veil");
                     learnable.add ("Focus");
                     learnable.add ("Markdown");
+                    learnable.add ("Quick Draw");
                     learnable.add ("Icicle Charge");
                     learnable.add ("Tidal Wave");
                     learnable.add ("Fatal Shot");
@@ -312,6 +326,7 @@ public class GChar{
                     learnable.add ("Wood Spike");
                     learnable.add ("Markdown");
                     learnable.add ("Seed Burst");
+                    learnable.add ("Quick Draw");
                     learnable.add ("Focus");
                     learnable.add ("Arrow Storm");
                     learnable.add ("Fatal Shot");
@@ -325,6 +340,7 @@ public class GChar{
                     learnable.add ("Heavenly Light");
                     learnable.add ("Focus");
                     learnable.add ("Holy Smite");
+                    learnable.add ("Quick Draw");
                     learnable.add ("Markdown");
                     learnable.add ("Salvation");
                     learnable.add ("Fatal Shot");
@@ -338,6 +354,7 @@ public class GChar{
                     learnable.add ("Zombie Strike");
                     learnable.add ("Demon Fury");
                     learnable.add ("Focus");
+                    learnable.add ("Quick Draw");
                     learnable.add ("Markdown");
                     learnable.add ("Fatal Shot");
                     learnable.add ("Arrow Storm");
@@ -350,6 +367,7 @@ public class GChar{
                     known.add ("Feather Duster");
                     learnable.add ("Spiral Assault");
                     learnable.add ("Focus");
+                    learnable.add ("Quick Draw");
                     learnable.add ("Markdown");
                     learnable.add ("Hurricane Force");
                     learnable.add ("Fatal Shot");
@@ -373,6 +391,7 @@ public class GChar{
                 {
                     known.add ("Heat Wave");
                     learnable.add ("Rekindle");
+                    learnable.add ("Pickpocket");
                     learnable.add ("Flame Crash");
                     learnable.add ("Curtains");
                     learnable.add ("Gamble");
@@ -386,6 +405,7 @@ public class GChar{
                 {
                     known.add ("Hail Storm");
                     learnable.add ("Aqua Veil");
+                    learnable.add ("Pickpocket");
                     learnable.add ("Tidal Wave");
                     learnable.add ("Curtains");
                     learnable.add ("Icicle Charge");
@@ -399,6 +419,7 @@ public class GChar{
                 {
                     known.add ("Pepper Song");
                     learnable.add ("Wood Spike");
+                    learnable.add ("Pickpocket");
                     learnable.add ("Gamble");
                     learnable.add ("Seed Burst");
                     learnable.add ("Curtains");
@@ -413,6 +434,7 @@ public class GChar{
                     known.add ("Heavenly Light");
                     learnable.add ("Luster Wave");
                     learnable.add ("Gamble");
+                    learnable.add ("Pickpocket");
                     learnable.add ("Curtains");
                     learnable.add ("Holy Smite");
                     learnable.add ("Salvation");
@@ -425,6 +447,7 @@ public class GChar{
                 {
                     known.add ("Vampire");
                     learnable.add ("Demon Fury");
+                    learnable.add ("Pickpocket");
                     learnable.add ("Zombie Strike");
                     learnable.add ("Gamble");
                     learnable.add ("Curtains");
@@ -439,6 +462,7 @@ public class GChar{
                 {
                     known.add ("Feather Duster");
                     learnable.add ("Spiral Assault");
+                    learnable.add ("Pickpocket");
                     learnable.add ("Gamble");
                     learnable.add ("Curtains");
                     learnable.add ("Hurricane Force");
