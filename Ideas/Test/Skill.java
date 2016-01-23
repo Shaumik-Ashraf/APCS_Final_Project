@@ -187,7 +187,7 @@ class finishingTouch extends Skill
 {
     public finishingTouch()
     {
-        mpCost = 25;
+        mpCost = 40;
     }
     
     public void use (GChar user, GChar c)
@@ -225,11 +225,11 @@ class rushDown extends Skill
 {
     public rushDown()
     {
-        mpCost = 25;
+        mpCost = 35;
     }
     
     public void use (GChar user, GChar c){
-        System.out.println (user.name + " unleashes a string of slashes");
+        System.out.println (user.name + " unleashes a string of slashes!");
         int hits = 3;
 
         while (hits != 0)
@@ -271,7 +271,7 @@ class arrowStrom extends Skill
 {
     public arrowStrom()
     {
-        mpCost = 20;
+        mpCost = 35;
     }
     
     public void use (GChar user, GChar c){
@@ -325,7 +325,7 @@ class fatalShot extends Skill
 {
     public fatalShot()
     {
-        mpCost = 25;
+        mpCost = 30;
     }
     
     public void use (GChar user, GChar c)
@@ -360,7 +360,7 @@ class arcaneBullets extends Skill
 {
     public arcaneBullets()
     {
-        mpCost = 25;
+        mpCost = 40;
     }
     
     public void use (GChar user, GChar c){
@@ -380,7 +380,7 @@ class concentrate extends Skill//needs to be fixed
 {
     public concentrate()
     {
-        mpCost = 35;
+        mpCost = 30;
     }
     
     public void use (GChar user, GChar c)
@@ -397,7 +397,7 @@ class stagnate extends Skill
 {
     public stagnate()
     {
-        mpCost = 35;
+        mpCost = 30;
     }
     
     public void use (GChar user, GChar c)
@@ -457,7 +457,7 @@ class assassinate extends Skill
 {
     public assassinate()
     {
-        mpCost = 30;
+        mpCost = 35;
     }
     
     public void use (GChar user, GChar c)
@@ -491,13 +491,13 @@ class gamble extends Skill //needs to be fixed
         {
             c.def *= .7;
             c.speed /= 2;
-            System.out.println ("Lucky!" +user.name + " obtains unimaginable power!");
+            System.out.println ("Lucky! " +user.name + " obtains unimaginable power!");
         }
         else
         {
             user.def /= 2;
             user.res /= 2;
-            System.out.println ("Unlucky!" +user.name + " obtains unimaginable weaknesses!");
+            System.out.println ("Unlucky! " +user.name + " obtains unimaginable weaknesses!");
         }
 
         
@@ -508,7 +508,7 @@ class curtains extends Skill
 {
     public curtains()
     {
-        mpCost = 30;
+        mpCost = 10;
     }
     
     public void use (GChar user, GChar c)
@@ -523,7 +523,7 @@ class shuffleTime extends Skill //needs to be fixed
 {
     public shuffleTime()
     {
-        mpCost = 30;
+        mpCost = 40;
     }
     
     public void use (GChar user, GChar c)
@@ -560,7 +560,7 @@ class heatWave extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " cast Heat Wave"); 
+        System.out.println (user.name + " cast Heat Wave!"); 
         user.MP -= mpCost;
         if (c.element.equals ("Wood") )
         {
@@ -633,12 +633,12 @@ class innerFire extends Skill
 {
     public flameCrash()
     {
-        mpCost = 35;
+        mpCost = 30;
     }
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " channels their inner lifeforce and unleashes a powerful fireball"); 
+        System.out.println (user.name + " channels their inner lifeforce and unleashes a powerful fireball!"); 
         user.MP -= mpCost;
         if (c.element.equals ("Wood") )
         {
@@ -693,7 +693,7 @@ class hailStorm extends Skill
 {
     public hailStorm()
     {
-        mpCost = 20;
+        mpCost = 25;
     }
     
     public void use (GChar user, GChar c){
@@ -728,7 +728,7 @@ class tidalWave extends Skill
 {
     public tidalWave()
     {
-        mpCost = 25;
+        mpCost = 30;
     }
     
     public void use (GChar user, GChar c)
@@ -773,7 +773,7 @@ class icicleCharge extends Skill
 {
     public icicleCharge()
     {
-        mpCost = 25;
+        mpCost = 20;
     }
     
     public void use (GChar user, GChar c)
@@ -835,12 +835,12 @@ class flowerDance extends Skill
 {
     public flowerDance()
     {
-        mpCost = 30;
+        mpCost = 50;
     }
     
     public void use (GChar user, GChar c){
         System.out.println (user.name + " begins a gallant dance!");
-        int hits = (int)(Math.random() *6);
+        int hits = (int)(Math.random() *7);
         if (hits == 0 )
         {
             System.out.println (user.name + " trips!");
@@ -993,7 +993,7 @@ class salvation extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " begins to glow");
+        System.out.println (user.name + " begins to glow...");
         System.out.println ( user.name + "'s health has been fully recovered!");
         user.HP = user.hpInitial;
     }
@@ -1008,7 +1008,7 @@ class lusterWave extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " releases a blinding light"); 
+        System.out.println (user.name + " releases a blinding light!"); 
         user.MP -= mpCost;
         if (c.element.equals ("Dark") )
         {
@@ -1027,12 +1027,12 @@ class holySmite extends Skill
 {
     public holySmite()
     {
-        mpCost = 30;
+        mpCost = 25;
     }
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " impales " + c.name + " with a spike of wood!"); 
+        System.out.println (user.name + " strikes " + c.name + " with a bolt of light!"); 
         user.MP -= mpCost;
         if (c.element.equals ("Dark") )
         {
@@ -1082,7 +1082,7 @@ class zombieStrike extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " slams the opponent with a undead aura!"); 
+        System.out.println (user.name + " slams " + c.name + "with a undead aura!"); 
         user.MP -= mpCost;
         if (c.element.equals ("Light") )
         {
@@ -1101,7 +1101,7 @@ class demonFury extends Skill
 {
     public demonFury()
     {
-        mpCost = 20;
+        mpCost = 25;
     }
     
     public void use (GChar user, GChar c)
@@ -1190,7 +1190,7 @@ class tailWind extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " whips up a tail wind");
+        System.out.println (user.name + " whips up a tail wind!");
         System.out.println ("The blistering winds increase " + user.name + "'s speed");
         c.speed *= .8;
     }
@@ -1250,7 +1250,7 @@ class hurricaneForce extends Skill
 {
     public featherDuster()
     {
-        mpCost = 25;
+        mpCost = 35;
     }
     
     public void use (GChar user, GChar c)
