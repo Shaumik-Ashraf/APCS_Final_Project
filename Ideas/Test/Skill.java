@@ -14,21 +14,25 @@ public abstract class Skill
         allSkills.put("Strong Swing", new strongSwing());
         allSkills.put("Proud Swivel", new proudSwivel());
         allSkills.put("Finishing Touch", new finishingTouch());
+        allSkills.put("War Cry", new warCry());
         
         //Archer Skills
         allSkills.put("Bow Throw", new bowThrow());
         allSkills.put("Arrow Storm", new arrowStrom());
         allSkills.put("Focus", new focus());
+        allSkills.put ("Markdown", new markDown());
         
         //Mage Skills
         allSkills.put("Arcanite Force", new arcaniteForce());
         allSkills.put("Arcane Bullets", new arcaneBullets());
         allSkills.put("Concentrate", new concentrate());
+        allSkills.put("Stagnate", new stagnate());
         
         //Rogue Skills
         allSkills.put ("Back Stab", new backStab());
         allSkills.put ("Assassinate", new assassinate());
         allSkills.put ("Gamble", new gamble());
+        allSkills.put ("Curtains", new curtains());
         
         //Fire skills
         allSkills.put("Heat Wave", new heatWave());
@@ -152,7 +156,7 @@ class proudSwivel extends Skill
         user.MP -= mpCost;
         if (((Math.random() * 100)) <= user.luck)
         {
-            c.takeDamage (user.str - c.def / 2 );
+            c.takeDamage (user.str + user.magic - c.def / 2 );
             System.out.println ("It's a critical hit! REKT");
         }
         else
@@ -183,6 +187,21 @@ class finishingTouch extends Skill
         {
             c.takeDamage (user.str + user.HP - c.def);
         }
+    }
+}
+
+class warCry extends Skill
+{
+    public finishingTouch()
+    {
+        mpCost = 20;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " unleashed a resonating bellow!"); 
+        System.out.println ("The power of " + user.name "'s chords of steel decreased " + c.name+ "'s strength!");
+        c.str *= .8;
     }
 }
 
@@ -219,7 +238,7 @@ class arrowStrom extends Skill
     
     public void use (GChar user, GChar c){
         System.out.println (user.name + " fired some arrows into the sky!");
-        int hits = (int)(Math.random() *5);
+        int hits = (int)(Math.random() *4);
         if (hits == 0 )
         {
             System.out.println ("The arrows miss " + c.name +"!");
@@ -233,7 +252,7 @@ class arrowStrom extends Skill
     }
 }
 
-class focus extends Skill
+class focus extends Skill //needs to be fixed
 {
     public focus()
     {
@@ -248,6 +267,21 @@ class focus extends Skill
         user.luck *= 1.5;
         user.def /= 2;
         user.res /=2;
+    }
+}
+
+class markDown extends Skill
+{
+    public markDown()
+    {
+        mpCost = 20;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " pinpointed " + c.name + "'s weakpoints!");
+        System.out.println (user.name + "'s physical damage increases!");
+        c *= .8;
     }
 }
 
@@ -290,7 +324,7 @@ class arcaneBullets extends Skill
     }
 }
 
-class concentrate extends Skill
+class concentrate extends Skill//needs to be fixed
 {
     public concentrate()
     {
@@ -307,6 +341,21 @@ class concentrate extends Skill
     }
 }
 
+class stagnate extends Skill
+{
+    public stagnate()
+    {
+        mpCost = 35;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " showers " + c.name + " in a magical light");
+        System.out.println (c.name + "'s magical resistance has decreased!");
+        c *= .8;
+        
+    }
+}
 
 //class Thief skils
 class backStab extends Skill
@@ -357,7 +406,7 @@ class assassinate extends Skill
     }
 }
 
-class gamble extends Skill
+class gamble extends Skill //needs to be fixed
 {
     public gamble()
     {
@@ -381,6 +430,21 @@ class gamble extends Skill
         }
 
         
+    }
+}
+
+class curtains extends Skill
+{
+    public curtains()
+    {
+        mpCost = 30;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " is enveloped in a misty cloak!");
+        System.out.println (user.name + " is likely to be hit with critical damage!");
+        c.luck *= .8;
     }
 }
 
@@ -430,8 +494,8 @@ class reKindle extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " cast Rekindle!");
-        System.out.println (user.name + " is enveloped by a firey aura! Resistance to magic has increased!");
-        user.res += 4;
+        System.out.println (user.name + " regains some MP!");
+        user.MP += 30;
     }
 }
 
@@ -541,8 +605,8 @@ class aquaVeil extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " cast Aqua Veil!");
-        System.out.println (user.name + " is enveloped by a ring of water. Resistance to physical attacks increased!");
-        user.def += 4;
+        System.out.println (user.name + " is enveloped by a ring of water. Resistance to physical attacks have increased for one turn!");
+        user.def *= 2;
     }
 }
 
@@ -556,7 +620,7 @@ class flowerDance extends Skill
     
     public void use (GChar user, GChar c){
         System.out.println (user.name + " begins a gallant dance!");
-        int hits = (int)(Math.random() *7);
+        int hits = (int)(Math.random() *6);
         if (hits == 0 )
         {
             System.out.println (user.name + " trips!");
@@ -612,7 +676,7 @@ class pepperSong extends Skill
     {
         System.out.println (user.name + " sings the Pepper Song");
         System.out.println ("The lyrics are so awesome that " + user.name + "regains health!");
-        user.HP += 10;
+        user.HP += user.hpInitial * .4;
     }
 }
 
@@ -627,9 +691,9 @@ class heavenlyLight extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " summons a holy light from the sky.");
-        System.out.println ("The radiant light envelops " + user.name + ". Defensive abiltiies have increased!");
-        user.def += 5;
-        user.res += 5;
+        System.out.println ("The radiant light envelops " + user.name + ". Defensive abiltiies have increased for one turn!");
+        user.def *= 1.5;
+        user.res *= 1.5;
     }
 }
 
@@ -707,9 +771,9 @@ class demonFury extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " calls for the powers of an otherworldly entity!");
-        System.out.println ("The entity has granted " + user.name + " the powers of darkness. Offensive strengths have increased!");
-        user.str += 5;
-        user.magic += 5;
+        System.out.println ("The entity has granted " + user.name + " an intimidating power of darkness." +c.name +"'s offensive power has decreased!");
+        c.str *= .7;
+        c.magic *=.7;
     }
 }
 
@@ -734,7 +798,7 @@ class bloodRain extends Skill
             hits --;
         }
         System.out.println ( user.name + " is severely weakened!");
-        user.HP *= .25;
+        user.HP *= .5;
         
     }
 }
@@ -751,7 +815,7 @@ class tailWind extends Skill
     {
         System.out.println (user.name + " whips up a tail wind");
         System.out.println ("The blistering winds increase " + user.name + "'s speed");
-        user.speed += 10;
+        c.speed *= .8;
     }
 }
 
@@ -882,10 +946,10 @@ class abnormalize extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println ("This is the end...");
-        System.out.println (user.name + " becomes one with the void");
-        user.str *=2;
-        user.magic *= 2;
-        user.speed *= 2;
+        System.out.println (user.name + " becomes one with the void!");
+        c.str /=2;
+        c.magic /= 2;
+        c.speed /= 2;
     }
 }
 
