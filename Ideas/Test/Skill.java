@@ -42,36 +42,42 @@ public abstract class Skill
         allSkills.put("Heat Wave", new heatWave());
         allSkills.put("Rekindle", new reKindle());
         allSkills.put ("Flame Crash", new flameCrash());
+        allSkills.put ("Inner Fire", new innerFire());
         allSkills.put ("Inferno", new inferno());
         
         //Aqua Skills
         allSkills.put("Hail Storm", new hailStorm());
         allSkills.put ("Tidal Wave", new tidalWave());
         allSkills.put ("Aqua Veil", new aquaVeil());
+        allSkills.put ("Icicle Charge", new icicleCharge());
         allSkills.put ("Geyser", new geyser());
         
         //Wood Skills
         allSkills.put("Flower Dance", new flowerDance());
         allSkills.put ("Wood Spike", new woodSpike());
         allSkills.put ("Pepper Song", new pepperSong());
+        allSkills.put ("Seed Burst", new seedBurst());
         allSkills.put ("Planet", new planet());
         
         //Light Skills
         allSkills.put("Salvation", new salvation());
         allSkills.put ("Heavenly Light", new heavenlyLight());
         allSkills.put ("Luster Wave", new lusterWave());
+        allSkills.put ("Holy Smite", new holySmite());
         allSkills.put ("Radiance", new radiance());
         
         //Dark Skillss
         allSkills.put("Zombie Strike", new zombieStrike());
         allSkills.put ("Demon Fury", new demonFury());
         allSkills.put ("Blood Rain", new bloodRain());
+        allSkills.put ("Vampire", new vampire())
         allSkills.put ("Darkness", new darkness());
         
         //Gale Skills
         allSkills.put("Tail Wind", new tailWind());
         allSkills.put ("Spiral Assault", new spiralAssault());
         allSkills.put ("Feather Duster", new featherDuster());
+        allSkills.put ("Hurricane Force", new hurricaneForce());
         allSkills.put ("Maelstrom", new maelstrom());
         
     }
@@ -288,17 +294,15 @@ class focus extends Skill //needs to be fixed
 {
     public focus()
     {
-        mpCost = 15;
+        mpCost = 20;
     }
     
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " began to concentrate!");
-        System.out.println (user.name + " Offensive capabiltiies have increased at the cost of defenses!");
-        user.str *= 1.5;
-        user.luck *= 1.5;
-        user.def /= 2;
-        user.res /=2;
+        System.out.println (user.name + "'s offensive capabiltiies have increased!");
+        c.def *= .9;
+        c.res *= .9;
     }
 }
 
@@ -313,7 +317,7 @@ class markDown extends Skill
     {
         System.out.println (user.name + " pinpointed " + c.name + "'s weakpoints!");
         System.out.println (user.name + "'s physical damage increases!");
-        c.def *= .8;
+        c.def *= .75;
     }
 }
 
@@ -382,9 +386,9 @@ class concentrate extends Skill//needs to be fixed
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " began to chant magical incantations");
-        System.out.println (user.name + " Magical damage increases drastically at the cost of half of " + user.name + "'s health!");
-        user.magic *= 2.5;
-        user.HP /= 2;
+        System.out.println (user.name + " Magical damage increases drastically at the cost of a quarter of " + user.name + "'s health!");
+        c.res /= 2;
+        user.HP /= 4;
         
     }
 }
@@ -485,14 +489,14 @@ class gamble extends Skill //needs to be fixed
         System.out.println (user.name + " flips a coin!");
         if (((Math.random() * 200)) <= user.luck)
         {
-            user.luck *= 2;
-            user.speed *= 2;
+            c.def *= .7;
+            c.speed /= 2;
             System.out.println ("Lucky!" +user.name + " obtains unimaginable power!");
         }
         else
         {
-            user.luck /= 2;
-            user.speed /= 2;
+            user.def /= 2;
+            user.res /= 2;
             System.out.println ("Unlucky!" +user.name + " obtains unimaginable weaknesses!");
         }
 
@@ -624,6 +628,36 @@ class flameCrash extends Skill
     }
 }
 
+
+class innerFire extends Skill
+{
+    public flameCrash()
+    {
+        mpCost = 35;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " channels their inner lifeforce and unleashes a powerful fireball"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Wood") )
+        {
+           c.takeDamage (user.HP*2 - c.res); 
+           System.out.println ("It's super effective!");
+        }
+        
+        else if (c.element.equals ("Aqua") )
+        {
+           c.takeDamage (user.HP/2 - c.res); 
+           System.out.println ("It's not very effective...");
+        }
+        
+        else
+        {
+            c.takeDamage (user.HP - c.res);
+        }
+    }
+}
 class inferno extends Skill
 {
     public inferno()
@@ -735,6 +769,36 @@ class aquaVeil extends Skill
     }
 }
 
+class icicleCharge extends Skill
+{
+    public icicleCharge()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println ("Sharp icicles cover " + user.name + "'s body!" + c.name + " suddenly charges at " + c.name + "!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Wood") )
+        {
+           c.takeDamage (user.def * 2- c.def/2); 
+           System.out.println ("It's super effective!");
+        }
+        
+        else if (c.element.equals ("Wood") )
+        {
+           c.takeDamage (user.def/2 - c.def); 
+           System.out.println ("It's not very effective...");
+        }
+        
+        else
+        {
+            c.takeDamage (user.def - c.def);
+        }
+    }
+}
+
 
 class geyser extends Skill
 {
@@ -791,6 +855,41 @@ class flowerDance extends Skill
     }
 }
 
+class seedburst extends Skill
+{
+    public seedBurst()
+    {
+        mpCost = 30;
+    }
+    
+    public void use (GChar user, GChar c){
+        System.out.println (user.name + " launches a giant walnut into the air!");
+        int hits = 2;
+        while (hits != 0)
+        {
+            if (c.element.equals ("Aqua") )
+            {
+                 c.takeDamage (user.str*2 - c.def); 
+                System.out.println ("It's super effective!");
+            }
+        
+            else if (c.element.equals ("Fire") )
+            {
+                c.takeDamage (user.str/2 - c.def); 
+                System.out.println ("It's not very effective...");
+            }
+        
+            else
+            {
+             c.takeDamage (user.str - c.def);
+            }
+            
+            hits --;
+        }
+        
+    }
+}
+
 class woodSpike extends Skill
 {
     public woodSpike()
@@ -820,6 +919,8 @@ class woodSpike extends Skill
         }
     }
 }
+
+
 
 class pepperSong extends Skill
 {
@@ -921,6 +1022,31 @@ class lusterWave extends Skill
         }
     }
 }
+
+class holySmite extends Skill
+{
+    public holySmite()
+    {
+        mpCost = 30;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " impales " + c.name + " with a spike of wood!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Dark") )
+        {
+           c.takeDamage (user.str*3 - c.def); 
+           System.out.println ("It's super effective!");
+        }
+
+        else
+        {
+            c.takeDamage (user.str - c.def/2);
+        }
+    }
+}
+
 
 class radiance extends Skill
 {
@@ -1037,6 +1163,23 @@ class darkness extends Skill
     }
 }
 
+class vampire extends Skill
+{
+    public vampire()
+    {
+        mpCost = 20;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " drained " + c.name + "'s lifeforce!");
+        user.MP -= mpCost;
+        user.HP += (int)(c.HP * .1);
+        c.takeDamageMp ((int)(c.HP *.1));
+        
+    }
+}
+
 //element Gale skills
 class tailWind extends Skill
 {
@@ -1067,7 +1210,7 @@ class spiralAssault extends Skill
         user.MP -= mpCost;
         if (((Math.random() * 100)) <= user.luck)
         {
-            c.takeDamage (user.str - c.res / 4 );
+            c.takeDamage (user.str - c.res / 3);
             System.out.println ("It's a critical hit! REKT");
         }
         else
@@ -1088,17 +1231,33 @@ class featherDuster extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " fires a burst of air at " +c.name+"!"); 
+        System.out.println (user.name + " fires a gust of at " +c.name+"!"); 
         user.MP -= mpCost;
         if (((Math.random() * 100)) <= user.luck)
         {
-            c.takeDamage (user.magic - c.def / 4 );
+            c.takeDamage (user.magic - c.def / 3 );
             System.out.println ("It's a critical hit! REKT");
         }
         else
         {
             c.takeDamage (user.magic - c.def/2);
         }
+        
+    }
+}
+
+class hurricaneForce extends Skill
+{
+    public featherDuster()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " unleashes burst of torrential winds at  " +c.name+"!"); 
+        user.MP -= mpCost;
+        c.takeDamage (user.magic + user.str - c.def);
         
     }
 }
@@ -1117,6 +1276,8 @@ class maelstrom extends Skill
 
     }
 }
+
+
 
 //blank element skills too op pls nerf. Let Mls final boss have this element because why not. ;)
 
