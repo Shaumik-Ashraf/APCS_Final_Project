@@ -38,31 +38,37 @@ public abstract class Skill
         allSkills.put("Heat Wave", new heatWave());
         allSkills.put("Rekindle", new reKindle());
         allSkills.put ("Flame Crash", new flameCrash());
+        allSkills.put ("Inferno", new inferno());
         
         //Aqua Skills
         allSkills.put("Hail Storm", new hailStorm());
         allSkills.put ("Tidal Wave", new tidalWave());
         allSkills.put ("Aqua Veil", new aquaVeil());
+        allSkills.put ("Geyser", new geyser());
         
         //Wood Skills
         allSkills.put("Flower Dance", new flowerDance());
         allSkills.put ("Wood Spike", new woodSpike());
         allSkills.put ("Pepper Song", new pepperSong());
+        allSkills.put ("Planet", new planet());
         
         //Light Skills
         allSkills.put("Salvation", new salvation());
         allSkills.put ("Heavenly Light", new heavenlyLight());
         allSkills.put ("Luster Wave", new lusterWave());
+        allSkills.put ("Radiance", new radiance());
         
-        //Dark Skills
+        //Dark Skillss
         allSkills.put("Zombie Strike", new zombieStrike());
         allSkills.put ("Demon Fury", new demonFury());
         allSkills.put ("Blood Rain", new bloodRain());
+        allSkills.put ("Darkness", new darkness());
         
         //Gale Skills
         allSkills.put("Tail Wind", new tailWind());
         allSkills.put ("Spiral Assault", new spiralAssault());
         allSkills.put ("Feather Duster", new featherDuster());
+        allSkills.put ("Maelstrom", new maelstrom());
         
     }
     
@@ -192,7 +198,7 @@ class finishingTouch extends Skill
 
 class warCry extends Skill
 {
-    public finishingTouch()
+    public warCry()
     {
         mpCost = 20;
     }
@@ -200,10 +206,32 @@ class warCry extends Skill
     public void use (GChar user, GChar c)
     {
         System.out.println (user.name + " unleashed a resonating bellow!"); 
-        System.out.println ("The power of " + user.name "'s chords of steel decreased " + c.name+ "'s strength!");
+        System.out.println ("The power of " + user.name + "'s chords of steel decreased " + c.name+ "'s strength!");
         c.str *= .8;
     }
 }
+
+class rushDown extends Skill
+{
+    public rushDown()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c){
+        System.out.println (user.name + " unleashes a string of slashes");
+        int hits = 3;
+
+        while (hits != 0)
+        {
+            user.useSkill ("BasicAttack", c);
+            hits --;
+        }
+        
+    }
+}
+
+
 
 //class Archer skills
 class bowThrow extends Skill
@@ -281,7 +309,23 @@ class markDown extends Skill
     {
         System.out.println (user.name + " pinpointed " + c.name + "'s weakpoints!");
         System.out.println (user.name + "'s physical damage increases!");
-        c *= .8;
+        c.def *= .8;
+    }
+}
+
+class fatalShot extends Skill
+{
+    public fatalShot()
+    {
+        mpCost = 25;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " fires a concentrated blast at the foe!");
+        user.MP -= mpCost;
+        c.takeDamage ((int)(user.str*1.5));
+        
     }
 }
 
@@ -352,10 +396,29 @@ class stagnate extends Skill
     {
         System.out.println (user.name + " showers " + c.name + " in a magical light");
         System.out.println (c.name + "'s magical resistance has decreased!");
-        c *= .8;
+        c.res *= .8;
         
     }
 }
+
+class brainShock extends Skill
+{
+    public brainShock()
+    {
+        mpCost = 0;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " stole some of " + c.name + "'s MP!");
+        user.MP -= mpCost;
+        user.MP += (int)(c.MP * .3);
+        c.takeDamageMp ((int)(c.MP *.3));
+        
+    }
+}
+
+
 
 //class Thief skils
 class backStab extends Skill
@@ -448,6 +511,34 @@ class curtains extends Skill
     }
 }
 
+class shuffleTime extends Skill //needs to be fixed
+{
+    public shuffleTime()
+    {
+        mpCost = 30;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " uses a random skill!!");
+        if (((Math.random() * 100)) < 33)
+        {
+            user.useSkill ("Finishing Touch", c);
+        }
+        
+        else if (((Math.random() * 100)) > 66)
+        {
+            user.useSkill ("Arcane Bullets", c);
+        }
+        
+        else{
+            user.useSkill ("Arrow Storm", c);
+        }
+
+        
+    }
+}
+
 
 
 
@@ -525,6 +616,36 @@ class flameCrash extends Skill
         else
         {
             c.takeDamage (user.magic - c.res);
+        }
+    }
+}
+
+class inferno extends Skill
+{
+    public inferno()
+    {
+        mpCost = 150;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " used Inferno!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Wood") )
+        {
+           c.takeDamage (9999); 
+           System.out.println ("It's super effective!");
+        }
+        
+        else if (c.element.equals ("Aqua") )
+        {
+           c.takeDamage (user.magic - c.res); 
+           System.out.println ("It's not very effective...");
+        }
+        
+        else
+        {
+            c.takeDamage (user.magic*3 - c.res);
         }
     }
 }
@@ -610,6 +731,37 @@ class aquaVeil extends Skill
     }
 }
 
+
+class geyser extends Skill
+{
+    public geyser()
+    {
+        mpCost = 150;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " fires a burst of pressurized water at " + c.name + "!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Fire") )
+        {
+           c.takeDamage (9999); 
+           System.out.println ("It's super effective!");
+        }
+        
+        else if (c.element.equals ("Wood") )
+        {
+           c.takeDamage (user.magic - c.res); 
+           System.out.println ("It's not very effective...");
+        }
+        
+        else
+        {
+            c.takeDamage (user.magic*3 - c.res);
+        }
+    }
+}
+
 //element Wood Skills
 class flowerDance extends Skill
 {
@@ -680,6 +832,36 @@ class pepperSong extends Skill
     }
 }
 
+class planet extends Skill
+{
+    public planet()
+    {
+        mpCost = 150;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " unleashes the forces of nature!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Aqua") )
+        {
+           c.takeDamage (9999); 
+           System.out.println ("It's super effective!");
+        }
+        
+        else if (c.element.equals ("Fire") )
+        {
+           c.takeDamage (user.str - c.def); 
+           System.out.println ("It's not very effective...");
+        }
+        
+        else
+        {
+            c.takeDamage (user.str *3 - c.def);
+        }
+    }
+}
+
 //element light skills
 class heavenlyLight extends Skill
 {
@@ -736,6 +918,30 @@ class lusterWave extends Skill
     }
 }
 
+class radiance extends Skill
+{
+    public radiance()
+    {
+        mpCost = 150;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " unleases a solar ray!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Dark") )
+        {
+           c.takeDamage (9999); 
+           System.out.println ("It's super effective!");
+        }
+
+        else
+        {
+            c.takeDamage (user.magic*3 - c.res);
+        }
+    }
+}
+
 //element dark
 class zombieStrike extends Skill
 {
@@ -746,7 +952,7 @@ class zombieStrike extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " slams the opponent with a undead aura"); 
+        System.out.println (user.name + " slams the opponent with a undead aura!"); 
         user.MP -= mpCost;
         if (c.element.equals ("Light") )
         {
@@ -800,6 +1006,30 @@ class bloodRain extends Skill
         System.out.println ( user.name + " is severely weakened!");
         user.HP *= .5;
         
+    }
+}
+
+class darkness extends Skill
+{
+    public darkness()
+    {
+        mpCost = 150;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " covers the battlefield with an ominous malevolence!"); 
+        user.MP -= mpCost;
+        if (c.element.equals ("Light") )
+        {
+           c.takeDamage (9999); 
+           System.out.println ("It's super effective!");
+        }
+
+        else
+        {
+            c.takeDamage (user.str *3 - c.def);
+        }
     }
 }
 
@@ -866,6 +1096,21 @@ class featherDuster extends Skill
             c.takeDamage (user.magic - c.def/2);
         }
         
+    }
+}
+
+class maelstrom extends Skill
+{
+    public maelstrom()
+    {
+        mpCost = 150;
+    }
+    
+    public void use (GChar user, GChar c)
+    {
+        System.out.println (user.name + " creates a devestating storm!"); 
+        c.takeDamage ((int)(c.HP * .25));
+
     }
 }
 

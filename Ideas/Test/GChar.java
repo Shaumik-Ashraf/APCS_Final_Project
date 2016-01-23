@@ -83,12 +83,12 @@ public class GChar{
         known.add("Basic Attack");
         stuff = new String[] {n, e, best, worst, job};
         
-        
+  
               
         switch(job.toLowerCase()) 
         {
             
-                
+                     
             case "warrior":
                 
                 //Stat modifications upon instantiation
@@ -107,6 +107,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Flame Crash");
                     learnable.add ("Finishing Touch");
+                    learnable.add ("Inferno");
                 }
                 
                 if (element.equals ("Aqua"))
@@ -117,6 +118,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Tidal Wave");
                     learnable.add ("Finishing Touch");
+                    learnable.add ("Geyser");
                 }
                 
                 if (element.equals ("Wood"))
@@ -127,6 +129,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Flower Dance");
+                    learnable.add ("Planet");
                 }
 
                 if (element.equals ("Light"))
@@ -137,6 +140,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Salvation");
+                    learnable.add ("Radiance");
                 }
                 
                 if (element.equals ("Dark"))
@@ -147,6 +151,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Blood Rain");
+                    learnable.add ("Darkness");
                 }
                 
                 if (element.equals ("Gale"))
@@ -157,6 +162,7 @@ public class GChar{
                     learnable.add ("Proud Swivel");
                     learnable.add ("Finishing Touch");
                     learnable.add ("Tail Wind");
+                    learnable.add ("Maelstrom");
                 }
                 
                
@@ -181,6 +187,7 @@ public class GChar{
                     learnable.add ("Stagnate");
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
+                    learnable.add ("Inferno");
                 }
                 
                 if (element.equals ("Aqua"))
@@ -191,6 +198,7 @@ public class GChar{
                     learnable.add ("Tidal Wave");
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
+                    learnable.add ("Geyser");
                 }
                 
                 if (element.equals ("Wood"))
@@ -201,6 +209,7 @@ public class GChar{
                     learnable.add ("Stagnate");
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
+                    learnable.add ("Planet");
                 }
                 
                 if (element.equals ("Light"))
@@ -211,6 +220,7 @@ public class GChar{
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Luster Wave");
                     learnable.add ("Concentrate");
+                    learnable.add ("Radiance");
                 }
                 
                 if (element.equals ("Dark"))
@@ -221,6 +231,7 @@ public class GChar{
                     learnable.add ("Stagnate");
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
+                    learnable.add ("Darkness");
                 }
                 
                 if (element.equals ("Gale"))
@@ -231,6 +242,7 @@ public class GChar{
                     learnable.add ("Stagnate");
                     learnable.add ("Arcane Bullets");
                     learnable.add ("Concentrate");
+                    learnable.add ("Maelstrom");
                 }
                 
                 i = new Inventory("Wooden Pole");
@@ -252,6 +264,7 @@ public class GChar{
                     learnable.add ("Flame Crash");
                     learnable.add ("Markdown");
                     learnable.add ("Arrow Storm");
+                    learnable.add ("Inferno");               
                 }
                 
                 if (element.equals ("Aqua"))
@@ -262,6 +275,7 @@ public class GChar{
                     learnable.add ("Markdown");
                     learnable.add ("Tidal Wave");
                     learnable.add ("Arrow Storm");
+                    learnable.add ("Geyser");
                 }
                 
                 if (element.equals ("Wood"))
@@ -272,6 +286,7 @@ public class GChar{
                     learnable.add ("Focus");
                     learnable.add ("Arrow Storm");
                     learnable.add ("Flower Dance");
+                    learnable.add ("Planet");
                 }
                 
                 if (element.equals ("Light"))
@@ -282,6 +297,7 @@ public class GChar{
                     learnable.add ("Markdown");
                     learnable.add ("Salvation");
                     learnable.add ("Arrow Storm");
+                    learnable.add ("Radiance");
                 }
                 
                 if (element.equals ("Dark"))
@@ -292,6 +308,7 @@ public class GChar{
                     learnable.add ("Markdown");
                     learnable.add ("Arrow Storm");
                     learnable.add ("Blood Rain");
+                    learnable.add ("Darkness");
                 }
                 
                 if (element.equals ("Gale"))
@@ -302,6 +319,7 @@ public class GChar{
                     learnable.add ("Markdown");
                     learnable.add ("Arrow Storm");
                     learnable.add ("Tail Wind");
+                    learnable.add ("Maelstrom");
                 }
                 
                 i = new Inventory("Bronze Longsword");//Archer doesn't have a weapon yet. T_T
@@ -323,6 +341,7 @@ public class GChar{
                     learnable.add ("Curtains");
                     learnable.add ("Gamble");
                     learnable.add ("Assassinate");
+                    learnable.add ("Inferno");                
                 }
                 
                 if (element.equals ("Aqua"))
@@ -333,6 +352,7 @@ public class GChar{
                     learnable.add ("Curtains");
                     learnable.add ("Gamble");
                     learnable.add ("Assassinate");
+                    learnable.add ("Geyser");
                 }
                 
                 if (element.equals ("Wood"))
@@ -343,6 +363,7 @@ public class GChar{
                     learnable.add ("Curtains");
                     learnable.add ("Flower Dance");
                     learnable.add ("Assassinate");
+                    learnable.add ("Planet");
                 }
                 
                 if (element.equals ("Light"))
@@ -353,6 +374,7 @@ public class GChar{
                     learnable.add ("Curtains");
                     learnable.add ("Salvation");
                     learnable.add ("Assassinate");
+                    learnable.add ("Radiance");
                 }
                 
                 if (element.equals ("Dark"))
@@ -363,6 +385,7 @@ public class GChar{
                     learnable.add ("Curtains");
                     learnable.add ("Blood Rain");
                     learnable.add ("Assassinate");
+                    learnable.add ("Darkness");
                 }
                 
                   
@@ -374,6 +397,7 @@ public class GChar{
                     learnable.add ("Curtains");
                     learnable.add ("Tail Wind");
                     learnable.add ("Assassinate");
+                    learnable.add ("Maelstrom");
                 }
                 
                 i = new Inventory("Bronze Dagger");                
