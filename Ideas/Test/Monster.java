@@ -62,10 +62,22 @@ public class Monster extends GChar{
         bestiary.put ("Trident Lion", new String[]     {"Trident Lion",     "Aqua",   "Geyser",         "Rush Down",        "1.8",     "1.6",    "1.5",    "10",   "2"     });
         bestiary.put ("Candle Speaker", new String[]   {"Candle Speaker",   "Fire",   "Rekindle",       "Heat Wave",        "1.5",     "1.1",    "1.9",    "10",   "1.4"   });
         bestiary.put ("Lodestar", new String[]         {"Lodestar",        "Light",   "Holy Smite",     "Luster Wave",        "2",       "2",      "2",    "10",   "1.7"   });
-        
-        
-        
-        
+        bestiary.put ("Psychoham", new String[]        {"Psychoham",        "Gale",   "BasicAttack",    "Pickpocket",       "1.6",     "1.1",    "1.1",    "10",   "2.1"   });
+        bestiary.put ("Magictek Beta", new String[]    {"Magitek Beta",    "Blank",   "Brain Shock",    "Mana Burst",         "1",       "1",      "2",    "10",   "1.9"   });
+        bestiary.put ("Fair Gunslinger", new String[]  {"Fair Gunslinger",  "Fire",   "Quick Draw",     "Fatal Shot",       "1.8",     "1.7",    "1.2",    "10",   "1.7"   });
+        bestiary.put ("Atlas", new String[]            {"Atlas",           "Light",   "Strong Swing",   "Planet",             "2",       "2",      "0",    "10",   "1.5"   });
+        bestiary.put ("Mercenary", new String[]        {"Mercenary",       "Blank",   "Assassinate",    "Arrow Storm",      "1.5",     "1.9",    "1.5",    "10",   "2.2"   });
+        bestiary.put ("Forte Flutist", new String[]    {"Forte Flutist",    "Wood",   "Arcanite Forte", "Tidal Wave",       "1.1",     "1.1",    "2.1",    "10",   "1.1"   });
+        bestiary.put ("Felldragon", new String[]       {"Felldragon",       "Dark",   "Heat Wave",      "Rush Down",        "2.4",     "2.5",    "2.5",    "10",   "2.5"   });
+        bestiary.put ("Grand Wall", new String[]       {"Grand Wall",      "Blank",   "BasicAttack",    "Pepper Song",        "3",      ".5",     ".5",    "10",   ".1"    });
+        bestiary.put ("Elegant Dancer", new String[]   {"Elegant Dancer",   "Aqua",   "Flower Dance",   "Shuffle Time",     "1.5",     "1.3",    "1.1",    "10",   "1.7"   });
+        bestiary.put ("Reckless Sage", new String[]    {"Reckless Sage",    "Gale",   "Mana Burst",     "Inner Fire",       "2.4",     "1.1",    "2.1",    "10",   "1.1"   });
+        bestiary.put ("Undead Zombie", new String[]    {"Undead Zombie",   "Light",   "Zombie Strike",  "Vampire",          "1.2",     "1.5",    "1.1",    "10",   "1.2"   });
+        bestiary.put ("Heroic Donut", new String[]     {"Heroic Donut",     "Fire",   "Finishing Touch","Back Stab",        "1.5",     "1.8",    "1.1",    "10",   "1.7"   });
+        bestiary.put ("Autotune", new String[]         {"Autotune",        "Blank",   "Pepper Song",    "Noise Pulse",      "1.4",     "  1",      "1",    "10",   "1.5"   });
+        bestiary.put ("Imposter Mage", new String[]    {"Imposter Mage",    "Aqua",   "Brain Shock",    "Strong Swing",     "2.5",     "1.9",     ".5",    "10",   "1.1"   });
+        bestiary.put ("Ribobon", new String[]          {"Ribobon",          "Wood",   "Luster Wave",    "Seed Burst",       "1.5",     "1.4",    "1.4",    "10",   "1.3"   });
+        bestiary.put ("Goblin Salesman", new String[]  {"Goblin Salesmen", "Blank",   "Shuffle Time",   "Hurricane Force",  "1.5",     "1.7",    "1.7",    "10",   "1.3"   });
         
     }
     

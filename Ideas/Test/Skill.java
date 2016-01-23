@@ -376,7 +376,7 @@ class quickDraw extends Skill
     
     public void use (GChar user, GChar c)
     {
-        System.out.println (user.name + " fires a series of quick bolts");
+        System.out.println (user.name + " fires a series of quick bolts!");
         user.MP -= mpCost;
      if (((Math.random() * 100)) <= user.luck)
         {
