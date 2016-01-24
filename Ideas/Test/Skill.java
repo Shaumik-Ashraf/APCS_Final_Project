@@ -87,7 +87,7 @@ public abstract class Skill
         
         //Final Boss Brown Skills
         allSkills.put ("Keys to Success", new keys());
-        allSkills.put ("Wadatah", new wadatah());
+        allSkills.put ("Wadatah", new wada());
         allSkills.put ("Day of Relaxation", new csExam());
         allSkills.put ("Beard of Justice", new beard());
         allSkills.put ("Bun of Fate", new bun());
@@ -607,6 +607,9 @@ class shuffleTime extends Skill //needs to be fixed
     
     public void use (GChar user, GChar c)
     {
+        user.known.add("Finishing Touch");
+        user.known.add("Arcane Bullets");
+        user.known.add("Arrow Storm");
         System.out.println (user.name + " uses a random skill!!");
         if (((Math.random() * 100)) < 33)
         {
@@ -621,6 +624,9 @@ class shuffleTime extends Skill //needs to be fixed
         else{
             user.useSkill ("Arrow Storm", c);
         }
+        user.known.remove("Finishing Touch");
+        user.known.remove("Arcane Bullets");
+        user.known.remove("Fatal Blow");
 
         
     }
@@ -1484,9 +1490,9 @@ class keys extends Skill
     }
 }
 
-class wadatah extends Skill
+class wada extends Skill
 {
-    public wadatah()
+    public wada()
     {
         mpCost = 0;
     }
