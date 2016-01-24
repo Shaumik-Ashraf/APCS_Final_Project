@@ -26,9 +26,11 @@ public class Legendairy2 {
 	 
 		in = new Scanner(System.in);
 
+		/* Called by Creator.initCreator();
 		Item.consEquipList();
 		Skill.consAllSkills();
 		Monster.initMonsters();
+		*/
 		Creator.initCreator();
 
 		//newGame();
