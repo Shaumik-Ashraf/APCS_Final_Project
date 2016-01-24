@@ -78,7 +78,23 @@ public class Monster extends GChar{
         bestiary.put ("Imposter Mage", new String[]    {"Imposter Mage",    "Aqua",   "Brain Shock",    "Strong Swing",     "2.5",     "1.9",     ".5",    "10",   "1.1"   });
         bestiary.put ("Ribobon", new String[]          {"Ribobon",          "Wood",   "Luster Wave",    "Seed Burst",       "1.5",     "1.4",    "1.4",    "10",   "1.3"   });
         bestiary.put ("Goblin Salesman", new String[]  {"Goblin Salesmen", "Blank",   "Shuffle Time",   "Hurricane Force",  "1.5",     "1.7",    "1.7",    "10",   "1.3"   });
-        
+        bestiary.put ("Shambling Skeleton",new String[]{"Shambling Skeleton","Dark",  "Basic Attack",   "Proud Swivel",     "1",       "1",      "1",      "8",    ".8"    });
+        bestiary.put ("Skeleton Archer", new String[]  {"Skeleton Archer",  "Dark",   "Basic Attack",   "Bow Throw",        ".7",      ".9",     ".5",     "10",   "1.3"   });
+        bestiary.put ("Skeleton Assassin", new String[]{"Skeleton Assassin","Dark",   "Basic Attack",   "Back Stab",        ".85",     ".7",     ".5",     "10",   "1.55"  });
+        bestiary.put ("Skeleton Warrior", new String[] {"Skeleton Warrior", "Dark",   "Basic Attack",   "Strong Swing",     "1.15",    "1.25",   ".2",     "10",   ".65"   });
+        bestiary.put ("Zombie Crawler",new String[]    {"Zombie Crawler"    ,"Dark",  "Basic Attack",   "Strong Swing",     "1",       "1",      "1",      "8",    ".5"    });
+        bestiary.put ("Zombie Marauder", new String[]  {"Zombie Marauder",  "Dark",   "Basic Attack",   "Proud Swivel",     "2",       "1.1",    ".5",     "12",   ".3"    });
+        bestiary.put ("Zombie Assaulter", new String[] {"Zombie Assaulter", "Dark",   "Basic Attack",   "Back Stab",        ".85",     ".7",     ".5",     "10",   "1.85"  });
+        bestiary.put ("Zombie Exploder", new String[]  {"Zombie Exploder",  "Dark",   "Blood Rain",     "Rush Down",        ".05",    "2.25",    ".2",     "10",   "1.35"  });  
+        bestiary.put ("Goblin Recruit   ",new String[] {"Goblin Recruit",   "Fire",   "Basic Attack",   "Basic Attack",     "1",       "1",      "1",      "8",    ".8"    });
+        bestiary.put ("Goblin Archer", new String[]    {"Goblin Archer",  "Fire",   "Basic Attack",   "Bow Throw",        ".7",      ".9",     ".5",     "10",   "1.3"     });
+        bestiary.put ("Goblin Assassin", new String[]  {"Goblin Assassin","Fire",   "Basic Attack",   "Back Stab",        ".85",     ".7",     ".5",     "10",   "1.55"    });
+        bestiary.put ("Goblin Warrior", new String[]   {"Goblin Warrior", "Fire",   "Basic Attack",   "Strong Swing",     "1.15",    "1.25",   ".2",     "10",   ".65"     });
+        bestiary.put ("Goblin Spellcaster", new String[]{"Goblin Spellcaster","Fire","Inner Fire",    "Flame Crash",        ".65",   ".5",     "1.5",    "10",   ".85"     });
+        bestiary.put ("Windraider",     new String[]   {"Windraider",     "Gale",   "Basic Attack",   "Hurricane Force",    "1",     ".8",     ".8",     "12",   "1.25"    });
+        bestiary.put ("Void Stalker",   new String[]   {"Void Stalker",   "Blank",  "Basic Attack",   "Noise Pulse",        "1.5",   ".4",     ".4",     "10",   "1"       });
+        bestiary.put ("Void Zealot",    new String[]   {"Void Zealot",    "Blank",  "Basic Attack",   "Basic Attack",       "1.5",   ".8",      ".8",     "10",   "1.75"    });
+        bestiary.put ("Void Collossus", new String[]   {"Void Collossus", "Blank",  "Basic Attack",   "Strong Swing",       "3.5",   "1",       "1",     "20",   ".35"     });
     }
     
     //=========================Scaling monsters

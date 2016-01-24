@@ -1,5 +1,5 @@
 import java.util.*;
-
+//Max, if you see this, it's right.
 public abstract class Skill
 {
     protected int mpCost;

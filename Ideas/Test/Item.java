@@ -64,6 +64,14 @@ public abstract class Item
         weapons.put("Moocao's Little Rod",  new int[] {0,0,50,0,75,0,0,0,1});
         /* --------- */   
         
+        /* --BOWS--- */
+        weapons.put("Wooden Bow",           new int[] {0,12,0,0,20,0,0,20,1});
+        weapons.put("Oak Bow",              new int[] {0,15,0,0,23,0,0,23,1});
+        weapons.put("Light Steel Bow",     new int[] {0,18,0,0,26,0,0,26,1});
+        weapons.put("Darksteel Bow",       new int[] {0,23,0,0,29,0,0,30,1});
+        weapons.put("Willow Longbow",      new int[] {0,27,0,0,32,0,0,33,1});
+        weapons.put("Redwood Longbow",     new int[] {0,31,0,0,35,0,0,38,1});
+        
                             /*
                         1: defMod;
                         2: strMod;
@@ -79,36 +87,99 @@ public abstract class Item
         /* ------ARMOR DATABASE------ */
         
         /* --HEAD-- */
-        armor.put("Wooden Helmet",          new int[] {2,0,0,0,0,0,0,0,2});
+        armor.put("Wooden Helmet",          new int[]  {2,0,0,0,0,0,0,0,2});
+        armor.put("Bronze Helmet",          new int[]  {3,0,0,1,-1,0,0,0,2});
+        armor.put("Iron Helmet",            new int[]  {6,0,0,3,-2,0,0,0,2});
+        armor.put("Steel Helmet",           new int[]  {9,0,0,5,-3,0,0,0,2});
+        armor.put("Darksteel Helmet",       new int[] {11,0,0,7,-4,0,0,0,2});
+        armor.put("Mithril Helmet",         new int[] {13,0,0,9,-5,0,0,0,2});
+        armor.put("Obsidian Helmet",        new int[] {15,0,0,11,-6,0,0,2});
         
-        armor.put("Bronze Helmet",          new int[] {3,0,0,1,-1,0,0,0,2});
-        armor.put("Iron Helmet",            new int[] {6,0,0,3,-2,0,0,0,2});
-        armor.put("Steel Helmet",           new int[] {9,0,0,5,-3,0,0,0,2});
-        
-        armor.put("Leather Headgear",       new int[] {2,0,0,2,5,0,0,5,2});
-        armor.put("Hard Leather Headgear",  new int[] {4,0,0,4,6,0,0,6,2});
-        armor.put("Snakeskin Headgear",     new int[] {6,0,0,6,7,0,0,7,2});
+        armor.put("Leather Headgear",           new int[]  {2,0,0,2,5,0,0,5,2});
+        armor.put("Hard Leather Headgear",      new int[]  {4,0,0,4,6,0,0,6,2});
+        armor.put("Snakeskin Headgear",         new int[]  {6,0,0,6,7,0,0,7,2});
+        armor.put("Dragonhide Headgear",        new int[]  {9,0,0,8,8,0,0,8,2});
+        armor.put("Phoenix Feather Headgear",   new int[] {11,0,0,10,9,0,0,9,2});
+        armor.put("Hydra Headgear",             new int[] {13,0,0,12,10,0,0,10,2});
         
         armor.put("Brown Wizard Hat",       new int[] {1,0,2,1,0,0,2,0,2}); //magic armor heals mp every turn and adds magic damage
         armor.put("Blue Wizard Hat",        new int[] {3,0,4,4,0,0,3,0,2});
         armor.put("Black Wizard Hat",       new int[] {5,0,6,7,0,0,4,0,2});
         armor.put("Garnished Wizard Hat",   new int[] {7,0,8,10,0,0,6,0,2});
+        armor.put("Grand Sage Hat",         new int[]{9,0,10,13,0,0,8,0,2});
+        armor.put("Grandmaster Hat",        new int[]{11,0,12,16,0,0,10,0,2});
         /* -------- */
         
         /* --BODY-- */
-        armor.put("Copper Chestplate", new int[] {5,0,0,10,0,0,0,0,3});
+        armor.put("Copper Chestplate",          new int[]  {5,0,0,2,0,0,0,0,3}); 
+        armor.put("Iron ChestPlate",            new int[]  {9,0,0,4,0,0,0,0,3});
+        armor.put("Steel Chestplate",           new int[] {13,0,0,6,0,0,0,0,3});
+        armor.put("Darksteel Chestplate",      new int[] {15,0,0,8,0,0,0,0,3});
+        armor.put ("Mithril Chestplate",        new int[]{17,0,0,10,0,0,0,0,3});
+        armor.put ("Obsidian Chestplate",       new int[]{19,0,0,12,0,0,0,0,3});
+        
+        armor.put("Leather Body",                new int[]  {3,0,0,3,3,0,0,3,3});
+        armor.put("Hard Leather Body",           new int[]  {6,0,0,5,5,0,0,5,3});
+        armor.put("Snakeskin Body",              new int[]  {9,0,0,7,7,0,0,7,3});
+        armor.put("Dragonhide Body",              new int[] {11,0,0,9,9,0,0,9,3});
+        armor.put("Phoenix Feather Body",        new int[] {13,0,0,11,11,0,0,11,3});
+        armor.put("Hydra Body",                  new int[] {15,0,0,13,13,0,0,13,3});
+        
+        armor.put("Jagged Wizard Robe",     new int[]  {2,0,2,5,0,0,1,0,3});
+        armor.put("Brown Wizard Robe",      new int[]  {4,0,4,8,0,0,3,0,3});
+        armor.put("Black Wizard Robe",      new int[]  {6,0,6,11,0,0,5,0,3});
+        armor.put("Garnished Wizard Robe",  new int[]  {8,0,8,14,0,0,7,0,3});
+        armor.put("Grand Sage Robe",        new int[] {10,0,10,17,0,0,9,0,3});
+        armor.put ("Grandmaster Robe",      new int[] {13,0,12,20,0,0,11,0,3});
+        
+        
         /* -------- */
         
         /* --LEGS-- */
-        armor.put("Leather Pants", new int[] {2,0,0,5,0,0,0,5,4});        
+        armor.put("Bronze Leggings",    new int[]  {3,0,0,1,0,0,0,0,4});
+        armor.put("Iron Leggings",      new int[]  {6,0,0,3,0,0,0,0,4});
+        armor.put("Steel Leggings",     new int[]  {9,0,0,5,0,0,0,0,4});
+        armor.put("Darksteel Leggings", new int[] {11,0,0,7,0,0,0,0,4});
+        armor.put("Mithril Leggings",   new int[] {13,0,0,9,0,0,0,0,4});
+        armor.put("Obsidian Leggings",  new int[] {15,0,0,11,0,0,0,0,4});
+        
+        armor.put("Leather Pants",          new int[]  {2,0,0,3,2,0,0,5,4});
+        armor.put("Hard Leather Pants",     new int[]  {4,0,0,5,4,0,0,7,4});
+        armor.put("Snakeskin Pants",        new int[]  {6,0,0,7,6,0,0,9,4});
+        armor.put("Dragonhide Pants",       new int[]  {8,0,0,9,8,0,0,11,4});
+        armor.put("Phoenix Feather Pants",  new int[] {10,0,0,11,10,0,0,13,4});
+        armor.put("Hydra Pants",            new int[] {12,0,0,13,12,0,0,15,4});
         /* -------- */
         
         /* --FEET-- */
-        armor.put("Leather Boots", new int[] {2,0,0,5,5,0,0,5,5});    
+        armor.put("Bronze Boots",   new int[]  {3,0,0,1,0,0,0,0,5});
+        armor.put("Iron Boots",     new int[]  {6,0,0,2,0,0,0,0,5});
+        armor.put("Steel Boots",    new int[]  {9,0,0,3,0,0,0,0,5});
+        armor.put("Darksteel Boots",new int[]  {11,0,0,4,0,0,0,0,5});  
+        armor.put("Mithril Boots",  new int[]  {13,0,0,5,0,0,0,0,5});  
+        armor.put("Obsidian Boots", new int[]  {15,0,0,6,0,0,0,0,5});
+        
+        armor.put("Leather Boots",          new int[]  {2,0,0,2,5,0,0,5,5});
+        armor.put("Hard Leather Boots",     new int[]  {4,0,0,4,7,0,0,6,5});
+        armor.put("Snakeskin Boots" ,       new int[]  {6,0,0,6,9,0,0,7,5});
+        armor.put("Dragonhide Boots",       new int[]  {8,0,0,8,11,0,0,8,5});
+        armor.put("Phoenix Feather Boots",  new int[]  {10,0,0,10,13,0,0,9,5});
+        armor.put("Hydra Boots",            new int[]  {12,0,0,12,15,0,0,10,5});
+        
+        armor.put("Wizard's Shoes",     new int[]  {1,0,1,3,0,0,2,0,5});
+        armor.put("Spellcaster Boots",  new int[]  {2,0,2,6,0,0,3,0,5});
+        armor.put("Sorcerer Boots",     new int[]  {3,0,3,9,0,0,4,0,5});
+        armor.put("Warlock Boots",      new int[]  {4,0,4,11,0,0,5,0,5});
+        armor.put("Sage Boots",         new int[]  {5,0,5,13,0,0,6,0,5});
+        armor.put("Grandmaster Boots",  new int[]  {6,0,6,15,0,0,7,0,5});
         /* -------- */
         
         /* --ACCESSORY-- */
-        armor.put("Broken Glasses", new int[] {0,0,0,0,0,0,5,5,6});    
+        armor.put("Broken Glasses", new int[] {0,0,0,0,0,0,5,5,6});
+        armor.put("Weak Adventurer's Trinket", new int[] {1,1,1,1,1,1,1,1,6});
+        armor.put("Pocket Watch", new int[] {0,0,0,0,5,0,0,0,6});
+        armor.put("Medal", new int[] {0,6,6,0,0,0,0,0,6});
+        
         /* ------------- */
         
         /* -------------------------- */
@@ -143,7 +214,7 @@ public abstract class Item
         
         effectItems.put("Lesser Mana Potion", new int[] {0,0,0,0,0,0,15,0,1});
         effectItems.put("Weak Mana Potion", new int[] {0,0,0,0,0,0,25,0,1});
-        effectItems.put("Mana Posion", new int[] {0,0,0,0,0,0,35,0,1});
+        effectItems.put("Mana Potion", new int[] {0,0,0,0,0,0,35,0,1});
         effectItems.put("Effective Mana Potion", new int[] {0,0,0,0,0,0,50,0,1});
         effectItems.put("Strong Mana Potion", new int[] {0,0,0,0,0,0,65,0,1});
         effectItems.put("Powerful Mana Potion", new int[] {0,0,0,0,0,0,85,0,1});
@@ -209,9 +280,21 @@ public abstract class Item
         
         
         /* -------MISC ITEM DATABASE---------- */
-        miscItems.put("Lock Picking Kit", new int[]{});
-        miscItems.put("Advanced Lock Picking Kit", new int[]{});
-        miscItems.put("Rope", new int[]{});
+        miscItems.put("Lock Picking Kit", new int[]{25});
+        miscItems.put("Advanced Lock Picking Kit", new int[]{75});
+        miscItems.put("Rope", new int[]{25});
+        
+        miscItems.put("Power Stone", new int[] {10});
+        miscItems.put("Arcane Pebble", new int[] {10});
+        miscItems.put("Health Stone", new int[] {4});
+        miscItems.put("Mana Essence", new int[] {4});
+        miscItems.put("Resiliance Essence", new int[] {6});
+        miscItems.put("Toughness Inscription", new int[] {6});
+        miscItems.put("Speed Charm", new int[] {4});
+        miscItems.put("Luck Charm", new int[] {4});
+        
+        
+        
     }
     
     public String toString() {return name;}

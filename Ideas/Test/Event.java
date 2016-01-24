@@ -24,12 +24,12 @@ class CombatEvent extends Event
     public ArrayList<GChar> aliveEnemies = new ArrayList<GChar>();    
     private Scanner in = new Scanner(System.in);
     private boolean called;
+    private int partyLvl= 0;
    
     public CombatEvent (ArrayList<GChar> p)
     {
         called = false;
         isComplete = false;
-        int partyLvl = 0;
         int counter = 0;
         for (GChar c: p)
         {
@@ -65,7 +65,6 @@ class CombatEvent extends Event
     {
         called = call;
         isComplete = false;
-        int partyLvl = 0;
         int counter = 0;
         for (GChar c: p)
         {
@@ -187,11 +186,15 @@ class CombatEvent extends Event
 	}
         if (called == false)
         {
+            LootEvent l = new LootEvent(aliveParty, 5);
+            party = l.beginEvent();
             NoEvent e = new NoEvent(aliveParty);
             return e.beginEvent();            
         }
         else
         {
+            LootEvent l = new LootEvent(aliveParty, 5);
+            party = l.beginEvent();
             return aliveParty;
         }
     }
@@ -432,7 +435,8 @@ class ChestEvent extends Event
     		        {
     		            System.out.println("The chest creaks open. "+ charInput.toString() + " receives glorious loot.");
     		            //
-    		            charInput.getInventory().giveItem(new Weapon("Bronze Dagger"));
+                        LootEvent l = new LootEvent (party, ((int)(8*Math.random()) + 1));
+                        party = l.beginEvent();
     		            //
     		            isComplete = true;
     		        }
@@ -1086,13 +1090,14 @@ class CryptEvent extends Event
         GChar Logan = new GChar("Logan", "Fire", "Strength", "Magic", "Warrior");
         GChar Wendell = new GChar("Wendell", "Wood", "Agility", "Magic", "Rogue");
         Wendell.magic = 1000;
+        Wendell.level = 90;
         ArrayList<GChar> chars = new ArrayList<GChar>();
         chars.add(Logan);
         chars.add(Wendell);
-        CryptEvent e = new CryptEvent(chars);
+        LootEvent e = new LootEvent(chars, 25);
         chars = e.beginEvent();
     }
-    
+
     
 }
 
@@ -1476,5 +1481,297 @@ class PoolCombatEvent extends Event
         {
             return party;
         }
+    }
+}
+
+/*---------------------LOOT EVENT ---------------------*/
+class LootEvent extends Event
+{
+    String delay;
+    String input;
+    private Scanner in = new Scanner(System.in);
+    public ArrayList<GChar> party = new ArrayList<GChar>();
+    int lvlAvg;
+    int amount;
+    int partyLvl;
+    public ArrayList<ArrayList<String>> tiers = new ArrayList<ArrayList<String>>();
+    
+    public LootEvent(ArrayList<GChar> p, int lootNum)
+    {
+        amount = lootNum;
+        int counter = 0;
+        for (GChar c: p)
+        {
+            party.add(c);
+            partyLvl += c.level;
+            counter += 1;
+        }
+        partyLvl = (int)(partyLvl/counter);
+        partyLvl = (int)(partyLvl/10);
+        //System.out.println("lvl:" + partyLvl);
+    }
+    
+    public ArrayList<GChar> beginEvent()
+    {
+        tiers = consTierList();
+        for (int l = 0; l < amount; l++)
+        {
+            GChar giveChar = party.get((int)(party.size()*Math.random()));
+            switch(partyLvl)
+            {
+                case 0:
+                    giveCharItem (tiers.get(0).get((int)(tiers.get(0).size()*Math.random())), giveChar);
+                    //System.out.println("Test");
+                    break;
+                case 1:
+                    giveCharItem (tiers.get(1).get((int)(tiers.get(1).size()*Math.random())), giveChar);
+                    break;                    
+                case 2:
+                    giveCharItem (tiers.get(2).get((int)(tiers.get(2).size()*Math.random())), giveChar);
+                    break;                    
+                case 3:
+                    giveCharItem (tiers.get(3).get((int)(tiers.get(3).size()*Math.random())), giveChar);
+                    break;                    
+                case 4:
+                    giveCharItem (tiers.get(4).get((int)(tiers.get(4).size()*Math.random())), giveChar);
+                    break;                    
+                case 5:
+                    giveCharItem (tiers.get(5).get((int)(tiers.get(5).size()*Math.random())), giveChar);
+                    break;
+            }
+        }   
+        return party;
+    }
+    
+    public void giveCharItem (String itemName, GChar c)
+    {
+        try 
+        {
+            c.getInventory().giveItem(new Weapon(itemName));
+            return;
+        } catch(Exception e) {}
+        try 
+        {
+            c.getInventory().giveItem(new Armor(itemName));
+            return;
+        } catch(Exception e) {}
+        try 
+        {
+            c.getInventory().giveItem(new EffectItem(itemName));
+            return;
+        } catch(Exception e) {}
+    }
+    
+    public ArrayList<ArrayList<String>> consTierList()
+    {
+        ArrayList<ArrayList<String>> tiers= new ArrayList<ArrayList<String>>();
+        ArrayList<String> t0 = new ArrayList<String>();
+        //TIER 0
+        t0.add("Bronze Dagger");
+        t0.add("Bronze Longsword");
+        t0.add("Bronze Greatsword");
+        t0.add("Wooden Pole");
+        t0.add("Wooden Stick");
+        t0.add("Wooden Bow");
+        t0.add("Wooden Helmet");
+        t0.add("Leather Headgear");
+        t0.add("Brown Wizard Hat");
+        t0.add("Copper Chestplate");
+        t0.add("Leather Body");
+        t0.add("Jagged Wizard Robe");
+        t0.add("Bronze Leggings");
+        t0.add("Leather Pants");
+        t0.add("Bronze Boots");
+        t0.add("Leather Boots");
+        t0.add("Wizard's Shoes");
+        t0.add("Lesser Healing Potion");
+        t0.add("Weak Healing Potion");
+        t0.add("Lesser Mana Potion");
+        t0.add("Weak Mana Potion");
+        t0.add("Minor Strength Potion");
+        t0.add("Minor Defense Potion");
+        t0.add("Minor Magic Potion");
+        t0.add("Minor Resolution Potion");
+        t0.add("Minor Speed Potion");
+        t0.add("Minor Luck Potion");
+        
+        ArrayList<String> t1 = new ArrayList<String>();
+        //TIER 1
+        t1.add("Iron Dagger");
+        t1.add("Iron Longsword");
+        t1.add("Iron Greatsword");       
+        t1.add("Oak Staff");
+        t1.add("Oak Wand");
+        t1.add("Oak Bow");
+        t1.add("Iron Helmet");
+        t1.add("Hard Leather Headgear");
+        t1.add("Blue Wizard Hat");
+        t1.add("Iron ChestPlate");
+        t1.add("Hard Leather Body");
+        t1.add("Brown Wizard Robe");
+        t1.add("Iron Leggings");
+        t1.add("Hard Leather Pants");
+        t1.add("Iron Boots");
+        t1.add("Hard Leather Boots");
+        t1.add("Spellcaster Boots");
+        t1.add("Weak Healing Potion");
+        t1.add("Healing Potion");
+        t1.add("Weak Mana Potion");
+        t1.add("Mana Potion"); 
+        t1.add("Improved Minor Strength Potion");
+        t1.add("Improved Minor Defense Potion");
+        t1.add("Improved Minor Magic Potion");
+        t1.add("Improved Minor Resolution Potion");
+        t1.add("Improved Minor Speed Potion");
+        t1.add("Improved Minor Luck Potion");
+        
+        ArrayList<String> t2 = new ArrayList<String>();
+        //TIER 2
+        t2.add ("Steel Dagger");
+        t2.add ("Steel Longsword");
+        t2.add ("Steel Greatsword");
+        t2.add ("Ruby Oak Staff");
+        t2.add ("Ruby Oak Wand");
+        t2.add ("Light Steel Bow");
+        t2.add ("Steel Helmet");
+        t2.add ("Snakeskin Headgear");
+        t2.add ("Black Wizard Hat");
+        t2.add ("Steel Chestplate");
+        t2.add ("Snakeskin Body");
+        t2.add ("Black Wizard Robe");
+        t2.add ("Steel Leggings");
+        t2.add ("Snakeskin Pants");
+        t2.add ("Steel Boots");
+        t2.add ("Snakeskin Boots");
+        t2.add ("Sorcerer Boots");
+        t2.add ("Weak Adventurer's Trinket");
+        t2.add ("Healing Potion");
+        t2.add ("Effective Healing Potion");
+        t2.add ("Mana Potion"); 
+        t2.add ("Effective Mana Potion");
+        t2.add ("Strength Potion");
+        t2.add ("Defense Potion");
+        t2.add ("Magic Potion");
+        t2.add ("Resolution Potion");
+        t2.add ("Speed Potion");
+        t2.add ("Luck Potion");  
+        t2.add ("Revitalizer");
+
+
+        ArrayList<String> t3 = new ArrayList<String>();        
+        t3.add ("Darksteel Dagger");
+        t3.add ("Darksteel Longsword");
+        t3.add ("Darksteel Greatsword");
+        t3.add ("Redwood Staff");
+        t3.add ("Redwood Wand");
+        t3.add ("Darksteel Bow");
+        t3.add ("Darksteel Helmet");
+        t3.add ("Dragonhide Helmet");
+        t3.add ("Garnished Wizard Hat");
+        t3.add ("Darksteel Cheastplate");
+        t3.add ("Dragonhide Body");
+        t3.add ("Garnished Wizard Robe");
+        t3.add ("Darksteel Leggings");
+        t3.add ("Dragonhide Pants");
+        t3.add ("Darksteel Boots");
+        t3.add ("Dragonhide Boots");
+        t3.add ("Warlock Boots");
+        t3.add ("Pocket Watch");
+        t3.add ("Effective Healing Potion");
+        t3.add ("Strong Healing Potion");
+        t3.add ("Effective Mana Potion"); 
+        t3.add ("Strong Mana Potion");
+        t3.add ("Improved Strength Potion");
+        t3.add ("Improved Defense Potion");
+        t3.add ("Improved Magic Potion");
+        t3.add ("Improved Resolution Potion");
+        t3.add ("Improved Speed Potion");
+        t3.add ("Improved Luck Potion");  
+        t3.add ("Revitalizer");
+        
+        
+        ArrayList<String> t4 = new ArrayList<String>(); 
+        t4.add ("Mithril Dagger");
+        t4.add ("Mithril Longsword");
+        t4.add ("Mithril Greatsword");
+        t4.add ("Ruby Redwood Staff");
+        t4.add ("Ruby Redwood Wand");
+        t4.add ("Willow Longbow");
+        t4.add ("Mithril Helmet");
+        t4.add ("Phoenix Feather Headgear");
+        t4.add ("Grand Sage Hat");
+        t4.add ("Mithril Chestplate");
+        t4.add ("Phoenix Feather Body");
+        t4.add ("Grand Sage Robe");
+        t4.add ("Mithril Leggings");
+        t4.add ("Phoenix Feather Pants");
+        t4.add ("Mithril Boots");
+        t4.add ("Phoenix Feather Boots");
+        t4.add ("Sage Boots");
+        t4.add ("Pocket Watch");
+        t4.add ("Strong Healing Potion");
+        t4.add ("Powerful Healing Potion");
+        t4.add ("Strong Mana Potion"); 
+        t4.add ("Powerful Mana Potion");
+        t4.add ("Powerful Strength Potion");
+        t4.add ("Powerful Defense Potion");
+        t4.add ("Powerful Magic Potion");
+        t4.add ("Powerful Resolution Potion");
+        t4.add ("Powerful Speed Potion");
+        t4.add ("Powerful Luck Potion");  
+        t4.add ("Strong Revitalizer");
+        
+        ArrayList<String> t5 = new ArrayList<String>();
+        t5.add ("Obsidian Dagger");
+        t5.add ("Obsidian Longsword");
+        t5.add ("Obsidian Greatsword");
+        t5.add ("Emerald Redwood Staff");
+        t5.add ("Emerald Redwood Wand");
+        t5.add ("Redwood Longbow");
+        t5.add ("Obsidian Helmet");
+        t5.add ("Hydra Headgear");
+        t5.add ("Grandmaster Hat");
+        t5.add ("Obsidian Chestplate");
+        t5.add ("Hydra Body");
+        t5.add ("Grandmaster Robe");
+        t5.add ("Obsidian Leggings");
+        t5.add ("Hydra Pants");
+        t5.add ("Obsidian Boots");
+        t5.add ("Hydra Boots");
+        t5.add ("Grandmaster Boots");
+        t5.add ("Medal");
+        t5.add ("Powerful Healing Potion");
+        t5.add ("Super Healing Potion");
+        t5.add ("Powerful Mana Potion"); 
+        t5.add ("Super Mana Potion");
+        t5.add ("Improved Powerful Strength Potion");
+        t5.add ("Improved Powerful Defense Potion");
+        t5.add ("Improved Powerful Magic Potion");
+        t5.add ("Improved Powerful Resolution Potion");
+        t5.add ("Improved Powerful Speed Potion");
+        t5.add ("Improved Powerful Luck Potion");  
+        t5.add ("Super Revitalizer");
+        
+        tiers.add(0,t0);
+        tiers.add(1,addLists(t1,t0));
+        tiers.add(2,addLists(t2,t1));
+        tiers.add(3,addLists(t3,t2));
+        tiers.add(4,addLists(t4,t3));
+        tiers.add(5,addLists(t5,t4));
+        return tiers;
+    }
+    
+    public ArrayList<String> addLists(ArrayList<String> a1, ArrayList<String> a2)
+    {
+        ArrayList<String> a3 = new ArrayList<String>();
+        for (String s : a1)
+        {
+            a3.add(s);
+        }
+        for (String q : a2)
+        {
+            a3.add(q);
+        }
+        return a3;
     }
 }

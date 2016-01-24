@@ -18,7 +18,7 @@ public class Brown extends GChar{
         speedInitial = speed = 200;
         EXP = 1000;
         gold = 9999;
-        i= new Inventory ("Zweihänder")
+        i= new Inventory ("Zweihänder");
         
         known.add ("Keys to Success");
         known.add ("Wadatah");
@@ -27,4 +27,4 @@ public class Brown extends GChar{
         known.add ("Bun of Fate");
 
     }
-    
+}
