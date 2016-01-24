@@ -25,7 +25,7 @@
 |SA           | 1/18/16  |Integrated Area, Skill, Cchar; created Battler, Creator   |
 |MA           | 1/19/16  |Added two new events: an augmented combat and a magical crypt event|
 |SA           | 1/19/16  | Created Printer class - does java IO             |
-|             |          |                                                 |
+|MA           | 1/23/16  |Finished item database, added lots more monsters, and loot functionality. Finished PoolEvent too                                                 |
 |             |          |                                                 |
 |             |          |                                                 |
 |             |          |                                                 |
