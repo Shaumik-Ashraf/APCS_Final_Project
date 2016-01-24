@@ -33,7 +33,7 @@ public class Legendairy2 {
 		*/
 		Creator.initCreator();
 
-		//newGame();
+		newGame();
 
 		System.out.println("Done.");
 		
@@ -111,7 +111,7 @@ public class Legendairy2 {
 	
 	public static void main (String[] args){
 
-	    Legendairy game = new Legendairy();
+	    Legendairy2 game = new Legendairy2();
 
 	} //close main
 
