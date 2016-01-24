@@ -37,18 +37,18 @@ public abstract class Area {
 	}
 	
     public Event seeEvent() {
-	return( qe.seek() );
+		return( qe.peek() );
     }
 
-	public abstract ArrayList<GChar> callEvent(ArrayList<GChar> Party);
+	public abstract ArrayList<GChar> callEvent(ArrayList<GChar> party);
 	
-	public abstract void update(ArrayList<GChar> Party);
+	public abstract void update(ArrayList<GChar> party);
 
     public boolean noMoreEvents() {
 		return( qe.peek()==null );
     }
 
-    public abstract void restore();
+    public abstract void restore(ArrayList<GChar> party);
 	
 }
 
@@ -57,38 +57,43 @@ class AreaTown extends Area {
 
 	public static final String[] TOWNNAMESLIST = new String[] 
 				{"Town of Beginnings", "Lumbridge", "That Burning Town", "Final Destination"};
-	public static String[] townnameslist = TOWNNAMESLIST;
+	public static ArrayList<String> townnameslist = new ArrayList<String>( Arrays.asList(TOWNNAMESLIST) );
 	/*Disclaimer: Townnames from: 
 				{SAO, RuneScape, Kid Icurus Uprising, and Super Smash Bros.},
-																			respectively
+				respectively
 	*/
 	
 	public AreaTown(ArrayList<GChar> party) {
 		super();
-		name = townnameslist.remove( (int)(Math.random()*townnameslist.length) );
+		if( townnameslist.size()==0 ) {
+			name = "That Generic Town";
+		} 
+		else {
+			name = townnameslist.remove( (int)(Math.random()*townnameslist.size()) );
+		}
 		areatype = "Town";
-		qe.add( new TownEvent(party) );
+		qe.add( new TownEvent(party, name) );
 	}
 
     public AreaTown(ArrayList<GChar> party, String name_arg) {
 	super();
 	name = name_arg;
 	areatype = "Town";
-	qe.add( new TownEvent(party) );
+	qe.add( new TownEvent(party, name) );
     }
 	
-	public ArrayList<GChar> callEvent(ArrayList<GChar> Party) {
-		update(Party);
+	public ArrayList<GChar> callEvent(ArrayList<GChar> party) {
+		update(party);
 		return( qe.poll().beginEvent() );
 	}
 	
-	public void update(ArrayList<GChar> Party) {
-	    String temp_nam = qe.poll().getName();
-		qe.add( new TownEvent(party), temp_nam );
+	public void update(ArrayList<GChar> party) {
+	    //String temp_nam = qe.poll().townname;
+		qe.add( new TownEvent(party, name) );
 	}
 
-	public void restore() {
-		qe.add( new TownEvent(party) );
+	public void restore(ArrayList<GChar> party) {
+		qe.add( new TownEvent(party, name) );
 	}
 	
 }
@@ -142,7 +147,7 @@ class AreaField extends Area {
 		}
     }//close update method
 
-	public void restore() {
+	public void restore(ArrayList<GChar> party) {
 		qe.add( new NoEvent(party) );
 		for(int i=0; i<3; i++) {   //add 3 random events, with 60% CombatEvent, 20% NoEvent, 20% CavernEvent 
 			double r = Math.random();
@@ -220,7 +225,7 @@ class AreaDungeon extends Area {
 		}
     }
 
-	public void restore() {
+	public void restore(ArrayList<GChar> party) {
 		qe.add( new NoEvent(party) );
 		for(int i=0; i<3; i++) {   //add 5 random events: 20% TrapEvent, 20% CryptEvent, 20% ChestEvent, 30% CombatEvent, 10% NoEvent
 			double r = Math.random();

@@ -1174,7 +1174,7 @@ class PoolEvent extends Event
 //NEEDS TESTING
 class TownEvent extends Event {
 
-	String townname;
+	public String townname;
 	String delay;   //input buffer
     private Scanner in = new Scanner(System.in);
     public ArrayList<GChar> party = new ArrayList<GChar>();
@@ -1191,7 +1191,7 @@ class TownEvent extends Event {
 		delay = in.nextLine();
 		String input = "";
 		GChar charInput = party.get(0);
-        while (!(input.toLowerCase().equals("advance")))
+        while(!(input.toLowerCase().equals("advance")))
         {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -1206,6 +1206,9 @@ class TownEvent extends Event {
 			else if( input.equals("shop") ) {
 				System.out.println("Sorry, but the current store manager is currently out running from loan sharks.");
 				//IMPLEMENT SHOP HERE
+				System.out.println("\nType any character to continue");
+				delay = in.nextLine();
+				String input = "";
 			}
 			else if (input.equals ("items"))
 		        {
@@ -1286,9 +1289,12 @@ class TownEvent extends Event {
 		            System.out.println("Your Party Rests.");
 		        }
 		        //No Ambush chance...
+				System.out.println("\nType any character to continue");
+				delay = in.nextLine();
+				String input = "";
 		    }
 		    
-		    else if (input.equals("advance")) {
+		    else if(input.equals("advance")) {
 		        break;
 		    }
 		    
@@ -1299,9 +1305,15 @@ class TownEvent extends Event {
                 	    p.augmentStats();
                 		p.normalize();  //is this right?
             	}
+				System.out.println("\nType any character to continue");
+				delay = in.nextLine();
+				String input = "";
 		    }
 			else {
 				System.out.println("Sorry but that is not legal action in town - if only it weren't for those town watchmen!");
+				System.out.println("\nType any character to continue");
+				delay = in.nextLine();
+				String input = "";
 			}
             
         }

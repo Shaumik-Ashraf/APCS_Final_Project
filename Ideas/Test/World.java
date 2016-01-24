@@ -23,8 +23,8 @@ public class World {
 		world_seed = (long)(Math.random()*Math.random()*Math.random()*Math.random()*1000);
 		rand = new Random(world_seed);
 		
-		player_x_cor = rand.nextInt();
-		player_y_cor = rand.nextInt();
+		player_x_cor = Math.abs(rand.nextInt()) % world_size;
+		player_y_cor = Math.abs(rand.nextInt()) % world_size;
 		
 		for(int i=0; i<world_size; i++) {
 			for(int j=0; j<world_size; j++) {
@@ -52,8 +52,8 @@ public class World {
 		world_seed = worldseed;
 		rand = new Random(world_seed);
 		
-		player_x_cor = rand.nextInt();
-		player_y_cor = rand.nextInt();
+		player_x_cor = rand.nextInt();//(rand.nextInt()*rand.nextInt()) % world_size;
+		player_y_cor = rand.nextInt();//(rand.nextInt()*rand.nextInt()) % world_size;
 		
 		for(int i=0; i<world_size; i++) {
 			for(int j=0; j<world_size; j++) {
@@ -91,13 +91,13 @@ public class World {
 		
 		w = new World(p);
 	
-		System.out.print("World created\n");
+		System.out.print("World created\nx: " + w.player_x_cor + ", y:" + w.player_y_cor + "\n\n");
 		
 		for(int turn=0; turn<10; turn++) {
-			
-			if( w.getArea().noMoreEvents() ) {  //player cleared area...
+			System.out.println("turn: " + turn );
+			if( (w.getArea()).noMoreEvents() ) {  //player cleared area...
 				
-				w.getArea().restore();
+				w.getArea().restore(p);
 				
 				System.out.println("You have cleared the area!\nWhere would you like to go?\n");
 				System.out.print("North\nSouth\nEast\nWest\nStay here\n\n:");
