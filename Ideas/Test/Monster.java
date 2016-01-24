@@ -34,7 +34,7 @@ public class Monster extends GChar{
         bestiary.put ("Sword Beetle", new String[]     {"Sword Beetle",     "Wood",   "Strong Swing",   "Proud Swivel",     "1.1",     "1.5",    ".7" ,    "10",   "1.4"   });
         bestiary.put ("Trap Box", new String[]         {"Trap Box",        "Blank",   "Spiral Assault", "Heat Wave",        "1.5",     "1.2",    "1.2",    "10",   "1.2"   });
         bestiary.put ("Danger Beast", new String[]     {"Danger Beast",     "Fire",   "Flame Crash",    "Spiral Assault",   "1.6",     "1.5",    "1.5",    "10",   "1.5"   });
-        bestiary.put ("Stage Killer", new String[]     {"Stage Killer",     "Aqua",   "Assassinate",    "Shuffle Time",  "   1.1",     "1.1",    "1.1",    "10",   "1.8"   }); 
+        bestiary.put ("Stage Killer", new String[]     {"Stage Killer",     "Aqua",   "Assassinate",    "Shuffle Time",     "1.1",     "1.1",    "1.1",    "10",   "1.8"   }); 
         bestiary.put ("Modern Airplane", new String[]  {"Modern Airplane", "Blank",   "Basic Attack",   "Fatal Shot",         "2",      ".8",     ".8",    "10",     "1"   });
         bestiary.put ("Mossgreen Moss", new String[]   {"Mossgreen Moss",  "Light",   "Basic Attack",   "Luster Wave",      "1.2",     "1.1",    "1.1",    "10",   "1.1"   });
         bestiary.put ("Future Fencer", new String[]    {"Future Fencer",    "Dark",   "Finishing Touch","Darkness",         "1.2",     "1.7",    "1.5",    "10",   "1.6"   });
