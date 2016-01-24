@@ -622,7 +622,7 @@ class shuffleTime extends Skill //needs to be fixed
         }
         
         else{
-            user.useSkill ("Arrow Storm", c);
+            user.useSkill ("Fatal Blow", c);
         }
         user.known.remove("Finishing Touch");
         user.known.remove("Arcane Bullets");
