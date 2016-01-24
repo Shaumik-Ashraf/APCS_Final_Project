@@ -8,9 +8,9 @@ import java.util.*;
 
 public final class Creator {
 
-	public static final ArrayList<String> stats = new ArrayList();
-	public static final ArrayList<String> traits = new ArrayList();
-	public static final ArrayList<String> jobs = new ArrayList();
+	public static final ArrayList<String> stats = new ArrayList<String>();
+	public static final ArrayList<String> traits = new ArrayList<String>();
+	public static final ArrayList<String> jobs = new ArrayList<String>();
 
 	private static String message;
 	private static String choice;

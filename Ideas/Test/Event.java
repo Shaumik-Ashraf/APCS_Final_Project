@@ -1172,6 +1172,7 @@ class PoolEvent extends Event
 //INCOMPLETE
 //Mostly Copied from NoEvent
 //NEEDS TESTING
+/*
 class TownEvent extends Event {
 
 	public String townname;
@@ -1191,7 +1192,7 @@ class TownEvent extends Event {
 		delay = in.nextLine();
 		String input = "";
 		GChar charInput = party.get(0);
-        while(!(input.toLowerCase().equals("advance")))
+        do
         {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -1210,7 +1211,7 @@ class TownEvent extends Event {
 				delay = in.nextLine();
 				input = "";
 			}
-			else if (input.equals ("items"))
+			else if (input.equals("items"))
 		        {
 		            System.out.println("Whose items?\n");
 		            input = in.nextLine();
@@ -1318,10 +1319,15 @@ class TownEvent extends Event {
             
         }
     return party;
+			} //close else 
+		
+		} while(!(input.toLowerCase().equals("advance")));
+        
+		return party;
     }
 
 }
-
+*/
 
 /*---------------------AUGMENTED COMBAT EVENT (POOL)---------------------*/
 class PoolCombatEvent extends Event

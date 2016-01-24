@@ -42,7 +42,7 @@ public abstract class Item
         weapons.put("Darksteel Greatsword", new int[] {0,38,0,0,23,0,0,18,1});
         weapons.put("Mithril Greatsword",   new int[] {0,43,0,0,15,0,0,23,1});
         weapons.put("Obsidian Greatsword",  new int[] {0,48,0,0,15,0,0,28,1});
-        weapons.put("Zweihänder",           new int[] {0,75,0,0,10,0,0,33,1});
+        weapons.put("Zweihander",           new int[] {0,75,0,0,10,0,0,33,1});
         /* --------------- */   
         
         /* --STAFFS-- */

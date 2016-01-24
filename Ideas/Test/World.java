@@ -17,7 +17,7 @@ public class World {
 	public Random rand;
 	
     public World(ArrayList<GChar> party) {
-		world_size = 3;
+		world_size = 4;
 		world = new Area[world_size][world_size];
 		
 		world_seed = (long)(Math.random()*Math.random()*Math.random()*Math.random()*1000);
@@ -31,18 +31,22 @@ public class World {
 				switch( rand.nextInt()%3 ) {
 					case 0:
 						world[i][j] = new AreaTown(party);
+						System.err.print("world loc (" + i + "," + j + ") is town\n");
 						break;
 					case 1:
 						world[i][j] = new AreaField(party);
+						System.err.print("world loc (" + i + "," + j + ") is field\n");
 						break;
 					case 2:
 						world[i][j] = new AreaDungeon(party);
+						System.err.print("world loc (" + i + "," + j + ") is dungeon\n");
 						break;
 					default:
 						break;
 				}  //close switch
 			} //close for-loop j
 		} //close for-loop i
+		
 	} //close constructor
 	
 	public World(ArrayList<GChar> party, int worldsize, long worldseed) {
@@ -91,10 +95,10 @@ public class World {
 		
 		w = new World(p);
 	
-		System.out.print("World created\nx: " + w.player_x_cor + ", y:" + w.player_y_cor + "\n\n");
+		System.out.print("World created\nx:" + w.player_x_cor + ", y:" + w.player_y_cor + "\n\n");
 		
 		for(int turn=0; turn<10; turn++) {
-			System.out.println("turn: " + turn );
+			System.err.println("turn: " + turn);
 			if( (w.getArea()).noMoreEvents() ) {  //player cleared area...
 				
 				w.getArea().restore(p);
@@ -133,11 +137,16 @@ public class World {
 				} //close if input
 				
 			} //close if player cleared area
+			
 			else {
+				System.err.print("Calling area event\n");
 				p = w.getArea().callEvent(p);
+				System.err.print("event calling complete\n");
 			}
 			
 		} //close loop
+	
+		System.out.println("Done\n");
 	
 	} //close main
 	
