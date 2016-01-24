@@ -45,6 +45,7 @@ public abstract class Area {
 	public abstract void update(ArrayList<GChar> party);
 
     public boolean noMoreEvents() {
+		System.err.print("peek:" + qe.peek());
 		return( qe.peek()==null );
     }
 
@@ -76,14 +77,15 @@ class AreaTown extends Area {
 	}
 
     public AreaTown(ArrayList<GChar> party, String name_arg) {
-	super();
-	name = name_arg;
-	areatype = "Town";
-	qe.add( new TownEvent(party, name) );
+		super();
+		name = name_arg;
+		areatype = "Town";
+		qe.add( new TownEvent(party, name) );
     }
 	
 	public ArrayList<GChar> callEvent(ArrayList<GChar> party) {
 		update(party);
+		System.err.print("event update complete...\n");
 		return( qe.poll().beginEvent() );
 	}
 	

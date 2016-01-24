@@ -1191,7 +1191,7 @@ class TownEvent extends Event {
 		delay = in.nextLine();
 		String input = "";
 		GChar charInput = party.get(0);
-        while(!(input.toLowerCase().equals("advance")))
+        do
         {
             System.out.print("\033[H\033[2J");
             System.out.flush();
@@ -1208,9 +1208,9 @@ class TownEvent extends Event {
 				//IMPLEMENT SHOP HERE
 				System.out.println("\nType any character to continue");
 				delay = in.nextLine();
-				String input = "";
+				input = "";
 			}
-			else if (input.equals ("items"))
+			else if (input.equals("items"))
 		        {
 		            System.out.println("Whose items?\n");
 		            input = in.nextLine();
@@ -1291,7 +1291,7 @@ class TownEvent extends Event {
 		        //No Ambush chance...
 				System.out.println("\nType any character to continue");
 				delay = in.nextLine();
-				String input = "";
+				input = "";
 		    }
 		    
 		    else if(input.equals("advance")) {
@@ -1307,17 +1307,18 @@ class TownEvent extends Event {
             	}
 				System.out.println("\nType any character to continue");
 				delay = in.nextLine();
-				String input = "";
+				input = "";
 		    }
 			else {
 				System.out.println("Sorry but that is not legal action in town - if only it weren't for those town watchmen!");
 				System.out.println("\nType any character to continue");
 				delay = in.nextLine();
-				String input = "";
-			}
-            
-        }
-    return party;
+				input = "";
+			} //close else 
+		
+		} while(!(input.toLowerCase().equals("advance")));
+        
+		return party;
     }
 
 }
