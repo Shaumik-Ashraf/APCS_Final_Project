@@ -62,7 +62,7 @@ public final class Creator {
 			System.out.flush();
 
 		message = "";
-	    	message = "Creating Character...\nWould you tell me your name?";
+	    	message = "Creating new Character...\nWould you tell me your name?";
 	    	System.out.println (message);
 	    
 		if( in.hasNextLine() ) {

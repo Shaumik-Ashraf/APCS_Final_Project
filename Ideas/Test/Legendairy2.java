@@ -101,7 +101,12 @@ public class Legendairy2 {
 	
 	}
 
-
+	public void playGame() {
+	
+		
+	
+	}
+	
 	public static void main (String[] args){
 
 	    Legendairy game = new Legendairy();

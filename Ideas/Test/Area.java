@@ -45,15 +45,15 @@ public abstract class Area {
 	public abstract void update(ArrayList<GChar> Party);
 
     public boolean noMoreEvents() {
-	return( qe.peek()==null );
+		return( qe.peek()==null );
     }
 
-    //public abstract void restore(); //readd popped Events
+    public abstract void restore();
 	
 }
 
 /*==================AreaTown Class====================================================================*/
-class TownArea extends Area {
+class AreaTown extends Area {
 
 	public static final String[] TOWNNAMESLIST = new String[] 
 				{"Town of Beginnings", "Lumbridge", "That Burning Town", "Final Destination"};
@@ -63,21 +63,18 @@ class TownArea extends Area {
 																			respectively
 	*/
 	
-	public TownArea(ArrayList<GChar> party) {
+	public AreaTown(ArrayList<GChar> party) {
 		super();
 		name = townnameslist.remove( (int)(Math.random()*townnameslist.length) );
 		areatype = "Town";
 		qe.add( new TownEvent(party) );
-		qe.add( new TownEvent(party) );
 	}
 
-    public TownArea(ArrayList<GChar> party, String name_arg) {
+    public AreaTown(ArrayList<GChar> party, String name_arg) {
 	super();
 	name = name_arg;
 	areatype = "Town";
 	qe.add( new TownEvent(party) );
-	qe.add( new TownEvent(party) );
-	
     }
 	
 	public ArrayList<GChar> callEvent(ArrayList<GChar> Party) {
@@ -90,6 +87,10 @@ class TownArea extends Area {
 		qe.add( new TownEvent(party), temp_nam );
 	}
 
+	public void restore() {
+		qe.add( new TownEvent(party) );
+	}
+	
 }
 
 /*===================AreaField Class====================================================================*/
@@ -108,7 +109,6 @@ class AreaField extends Area {
 	fieldctr++;
 	areatype = "Field";
 	qe.add( new NoEvent(party) );
-	qe.add( new NoEvent(party) );
 	for(int i=0; i<3; i++) {   //add 3 random events, with 60% CombatEvent, 20% NoEvent, 20% CavernEvent 
 	    double r = Math.random();
 	    if( r < 0.6 ) {
@@ -124,24 +124,40 @@ class AreaField extends Area {
     } //close constructor
 
     public ArrayList<GChar> callEvent(ArrayList<GChar> party) {
-	update(party);
-	return( qe.poll().beginEvent() );
+		update(party);
+		return( qe.poll().beginEvent() );
     }
 
     public void update(ArrayList<GChar> party) {
-	Event e = qe.poll();
-	if( e instanceof CombatEvent ) {
-	    qe.add( new CombatEvent(party) );
-	}
-	else if( e instanceof NoEvent ) {
-	    qe.add( new NoEvent(party) );
-	}
-	//If other Events added to Field, add here
-	else {
-	    qe.add( new CavernEvent(party) );
-	}
+		Event e = qe.poll();
+		if( e instanceof CombatEvent ) {
+			qe.add( new CombatEvent(party) );
+		}
+		else if( e instanceof NoEvent ) {
+			qe.add( new NoEvent(party) );
+		}
+		//If other Events added to Field, add here
+		else {
+			qe.add( new CavernEvent(party) );
+		}
     }//close update method
 
+	public void restore() {
+		qe.add( new NoEvent(party) );
+		for(int i=0; i<3; i++) {   //add 3 random events, with 60% CombatEvent, 20% NoEvent, 20% CavernEvent 
+			double r = Math.random();
+			if( r < 0.6 ) {
+			qe.add( new CombatEvent(party) );
+			}
+			else if( r < 0.8 ) {
+			qe.add( new NoEvent(party) );
+			}
+			else {
+			qe.add( new CavernEvent(party) );
+			}
+		} //close for-loop
+	}
+	
 } //close AreaField class
 
 /*===============AreaDungeon========================================================*/
@@ -157,7 +173,6 @@ class AreaDungeon extends Area {
 	super();
 	name = "Dungeon";  //IMPROVE
 	areatype = "Dungeon";
-	qe.add( new NoEvent(party) );
 	qe.add( new NoEvent(party) );
 	for(int i=0; i<3; i++) {   //add 5 random events: 20% TrapEvent, 20% CryptEvent, 20% ChestEvent, 30% CombatEvent, 10% NoEvent
 	    double r = Math.random();
@@ -181,27 +196,52 @@ class AreaDungeon extends Area {
     }
 
     public ArrayList<GChar> callEvent(ArrayList<GChar> party) {
-	;
+		update(party);
+		return( qe.poll().beginEvent() );
     }
 
     public void update(ArrayList<GChar> party) {
-	if( e instanceof ChestEvent ) {
-	    qe.add( new ChestEvent(party) );
-	}
-	else if( e instanceof TrapEvent ) {
-	    qe.add( new TrapEvent(party) );
-	}
-	else if( e instanceof CryptEvent ) {
-	    qe.add( new CryptEvent(party) );
-	}
-	else if( e instanceof CombatEvent ) {
-	    qe.add( new CombatEvent(party) );
-	}
-	//If other Events added to Field, add here
-	else {
-	    qe.add( new NoEvent(party) );
-	}
+		Event e = qe.poll();
+		if( e instanceof ChestEvent ) {
+			qe.add( new ChestEvent(party) );
+		}
+		else if( e instanceof TrapEvent ) {
+			qe.add( new TrapEvent(party) );
+		}
+		else if( e instanceof CryptEvent ) {
+			qe.add( new CryptEvent(party) );
+		}
+		else if( e instanceof CombatEvent ) {
+			qe.add( new CombatEvent(party) );
+		}
+		//If other Events added to Field, add here
+		else {
+			qe.add( new NoEvent(party) );
+		}
     }
 
+	public void restore() {
+		qe.add( new NoEvent(party) );
+		for(int i=0; i<3; i++) {   //add 5 random events: 20% TrapEvent, 20% CryptEvent, 20% ChestEvent, 30% CombatEvent, 10% NoEvent
+			double r = Math.random();
+			if( r < 0.2 ) {
+			qe.add( new TrapEvent(party) );
+			}
+			else if( r < 0.4 ) {
+			qe.add( new CryptEvent(party) );
+			}
+			else if( r < 0.6 ) {
+			qe.add( new ChestEvent(party) );
+			}
+			else if( r < 0.9 ) {
+			qe.add( new CombatEvent(party) );
+			}
+			//add other Events here
+			else {
+			qe.add( new NoEvent(party) );
+			}
+		} //close for-loop
+	} //close method restore
+	
 }
 
