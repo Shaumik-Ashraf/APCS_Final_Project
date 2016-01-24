@@ -7,7 +7,7 @@ public class Brown extends GChar{
     {
         level = 100;
         name = "Mr.Brown";
-        element = Blank;
+        element = "Blank";
         hpInitial = HP = 25000;
         mpInitial = MP = 0;
         strInitial = str = 250;
@@ -20,7 +20,15 @@ public class Brown extends GChar{
         gold = 9999;
         i= new Inventory ("Zweihänder");
         
+        //40% to use basic attack
+        known.add ("Basic Attack");
+        known.add ("Basic Attack");
+        known.add ("Basic Attack");
+        known.add ("Basic Attack");
+        
+        //60% to use skills
         known.add ("Keys to Success");
+        known.add ("Wadatah");
         known.add ("Wadatah");
         known.add ("Day of Relaxation");
         known.add ("Beard of Justice");
