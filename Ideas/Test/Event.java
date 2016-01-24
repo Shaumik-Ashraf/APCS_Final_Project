@@ -1169,10 +1169,7 @@ class PoolEvent extends Event
 }
 
 /*------------------------------------TOWN EVENT--------------------------------*/
-//INCOMPLETE
-//Mostly Copied from NoEvent
-//NEEDS TESTING
-/*
+
 class TownEvent extends Event {
 
 	public String townname;
@@ -1317,17 +1314,15 @@ class TownEvent extends Event {
 				input = "";
 			}
             
-        }
-    return party;
-			} //close else 
-		
-		} while(!(input.toLowerCase().equals("advance")));
+        } while(!(input.toLowerCase().equals("advance")));
         
 		return party;
     }
 
+	//public ArrayList
+	
 }
-*/
+
 
 /*---------------------AUGMENTED COMBAT EVENT (POOL)---------------------*/
 class PoolCombatEvent extends Event
@@ -1793,3 +1788,4 @@ class LootEvent extends Event
         return a3;
     }
 }
+

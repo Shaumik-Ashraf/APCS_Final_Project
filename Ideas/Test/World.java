@@ -56,8 +56,8 @@ public class World {
 		world_seed = worldseed;
 		rand = new Random(world_seed);
 		
-		player_x_cor = rand.nextInt();//(rand.nextInt()*rand.nextInt()) % world_size;
-		player_y_cor = rand.nextInt();//(rand.nextInt()*rand.nextInt()) % world_size;
+		player_x_cor = Math.abs(rand.nextInt()) % world_size;
+		player_y_cor = Math.abs(rand.nextInt()) % world_size;
 		
 		for(int i=0; i<world_size; i++) {
 			for(int j=0; j<world_size; j++) {
