@@ -1,4 +1,5 @@
 #Devlog
+bendypeanut commits are James Cao's.
 
 | Contributor |   Date   |  Work                          |
 |-------------|----------|--------------------------------|
