@@ -1292,7 +1292,7 @@ class TownEvent extends Event {
 		        for (GChar c : party) {
 		            c.HP = c.hpInitial;
 		            c.MP = c.mpInitial;
-		            System.out.println("Your Party Rests.");
+		            System.out.println("Your Party Rests at the inn.");
 		        }
 		        //No Ambush chance...
 				System.out.println("\nType any character to continue");

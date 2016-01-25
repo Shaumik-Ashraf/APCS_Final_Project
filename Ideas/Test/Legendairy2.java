@@ -36,14 +36,19 @@ public class Legendairy2 {
 		*/
 		Creator.initCreator();
 		
-		System.out.println("Now creating your world!\nPlease enter a world generator seed (long number):");
+		System.out.println("Now creating your world!\nPlease enter a world generator seed (long number, will default to 1234 in any other case):");
 		do {
-			if( in.hasNextLong() ) {
-				ws = in.nextLong();
-				hasSeed = true;
+			try 
+			{
+				if( in.hasNextLong() ) {
+					ws = in.nextLong();
+					hasSeed = true;
+					break;
+				}
+				ws = 1234;
 				break;
-			}
-			System.out.println("Invalid seed. Enter a long number:");
+			} catch(Exception e) {}
+
 		} while( !hasSeed );
 		
 		try 
