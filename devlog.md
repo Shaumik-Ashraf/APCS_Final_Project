@@ -31,7 +31,7 @@
 |JC           | 1/22/16  |Added more monsters to database.                                                |
 |MA           | 1/23/16  |Finished item database, added lots more monsters, and loot functionality. Finished PoolEvent too                                                 |
 |JC           | 1/23/16  |Finialized monster list. Added more skills. Balanced damage Created Final Boss. Added items to loot.                                                 |
-|JC           | 1/24/16  |Created boss list and fixed some errors in Skills.                                                 |
+|JC           | 1/24/16  |Created boss list and fixed some errors in Skills. Created boss spawn event.                                                 |
 |MA           | 1/24.16  |Working monster spawn functionality, fixed more bugs.                                                 |
 |             |          |                                                 |
 |             |          |                                                 |
