@@ -19,7 +19,7 @@ public class Brown extends GChar{
         speedInitial = speed = 200;
         EXP = 1000;
         gold = 9999;
-        i= new Inventory ("Zweihänder");
+        i= new Inventory ("Zweihander");
         
         //40% to use basic attack
         known.add ("Basic Attack");

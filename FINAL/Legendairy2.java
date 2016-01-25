@@ -28,6 +28,7 @@ public class Legendairy2 {
 		in = new Scanner(System.in);
 		boolean hasSeed = false;
 		long ws = (new Random()).nextLong(); //world seed
+		//int turn;
 		
 		/* Called by Creator.initCreator();
 		Item.consEquipList();
@@ -36,26 +37,20 @@ public class Legendairy2 {
 		*/
 		Creator.initCreator();
 		
-		System.out.println("Now creating your world!\nPlease enter a world generator seed (long number, will default to 1234 in any other case):");
+		System.out.println("Now creating your world!\nPlease enter a world generator seed (long number):");
 		do {
-			try 
-			{
-				if( in.hasNextLong() ) {
-					ws = in.nextLong();
-					hasSeed = true;
-					break;
-				}
-				ws = 1234;
-				break;
-			} catch(Exception e) {}
-
+			while( !in.hasNextLong() ) {
+				in.next();
+				System.out.println("Invalid seed. Enter a long (large integer) number!");
+				hasSeed = false;
+			}
+			ws = in.nextLong();
+			hasSeed = true;
+			break;
 		} while( !hasSeed );
 		
-		try 
-		{
-			party = newGame();
-			playWorld(party);			
-		} catch(Exception e) {System.out.println("Your party has died. Game Over.");}
+		party = newGame();
+		playWorld(party, ws);
 		
 		System.out.print("Good Game.\n");
 		
@@ -64,15 +59,17 @@ public class Legendairy2 {
 
 	public ArrayList<GChar> newGame() {
 	
-		//-----------------INTRO/TUTORIAL
+		//-----------------INTRO/TUTORIAL-----------------------
 		ArrayList<GChar> party = new ArrayList<GChar>();
 		c1 = Creator.characterCreation();
 		party.add(c1);
-		System.out.println(c1.name + " has joined the party!\n\n");
+		//System.out.println(c1.name + " has joined the party!\n\n");
 	
 		System.out.println("You open your crusty eyelids as if you have woken from a long sleep. You find yourself in a dark, gloomy room.");
 		e = new NoEvent(party);
 		party = e.beginEvent();
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
 		System.out.println("You wander out of the room and find yourself in a long hallway. You can only see so far down the hallway before an obscuring darkness clouds it.");
 		System.out.println("You hear shuffling noises. What do you do?\nRun\nHide\n");
 		while(true)
@@ -80,17 +77,21 @@ public class Legendairy2 {
 			String input = in.nextLine();
 			if (input.toLowerCase().equals("run"))
 			{
+				System.out.print("\033[H\033[2J");
+				System.out.flush();
 				System.out.println("The noises chase after you. Suddenly, you are caught, as the shuffling noises change into heavy footsteps, which in turn manifest themselves as insidious creatures in your vision. \nYou are attacked.");
 				break;
 			}
 			else if (input.toLowerCase().equals("hide"))
 			{
+				System.out.print("\033[H\033[2J");
+				System.out.flush();
 				System.out.println("The shuffling noises grow louder and louder, and then grow softer. Then you hear a lighter shuffling approach you again as you hide behind a door. That shuffling quicky becomes the footsteps of a single entity. \nThe door creaks open as you and a horrible creature look into each other's eyes.\nThe creature lets out a hideous scream and its comerades rush to its aid.\nYou are attacked.");
 				break;
 			}
 			else
 			{
-				System.out.println("Input a valid response.");
+				
 			}
 		}
 
@@ -99,7 +100,7 @@ public class Legendairy2 {
 	
 		//String delay = in.nextLine(); //////////////////
 		System.out.print("\033[H\033[2J");
-			System.out.flush();     
+		System.out.flush();     
 		System.out.println("You are heavily damaged. You lay on the floor as yet another entitiy hobbles toward you. There is nothing you can do.");
 		System.out.println("'Hello there...' it says. Take this, and come with me.");
 		c1.getInventory().giveItem(new EffectItem("Lesser Healing Potion"));
@@ -114,7 +115,7 @@ public class Legendairy2 {
 		}
 		System.out.println("You feel much better.");
 		System.out.println("'Now come with me,' he says...\n Now who is he?\n");
-		System.out.println("Press any key to enter character Creation.");
+		System.out.println("\nType any character to continue");
 		String delay = in.nextLine();
 		GChar c2 = Creator.characterCreation();
 		party.add(c2);
@@ -127,20 +128,21 @@ public class Legendairy2 {
 	
 	}
 
-	public void playWorld(ArrayList<GChar> p) {
+	public void playWorld(ArrayList<GChar> p, long worldseed) {
 
-		World w = new World(p);
+		World w = new World(p, 8, worldseed);
+		boolean keepplaying = true;
 	
 		System.out.print("World created\nx:" + w.player_x_cor + ", y:" + w.player_y_cor + "\n\n");
 		
-		for(int turn=0; turn<10; turn++) {
-			System.err.println("turn: " + turn);
+		for( int turn=0; keepplaying; turn++) {
+			System.out.println("(x,y):(" + w.player_x_cor + "," + w.player_y_cor + ")\nturn: " + turn);
 			if( (w.getArea()).noMoreEvents() ) {  //player cleared area...
 				
 				w.getArea().restore(p);
 				
 				System.out.println("You have cleared the area!\nWhere would you like to go?\n");
-				System.out.print("North\nSouth\nEast\nWest\nStay here\n\n:");
+				System.out.print("North\nSouth\nEast\nWest\nStay here\nExit game\n\n:");
 				
 				if( in.hasNextLine() ) {  //prompt for direction to travel
 					switch( in.nextLine() ) {
@@ -165,7 +167,10 @@ public class Legendairy2 {
 							}
 							break;
 						case "Stay here":
+							w.getArea().restore(p);
 							break;
+						case "Exit game":
+							keepplaying = false;
 						default:
 							System.out.println("This isnt your GPS! Please enter a proper direction.\n");
 							break;
@@ -175,9 +180,9 @@ public class Legendairy2 {
 			} //close if player cleared area
 			
 			else {
-				System.err.print("Calling area event\n");
+				//System.err.print("Calling area event\n");
 				p = w.getArea().callEvent(p);
-				System.err.print("event calling complete\n");
+				//System.err.print("event calling complete\n");
 			}
 			
 		} //close loop
@@ -189,7 +194,14 @@ public class Legendairy2 {
 	
 	public static void main (String[] args){
 
-	    Legendairy2 game = new Legendairy2();
+		try {
+	    	Legendairy2 game = new Legendairy2();
+		}
+		catch(Exception ex) {
+			System.out.println("You lost Exception!");
+			System.err.println(ex);
+			ex.printStackTrace();
+		}
 
 	} //close main
 

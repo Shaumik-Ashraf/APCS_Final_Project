@@ -57,6 +57,8 @@ public class GChar{
     
     
     
+	public Scanner in = new Scanner(System.in);
+	
     //Inventory -made this public
     public Inventory i;
     
@@ -620,6 +622,10 @@ public class GChar{
         this.gold += c.gold;
         System.out.println (name + " gained " + c.EXP + " EXP!");
         System.out.println (name + " gained " + c.gold + " gold!");
+        System.out.println("\nType any character to continue");
+		String delay = in.nextLine();
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
         if (this.EXP >= 100)
         {
             System.out.print("\033[H\033[2J");
@@ -632,10 +638,10 @@ public class GChar{
             int lvlGain = this.EXP /100;
             this.level += lvlGain;
             this.EXP = this.EXP % 100;
-            this.hpInitial += 10 * lvlGain;
-            this.mpInitial += 10 * lvlGain;
+            this.hpInitial += 15 * lvlGain;
+            this.mpInitial += 15 * lvlGain;
             this.skillPoints(lvlGain);
-            if (this.level % 5 == 0){
+            if (this.level % 4 == 0){
                 this.learnSkill();
             }
         }
@@ -911,6 +917,8 @@ public class GChar{
 		        
             		    this.useSkill (input, enemy);
         		    delay = in.nextLine();
+        		    System.out.print("\033[H\033[2J");
+		            System.out.flush();  
         
         results (this , enemy);
     }

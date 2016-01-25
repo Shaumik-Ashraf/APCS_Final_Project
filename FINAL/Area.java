@@ -44,11 +44,13 @@ public abstract class Area {
 	public abstract void update(ArrayList<GChar> party);
 
     public boolean noMoreEvents() {
-		System.err.print("peek:" + qe.peek());
+		//System.err.print("peek:" + qe.peek());
 		return( qe.peek()==null );
     }
 
     public abstract void restore(ArrayList<GChar> party);
+	
+	public abstract void arriveAt();
 	
 }
 
@@ -84,17 +86,24 @@ class AreaTown extends Area {
 	
 	public ArrayList<GChar> callEvent(ArrayList<GChar> party) {
 		update(party);
-		System.err.print("event update complete...\n");
+		//System.err.print("event update complete...\n");
 		return( qe.poll().beginEvent() );
 	}
 	
 	public void update(ArrayList<GChar> party) {
 	    //String temp_nam = qe.poll().townname;
+	    qe.poll();
 		qe.add( new TownEvent(party, name) );
 	}
 
 	public void restore(ArrayList<GChar> party) {
 		qe.add( new TownEvent(party, name) );
+	}
+	
+	public void arriveAt() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+		System.out.println("You've arrived at a Town.\n");
 	}
 	
 }
@@ -174,12 +183,17 @@ class AreaDungeon extends Area {
     //currently incompatible, read Field
     //public String[] monsterlist;
     //public double[] spawnchance; 
+    public static int d_num=0;  //dungeon number
     
     public AreaDungeon(ArrayList<GChar> party) {
 	super();
 	name = "Dungeon";  //IMPROVE
+	d_num++;
 	areatype = "Dungeon";
 	qe.add( new NoEvent(party) );
+	if( d_num > 3 && d_num%2==1 ) {  //spawn boss on every odd dungeon after the 3rd
+		qe.add( new CombatEvent(party, (int)((d_num-1)/2)) );
+	}
 	for(int i=0; i<3; i++) {   //add 5 random events: 20% TrapEvent, 20% CryptEvent, 20% ChestEvent, 30% CombatEvent, 10% NoEvent
 	    double r = Math.random();
 	    if( r < 0.2 ) {

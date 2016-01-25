@@ -18,7 +18,7 @@ public class Monster extends GChar{
         bestiary.put ("Elephant Ronin", new String[]   {"Elephant Ronin",   "Gale",   "Basic Attack",   "Spiral Assault",   "1.8",     "1.1",    ".8" ,    "10",   "1.5"   });
         bestiary.put ("Magmasaur", new String[]        {"Magmasaur",        "Fire",   "Basic Attack",   "Heat Wave",        "1.1",       "1",   "1.2" ,    "10",   "1.2"   });
         bestiary.put ("Feral Wolf", new String[]       {"Feral Wolf",       "Gale",   "Basic Attack",   "Feather Duster",    ".9",     "1.1",  " 1.1" ,    "10",   "1.4"   });
-        bestiary.put ("Centaur", new String[]          {"Centaur",          "Wood",   "Holy Smite",   "  Arrow Storm",       ".7",     "1.3",   "1.1" ,    "10",   "1.2"   });
+        bestiary.put ("Centaur", new String[]          {"Centaur",          "Wood",   "Basic Attack",   "Arrow Storm",       ".7",     "1.3",   "1.1" ,    "10",   "1.2"   });
         bestiary.put ("Harmony Wombat", new String[]   {"Harmony Wombat",  "Light",   "Vampire",        "Salvation",         ".5",     "1.1",     "1" ,    "10",   "1.1"   });
         bestiary.put ("Molten Rock", new String[]      {"Molten Rock",      "Fire",   "Inner Fire",     "Flame Crash",        "2",      ".8",   "1.1" ,    "10",    ".7"   });
         bestiary.put ("Rain Chief", new String[]       {"Rain Chief",       "Aqua",   "Basic Attack",   "Drizzle",           ".5",      ".8",   "1.1" ,    "10",     "1"   });
@@ -29,7 +29,7 @@ public class Monster extends GChar{
         bestiary.put ("Axe Villager", new String[]     {"Axe Villager",    " Wood",   "Basic Attack",   "Strong Swing",       "1",       "2",    ".1" ,    "10",     "1"   });
         bestiary.put ("Gelatinous Cube", new String[]  {"Gelatinous Cube",  "Aqua",   "Basic Attack",   "Tidal Wave",       "2.5",      ".1",    ".1" ,    "10",    ".9"   });
         bestiary.put ("Hollow Golem", new String[]     {"Hollow Golem",    "Light",   "Basic Attack",   "Planet",           "2.5",     "1.2",    ".1" ,    "10",    ".9"   });
-        bestiary.put ("Magitek Delta", new String[]    {"Magitek Delta",    "Dark",   "Basic Attack",   "Arcane Bullets",   "1.1",      ".1",    "1.2",    "10",    ".8"   });    
+        bestiary.put ("Magitek Delta", new String[]    {"Magitek Delta",    "Dark",   "Basic AttackM",  "Arcane Bullets",   "1.1",      ".1",    "1.2",    "10",    ".8"   });    
         bestiary.put ("Magitek Epsilon", new String[]  {"Magictek Epsilon","Light",   "Basic Attack",   "Arcanite Force",   "1.1",      ".1",    "1.4",    "10",    ".7"   });
         bestiary.put ("Air Chair", new String[]        {"Air Chair",        "Gale",   "Basic Attack",   "Luster Wave",       ".4",     "1.1",    ".7" ,    "10",   "1.4"   });
         bestiary.put ("Sword Beetle", new String[]     {"Sword Beetle",     "Wood",   "Strong Swing",   "Proud Swivel",     "1.1",     "1.5",    ".7" ,    "10",   "1.4"   });
@@ -57,7 +57,7 @@ public class Monster extends GChar{
         bestiary.put ("Spirit Corn", new String[]      {"Spirit Corn",      "Wood",   "Luster Wave",    "Pepper Song",      "1.2",     "1.7",    "1.5",    "10",   "1.6"   });
         bestiary.put ("Solar Spider", new String[]     {"Solar Spider",    "Light",   "Heat Wave",      "Radiance",           "1",     "1.1",    "1.6",    "10",   "1.7"   });
         bestiary.put ("Alucard's Dog", new String[]    {"Alucard's Dog",    "Dark",   "Zombie Strike",  "Vampire",          "1.1",     "1.6",    "1.3",    "10",   "1.8"   });
-        bestiary.put ("Soul Turtle", new String[]      {"Soul Turtle",      "Aqua",   "Arcane Bullets", "Tidal Wave",       "1.6",     "1.1",    "1.9",    "10",   ".1"    });
+        bestiary.put ("Soul Turtle", new String[]      {"Soul Turtle",      "Aqua",   "Arcanite Force", "Tidal Wave",       "1.6",     "1.1",    "1.9",    "10",   ".1"    });
         bestiary.put ("Nox", new String[]              {"Nox",              "Dark",   "Zombie Strike",  "Shuffle Time",       "2",       "2",      "2",    "10",   "1.7"   });
         bestiary.put ("Vinewich", new String[]         {"Vinewich",         "Wood",   "Seed Burst",     "Wood Spike",       "1.4",     "1.6",    "1.7",    "10",   "1.3"   });
         bestiary.put ("Trident Lion", new String[]     {"Trident Lion",     "Aqua",   "Geyser",         "Rush Down",        "1.8",     "1.6",    "1.5",    "10",   "2"     });
@@ -67,7 +67,7 @@ public class Monster extends GChar{
         bestiary.put ("Magictek Beta", new String[]    {"Magitek Beta",    "Blank",   "Brain Shock",    "Arcanite Force",     "1",       "1",      "2",    "10",   "1.9"   });
         bestiary.put ("Fair Gunslinger", new String[]  {"Fair Gunslinger",  "Fire",   "Quick Draw",     "Fatal Shot",       "1.8",     "1.7",    "1.2",    "10",   "1.7"   });
         bestiary.put ("Atlas", new String[]            {"Atlas",           "Light",   "Strong Swing",   "Planet",             "2",       "2",      "0",    "10",   "1.5"   });
-        bestiary.put ("Mercenary", new String[]        {"Mercenary",       "Blank",   "Assassinate",    "Arrow Storm",      "1.5",     "1.9",    "1.5",    "10",   "2.2"   });
+        bestiary.put ("Mercenary", new String[]        {"Mercenary",       "Blank",   "Assassinate",    "Pickpocket",       "1.5",     "1.9",    "1.5",    "10",   "2.2"   });
         bestiary.put ("Forte Flutist", new String[]    {"Forte Flutist",    "Wood",   "Arcanite Forte", "Tidal Wave",       "1.1",     "1.1",    "2.1",    "10",   "1.1"   });
         bestiary.put ("Felldragon", new String[]       {"Felldragon",       "Dark",   "Heat Wave",      "Rush Down",        "2.4",     "2.5",    "2.5",    "10",   "2.5"   });
         bestiary.put ("Grand Wall", new String[]       {"Grand Wall",      "Blank",   "BasicAttack",    "Pepper Song",        "3",      ".5",     ".5",    "10",   ".1"    });

@@ -95,6 +95,68 @@ class CombatEvent extends Event
                 }
             }            
         }
+        
+    }
+    
+    //if combat event is spawning a boss
+    public CombatEvent(ArrayList<GChar> p, int boss) {
+        called = false;
+        isComplete = false;
+        int counter = 0;
+        for (GChar c: p)
+        {
+            party.add(c);
+            engagement.add(c);
+            aliveParty.add(c);
+            c.normalize();
+            c.augmentStats();
+            partyLvl += c.level;
+            counter += 1;
+        }
+        partyLvl = (int)(partyLvl/counter);
+        
+        //spawn boss
+        switch(boss) {
+            case 0:
+                spawnMagma();
+                break;
+            case 1:
+                spawnIsland();
+                break;
+            case 2:
+                spawnKing();
+                break; 
+            case 3: 
+                spawnLuna();
+                break;
+            case 4:
+                spawnReaper();
+                break;
+            case 5:
+                spawnBrown();
+                break;
+            default:
+                spawnEnemies(partyLvl);
+                break;
+        }
+        
+        for (int k = 0; k < engagement.size(); k++)
+        {
+            for (int i = 0; i < engagement.size()-1; i++)
+            {
+                //System.out.println(engagement);
+                //for (int j = 0; j < engagement.size(); j++) {System.out.println(engagement.get(j).speed + " ");}
+                if (engagement.get(i).speed < engagement.get(i+1).speed)
+                {
+                 
+                    GChar lower = engagement.get(i);
+                    GChar higher = engagement.get(i+1);
+                    engagement.set(i, higher);
+                    engagement.set(i+1, lower);
+                }
+            }            
+        }
+        
     }
     
     public void spawnEnemies(int level)
@@ -204,6 +266,84 @@ class CombatEvent extends Event
             LootEvent l = new LootEvent(aliveParty, monsterNum);
             party = l.beginEvent();
             return aliveParty;
+        }
+    }
+    
+    public void spawnMagma() 
+    {
+        
+            enemies.add(new Magma() );
+            monsterNum += 1;
+        for (GChar c : enemies)
+        {
+            engagement.add(c);
+            aliveEnemies.add(c);
+            c.augmentStats();
+        }
+    }
+    
+    public void spawnIsland() 
+    {
+        
+            enemies.add(new Island() );
+            monsterNum += 1;
+        for (GChar c : enemies)
+        {
+            engagement.add(c);
+            aliveEnemies.add(c);
+            c.augmentStats();
+        }
+    }
+    
+    public void spawnKing() 
+    {
+        
+            enemies.add(new King() );
+            monsterNum += 1;
+        for (GChar c : enemies)
+        {
+            engagement.add(c);
+            aliveEnemies.add(c);
+            c.augmentStats();
+        }
+    }
+    
+    public void spawnLuna() 
+    {
+        
+            enemies.add(new Luna() );
+            monsterNum += 1;
+        for (GChar c : enemies)
+        {
+            engagement.add(c);
+            aliveEnemies.add(c);
+            c.augmentStats();
+        }
+    }
+    
+    public void spawnReaper() 
+    {
+        
+            enemies.add(new Reaper() );
+            monsterNum += 1;
+        for (GChar c : enemies)
+        {
+            engagement.add(c);
+            aliveEnemies.add(c);
+            c.augmentStats();
+        }
+    }
+    
+    public void spawnBrown() 
+    {
+        
+            enemies.add(new Brown() );
+            monsterNum += 1;
+        for (GChar c : enemies)
+        {
+            engagement.add(c);
+            aliveEnemies.add(c);
+            c.augmentStats();
         }
     }
 }
@@ -1445,8 +1585,10 @@ class PoolCombatEvent extends Event
                 }
                 if (aliveParty.contains(c) && (c.isAlive()))
                 {
-                    //System.out.print("\033[H\033[2J");
-        			//System.out.flush(); 
+                    System.out.println("\nType any character to continue");
+		            String delay = in.nextLine();
+                    System.out.print("\033[H\033[2J");
+        			System.out.flush(); 
                     System.out.println("\nEnemies: " + aliveEnemies);
                     System.out.println("Party: " + aliveParty);
                     System.out.println("Who will " + c.name + " engage?\n");

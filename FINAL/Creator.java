@@ -207,18 +207,20 @@ public final class Creator {
 	    System.out.print("\033[H\033[2J");
 			System.out.flush();
 		
-			System.out.println (name);
-			System.out.println (element);
-			System.out.println (best);
-			System.out.println (worst);
-			System.out.println (job);
 		
 		
-			GChar cloud = new GChar (name, element, best, worst, job);
+		
+		GChar cloud = new GChar (name, element, best, worst, job);
 	    message = "Hm, so you're " ;
 	    message += name;
 	    message += "?\n";
 	    System.out.println (message);
+	    
+	    System.out.println("\nType any character to continue");
+		String delay = in.nextLine();
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+		
 	    return cloud;
 	  
 	}  //close characterCreation
