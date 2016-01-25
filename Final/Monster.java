@@ -116,6 +116,11 @@ public class Monster extends GChar{
         
     }
     
+	public static String randomMonsterName() {
+		ArrayList<String> monsterNames = new ArrayList<String>( bestiary.keySet() );
+		return( monsterNames.get( (int)(monsterNames.size()*Math.random()) ) );
+	}
+	
     public Monster (String monsterName, int lvl)
     {
         hpInitial = HP = 20;
