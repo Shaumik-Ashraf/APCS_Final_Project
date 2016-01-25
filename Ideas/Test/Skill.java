@@ -1281,7 +1281,7 @@ class vampire extends Skill
         System.out.println (user.name + " drained " + c.name + "'s lifeforce!");
         user.MP -= mpCost;
         user.HP += (int)(c.HP * .1);
-        c.takeDamageMp ((int)(c.HP *.1));
+        c.takeDamage ((int)(c.HP *.1));
         
     }
 }
