@@ -33,9 +33,9 @@ bendypeanut commits are James Cao's.
 |MA           | 1/23/16  |Finished item database, added lots more monsters, and loot functionality. Finished PoolEvent too                                                 |
 |JC           | 1/23/16  |Finialized monster list. Added more skills. Balanced damage Created Final Boss. Added items to loot.                                                 |
 |JC           | 1/24/16  |Created boss list and fixed some errors in Skills. Created boss spawn event.                                                 |
-|MA           | 1/24.16  |Working monster spawn functionality, fixed more bugs.                                                 |
-|             |          |                                                 |
-|             |          |                                                 |
+|MA           | 1/24.16  |Working monster spawn functionality, fixed more bugs.                                               |
+|SA           | 1/24/16  |Worked on World class                            |
+|EVERYONE     | 1/25/15  |Debugged and finalized code; finished documentation, tested the game                     |
 |             |          |                                                 |
 |             |          |                                                 |
 |             |          |                                                 |
