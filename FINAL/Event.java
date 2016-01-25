@@ -1343,13 +1343,14 @@ class TownEvent extends Event {
             System.out.flush();
             System.out.println("Welcome to Town");
             System.out.println("Party: " + party);
-            System.out.println("What do you do?\nSave\nShop\nItems\nAdvance\nRest\nWait\n");
+            System.out.println("What do you do?\nShop\nItems\nAdvance\nRest\nWait\n");
             input = in.nextLine().toLowerCase();
+            /* 
             if( input.equals("save") ) {
 				System.out.println("Saving... Failed to save.");
 				//IMPLEMENT SAVING HERE
 			}
-			else if( input.equals("shop") ) {
+			else*/ if( input.equals("shop") ) {
 				System.out.println("Sorry, but the current store manager is currently out running from loan sharks.");
 				//IMPLEMENT SHOP HERE
 				System.out.println("\nType any character to continue");

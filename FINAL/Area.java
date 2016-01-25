@@ -173,6 +173,12 @@ class AreaField extends Area {
 		} //close for-loop
 	}
 	
+	public void arriveAt() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+		System.out.println("You've arrived at a wild field.\n");
+	}
+	
 } //close AreaField class
 
 /*===============AreaDungeon========================================================*/
@@ -263,5 +269,11 @@ class AreaDungeon extends Area {
 		} //close for-loop
 	} //close method restore
 	
-}
+	public void arriveAt() {
+		System.out.print("\033[H\033[2J");
+		System.out.flush();
+		System.out.println("You've arrived at a mysterious dungeon.\n");
+	}  //close arriveAt method
+	
+}  //close class
 

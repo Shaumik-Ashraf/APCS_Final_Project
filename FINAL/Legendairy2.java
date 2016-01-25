@@ -151,20 +151,24 @@ public class Legendairy2 {
 							if( w.player_y_cor<0 ) {
 								w.player_y_cor = w.world_size-1;
 							}
+							w.getArea().arriveAt();
 							break;
 						case "South":
 							w.player_y_cor++;
 							w.player_y_cor %= w.world_size;
+							w.getArea().arriveAt();
 							break;
 						case "East":
 							w.player_x_cor++;
 							w.player_x_cor %= w.world_size;
+							w.getArea().arriveAt();
 							break;
 						case "West":
 							w.player_x_cor--;
 							if( w.player_x_cor<0 ) {
 								w.player_x_cor = w.world_size-1;
 							}
+							w.getArea().arriveAt();
 							break;
 						case "Stay here":
 							w.getArea().restore(p);
@@ -187,8 +191,7 @@ public class Legendairy2 {
 			
 		} //close loop
 	
-		System.out.println("Done\n");
-	
+		System.out.println("Done. Hope you enjoyed :)\n");
 	
 	}
 	
