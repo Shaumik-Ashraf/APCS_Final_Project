@@ -16,6 +16,7 @@ public class World {
 	public long world_seed;
 	public Random rand;
 	
+	//depreciated
     public World(ArrayList<GChar> party) {
 		world_size = 4;
 		world = new Area[world_size][world_size];
@@ -58,24 +59,38 @@ public class World {
 		
 		player_x_cor = Math.abs(rand.nextInt()) % world_size;
 		player_y_cor = Math.abs(rand.nextInt()) % world_size;
+		String worldMapData = new String();  //contain text data representing a visual of the world, world map for user
+		
+		worldMapData += ("JASC World Map\n\n" + "Seed:" + world_seed + "\nSize:" + world_size + "x" + world_size + "\n\n");
 		
 		for(int i=0; i<world_size; i++) {
+			worldMapData += "|";
 			for(int j=0; j<world_size; j++) {
-				switch( rand.nextInt()%3 ) {
-					case 0:
-						world[i][j] = new AreaTown(party);
-						break;
-					case 1:
-						world[i][j] = new AreaField(party);
-						break;
-					case 2:
-						world[i][j] = new AreaDungeon(party);
-						break;
-					default:
-						break;
-				}  //close switch
+				double r = rand.nextDouble();
+				if ( r < 0.2 ) {
+					world[i][j] = new AreaTown(party);
+					worldMapData += "[  Town   ]";
+				}
+				else if (r < 0.6 ) {
+					world[i][j] = new AreaField(party);
+					worldMapData += "[  Field  ]";
+				}	
+				else {
+					world[i][j] = new AreaDungeon(party);
+					worldMapData += "[ Dungeon ]";
+				}  //end if-else ladder
 			} //close for-loop j
+			worldMapData += "|\n";
 		} //close for-loop i
+		
+		worldMapData += "\nWorld Map End\n\n";
+		if( Printer.filePrint("worldMap.txt", worldMapData) ) {
+			System.out.println("World Map has been created! Check worldMap.txt\n\n");
+		}
+		else {
+			System.out.println("World Map failed to be created...\n\n");
+		}
+		
 	} //close constructor
 	
 	public Area getArea() {
@@ -95,7 +110,7 @@ public class World {
 		
 		w = new World(p);
 	
-		System.out.print("World created\nx:" + w.player_x_cor + ", y:" + w.player_y_cor + "\n\n");
+		//System.out.print("World created\nx:" + w.player_x_cor + ", y:" + w.player_y_cor + "\n\n");
 		
 		for(int turn=0; turn<10; turn++) {
 			System.err.println("turn: " + turn);
@@ -107,28 +122,28 @@ public class World {
 				System.out.print("North\nSouth\nEast\nWest\nStay here\n\n:");
 				
 				if( in.hasNextLine() ) {  //prompt for direction to travel
-					switch( in.nextLine().toLowerCase() ) {
-						case "north":
+					switch( in.nextLine() ) {
+						case "North":
 							w.player_y_cor--;
 							if( w.player_y_cor<0 ) {
 								w.player_y_cor = w.world_size-1;
 							}
 							break;
-						case "south":
+						case "South":
 							w.player_y_cor++;
 							w.player_y_cor %= w.world_size;
 							break;
-						case "east":
+						case "East":
 							w.player_x_cor++;
 							w.player_x_cor %= w.world_size;
 							break;
-						case "west":
+						case "West":
 							w.player_x_cor--;
 							if( w.player_x_cor<0 ) {
 								w.player_x_cor = w.world_size-1;
 							}
 							break;
-						case "stay here":
+						case "Stay here":
 							break;
 						default:
 							System.out.println("This isnt your GPS! Please enter a proper direction.\n");
