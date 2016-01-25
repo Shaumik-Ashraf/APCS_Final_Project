@@ -25,6 +25,7 @@ class CombatEvent extends Event
     private Scanner in = new Scanner(System.in);
     private boolean called;
     private int partyLvl= 0;
+    private int monsterNum = 0;
    
     public CombatEvent (ArrayList<GChar> p)
     {
@@ -98,9 +99,12 @@ class CombatEvent extends Event
     
     public void spawnEnemies(int level)
     {
-        
-        enemies.add(new Monster ("Future Fencer", level));
-        enemies.add(new Monster ("Stage Killer", level));
+        String[] Monsters = Monster.bestiary.keySet().toArray(new String[Monster.bestiary.keySet().size()]);
+        for (int i = 0; i < (1 + (int)(2*party.size()*Math.random())); i++)
+        {
+            enemies.add(new Monster(Monsters[(int)(Monsters.length*Math.random())], partyLvl));
+            monsterNum += 1;
+        }
         for (GChar c : enemies)
         {
             engagement.add(c);
@@ -182,18 +186,22 @@ class CombatEvent extends Event
 	else if( aliveEnemies.size()==0 && aliveParty.size()!=0 ) {
 	    System.out.println("Your party is Dead XP");
 	    System.out.println("GG");
-	    //is there any java exit() or abort function?
+	    while (true)
+	    {
+	        System.out.println("Press ctrl-c to leave game");
+	        String input = in.nextLine();
+	    }
 	}
         if (called == false)
         {
-            LootEvent l = new LootEvent(aliveParty, 5);
+            LootEvent l = new LootEvent(aliveParty, monsterNum);
             party = l.beginEvent();
             NoEvent e = new NoEvent(aliveParty);
             return e.beginEvent();            
         }
         else
         {
-            LootEvent l = new LootEvent(aliveParty, 5);
+            LootEvent l = new LootEvent(aliveParty, monsterNum);
             party = l.beginEvent();
             return aliveParty;
         }

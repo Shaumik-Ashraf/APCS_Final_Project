@@ -107,28 +107,28 @@ public class World {
 				System.out.print("North\nSouth\nEast\nWest\nStay here\n\n:");
 				
 				if( in.hasNextLine() ) {  //prompt for direction to travel
-					switch( in.nextLine() ) {
-						case "North":
+					switch( in.nextLine().toLowerCase() ) {
+						case "north":
 							w.player_y_cor--;
 							if( w.player_y_cor<0 ) {
 								w.player_y_cor = w.world_size-1;
 							}
 							break;
-						case "South":
+						case "south":
 							w.player_y_cor++;
 							w.player_y_cor %= w.world_size;
 							break;
-						case "East":
+						case "east":
 							w.player_x_cor++;
 							w.player_x_cor %= w.world_size;
 							break;
-						case "West":
+						case "west":
 							w.player_x_cor--;
 							if( w.player_x_cor<0 ) {
 								w.player_x_cor = w.world_size-1;
 							}
 							break;
-						case "Stay here":
+						case "stay here":
 							break;
 						default:
 							System.out.println("This isnt your GPS! Please enter a proper direction.\n");

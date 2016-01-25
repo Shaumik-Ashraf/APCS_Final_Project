@@ -231,13 +231,13 @@ class AreaDungeon extends Area {
 		qe.add( new NoEvent(party) );
 		for(int i=0; i<3; i++) {   //add 5 random events: 20% TrapEvent, 20% CryptEvent, 20% ChestEvent, 30% CombatEvent, 10% NoEvent
 			double r = Math.random();
-			if( r < 0.2 ) {
+			if( r < 0.1 ) {
 			qe.add( new TrapEvent(party) );
 			}
-			else if( r < 0.4 ) {
+			else if( r < 0.2 ) {
 			qe.add( new CryptEvent(party) );
 			}
-			else if( r < 0.6 ) {
+			else if( r < 0.3 ) {
 			qe.add( new ChestEvent(party) );
 			}
 			else if( r < 0.9 ) {

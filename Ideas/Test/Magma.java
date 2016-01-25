@@ -31,7 +31,7 @@ public class Magma extends GChar{
         known.add ("Arcanite Force");
         known.add ("Heat Wave");
         known.add ("Rekindle");
-        known.add ("Flame Crash")
+        known.add ("Flame Crash");
         known.add ("Strong Swing");
         
     }

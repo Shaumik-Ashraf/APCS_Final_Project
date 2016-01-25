@@ -46,8 +46,11 @@ public class Legendairy2 {
 			System.out.println("Invalid seed. Enter a long number:");
 		} while( !hasSeed );
 		
-		party = newGame();
-		playWorld(party, ws);
+		try 
+		{
+			party = newGame();
+			playWorld(party);			
+		} catch(Exception e) {System.out.println("Your party has died. Game Over.");}
 		
 		System.out.print("Good Game.\n");
 		
@@ -106,6 +109,8 @@ public class Legendairy2 {
 		}
 		System.out.println("You feel much better.");
 		System.out.println("'Now come with me,' he says...\n Now who is he?\n");
+		System.out.println("Press any key to enter character Creation.");
+		String delay = in.nextLine();
 		GChar c2 = Creator.characterCreation();
 		party.add(c2);
 		System.out.println(c2.name + " has joined the party!");
@@ -117,9 +122,9 @@ public class Legendairy2 {
 	
 	}
 
-	public void playWorld(ArrayList<GChar> p, long worldseed) {
+	public void playWorld(ArrayList<GChar> p) {
 
-		World w = new World(p, 100, worldseed);
+		World w = new World(p);
 	
 		System.out.print("World created\nx:" + w.player_x_cor + ", y:" + w.player_y_cor + "\n\n");
 		
