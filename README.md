@@ -12,6 +12,9 @@ Playing Legendairy is relatively simple. When you are prompted for a response, e
 ##Technical Stuff
 Our project solidifies and showcases the usage of Java class hierarchy and interfaces. We will be using abstract classes and interfaces. We will also use some Java 7 API classes such as Scanner, HashMap, and ArrayList. We also used the Java file I/O (with util.Writer and util.Scanner) and enumerations. 
 
+##How To Run
+cd FINAL/; javac *.java; java Legendairy2
+
 ##Collaborators
 - Shaumik Ashraf
 - James Cao
