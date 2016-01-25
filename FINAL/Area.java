@@ -8,7 +8,6 @@
  *  party = a.callEvent(party); 
  *
  */
-
 import java.util.*;
 
 /*==================Abstract Area Class====================================================================*/
