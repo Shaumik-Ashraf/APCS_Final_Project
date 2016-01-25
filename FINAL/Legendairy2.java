@@ -202,8 +202,8 @@ public class Legendairy2 {
 		}
 		catch(Exception ex) {
 			System.out.println("You lost Exception!");
-			System.err.println(ex);
-			ex.printStackTrace();
+			//System.err.println(ex);
+			//ex.printStackTrace();
 		}
 
 	} //close main
