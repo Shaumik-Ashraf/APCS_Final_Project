@@ -432,9 +432,11 @@ class arcaneBullets extends Skill
 
         while (hits != 0)
         {
+            user.known.add ("BasicAttackM");
             user.useSkill ("BasicAttackM", c);
             hits --;
         }
+        user.known.remove ("BasicAttackM");
         
     }
 }
